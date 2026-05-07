@@ -36,6 +36,9 @@ import com.example.myapplication.ui.state.EmpresaUiState;
 import com.example.myapplication.ui.state.NegociacaoUiState;
 import com.example.myapplication.ui.state.RacaUiState;
 
+import com.example.myapplication.ui.state.negociacao.Cotacao;
+import com.example.myapplication.ui.state.negociacao.Fechamento;
+import com.example.myapplication.ui.state.negociacao.Proposta;
 import com.example.myapplication.ui.viewmodel.CategoriaViewModel;
 import com.example.myapplication.ui.viewmodel.CorretorViewModel;
 import com.example.myapplication.ui.viewmodel.EmpresaViewModel;
@@ -119,7 +122,7 @@ public class NegociacaoFragment extends Fragment {
     private void iniciarDadosDaNegociacao() {
         exibirQuantidadeAnimais(formatInteger(cargaTotalDoLote));
         exibirPesoMedio(formatDouble(pesoMedio));
-        negociacaoViewModel.processarCotacao(negociacaoBuilder, BigDecimal.valueOf(pesoMedio), cargaTotalDoLote);
+        negociacaoViewModel.processarCotacao(BigDecimal.valueOf(pesoMedio), cargaTotalDoLote);
     }
 
     private void configurarRecyclerViewRacas() {
@@ -206,9 +209,9 @@ public class NegociacaoFragment extends Fragment {
         atualizarValorFornecedor(estado);
     }
 
-    private void processarSessaoDeComissao(@NonNull NegociacaoUiState estado) {
-        if (!estado.isFreteAplicado()) return;
-        if (!estado.isComissaoAplicada()) return;
+    private void processarSessaoDeComissao(@NonNull Proposta proposta, Fechamento fechamento) {
+        if (!proposta.isFreteDescontado()) return;
+        if (!fechamento.isComissaoAplicada()) return;
         atualizarSessaoFinal(estado);
         atualizarBadgeCorretor(estado);
         atualizarValorFornecedor(estado);
@@ -216,22 +219,22 @@ public class NegociacaoFragment extends Fragment {
         atualizarVariacao(estado);
     }
 
-    private void preencherCamposIniciais(NegociacaoUiState estado) {
+    private void preencherCamposIniciais(Proposta estado) {
         preencherValorPorCabeca(estado);
         preencherValorPorKg(estado);
     }
 
-    private void atualizarSessaoCotado(NegociacaoUiState estado) {
+    private void atualizarSessaoCotado(Cotacao estado) {
         atualizarValorEtapaCotado(estado);
         atualizarDescricaoEtapaCotado(estado);
     }
 
-    private void atualizarSessaoPedido(NegociacaoUiState estado) {
+    private void atualizarSessaoPedido(Proposta estado) {
         atualizarValorEtapaPedido(estado);
         atualizarDescricaoEtapaPedido(estado);
     }
 
-    private void atualizarSessaoFinal(NegociacaoUiState estado) {
+    private void atualizarSessaoFinal(Fechamento estado) {
         atualizarValorEtapaFinal(estado);
         atualizarDescricaoEtapaFinal(estado);
     }
@@ -251,7 +254,7 @@ public class NegociacaoFragment extends Fragment {
 
 
     private void aplicarFreteNaNegociacao(BigDecimal totalFrete) {
-        negociacaoViewModel.processarValorPedido(negociacaoBuilder, BigDecimal.valueOf(pesoMedio), cargaTotalDoLote, converterFreteTotalParaPorKg(totalFrete));
+        negociacaoViewModel.processarProposta(BigDecimal.valueOf(pesoMedio), cargaTotalDoLote, converterFreteTotalParaPorKg(totalFrete));
     }
 
     private BigDecimal converterFreteTotalParaPorKg(BigDecimal freteTotalLote) {
@@ -262,7 +265,7 @@ public class NegociacaoFragment extends Fragment {
 
     private void aplicarCorretorNaNegociacao(@NonNull CorretorUiState corretor) {
         BigDecimal comissaoPorKg = corretor.getComissao().divide(BigDecimal.valueOf(pesoMedio), ESCALA_CALCULO, ARREDONDAMENTO_PADRAO);
-        negociacaoViewModel.processarFechamento(negociacaoBuilder, BigDecimal.valueOf(pesoMedio), cargaTotalDoLote, comissaoPorKg);
+        negociacaoViewModel.processarFechamento(BigDecimal.valueOf(pesoMedio), cargaTotalDoLote, comissaoPorKg);
     }
 
     private void removerCorretorDaNegociacao() {
@@ -311,13 +314,13 @@ public class NegociacaoFragment extends Fragment {
         categoriaAdapter.submitList(categorias);
     }
 
-    private void preencherValorPorCabeca(@NonNull NegociacaoUiState estado) {
-        String valorFormatado = formatCurrency(estado.getValorPorCabecaPedido());
+    private void preencherValorPorCabeca(@NonNull Proposta estado) {
+        String valorFormatado = formatCurrency(estado.getValorPorCabeca());
         atualizarCampoValorPorCabeca(valorFormatado);
     }
 
-    private void preencherValorPorKg(@NonNull NegociacaoUiState estado) {
-        String valorFormatado = formatCurrency(estado.getValorPorKgPedido());
+    private void preencherValorPorKg(@NonNull Proposta estado) {
+        String valorFormatado = formatCurrency(estado.getValorPorKg());
         atualizarCampoValorPorKg(valorFormatado);
     }
 
@@ -329,58 +332,58 @@ public class NegociacaoFragment extends Fragment {
         setText(binding.campoValorKgEntrada, valor);
     }
 
-    private void atualizarValorEtapaCotado(@NonNull NegociacaoUiState estado) {
-        String valorFormatado = formatCurrency(estado.getValorPorCabecaCotado());
+    private void atualizarValorEtapaCotado(@NonNull Cotacao estado) {
+        String valorFormatado = formatCurrency(estado.getValorPorCabeca());
         exibirValorEtapaCotado(valorFormatado);
     }
 
-    private void atualizarDescricaoEtapaCotado(@NonNull NegociacaoUiState estado) {
-        String descricao = "R$ " + formatCurrency(estado.getValorPorKgCotado()) + "/kg";
+    private void atualizarDescricaoEtapaCotado(@NonNull Cotacao estado) {
+        String descricao = "R$ " + formatCurrency(estado.getValorPorKg()) + "/kg";
         exibirDescricaoEtapaCotado(descricao);
     }
 
-    private void atualizarValorEtapaPedido(@NonNull NegociacaoUiState estado) {
-        String valorFormatado = formatCurrency(estado.getValorPorCabecaPedido());
+    private void atualizarValorEtapaPedido(@NonNull Proposta estado) {
+        String valorFormatado = formatCurrency(estado.getValorPorCabeca());
         exibirValorEtapaPedido(valorFormatado);
     }
 
-    private void atualizarDescricaoEtapaPedido(@NonNull NegociacaoUiState estado) {
-        String descricao = "R$ " + formatCurrency(estado.getValorPorKgPedido()) + "/kg";
+    private void atualizarDescricaoEtapaPedido(@NonNull Proposta estado) {
+        String descricao = "R$ " + formatCurrency(estado.getValorPorKg()) + "/kg";
         exibirDescricaoEtapaPedido(descricao);
     }
 
-    private void atualizarValorEtapaFinal(@NonNull NegociacaoUiState estado) {
-        String valorFormatado = formatCurrency(estado.getValorPorCabecaFinal());
+    private void atualizarValorEtapaFinal(@NonNull Fechamento estado) {
+        String valorFormatado = formatCurrency(estado.getValorPorCabeca());
         exibirValorEtapaFinal(valorFormatado);
     }
 
-    private void atualizarDescricaoEtapaFinal(@NonNull NegociacaoUiState estado) {
-        String descricao = "R$ " + formatCurrency(estado.getValorPorKgFinal()) + "/kg";
+    private void atualizarDescricaoEtapaFinal(@NonNull Fechamento estado) {
+        String descricao = "R$ " + formatCurrency(estado.getValorPorKg()) + "/kg";
         exibirDescricaoEtapaFinal(descricao);
     }
 
-    private void atualizarBadgeFrete(@NonNull NegociacaoUiState estado) {
-        String badge = "+ R$ " + formatCurrency(estado.getIncidenciaFrete()) + "/kg";
+    private void atualizarBadgeFrete(@NonNull Proposta estado) {
+        String badge = "+ R$ " + formatCurrency(estado.getValorPorKg()) + "/kg";
         exibirBadgeFrete(badge);
     }
 
-    private void atualizarBadgeCorretor(@NonNull NegociacaoUiState estado) {
-        String badge = "+ R$ " + formatCurrency(estado.getIncidenciaComissao()) + "/kg";
+    private void atualizarBadgeCorretor(@NonNull Fechamento estado) {
+        String badge = "+ R$ " + formatCurrency(estado.getComissaoPorKg()) + "/kg";
         exibirBadgeCorretor(badge);
     }
 
-    private void atualizarValorFornecedor(@NonNull NegociacaoUiState estado) {
-        String valorFormatado = formatCurrency(estado.getValorTotalFornecedor());
+    private void atualizarValorFornecedor(@NonNull Proposta estado) {
+        String valorFormatado = formatCurrency(estado.getValorTotal());
         exibirValorFornecedor(valorFormatado);
     }
 
-    private void atualizarValorTotal(@NonNull NegociacaoUiState estado) {
+    private void atualizarValorTotal(@NonNull Fechamento estado) {
         String valorFormatado = formatCurrency(estado.getValorTotal());
         exibirValorTotal(valorFormatado);
     }
 
-    private void atualizarVariacao(@NonNull NegociacaoUiState estado) {
-        String variacaoFormatada = formatCurrency(estado.getVariacao()) + "%";
+    private void atualizarVariacao(@NonNull Fechamento estado) {
+        String variacaoFormatada = formatCurrency(BigDecimal.valueOf(estado.getVariacaoPercentual())) + "%";
         exibirValorVariacao(variacaoFormatada);
     }
 
@@ -540,12 +543,12 @@ public class NegociacaoFragment extends Fragment {
 
     private boolean isFretePreenchido() {
         NegociacaoUiState estado = negociacaoViewModel.getState().getValue();
-        return isFreteAplicadoNoEstado(estado) || isFretePreenchidoManualmente();
+        return isFreteAplicadoNoEstado(estado.getProposta()) || isFretePreenchidoManualmente();
     }
 
-    private boolean isFreteAplicadoNoEstado(NegociacaoUiState estado) {
+    private boolean isFreteAplicadoNoEstado(Proposta estado) {
         if (estado == null) return false;
-        return estado.isFreteAplicado();
+        return estado.isFreteDescontado();
     }
 
     private boolean isFretePreenchidoManualmente() {
