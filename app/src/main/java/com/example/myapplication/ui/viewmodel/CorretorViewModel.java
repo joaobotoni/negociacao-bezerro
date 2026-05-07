@@ -1,0 +1,93 @@
+package com.example.myapplication.ui.viewmodel;
+
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.ViewModel;
+
+import com.example.myapplication.data.repositories.CorretorRepository;
+import com.example.myapplication.ui.helpers.TaskHelper;
+import com.example.myapplication.ui.state.CategoriaUiState;
+import com.example.myapplication.ui.state.CorretorUiState;
+import com.example.myapplication.utils.mappers.domain.CorretorMapper;
+
+import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
+
+import javax.inject.Inject;
+
+import dagger.hilt.android.lifecycle.HiltViewModel;
+
+@HiltViewModel
+public class CorretorViewModel extends ViewModel {
+    private final CorretorRepository repositorio;
+    private final CorretorMapper mapper;
+    private final TaskHelper taskHelper;
+    private final MutableLiveData<List<CorretorUiState>> state = new MutableLiveData<>(null);
+    private final MutableLiveData<Throwable> error = new MutableLiveData<>(null);
+    private final MutableLiveData<CorretorUiState> corretorSelecionado = new MutableLiveData<>(null);
+
+    @Inject
+    public CorretorViewModel(CorretorRepository repositorio, CorretorMapper mapper, TaskHelper taskHelper) {
+        this.repositorio = repositorio;
+        this.mapper = mapper;
+        this.taskHelper = taskHelper;
+        carregar();
+    }
+
+    public LiveData<List<CorretorUiState>> getState() {
+        return state;
+    }
+
+    public LiveData<Throwable> getError() {
+        return error;
+    }
+
+    public LiveData<CorretorUiState> getCorretorSelecionado() {
+        return corretorSelecionado;
+    }
+
+    public void selecionarCorretor(CorretorUiState selecionado) {
+        if (state.getValue() == null) return;
+
+        List<CorretorUiState> newList = state.getValue().stream()
+                .map(item -> new CorretorUiState(
+                        item.getId(),
+                        item.getNome(),
+                        item.getComissao(),
+                        item.getTipoComissao(),
+                        Objects.equals(item.getId(), selecionado.getId())))
+                .collect(Collectors.toList());
+
+        state.setValue(newList);
+        corretorSelecionado.setValue(selecionado);
+    }
+
+    public void carregar() {
+        listarCorretores();
+    }
+
+    private void listarCorretores() {
+        taskHelper.execute(
+                () -> repositorio.getAll().stream()
+                        .map(mapper::mapFrom)
+                        .collect(Collectors.toList()),
+                state::postValue,
+                error::postValue
+        );
+    }
+
+    public void limparSelecao() {
+        corretorSelecionado.setValue(null);
+        if (state.getValue() == null) return;
+        List<CorretorUiState> newList = state.getValue().stream()
+                .map(item -> new CorretorUiState(
+                        item.getId(),
+                        item.getNome(),
+                        item.getComissao(),
+                        item.getTipoComissao(),
+                        false))
+                .collect(Collectors.toList());
+        state.setValue(newList);
+    }
+}

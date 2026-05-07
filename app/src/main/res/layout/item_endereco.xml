@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cartao_item_cidade"
+    style="?attr/materialCardViewFilledStyle"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginVertical="4dp"
+    android:clickable="true"
+    app:cardBackgroundColor="?attr/colorSurfaceContainerLow"
+    app:shapeAppearance="?attr/shapeAppearanceCornerLarge">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="16dp">
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/container_icone"
+            style="?attr/materialCardViewFilledStyle"
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+            app:cardBackgroundColor="?attr/colorPrimaryContainer"
+            app:shapeAppearance="?attr/shapeAppearanceCornerMedium">
+
+            <ImageView
+                android:id="@+id/imagem_icone_localizacao"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:contentDescription="@null"
+                android:layout_gravity="center"
+                app:srcCompat="@drawable/location_on_24px"
+                app:tint="?attr/colorPrimary" />
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="8dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/texto_nome_cidade"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:fontFamily="sans-serif-medium"
+                android:maxLines="1"
+                android:textColor="?attr/colorOnSurface"
+                android:textSize="16sp"
+                tools:text="Brasília" />
+
+            <TextView
+                android:id="@+id/texto_nome_estado"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textColor="?attr/colorOnSurfaceVariant"
+                android:textSize="12sp"
+                tools:text="Distrito Federal" />
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/icone_seta"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:contentDescription="@null"
+            app:srcCompat="@drawable/arrow_forward_ios_24px"
+            app:tint="?attr/colorOutlineVariant" />
+
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>

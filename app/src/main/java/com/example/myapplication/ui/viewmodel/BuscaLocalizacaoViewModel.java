@@ -1,0 +1,52 @@
+package com.example.myapplication.ui.viewmodel;
+
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
+import androidx.lifecycle.ViewModel;
+
+
+import com.example.myapplication.data.repositories.LocalizacaoRepository;
+import com.example.myapplication.ui.helpers.TaskHelper;
+import com.example.myapplication.ui.state.BuscaLocalizacaoUiState;
+
+import javax.inject.Inject;
+
+import dagger.hilt.android.lifecycle.HiltViewModel;
+
+@HiltViewModel
+public class BuscaLocalizacaoViewModel extends ViewModel {
+    private final LocalizacaoRepository repositorio;
+    private final TaskHelper taskHelper;
+    private final MutableLiveData<BuscaLocalizacaoUiState> state = new MutableLiveData<>(null);
+    private final MutableLiveData<Throwable> error = new MutableLiveData<>(null);
+
+    @Inject
+    public BuscaLocalizacaoViewModel(LocalizacaoRepository repositorio, TaskHelper taskHelper) {
+        this.repositorio = repositorio;
+        this.taskHelper = taskHelper;
+    }
+
+    public LiveData<BuscaLocalizacaoUiState> getState() {
+        return state;
+    }
+
+    public LiveData<Throwable> getError() {
+        return error;
+    }
+
+    public void buscar(String consulta, double latitude, double longitude) {
+        taskHelper.execute(
+                () -> {
+                    String codigo = repositorio.paisDeCoordenadas(latitude, longitude).orElseThrow(() ->
+                            new RuntimeException("Código do pais não encontrado"));
+                    return new BuscaLocalizacaoUiState(repositorio.enderecosPorTexto(consulta, codigo), false);
+                },
+                state::postValue,
+                error::postValue
+        );
+    }
+
+    public void limpar() {
+        state.setValue(null);
+    }
+}
