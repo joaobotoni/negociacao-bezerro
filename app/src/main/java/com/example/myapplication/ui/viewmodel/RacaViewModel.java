@@ -6,8 +6,7 @@ import androidx.lifecycle.ViewModel;
 
 import com.example.myapplication.data.repositories.RacaRepository;
 import com.example.myapplication.ui.helpers.TaskHelper;
-import com.example.myapplication.ui.state.CategoriaUiState;
-import com.example.myapplication.ui.state.RacaUiState;
+import com.example.myapplication.ui.state.RacaState;
 import com.example.myapplication.utils.mappers.domain.RacaMapper;
 
 import java.util.List;
@@ -23,9 +22,9 @@ public class RacaViewModel extends ViewModel {
     private final RacaRepository repositorio;
     private final RacaMapper mapper;
     private final TaskHelper taskHelper;
-    private final MutableLiveData<List<RacaUiState>> state = new MutableLiveData<>(null);
+    private final MutableLiveData<List<RacaState>> state = new MutableLiveData<>(null);
     private final MutableLiveData<Throwable> error = new MutableLiveData<>(null);
-    private final MutableLiveData<RacaUiState> racaSelecionada = new MutableLiveData<>(null);
+    private final MutableLiveData<RacaState> racaSelecionada = new MutableLiveData<>(null);
 
     @Inject
     public RacaViewModel(RacaRepository repositorio, RacaMapper mapper, TaskHelper taskHelper) {
@@ -35,7 +34,7 @@ public class RacaViewModel extends ViewModel {
         carregar();
     }
 
-    public LiveData<List<RacaUiState>> getState() {
+    public LiveData<List<RacaState>> getState() {
         return state;
     }
 
@@ -43,15 +42,15 @@ public class RacaViewModel extends ViewModel {
         return error;
     }
 
-    public LiveData<RacaUiState> getRacaSelecionada() {
+    public LiveData<RacaState> getRacaSelecionada() {
         return racaSelecionada;
     }
 
-    public void selecionarRaca(RacaUiState selecionada) {
+    public void selecionarRaca(RacaState selecionada) {
         if (state.getValue() == null) return;
 
-        List<RacaUiState> newList = state.getValue().stream()
-                .map(item -> new RacaUiState(
+        List<RacaState> newList = state.getValue().stream()
+                .map(item -> new RacaState(
                         item.getId(),
                         item.getDescricao(),
                         Objects.equals(item.getId(), selecionada.getId())))
@@ -73,14 +72,5 @@ public class RacaViewModel extends ViewModel {
                 state::postValue,
                 error::postValue
         );
-    }
-
-    public void limparSelecao() {
-        racaSelecionada.setValue(null);
-        if (state.getValue() == null) return;
-        List<RacaUiState> newList = state.getValue().stream()
-                .map(item -> new RacaUiState(item.getId(), item.getDescricao(), false))
-                .collect(Collectors.toList());
-        state.setValue(newList);
     }
 }

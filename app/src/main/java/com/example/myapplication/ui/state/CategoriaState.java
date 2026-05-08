@@ -1,14 +1,13 @@
 package com.example.myapplication.ui.state;
 
-public class EmpresaUiState {
-
+public class CategoriaState {
     private final int id;
-    private final String nome;
+    private final String descricao;
     private final boolean isSelected;
 
-    public EmpresaUiState(int id, String nome, boolean isSelected) {
+    public CategoriaState(int id, String descricao, boolean isSelected) {
         this.id = id;
-        this.nome = nome;
+        this.descricao = descricao;
         this.isSelected = isSelected;
     }
 
@@ -16,8 +15,8 @@ public class EmpresaUiState {
         return id;
     }
 
-    public String getNome() {
-        return nome;
+    public String getDescricao() {
+        return descricao;
     }
 
     public boolean isSelected() {

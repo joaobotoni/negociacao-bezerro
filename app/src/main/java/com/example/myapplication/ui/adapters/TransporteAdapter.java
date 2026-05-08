@@ -16,12 +16,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.R;
 import com.example.myapplication.databinding.ItemTransporteBinding;
-import com.example.myapplication.ui.state.TransporteUiState;
+import com.example.myapplication.ui.state.TransporteState;
 
 import java.util.List;
 import java.util.Objects;
 
-public class TransporteAdapter extends ListAdapter<TransporteUiState, TransporteAdapter.ViewHolder> {
+public class TransporteAdapter extends ListAdapter<TransporteState, TransporteAdapter.ViewHolder> {
 
     public TransporteAdapter() {
         super(new DiffCallback());
@@ -47,7 +47,7 @@ public class TransporteAdapter extends ListAdapter<TransporteUiState, Transporte
     }
 
     @Override
-    public void onCurrentListChanged(@NonNull List<TransporteUiState> previousList, @NonNull List<TransporteUiState> currentList) {
+    public void onCurrentListChanged(@NonNull List<TransporteState> previousList, @NonNull List<TransporteState> currentList) {
         super.onCurrentListChanged(previousList, currentList);
         boolean tamanhoMudou = (previousList.size() == 1) != (currentList.size() == 1);
         if (tamanhoMudou) notifyItemRangeChanged(0, currentList.size());
@@ -61,7 +61,7 @@ public class TransporteAdapter extends ListAdapter<TransporteUiState, Transporte
             this.binding = binding;
         }
 
-        void bind(TransporteUiState estado) {
+        void bind(TransporteState estado) {
             Context context = itemView.getContext();
             setText(binding.textoTipoVeiculo, estado.nomeVeiculo);
             setPluralText(binding.textoQuantidadeVeiculos, context, R.plurals.plural_quantidade_veiculos, estado.quantidade);
@@ -88,14 +88,14 @@ public class TransporteAdapter extends ListAdapter<TransporteUiState, Transporte
         }
     }
 
-    private static class DiffCallback extends DiffUtil.ItemCallback<TransporteUiState> {
+    private static class DiffCallback extends DiffUtil.ItemCallback<TransporteState> {
         @Override
-        public boolean areItemsTheSame(@NonNull TransporteUiState oldItem, @NonNull TransporteUiState newItem) {
+        public boolean areItemsTheSame(@NonNull TransporteState oldItem, @NonNull TransporteState newItem) {
             return oldItem.id == newItem.id;
         }
 
         @Override
-        public boolean areContentsTheSame(@NonNull TransporteUiState oldItem, @NonNull TransporteUiState newItem) {
+        public boolean areContentsTheSame(@NonNull TransporteState oldItem, @NonNull TransporteState newItem) {
             return Objects.equals(oldItem.id, newItem.id)
                     && Objects.equals(oldItem.nomeVeiculo, newItem.nomeVeiculo)
                     && Objects.equals(oldItem.quantidade, newItem.quantidade)

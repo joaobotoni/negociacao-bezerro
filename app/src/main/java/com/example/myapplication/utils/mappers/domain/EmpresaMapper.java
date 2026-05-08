@@ -1,23 +1,23 @@
 package com.example.myapplication.utils.mappers.domain;
 
 import com.example.myapplication.data.source.local.entities.Empresa;
-import com.example.myapplication.ui.state.EmpresaUiState;
+import com.example.myapplication.ui.state.EmpresaState;
 import com.example.myapplication.utils.mappers.Mapper;
 
 import javax.inject.Inject;
 
-public class EmpresaMapper implements Mapper<EmpresaUiState, Empresa> {
+public class EmpresaMapper implements Mapper<EmpresaState, Empresa> {
 
     @Inject
     public EmpresaMapper() {}
 
     @Override
-    public Empresa mapTo(EmpresaUiState state) {
+    public Empresa mapTo(EmpresaState state) {
         return new Empresa(state.getId(), state.getNome());
     }
 
     @Override
-    public EmpresaUiState mapFrom(Empresa e) {
-        return new EmpresaUiState(e.getIdEmpresa(), e.getNome(), false);
+    public EmpresaState mapFrom(Empresa e) {
+        return new EmpresaState(e.getIdEmpresa(), e.getNome(), false);
     }
 }

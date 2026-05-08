@@ -10,7 +10,7 @@ import com.example.myapplication.data.repositories.ValorReferenciaRepository;
 import com.example.myapplication.domain.implementation.PrecificacaoBezerroImplementation;
 import com.example.myapplication.domain.strategy.PrecificacaoBezerroComFrete;
 import com.example.myapplication.ui.helpers.TaskHelper;
-import com.example.myapplication.ui.state.SimulacaoUiState;
+import com.example.myapplication.ui.state.SimulacaoState;
 import com.example.myapplication.utils.mappers.domain.PrecificacaoBezerroMapper;
 
 import java.math.BigDecimal;
@@ -24,7 +24,7 @@ public class SimulacaoViewModel extends ViewModel {
     private final ValorReferenciaRepository valorReferenciaRepository;
     private final PrecificacaoBezerroMapper precificacaoBezerroMapper;
     private final TaskHelper taskHelper;
-    private final MutableLiveData<SimulacaoUiState> state = new MutableLiveData<>(null);
+    private final MutableLiveData<SimulacaoState> state = new MutableLiveData<>(null);
     private final MutableLiveData<Throwable> error = new MutableLiveData<>(null);
 
     @Inject
@@ -38,7 +38,7 @@ public class SimulacaoViewModel extends ViewModel {
         this.precificacaoBezerroMapper = precificacaoBezerroMapper;
     }
 
-    public LiveData<SimulacaoUiState> getState() { return state; }
+    public LiveData<SimulacaoState> getState() { return state; }
     public LiveData<Throwable> getError() { return error; }
 
     public void simular(BigDecimal peso, Integer quantidade) {

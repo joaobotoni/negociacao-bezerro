@@ -3,30 +3,30 @@ package com.example.myapplication.utils.mappers.domain;
 
 
 import com.example.myapplication.data.models.Rota;
-import com.example.myapplication.ui.state.RotaUiState;
+import com.example.myapplication.ui.state.RotaState;
 import com.example.myapplication.utils.mappers.Mapper;
 
 import javax.inject.Inject;
 
-public class RotaMapper implements Mapper<RotaUiState, Rota> {
+public class RotaMapper implements Mapper<RotaState, Rota> {
 
     @Inject
     public RotaMapper() {
     }
 
     @Override
-    public Rota mapTo(RotaUiState rotaUiState) {
+    public Rota mapTo(RotaState rotaState) {
         return new Rota(
-                rotaUiState.getCidadeOrigem(),
-                rotaUiState.getEstadoOrigem(),
-                rotaUiState.getCidadeDestino(),
-                rotaUiState.getEstadoDestino(),
-                rotaUiState.getDistancia());
+                rotaState.getCidadeOrigem(),
+                rotaState.getEstadoOrigem(),
+                rotaState.getCidadeDestino(),
+                rotaState.getEstadoDestino(),
+                rotaState.getDistancia());
     }
 
     @Override
-    public RotaUiState mapFrom(Rota rota) {
-        return new RotaUiState(
+    public RotaState mapFrom(Rota rota) {
+        return new RotaState(
                 rota.getCidadeOrigem(),
                 rota.getEstadoOrigem(),
                 rota.getCidadeDestino(),

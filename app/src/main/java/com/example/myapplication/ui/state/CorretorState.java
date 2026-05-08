@@ -2,7 +2,7 @@ package com.example.myapplication.ui.state;
 
 import java.math.BigDecimal;
 
-public class CorretorUiState {
+public class CorretorState {
 
     private final int id;
     private final String nome;
@@ -10,7 +10,7 @@ public class CorretorUiState {
     private final String tipoComissao;
     private final boolean isSelected;
 
-    public CorretorUiState(int id, String nome, BigDecimal comissao, String tipoComissao, boolean isSelected) {
+    public CorretorState(int id, String nome, BigDecimal comissao, String tipoComissao, boolean isSelected) {
         this.id = id;
         this.nome = nome;
         this.comissao = comissao;

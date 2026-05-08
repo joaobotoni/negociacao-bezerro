@@ -4,21 +4,20 @@ import com.example.myapplication.ui.state.FreteState;
 
 import java.math.BigDecimal;
 
-public class Proposta {
+public class PropostaState {
     private final BigDecimal valorPorKg;
     private final BigDecimal valorPorCabeca;
     private final BigDecimal valorTotal;
     private final BigDecimal fretePorKg;
-
     private final FreteState freteState;
     private final boolean isFreteDescontado;
 
-    public Proposta(BigDecimal valorPorKg, BigDecimal valorPorCabeca, BigDecimal valorTotal, BigDecimal fretePorKg, FreteState freteState) {
+    public PropostaState(BigDecimal valorPorKg, BigDecimal valorPorCabeca, BigDecimal valorTotal, BigDecimal fretePorKg, FreteState freteState) {
         this.valorPorKg = valorPorKg;
         this.valorPorCabeca = valorPorCabeca;
         this.valorTotal = valorTotal;
         this.fretePorKg = fretePorKg;
-        this.isFreteDescontado = fretePorKg != null && fretePorKg.compareTo(BigDecimal.ZERO) > 0;
+        this.isFreteDescontado = fretePorKg != null;
         this.freteState = freteState;
     }
 

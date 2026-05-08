@@ -1,9 +1,8 @@
 package com.example.myapplication.ui.state.negociacao;
 
 import java.math.BigDecimal;
-import java.math.BigInteger;
 
-public class Fechamento {
+public class FechamentoState {
     private final BigDecimal valorPorKg;
     private final BigDecimal valorPorCabeca;
     private final BigDecimal valorTotal;
@@ -11,7 +10,7 @@ public class Fechamento {
     private final boolean isComissaoAplicada;
     private final double variacaoPercentual;
 
-    public Fechamento(BigDecimal valorPorKg, BigDecimal valorPorCabeca, BigDecimal valorTotal, BigDecimal comissaoPorKg, double variacaoPercentual) {
+    public FechamentoState(BigDecimal valorPorKg, BigDecimal valorPorCabeca, BigDecimal valorTotal, BigDecimal comissaoPorKg, double variacaoPercentual) {
         this.valorPorKg = valorPorKg;
         this.valorPorCabeca = valorPorCabeca;
         this.valorTotal = valorTotal;

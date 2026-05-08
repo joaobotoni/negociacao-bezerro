@@ -2,11 +2,11 @@ package com.example.myapplication.ui.state;
 
 import java.math.BigDecimal;
 
-public class PrecificacaoFreteUiState {
+public class PrecificacaoFreteState {
     private final BigDecimal valorTotal;
     private final BigDecimal valorParcial;
 
-    public PrecificacaoFreteUiState(BigDecimal valorTotal, BigDecimal valorParcial) {
+    public PrecificacaoFreteState(BigDecimal valorTotal, BigDecimal valorParcial) {
         this.valorTotal = valorTotal;
         this.valorParcial = valorParcial;
     }

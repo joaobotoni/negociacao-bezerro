@@ -12,19 +12,12 @@ import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import com.example.myapplication.R;
-import com.example.myapplication.data.source.local.entities.Corretor;
 import com.example.myapplication.databinding.FragmentBottomSheetCorretorBinding;
 import com.example.myapplication.ui.adapters.CorretorAdapter;
-import com.example.myapplication.ui.adapters.EmpresaAdapter;
-import com.example.myapplication.ui.state.CorretorUiState;
-import com.example.myapplication.ui.state.EmpresaUiState;
+import com.example.myapplication.ui.state.CorretorState;
 import com.example.myapplication.ui.viewmodel.CorretorViewModel;
-import com.example.myapplication.ui.viewmodel.EmpresaViewModel;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
-import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
 
 import dagger.hilt.android.AndroidEntryPoint;
@@ -83,7 +76,7 @@ public class CorretorBottomSheetDialogFragment extends BottomSheetDialogFragment
         corretorViewModel.getState().observe(getViewLifecycleOwner(), this::atualizarListaCorretor);
     }
 
-    private void atualizarListaCorretor(List<CorretorUiState> corretores) {
+    private void atualizarListaCorretor(List<CorretorState> corretores) {
         adapter.submitList(corretores);
     }
 
@@ -93,8 +86,8 @@ public class CorretorBottomSheetDialogFragment extends BottomSheetDialogFragment
         binding.recyclerViewCorretores.setAdapter(adapter);
     }
 
-    private void aoSelecionarCorretorNaLista(CorretorUiState corretorUiState) {
-        corretorViewModel.selecionarCorretor(corretorUiState);
+    private void aoSelecionarCorretorNaLista(CorretorState corretorState) {
+        corretorViewModel.selecionarCorretor(corretorState);
         dismiss();
     }
 }

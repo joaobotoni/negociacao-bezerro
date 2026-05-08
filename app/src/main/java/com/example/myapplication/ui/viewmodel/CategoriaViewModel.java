@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel;
 
 import com.example.myapplication.data.repositories.CategoriaFreteRepository;
 import com.example.myapplication.ui.helpers.TaskHelper;
-import com.example.myapplication.ui.state.CategoriaUiState;
+import com.example.myapplication.ui.state.CategoriaState;
 import com.example.myapplication.utils.mappers.domain.CategoriaMapper;
 
 import java.util.List;
@@ -22,9 +22,9 @@ public class CategoriaViewModel extends ViewModel {
     private final CategoriaFreteRepository repositorio;
     private final CategoriaMapper mapper;
     private final TaskHelper taskHelper;
-    private final MutableLiveData<List<CategoriaUiState>> state = new MutableLiveData<>(null);
+    private final MutableLiveData<List<CategoriaState>> state = new MutableLiveData<>(null);
     private final MutableLiveData<Throwable> error = new MutableLiveData<>(null);
-    private final MutableLiveData<CategoriaUiState> categoriaSelecionada = new MutableLiveData<>(null);
+    private final MutableLiveData<CategoriaState> categoriaSelecionada = new MutableLiveData<>(null);
 
     @Inject
     public CategoriaViewModel(CategoriaFreteRepository repositorio, CategoriaMapper mapper, TaskHelper taskHelper) {
@@ -34,7 +34,7 @@ public class CategoriaViewModel extends ViewModel {
         carregar();
     }
 
-    public LiveData<List<CategoriaUiState>> getState() {
+    public LiveData<List<CategoriaState>> getState() {
         return state;
     }
 
@@ -42,15 +42,15 @@ public class CategoriaViewModel extends ViewModel {
         return error;
     }
 
-    public LiveData<CategoriaUiState> getCategoriaSelecionada() {
+    public LiveData<CategoriaState> getCategoriaSelecionada() {
         return categoriaSelecionada;
     }
 
-    public void selecionarCategoria(CategoriaUiState selecionada) {
+    public void selecionarCategoria(CategoriaState selecionada) {
         if (state.getValue() == null) return;
 
-        List<CategoriaUiState> newList = state.getValue().stream()
-                .map(item -> new CategoriaUiState(
+        List<CategoriaState> newList = state.getValue().stream()
+                .map(item -> new CategoriaState(
                         item.getId(),
                         item.getDescricao(),
                         Objects.equals(item.getId(), selecionada.getId())))
@@ -77,8 +77,8 @@ public class CategoriaViewModel extends ViewModel {
     public void limparSelecao() {
         categoriaSelecionada.setValue(null);
         if (state.getValue() == null) return;
-        List<CategoriaUiState> newList = state.getValue().stream()
-                .map(item -> new CategoriaUiState(item.getId(), item.getDescricao(), false))
+        List<CategoriaState> newList = state.getValue().stream()
+                .map(item -> new CategoriaState(item.getId(), item.getDescricao(), false))
                 .collect(Collectors.toList());
         state.setValue(newList);
     }

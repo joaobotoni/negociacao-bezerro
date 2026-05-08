@@ -23,7 +23,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import com.example.myapplication.R;
 import com.example.myapplication.databinding.FragmentBottomSheetCorretorBuscaEnderecoBinding;
 import com.example.myapplication.ui.adapters.LocationAdapter;
-import com.example.myapplication.ui.state.BuscaLocalizacaoUiState;
+import com.example.myapplication.ui.state.BuscaLocalizacaoState;
 import com.example.myapplication.ui.viewmodel.BuscaLocalizacaoViewModel;
 import com.example.myapplication.ui.viewmodel.RotaViewModel;
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -105,7 +105,7 @@ public class BuscaLocalizacaoBottomSheetDialogFragment extends BottomSheetDialog
         buscaLocalizacaoViewModel.getError().observe(getViewLifecycleOwner(), this::tratarErroBusca);
         buscaLocalizacaoViewModel.getError().observe(getViewLifecycleOwner(), this::tratarErroRota);
     }
-    private void atualizarListaLocalizacoes(@Nullable BuscaLocalizacaoUiState state) {
+    private void atualizarListaLocalizacoes(@Nullable BuscaLocalizacaoState state) {
         adapter.submitList(state != null ? state.getLocalizacoes() : null);
     }
 

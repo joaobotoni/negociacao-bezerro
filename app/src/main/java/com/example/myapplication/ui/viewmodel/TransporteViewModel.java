@@ -7,7 +7,7 @@ import androidx.lifecycle.ViewModel;
 
 import com.example.myapplication.data.repositories.TransporteRepository;
 import com.example.myapplication.ui.helpers.TaskHelper;
-import com.example.myapplication.ui.state.TransporteUiState;
+import com.example.myapplication.ui.state.TransporteState;
 import com.example.myapplication.utils.mappers.domain.TransporteMapper;
 
 import java.util.List;
@@ -19,7 +19,7 @@ import jakarta.inject.Inject;
 public class TransporteViewModel extends ViewModel {
     private final TransporteRepository repositorio;
     private final TaskHelper taskHelper;
-    private final MutableLiveData<List<TransporteUiState>> state = new MutableLiveData<>();
+    private final MutableLiveData<List<TransporteState>> state = new MutableLiveData<>();
     private final MutableLiveData<Throwable> error = new MutableLiveData<>();
     private final TransporteMapper transporteMapper;
 
@@ -30,7 +30,7 @@ public class TransporteViewModel extends ViewModel {
         this.transporteMapper = transporteMapper;
     }
 
-    public LiveData<List<TransporteUiState>> getState() {
+    public LiveData<List<TransporteState>> getState() {
         return state;
     }
 
@@ -45,9 +45,5 @@ public class TransporteViewModel extends ViewModel {
                 state::postValue,
                 error::postValue
         );
-    }
-
-    public void limpar() {
-        state.setValue(null);
     }
 }

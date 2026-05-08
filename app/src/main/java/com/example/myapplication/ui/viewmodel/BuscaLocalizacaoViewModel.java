@@ -7,7 +7,7 @@ import androidx.lifecycle.ViewModel;
 
 import com.example.myapplication.data.repositories.LocalizacaoRepository;
 import com.example.myapplication.ui.helpers.TaskHelper;
-import com.example.myapplication.ui.state.BuscaLocalizacaoUiState;
+import com.example.myapplication.ui.state.BuscaLocalizacaoState;
 
 import javax.inject.Inject;
 
@@ -17,16 +17,15 @@ import dagger.hilt.android.lifecycle.HiltViewModel;
 public class BuscaLocalizacaoViewModel extends ViewModel {
     private final LocalizacaoRepository repositorio;
     private final TaskHelper taskHelper;
-    private final MutableLiveData<BuscaLocalizacaoUiState> state = new MutableLiveData<>(null);
+    private final MutableLiveData<BuscaLocalizacaoState> state = new MutableLiveData<>(null);
     private final MutableLiveData<Throwable> error = new MutableLiveData<>(null);
-
     @Inject
     public BuscaLocalizacaoViewModel(LocalizacaoRepository repositorio, TaskHelper taskHelper) {
         this.repositorio = repositorio;
         this.taskHelper = taskHelper;
     }
 
-    public LiveData<BuscaLocalizacaoUiState> getState() {
+    public LiveData<BuscaLocalizacaoState> getState() {
         return state;
     }
 
@@ -39,14 +38,10 @@ public class BuscaLocalizacaoViewModel extends ViewModel {
                 () -> {
                     String codigo = repositorio.paisDeCoordenadas(latitude, longitude).orElseThrow(() ->
                             new RuntimeException("Código do pais não encontrado"));
-                    return new BuscaLocalizacaoUiState(repositorio.enderecosPorTexto(consulta, codigo), false);
+                    return new BuscaLocalizacaoState(repositorio.enderecosPorTexto(consulta, codigo), false);
                 },
                 state::postValue,
                 error::postValue
         );
-    }
-
-    public void limpar() {
-        state.setValue(null);
     }
 }

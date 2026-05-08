@@ -2,12 +2,12 @@ package com.example.myapplication.ui.state.negociacao;
 
 import java.math.BigDecimal;
 
-public class Cotacao {
+public class CotacaoState {
     private final BigDecimal valorPorKg;
     private final BigDecimal valorPorCabeca;
     private final BigDecimal valorTotal;
 
-    public Cotacao(BigDecimal valorPorKg, BigDecimal valorPorCabeca, BigDecimal valorTotal) {
+    public CotacaoState(BigDecimal valorPorKg, BigDecimal valorPorCabeca, BigDecimal valorTotal) {
         this.valorPorKg = valorPorKg;
         this.valorPorCabeca = valorPorCabeca;
         this.valorTotal = valorTotal;

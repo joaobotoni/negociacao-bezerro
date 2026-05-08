@@ -6,8 +6,7 @@ import androidx.lifecycle.ViewModel;
 
 import com.example.myapplication.data.repositories.CorretorRepository;
 import com.example.myapplication.ui.helpers.TaskHelper;
-import com.example.myapplication.ui.state.CategoriaUiState;
-import com.example.myapplication.ui.state.CorretorUiState;
+import com.example.myapplication.ui.state.CorretorState;
 import com.example.myapplication.utils.mappers.domain.CorretorMapper;
 
 import java.util.List;
@@ -23,9 +22,9 @@ public class CorretorViewModel extends ViewModel {
     private final CorretorRepository repositorio;
     private final CorretorMapper mapper;
     private final TaskHelper taskHelper;
-    private final MutableLiveData<List<CorretorUiState>> state = new MutableLiveData<>(null);
+    private final MutableLiveData<List<CorretorState>> state = new MutableLiveData<>(null);
     private final MutableLiveData<Throwable> error = new MutableLiveData<>(null);
-    private final MutableLiveData<CorretorUiState> corretorSelecionado = new MutableLiveData<>(null);
+    private final MutableLiveData<CorretorState> corretorSelecionado = new MutableLiveData<>(null);
 
     @Inject
     public CorretorViewModel(CorretorRepository repositorio, CorretorMapper mapper, TaskHelper taskHelper) {
@@ -35,7 +34,7 @@ public class CorretorViewModel extends ViewModel {
         carregar();
     }
 
-    public LiveData<List<CorretorUiState>> getState() {
+    public LiveData<List<CorretorState>> getState() {
         return state;
     }
 
@@ -43,15 +42,15 @@ public class CorretorViewModel extends ViewModel {
         return error;
     }
 
-    public LiveData<CorretorUiState> getCorretorSelecionado() {
+    public LiveData<CorretorState> getCorretorSelecionado() {
         return corretorSelecionado;
     }
 
-    public void selecionarCorretor(CorretorUiState selecionado) {
+    public void selecionarCorretor(CorretorState selecionado) {
         if (state.getValue() == null) return;
 
-        List<CorretorUiState> newList = state.getValue().stream()
-                .map(item -> new CorretorUiState(
+        List<CorretorState> newList = state.getValue().stream()
+                .map(item -> new CorretorState(
                         item.getId(),
                         item.getNome(),
                         item.getComissao(),
@@ -80,8 +79,8 @@ public class CorretorViewModel extends ViewModel {
     public void limparSelecao() {
         corretorSelecionado.setValue(null);
         if (state.getValue() == null) return;
-        List<CorretorUiState> newList = state.getValue().stream()
-                .map(item -> new CorretorUiState(
+        List<CorretorState> newList = state.getValue().stream()
+                .map(item -> new CorretorState(
                         item.getId(),
                         item.getNome(),
                         item.getComissao(),

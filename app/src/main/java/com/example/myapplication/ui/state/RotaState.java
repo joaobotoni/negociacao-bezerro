@@ -1,15 +1,15 @@
 package com.example.myapplication.ui.state;
 
-public class RotaUiState {
+public class RotaState {
     private final String cidadeOrigem;
     private final String estadoOrigem;
     private final String cidadeDestino;
     private final String estadoDestino;
     private final double distancia;
 
-    public RotaUiState(String cidadeOrigem, String estadoOrigem,
-                       String cidadeDestino, String estadoDestino,
-                       double distancia) {
+    public RotaState(String cidadeOrigem, String estadoOrigem,
+                     String cidadeDestino, String estadoDestino,
+                     double distancia) {
         this.cidadeOrigem = cidadeOrigem;
         this.estadoOrigem = estadoOrigem;
         this.cidadeDestino = cidadeDestino;

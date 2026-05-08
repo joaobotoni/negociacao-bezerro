@@ -2,31 +2,31 @@ package com.example.myapplication.utils.mappers.domain;
 
 
 import com.example.myapplication.data.models.Transporte;
-import com.example.myapplication.ui.state.TransporteUiState;
+import com.example.myapplication.ui.state.TransporteState;
 import com.example.myapplication.utils.mappers.Mapper;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 import javax.inject.Inject;
-public class TransporteMapper implements Mapper<List<TransporteUiState>, List<Transporte>> {
+public class TransporteMapper implements Mapper<List<TransporteState>, List<Transporte>> {
     @Inject
     public TransporteMapper() {
     }
     @Override
-    public List<Transporte> mapTo(List<TransporteUiState> transporteUiStates) {
-        return transporteUiStates.stream().map(transporteUiState -> new Transporte(
-                        transporteUiState.getId(),
-                        transporteUiState.getNomeVeiculo(),
-                        transporteUiState.getQuantidade(),
-                        transporteUiState.getCapacidade(),
-                        transporteUiState.getOcupacao()))
+    public List<Transporte> mapTo(List<TransporteState> transporteStates) {
+        return transporteStates.stream().map(transporteState -> new Transporte(
+                        transporteState.getId(),
+                        transporteState.getNomeVeiculo(),
+                        transporteState.getQuantidade(),
+                        transporteState.getCapacidade(),
+                        transporteState.getOcupacao()))
                 .collect(Collectors.toList());
     }
 
     @Override
-    public List<TransporteUiState> mapFrom(List<Transporte> transportes) {
-        return transportes.stream().map(t -> new TransporteUiState(
+    public List<TransporteState> mapFrom(List<Transporte> transportes) {
+        return transportes.stream().map(t -> new TransporteState(
                         t.getId(),
                         t.getNomeVeiculo(),
                         t.getQuantidade(),

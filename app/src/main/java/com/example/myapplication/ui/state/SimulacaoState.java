@@ -2,13 +2,13 @@ package com.example.myapplication.ui.state;
 
 import java.math.BigDecimal;
 
-public class SimulacaoUiState {
+public class SimulacaoState {
     private final BigDecimal valorTotal;
     private final BigDecimal valorPorCabeca;
     private final BigDecimal valorPorKg;
 
     private final int quantidade;
-    public SimulacaoUiState(BigDecimal valorTotal, BigDecimal valorPorCabeca, BigDecimal valorPorKg, int quantidade) {
+    public SimulacaoState(BigDecimal valorTotal, BigDecimal valorPorCabeca, BigDecimal valorPorKg, int quantidade) {
         this.valorTotal = valorTotal;
         this.valorPorCabeca = valorPorCabeca;
         this.valorPorKg = valorPorKg;

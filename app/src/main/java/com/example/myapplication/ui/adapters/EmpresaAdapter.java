@@ -4,7 +4,6 @@ import static com.example.myapplication.ui.helpers.ViewHelper.setText;
 import static com.example.myapplication.ui.helpers.ViewHelper.setVisible;
 
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -13,14 +12,14 @@ import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.databinding.ItemEmpresaBinding;
-import com.example.myapplication.ui.state.EmpresaUiState;
+import com.example.myapplication.ui.state.EmpresaState;
 
 import java.util.Objects;
 
-public class EmpresaAdapter extends ListAdapter<EmpresaUiState, EmpresaAdapter.ViewHolder> {
+public class EmpresaAdapter extends ListAdapter<EmpresaState, EmpresaAdapter.ViewHolder> {
 
     public interface OnClickListener {
-        void onClick(EmpresaUiState empresaUiState);
+        void onClick(EmpresaState empresaUiState);
     }
 
     private final OnClickListener clickListener;
@@ -49,22 +48,22 @@ public class EmpresaAdapter extends ListAdapter<EmpresaUiState, EmpresaAdapter.V
             this.binding = binding;
         }
 
-        protected void bind(EmpresaUiState item, OnClickListener listener) {
+        protected void bind(EmpresaState item, OnClickListener listener) {
             setText(binding.textoNomeEmpresa, item.getNome());
             setVisible(item.isSelected(), binding.checkImage);
             binding.getRoot().setOnClickListener(v -> listener.onClick(item));
         }
     }
 
-    private static class DiffCallback extends DiffUtil.ItemCallback<EmpresaUiState> {
+    private static class DiffCallback extends DiffUtil.ItemCallback<EmpresaState> {
 
         @Override
-        public boolean areItemsTheSame(@NonNull EmpresaUiState oldItem, @NonNull EmpresaUiState newItem) {
+        public boolean areItemsTheSame(@NonNull EmpresaState oldItem, @NonNull EmpresaState newItem) {
             return oldItem.getId() == newItem.getId();
         }
 
         @Override
-        public boolean areContentsTheSame(@NonNull EmpresaUiState oldItem, @NonNull EmpresaUiState newItem) {
+        public boolean areContentsTheSame(@NonNull EmpresaState oldItem, @NonNull EmpresaState newItem) {
             return oldItem.getId() == newItem.getId()
                     && Objects.equals(oldItem.getNome(), newItem.getNome())
                     && oldItem.isSelected() == newItem.isSelected();

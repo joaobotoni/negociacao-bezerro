@@ -5,10 +5,8 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.myapplication.data.repositories.EmpresaRepository;
-import com.example.myapplication.data.source.local.entities.Empresa;
 import com.example.myapplication.ui.helpers.TaskHelper;
-import com.example.myapplication.ui.state.CategoriaUiState;
-import com.example.myapplication.ui.state.EmpresaUiState;
+import com.example.myapplication.ui.state.EmpresaState;
 import com.example.myapplication.utils.mappers.domain.EmpresaMapper;
 
 import java.util.List;
@@ -24,9 +22,9 @@ public class EmpresaViewModel extends ViewModel {
     private final EmpresaRepository repositorio;
     private final EmpresaMapper mapper;
     private final TaskHelper taskHelper;
-    private final MutableLiveData<List<EmpresaUiState>> state = new MutableLiveData<>(null);
+    private final MutableLiveData<List<EmpresaState>> state = new MutableLiveData<>(null);
     private final MutableLiveData<Throwable> error = new MutableLiveData<>(null);
-    private final MutableLiveData<EmpresaUiState> empresaSelecionada = new MutableLiveData<>(null);
+    private final MutableLiveData<EmpresaState> empresaSelecionada = new MutableLiveData<>(null);
 
     @Inject
     public EmpresaViewModel(EmpresaRepository repositorio, EmpresaMapper mapper, TaskHelper taskHelper) {
@@ -36,7 +34,7 @@ public class EmpresaViewModel extends ViewModel {
         carregar();
     }
 
-    public LiveData<List<EmpresaUiState>> getState() {
+    public LiveData<List<EmpresaState>> getState() {
         return state;
     }
 
@@ -44,15 +42,15 @@ public class EmpresaViewModel extends ViewModel {
         return error;
     }
 
-    public LiveData<EmpresaUiState> getEmpresaSelecionada() {
+    public LiveData<EmpresaState> getEmpresaSelecionada() {
         return empresaSelecionada;
     }
 
-    public void selecionarEmpresa(EmpresaUiState selecionada) {
+    public void selecionarEmpresa(EmpresaState selecionada) {
         if (state.getValue() == null) return;
 
-        List<EmpresaUiState> newList = state.getValue().stream()
-                .map(item -> new EmpresaUiState(
+        List<EmpresaState> newList = state.getValue().stream()
+                .map(item -> new EmpresaState(
                         item.getId(),
                         item.getNome(),
                         Objects.equals(item.getId(), selecionada.getId())))
@@ -79,8 +77,8 @@ public class EmpresaViewModel extends ViewModel {
     public void limparSelecao() {
         empresaSelecionada.setValue(null);
         if (state.getValue() == null) return;
-        List<EmpresaUiState> newList = state.getValue().stream()
-                .map(item -> new EmpresaUiState(item.getId(), item.getNome(), false))
+        List<EmpresaState> newList = state.getValue().stream()
+                .map(item -> new EmpresaState(item.getId(), item.getNome(), false))
                 .collect(Collectors.toList());
         state.setValue(newList);
     }

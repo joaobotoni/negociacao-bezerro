@@ -5,7 +5,6 @@ import static com.example.myapplication.ui.helpers.ViewHelper.setText;
 import static com.example.myapplication.ui.helpers.ViewHelper.setVisible;
 
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -14,13 +13,13 @@ import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.databinding.ItemCorretorBinding;
-import com.example.myapplication.ui.state.CorretorUiState;
+import com.example.myapplication.ui.state.CorretorState;
 
 import java.util.Objects;
 
-public class CorretorAdapter extends ListAdapter<CorretorUiState, CorretorAdapter.ViewHolder> {
+public class CorretorAdapter extends ListAdapter<CorretorState, CorretorAdapter.ViewHolder> {
     public interface OnClickListener {
-        void onClick(CorretorUiState corretorUiState);
+        void onClick(CorretorState corretorState);
     }
 
     private final OnClickListener listener;
@@ -49,7 +48,7 @@ public class CorretorAdapter extends ListAdapter<CorretorUiState, CorretorAdapte
             this.binding = binding;
         }
 
-        protected void bind(CorretorUiState item, OnClickListener listener) {
+        protected void bind(CorretorState item, OnClickListener listener) {
             setText(binding.textoNomeCorretor, item.getNome());
             setText(binding.textoComissao, formatCurrency(item.getComissao()));
             setVisible(item.isSelected(), binding.checkImage);
@@ -58,14 +57,14 @@ public class CorretorAdapter extends ListAdapter<CorretorUiState, CorretorAdapte
     }
 
 
-    private static class DiffCallback extends DiffUtil.ItemCallback<CorretorUiState> {
+    private static class DiffCallback extends DiffUtil.ItemCallback<CorretorState> {
         @Override
-        public boolean areItemsTheSame(@NonNull CorretorUiState oldItem, @NonNull CorretorUiState newItem) {
+        public boolean areItemsTheSame(@NonNull CorretorState oldItem, @NonNull CorretorState newItem) {
             return oldItem.getId() == newItem.getId();
         }
 
         @Override
-        public boolean areContentsTheSame(@NonNull CorretorUiState oldItem, @NonNull CorretorUiState newItem) {
+        public boolean areContentsTheSame(@NonNull CorretorState oldItem, @NonNull CorretorState newItem) {
             return oldItem.getId() == newItem.getId()
                     && Objects.equals(oldItem.getNome(), newItem.getNome())
                     && Objects.equals(oldItem.getComissao(), newItem.getComissao())

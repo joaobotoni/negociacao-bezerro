@@ -21,7 +21,7 @@ import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.myapplication.R;
 import com.example.myapplication.databinding.FragmentSimulacaoBinding;
-import com.example.myapplication.ui.state.SimulacaoUiState;
+import com.example.myapplication.ui.state.SimulacaoState;
 import com.example.myapplication.ui.viewmodel.SimulacaoViewModel;
 
 import java.math.BigDecimal;
@@ -119,7 +119,7 @@ public class SimulacaoFragment extends Fragment {
         return getFloat(binding.campoPesoEntrada);
     }
 
-    private void atualizarCartao(SimulacaoUiState estado) {
+    private void atualizarCartao(SimulacaoState estado) {
         if (estado == null) {
             limparCartao();
             return;
@@ -138,22 +138,22 @@ public class SimulacaoFragment extends Fragment {
         exibirValorPorKg(getString(R.string.placeholder_valor_monetario));
     }
 
-    private void atualizarValorTotal(@NonNull SimulacaoUiState estado) {
+    private void atualizarValorTotal(@NonNull SimulacaoState estado) {
         String valorFormatado = formatCurrency(estado.getValorTotal());
         exibirValorTotal(valorFormatado);
     }
 
-    private void atualizarQuantidade(@NonNull SimulacaoUiState estado) {
+    private void atualizarQuantidade(@NonNull SimulacaoState estado) {
         String quantidadeFormatada = formatInteger(estado.getQuantidade());
         exibirQuantidade(quantidadeFormatada);
     }
 
-    private void atualizarValorPorCabeca(@NonNull SimulacaoUiState estado) {
+    private void atualizarValorPorCabeca(@NonNull SimulacaoState estado) {
         String valorFormatado = formatCurrency(estado.getValorPorCabeca());
         exibirValorPorCabeca(valorFormatado);
     }
 
-    private void atualizarValorPorKg(@NonNull SimulacaoUiState estado) {
+    private void atualizarValorPorKg(@NonNull SimulacaoState estado) {
         String valorFormatado = formatCurrency(estado.getValorPorKg());
         exibirValorPorKg(valorFormatado);
     }

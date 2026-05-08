@@ -12,18 +12,12 @@ import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import com.example.myapplication.R;
 import com.example.myapplication.databinding.FragmentBottomSheetEmpresaBinding;
-import com.example.myapplication.ui.adapters.CategoriaAdapter;
 import com.example.myapplication.ui.adapters.EmpresaAdapter;
-import com.example.myapplication.ui.state.CategoriaUiState;
-import com.example.myapplication.ui.state.EmpresaUiState;
-import com.example.myapplication.ui.viewmodel.CategoriaViewModel;
+import com.example.myapplication.ui.state.EmpresaState;
 import com.example.myapplication.ui.viewmodel.EmpresaViewModel;
-import com.example.myapplication.ui.viewmodel.RacaViewModel;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import dagger.hilt.android.AndroidEntryPoint;
@@ -81,7 +75,7 @@ public class EmpresaBottomSheetDialogFragment extends BottomSheetDialogFragment 
         empresaViewModel.getState().observe(getViewLifecycleOwner(), this::atualizarListaEmpresa);
     }
 
-    private void atualizarListaEmpresa(List<EmpresaUiState> categorias) {
+    private void atualizarListaEmpresa(List<EmpresaState> categorias) {
         adapter.submitList(categorias);
     }
 
@@ -91,7 +85,7 @@ public class EmpresaBottomSheetDialogFragment extends BottomSheetDialogFragment 
         binding.recyclerViewEmpresas.setAdapter(adapter);
     }
 
-    private void aoSelecionarEmpresaNaLista(EmpresaUiState empresaUiState) {
+    private void aoSelecionarEmpresaNaLista(EmpresaState empresaUiState) {
         empresaViewModel.selecionarEmpresa(empresaUiState);
         dismiss();
     }

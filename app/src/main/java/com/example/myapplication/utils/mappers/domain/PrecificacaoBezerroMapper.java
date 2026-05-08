@@ -3,19 +3,19 @@ package com.example.myapplication.utils.mappers.domain;
 
 
 import com.example.myapplication.data.models.PrecificacaoBezerro;
-import com.example.myapplication.ui.state.SimulacaoUiState;
+import com.example.myapplication.ui.state.SimulacaoState;
 import com.example.myapplication.utils.mappers.Mapper;
 
 import javax.inject.Inject;
 
-public class PrecificacaoBezerroMapper implements Mapper<SimulacaoUiState, PrecificacaoBezerro> {
+public class PrecificacaoBezerroMapper implements Mapper<SimulacaoState, PrecificacaoBezerro> {
 
     @Inject
     public PrecificacaoBezerroMapper() {
     }
 
     @Override
-    public PrecificacaoBezerro mapTo(SimulacaoUiState precificacaoBezerroUiState) {
+    public PrecificacaoBezerro mapTo(SimulacaoState precificacaoBezerroUiState) {
         return new PrecificacaoBezerro(
                 precificacaoBezerroUiState.getValorPorKg(),
                 precificacaoBezerroUiState.getValorPorCabeca(),
@@ -25,8 +25,8 @@ public class PrecificacaoBezerroMapper implements Mapper<SimulacaoUiState, Preci
     }
 
     @Override
-    public SimulacaoUiState mapFrom(PrecificacaoBezerro precificacaoBezerro) {
-        return new SimulacaoUiState(
+    public SimulacaoState mapFrom(PrecificacaoBezerro precificacaoBezerro) {
+        return new SimulacaoState(
                 precificacaoBezerro.getValorTotal(),
                 precificacaoBezerro.getValorPorCabeca(),
                 precificacaoBezerro.getValorPorKg(),

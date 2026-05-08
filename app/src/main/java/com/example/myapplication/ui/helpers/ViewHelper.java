@@ -10,6 +10,8 @@ import androidx.annotation.Nullable;
 import androidx.annotation.PluralsRes;
 import androidx.annotation.StringRes;
 
+import com.google.android.material.textfield.TextInputLayout;
+
 import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.Collection;
@@ -83,6 +85,10 @@ public class ViewHelper {
 
     public static void setText(@NonNull TextView textView, @Nullable String text) {
         textView.setText(text != null ? text.trim() : "");
+    }
+
+    public static void setHelperText(@NonNull TextInputLayout textInputLayout, @Nullable String text) {
+        textInputLayout.setHelperText(text != null ? text.trim() : "");
     }
 
     public static void setPluralText(@NonNull TextView textView, @NonNull Context context,

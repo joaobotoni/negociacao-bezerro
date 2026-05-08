@@ -12,13 +12,13 @@ import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.databinding.ItemCategoriaBinding;
-import com.example.myapplication.ui.state.CategoriaUiState;
+import com.example.myapplication.ui.state.CategoriaState;
 
 import java.util.Objects;
 
-public class CategoriaAdapter extends ListAdapter<CategoriaUiState, CategoriaAdapter.ViewHolder> {
+public class CategoriaAdapter extends ListAdapter<CategoriaState, CategoriaAdapter.ViewHolder> {
     public interface OnClickListener {
-        void onClick(CategoriaUiState categoria);
+        void onClick(CategoriaState categoria);
     }
 
     private final OnClickListener listener;
@@ -47,21 +47,21 @@ public class CategoriaAdapter extends ListAdapter<CategoriaUiState, CategoriaAda
             this.binding = binding;
         }
 
-        protected void bind(CategoriaUiState estado, OnClickListener listener) {
+        protected void bind(CategoriaState estado, OnClickListener listener) {
             setText(binding.textoOpcao,estado.getDescricao());
             binding.cardOpcao.setChecked(estado.isSelected());
             binding.cardOpcao.setOnClickListener(v -> listener.onClick(estado));
         }
     }
 
-    private static class DiffCallback extends DiffUtil.ItemCallback<CategoriaUiState> {
+    private static class DiffCallback extends DiffUtil.ItemCallback<CategoriaState> {
         @Override
-        public boolean areItemsTheSame(@NonNull CategoriaUiState oldItem, @NonNull CategoriaUiState newItem) {
+        public boolean areItemsTheSame(@NonNull CategoriaState oldItem, @NonNull CategoriaState newItem) {
             return oldItem.getId() == newItem.getId();
         }
 
         @Override
-        public boolean areContentsTheSame(@NonNull CategoriaUiState oldItem, @NonNull CategoriaUiState newItem) {
+        public boolean areContentsTheSame(@NonNull CategoriaState oldItem, @NonNull CategoriaState newItem) {
             return oldItem.getId() == newItem.getId()
                     && Objects.equals(oldItem.getDescricao(), newItem.getDescricao())
                     && oldItem.isSelected() == newItem.isSelected();
