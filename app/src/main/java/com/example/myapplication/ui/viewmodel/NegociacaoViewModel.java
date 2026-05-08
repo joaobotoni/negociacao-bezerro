@@ -21,7 +21,7 @@ import com.example.myapplication.ui.state.FreteState;
 import com.example.myapplication.ui.state.NegociacaoState;
 import com.example.myapplication.ui.state.negociacao.CotacaoState;
 import com.example.myapplication.ui.state.negociacao.FechamentoState;
-import com.example.myapplication.ui.state.negociacao.NegociacaoStateBuilder;
+import com.example.myapplication.ui.state.negociacao.NegociacaoStateINegociacaoStateBuilder;
 import com.example.myapplication.ui.state.negociacao.PropostaState;
 
 import java.math.BigDecimal;
@@ -36,8 +36,7 @@ public class NegociacaoViewModel extends ViewModel {
     private final TaskHelper taskHelper;
     private final MutableLiveData<NegociacaoState> state = new MutableLiveData<>(null);
     private final MutableLiveData<Throwable> error = new MutableLiveData<>(null);
-    private final NegociacaoStateBuilder builder = new NegociacaoStateBuilder();
-
+    private final NegociacaoStateINegociacaoStateBuilder builder = new NegociacaoStateINegociacaoStateBuilder();
     @Inject
     public NegociacaoViewModel(PrecificacaoBezerroRepository precificacaoBezerroRepository,
                                ValorReferenciaRepository valorReferenciaRepository,
@@ -63,8 +62,8 @@ public class NegociacaoViewModel extends ViewModel {
         taskHelper.execute(() -> calcularProposta(peso, quantidade, freteTotalLote, freteState), state::postValue, error::postValue);
     }
 
-    public void processarFechamento(BigDecimal peso, Integer quantidade, BigDecimal comissaoTotal, BigDecimal valorKgCotado) {
-        taskHelper.execute(() -> calcularFechamento(peso, quantidade, comissaoTotal, valorKgCotado), state::postValue, error::postValue);
+    public void processarFechamento(BigDecimal peso, Integer quantidade, BigDecimal comissaoTotal) {
+        taskHelper.execute(() -> calcularFechamento(peso, quantidade, comissaoTotal), state::postValue, error::postValue);
     }
 
     private NegociacaoState calcularCotacao(BigDecimal peso, Integer quantidade) {
@@ -80,11 +79,10 @@ public class NegociacaoViewModel extends ViewModel {
         return builder.build();
     }
 
-    private NegociacaoState calcularFechamento(BigDecimal peso, Integer quantidade, BigDecimal comissaoTotal, BigDecimal valorKgCotado) {
+    private NegociacaoState calcularFechamento(BigDecimal peso, Integer quantidade, BigDecimal comissaoTotal) {
         BigDecimal comissaoPorKg = converterComissaoTotalParaPorKg(comissaoTotal, peso);
         PrecificacaoBezerro precificacao = precificarBezerroComFreteEComissao(peso, quantidade, comissaoPorKg);
-        double variacao = calcularVariacaoPercentual(valorKgCotado, precificacao.getValorPorKg());
-        builder.setFechamento(new FechamentoState(precificacao.getValorPorKg(), precificacao.getValorPorCabeca(), precificacao.getValorTotal(), comissaoPorKg, variacao));
+        builder.setFechamento(new FechamentoState(precificacao.getValorPorKg(), precificacao.getValorPorCabeca(), precificacao.getValorTotal(), comissaoPorKg));
         return builder.build();
     }
 
@@ -130,7 +128,7 @@ public class NegociacaoViewModel extends ViewModel {
     }
 
     public void limparFechamento() {
-        builder.setFechamento(new FechamentoState(BigDecimal.ZERO, BigDecimal.ZERO, BigDecimal.ZERO, BigDecimal.ZERO, 0.0));
+        builder.setFechamento(new FechamentoState(BigDecimal.ZERO, BigDecimal.ZERO, BigDecimal.ZERO, BigDecimal.ZERO));
         state.postValue(builder.build());
     }
 }

@@ -1,6 +1,6 @@
 package com.example.myapplication.ui.state.negociacao;
 
-public interface Builder {
+public interface INegociacaoStateBuilder {
     void setCotacao(CotacaoState cotacao);
     void setProposta(PropostaState propostaState);
     void setFechamento(FechamentoState fechamento);

@@ -2,7 +2,7 @@ package com.example.myapplication.ui.state.negociacao;
 
 import com.example.myapplication.ui.state.NegociacaoState;
 
-public class NegociacaoStateBuilder implements Builder {
+public class NegociacaoStateINegociacaoStateBuilder implements INegociacaoStateBuilder {
     private CotacaoState cotacao;
     private PropostaState propostaState;
     private FechamentoState fechamento;

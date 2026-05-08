@@ -8,15 +8,13 @@ public class FechamentoState {
     private final BigDecimal valorTotal;
     private final BigDecimal comissaoPorKg;
     private final boolean isComissaoAplicada;
-    private final double variacaoPercentual;
 
-    public FechamentoState(BigDecimal valorPorKg, BigDecimal valorPorCabeca, BigDecimal valorTotal, BigDecimal comissaoPorKg, double variacaoPercentual) {
+    public FechamentoState(BigDecimal valorPorKg, BigDecimal valorPorCabeca, BigDecimal valorTotal, BigDecimal comissaoPorKg) {
         this.valorPorKg = valorPorKg;
         this.valorPorCabeca = valorPorCabeca;
         this.valorTotal = valorTotal;
         this.comissaoPorKg = comissaoPorKg;
         this.isComissaoAplicada = comissaoPorKg != null;
-        this.variacaoPercentual = variacaoPercentual;
     }
 
     public BigDecimal getValorPorKg() { return valorPorKg; }
@@ -24,6 +22,5 @@ public class FechamentoState {
 
     public BigDecimal getValorTotal() { return valorTotal; }
     public BigDecimal getComissaoPorKg() { return comissaoPorKg; }
-    public double getVariacaoPercentual() {return variacaoPercentual;}
-    public boolean isComissaoAplicada() { return isComissaoAplicada; }
+    public boolean isComissaoAplicada() { return !isComissaoAplicada; }
 }
