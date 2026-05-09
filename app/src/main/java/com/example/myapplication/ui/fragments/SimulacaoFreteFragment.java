@@ -76,6 +76,7 @@ public class SimulacaoFreteFragment extends Fragment {
     private TextWatcher distanciaManualWatcher;
     private ActivityResultLauncher<String[]> solicitacaoDePermissaoLauncher;
     private int cargaTotalDoLote;
+    private double pesoMedio;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -122,7 +123,9 @@ public class SimulacaoFreteFragment extends Fragment {
 
 
     private void extrairArgumentos() {
-        cargaTotalDoLote = SimulacaoFreteFragmentArgs.fromBundle(requireArguments()).getCargaTotal();
+        SimulacaoFreteFragmentArgs args = SimulacaoFreteFragmentArgs.fromBundle(requireArguments());
+        cargaTotalDoLote = args.getCargaTotal();
+        pesoMedio = args.getPesoMedio();
     }
 
     private void inicializarViewModels() {
@@ -281,7 +284,8 @@ public class SimulacaoFreteFragment extends Fragment {
         precificacaoFreteViewModel.calcularFrete(
                 mapearTransportesDisponiveis(),
                 resolverDistanciaAtiva(),
-                cargaTotalDoLote);
+                cargaTotalDoLote,
+                BigDecimal.valueOf(pesoMedio));
     }
 
     private List<Transporte> mapearTransportesDisponiveis() {

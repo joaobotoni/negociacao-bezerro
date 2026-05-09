@@ -57,12 +57,11 @@ public class FreteRepository {
         dao.deleteAll();
     }
 
-    public PrecificacaoFrete calcularFrete(List<Transporte> transportes, double distancia, int cargaTotal) {
+    public PrecificacaoFrete calcularFrete(List<Transporte> transportes, double distancia, int cargaTotal, BigDecimal pesoMedio) {
         BigDecimal totalFrete = calcularFreteTotal(transportes, distancia);
-        BigDecimal valorParcial = calcularIncidenciaFretePorAnimal(totalFrete, cargaTotal);
+        BigDecimal valorParcial = calcularIncidenciaFretePorKg(totalFrete, pesoMedio, cargaTotal);
         return new PrecificacaoFrete(totalFrete, valorParcial);
     }
-
     public BigDecimal calcularFreteTotal(List<Transporte> transportes, double distancia) {
         BigDecimal total = BigDecimal.ZERO;
         for (Transporte transporte : transportes) {
@@ -77,9 +76,9 @@ public class FreteRepository {
         return total.setScale(ESCALA_MONETARIA, ARREDONDAMENTO_FINANCEIRO);
     }
 
-    public BigDecimal calcularIncidenciaFretePorAnimal(BigDecimal valorTotalFrete, int cargaTotal) {
-        BigDecimal quantidadeAnimais = BigDecimal.valueOf(cargaTotal);
-        return valorTotalFrete.divide(quantidadeAnimais, ESCALA_CALCULO, ARREDONDAMENTO_FINANCEIRO)
+    public BigDecimal calcularIncidenciaFretePorKg(BigDecimal valorTotalFrete, BigDecimal pesoMedio, int cargaTotal) {
+        BigDecimal pesoTotal = pesoMedio.multiply(BigDecimal.valueOf(cargaTotal));
+        return valorTotalFrete.divide(pesoTotal, ESCALA_CALCULO, ARREDONDAMENTO_FINANCEIRO)
                 .setScale(ESCALA_MONETARIA, ARREDONDAMENTO_FINANCEIRO);
     }
 

@@ -8,6 +8,7 @@ import com.example.myapplication.data.models.PrecificacaoFrete;
 import com.example.myapplication.data.models.Transporte;
 import com.example.myapplication.data.repositories.FreteRepository;
 import com.example.myapplication.ui.helpers.TaskHelper;
+import com.example.myapplication.ui.state.FreteState;
 import com.example.myapplication.ui.state.PrecificacaoFreteState;
 import com.example.myapplication.utils.mappers.domain.PrecificacaoFreteMapper;
 
@@ -58,20 +59,20 @@ public class PrecificacaoFreteViewModel extends ViewModel {
         distancia.setValue(value);
     }
 
-    public void calcularFrete(List<Transporte> transportes, double distancia, int cargaTotal) {
+    public void calcularFrete(List<Transporte> transportes, double distancia, int cargaTotal, BigDecimal pesoMedio) {
         taskHelper.execute(
-                () -> precificacaoFreteMapper.mapFrom(repositorio.calcularFrete(transportes, distancia, cargaTotal)),
+                () -> precificacaoFreteMapper.mapFrom(repositorio.calcularFrete(transportes, distancia, cargaTotal, pesoMedio)),
                 state::postValue,
                 error::postValue
         );
     }
 
-    public void calcularIncidencia(BigDecimal valorDoFrete, int totalCarga) {
+    public void calcularIncidencia(BigDecimal valorDoFrete, BigDecimal pesoMedio, int totalCarga, FreteState freteState) {
         taskHelper.execute(
-                () -> repositorio.calcularIncidenciaFretePorAnimal(valorDoFrete, totalCarga),
+                () -> repositorio.calcularIncidenciaFretePorKg(valorDoFrete, pesoMedio, totalCarga),
                 resultadoIncidencia -> {
                     incidencia.postValue(resultadoIncidencia);
-                    state.postValue(new PrecificacaoFreteState(valorDoFrete, resultadoIncidencia));
+                    state.postValue(new PrecificacaoFreteState(valorDoFrete, resultadoIncidencia, freteState));
                 },
                 error::postValue
         );
