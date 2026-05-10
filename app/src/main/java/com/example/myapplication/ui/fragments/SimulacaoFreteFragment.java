@@ -57,9 +57,6 @@ import dagger.hilt.android.AndroidEntryPoint;
 @AndroidEntryPoint
 public class SimulacaoFreteFragment extends Fragment {
 
-    static final String CHAVE_RESULTADO_FRETE = "resultado_selecao_frete";
-    static final String EXTRA_VALOR_FRETE = "valor_frete";
-
     private static final String[] PERMISSOES_LOCALIZACAO = {
             Manifest.permission.ACCESS_FINE_LOCATION,
             Manifest.permission.ACCESS_COARSE_LOCATION
@@ -77,6 +74,9 @@ public class SimulacaoFreteFragment extends Fragment {
     private ActivityResultLauncher<String[]> solicitacaoDePermissaoLauncher;
     private int cargaTotalDoLote;
     private double pesoMedio;
+    private RotaState rotaAtual;
+    private List<TransporteState> transportesAtuais;
+    private PrecificacaoFreteState freteAtual;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -111,7 +111,6 @@ public class SimulacaoFreteFragment extends Fragment {
     @Override
     public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
         super.onViewStateRestored(savedInstanceState);
-        restaurarDistanciaManualSalva();
         atualizarVisibilidadeDosContainers();
     }
 
@@ -120,7 +119,6 @@ public class SimulacaoFreteFragment extends Fragment {
         super.onDestroyView();
         binding = null;
     }
-
 
     private void extrairArgumentos() {
         SimulacaoFreteFragmentArgs args = SimulacaoFreteFragmentArgs.fromBundle(requireArguments());
@@ -153,16 +151,16 @@ public class SimulacaoFreteFragment extends Fragment {
 
     private void configurarListenersDeBotoes() {
         binding.cartaoExplorarRota.setOnClickListener(v -> abrirBuscaDeLocalizacao());
-        binding.toolbar.setOnClickListener(v -> navigateBack());
-        binding.botaoContinuar.setOnClickListener(v -> confirmarFreteERetornarResultado());
+        binding.toolbar.setOnClickListener(v -> navegarDeVolta());
+        binding.botaoContinuar.setOnClickListener(v -> confirmarFrete());
     }
-
 
     private void observarEstadosDosViewModels() {
         observarEstadoDaRota();
         observarEstadoDeTransporte();
         observarCategoriaSelecionada();
         observarResumoDoFrete();
+        observarDistanciaSalva();
     }
 
     private void observarEstadoDaRota() {
@@ -181,21 +179,23 @@ public class SimulacaoFreteFragment extends Fragment {
         precificacaoFreteViewModel.getState().observe(getViewLifecycleOwner(), this::aoAtualizarResumoDoFrete);
     }
 
+    private void observarDistanciaSalva() {
+        precificacaoFreteViewModel.getDistancia().observe(getViewLifecycleOwner(), this::aoRestaurarDistanciaSalva);
+    }
+
     private void aoAtualizarRota(RotaState rota) {
-        if (distanciaManualTemPrioridadeSobreRota(rota)) {
+        rotaAtual = rota;
+        if (distanciaManualTemPrioridadeSobreRota()) {
             rotaViewModel.limpar();
             return;
         }
-        if (isNotEmpty(rota)) limparDistanciaManual();
+        if (isNotEmpty(rotaAtual)) limparDistanciaManual();
         sincronizarEstado();
     }
 
-    private boolean distanciaManualTemPrioridadeSobreRota(RotaState rota) {
-        return isNotEmpty(rota) && isDistanciaManualPreenchida();
-    }
-
     private void aoAtualizarListaDeTransportes(List<TransporteState> transportes) {
-        transporteAdapter.submitList(isNotEmpty(transportes) ? transportes : Collections.emptyList());
+        transportesAtuais = transportes;
+        exibirListaDeTransportes(transportesAtuais);
         sincronizarEstado();
     }
 
@@ -212,18 +212,15 @@ public class SimulacaoFreteFragment extends Fragment {
     }
 
     private void aoAtualizarResumoDoFrete(PrecificacaoFreteState estado) {
-        atualizarVisibilidadeDoResumo(estado);
-        if (isEmpty(estado)) return;
-        exibirValoresDoResumo(estado);
+        freteAtual = estado;
+        exibirContainerResumo(isNotEmpty(freteAtual));
+        if (isEmpty(freteAtual)) return;
+        exibirValoresDoResumo(freteAtual);
     }
 
-    private void atualizarVisibilidadeDoResumo(PrecificacaoFreteState estado) {
-        setVisible(isNotEmpty(estado), binding.containerResumoValores);
-    }
-
-    private void exibirValoresDoResumo(@NonNull PrecificacaoFreteState estado) {
-        setText(binding.textoValorPrincipal, formatCurrency(estado.getValorTotal()));
-        setText(binding.textoValorSecundario, formatCurrency(estado.getValorParcial()));
+    private void aoRestaurarDistanciaSalva(Double distancia) {
+        if (isDistanciaManualPreenchida()) return;
+        if (isNotEmpty(distancia) && distancia > 0) exibirDistanciaManual(distancia);
     }
 
     private void sincronizarEstado() {
@@ -231,43 +228,6 @@ public class SimulacaoFreteFragment extends Fragment {
         recalcularFrete();
     }
 
-    private void atualizarVisibilidadeDosContainers() {
-        exibirContainerDeRota();
-        exibirContainerDeTransporte();
-        if (isRotaDefinida()) exibirDadosDaRota(rotaViewModel.getState().getValue());
-    }
-
-    private void exibirContainerDeRota() {
-        setVisible(isRotaDefinida() && !isDistanciaManualPreenchida(), binding.containerRota);
-    }
-
-    private void exibirContainerDeTransporte() {
-        setVisible(existeDistanciaAtiva() && existemTransportesDisponiveis(), binding.containerTransporte);
-    }
-
-    private boolean existeDistanciaAtiva() {
-        return isRotaDefinida() || isDistanciaManualPreenchida();
-    }
-
-    private void exibirDadosDaRota(RotaState rota) {
-        exibirOrigem(rota);
-        exibirDestino(rota);
-        exibirDistanciaDaRota(rota);
-    }
-
-    private void exibirOrigem(@NonNull RotaState rota) {
-        setText(binding.textoCidadeOrigem, rota.getCidadeOrigem());
-        setText(binding.textoEstadoOrigem, rota.getEstadoOrigem());
-    }
-
-    private void exibirDestino(@NonNull RotaState rota) {
-        setText(binding.textoCidadeDestino, rota.getCidadeDestino());
-        setText(binding.textoEstadoDestino, rota.getEstadoDestino());
-    }
-
-    private void exibirDistanciaDaRota(@NonNull RotaState rota) {
-        setText(binding.textoValorDistancia, String.valueOf(rota.getDistancia()));
-    }
     private void recalcularFrete() {
         if (dadosInsuficientesParaCalcular()) {
             limparResultadoDaSimulacao();
@@ -288,51 +248,83 @@ public class SimulacaoFreteFragment extends Fragment {
                 BigDecimal.valueOf(pesoMedio));
     }
 
+    private void confirmarFrete() {
+        if (isEmpty(freteAtual) || isEmpty(freteAtual.getValorTotal())) return;
+        navegarDeVolta();
+    }
+
+    private double resolverDistanciaAtiva() {
+        double distanciaManual = lerDistanciaManual();
+        if (isNotEmpty(distanciaManual)) return distanciaManual;
+        return lerDistanciaDefinidaPelaRota();
+    }
+
+    private double lerDistanciaDefinidaPelaRota() {
+        return isNotEmpty(rotaAtual) ? rotaAtual.getDistancia() : 0.0;
+    }
+
+    private boolean distanciaManualTemPrioridadeSobreRota() {
+        return isNotEmpty(rotaAtual) && isDistanciaManualPreenchida();
+    }
+
     private List<Transporte> mapearTransportesDisponiveis() {
-        return transporteMapper.mapTo(orElse(transporteViewModel.getState().getValue(), Collections.emptyList()));
+        return transporteMapper.mapTo(orElse(transportesAtuais, Collections.emptyList()));
+    }
+
+    private void atualizarVisibilidadeDosContainers() {
+        exibirContainerDeRota();
+        exibirContainerDeTransporte();
+        if (isRotaDefinida()) exibirDadosDaRota();
+    }
+
+    private void exibirContainerDeRota() {
+        setVisible(isRotaDefinida() && !isDistanciaManualPreenchida(), binding.containerRota);
+    }
+
+    private void exibirContainerDeTransporte() {
+        setVisible(existeDistanciaAtiva() && existemTransportesDisponiveis(), binding.containerTransporte);
+    }
+
+    private void exibirContainerResumo(boolean visivel) {
+        setVisible(visivel, binding.containerResumoValores);
+    }
+
+    private void exibirDadosDaRota() {
+        exibirOrigem(rotaAtual);
+        exibirDestino(rotaAtual);
+        exibirDistanciaDaRota(rotaAtual);
+    }
+
+    private void exibirOrigem(@NonNull RotaState rota) {
+        setText(binding.textoCidadeOrigem, rota.getCidadeOrigem());
+        setText(binding.textoEstadoOrigem, rota.getEstadoOrigem());
+    }
+
+    private void exibirDestino(@NonNull RotaState rota) {
+        setText(binding.textoCidadeDestino, rota.getCidadeDestino());
+        setText(binding.textoEstadoDestino, rota.getEstadoDestino());
+    }
+
+    private void exibirDistanciaDaRota(@NonNull RotaState rota) {
+        setText(binding.textoValorDistancia, String.valueOf(rota.getDistancia()));
+    }
+
+    private void exibirValoresDoResumo(@NonNull PrecificacaoFreteState estado) {
+        setText(binding.textoValorPrincipal, formatCurrency(estado.getValorTotal()));
+        setText(binding.textoValorSecundario, formatCurrency(estado.getValorParcial()));
+    }
+
+    private void exibirListaDeTransportes(List<TransporteState> transportes) {
+        transporteAdapter.submitList(isNotEmpty(transportes) ? transportes : Collections.emptyList());
+    }
+
+    private void exibirDistanciaManual(Double distancia) {
+        setText(binding.entradaTextoDistancia, String.valueOf(distancia));
     }
 
     private void limparResultadoDaSimulacao() {
         precificacaoFreteViewModel.limpar();
-        ocultarContainerDeResumo();
-    }
-
-    private void ocultarContainerDeResumo() {
-        setVisible(false, binding.containerResumoValores);
-    }
-
-
-    private void confirmarFreteERetornarResultado() {
-        if (simulacaoSemValorCalculado()) return;
-        retornarValorDoFreteParaTelaPrecedente(resolverValorTotalCalculado());
-        navigateBack();
-    }
-
-    private boolean simulacaoSemValorCalculado() {
-        PrecificacaoFreteState estado = precificacaoFreteViewModel.getState().getValue();
-        return isEmpty(estado) || isEmpty(estado.getValorTotal());
-    }
-
-    private BigDecimal resolverValorTotalCalculado() {
-        PrecificacaoFreteState estado = precificacaoFreteViewModel.getState().getValue();
-        if(estado == null) return BigDecimal.ZERO;
-        return orElse(estado.getValorTotal(), BigDecimal.ZERO);
-    }
-
-    private void retornarValorDoFreteParaTelaPrecedente(BigDecimal valorTotal) {
-        Bundle resultado = new Bundle();
-        resultado.putString(EXTRA_VALOR_FRETE, formatCurrency(valorTotal));
-        getParentFragmentManager().setFragmentResult(CHAVE_RESULTADO_FRETE, resultado);
-    }
-
-    private void restaurarDistanciaManualSalva() {
-        if (isDistanciaManualPreenchida()) return;
-        double distanciaSalva = lerDistanciaSalvaNoViewModel();
-        if (distanciaSalva > 0) setText(binding.entradaTextoDistancia, String.valueOf(distanciaSalva));
-    }
-
-    private double lerDistanciaSalvaNoViewModel() {
-        return orElse(precificacaoFreteViewModel.getDistancia().getValue(), 0.0);
+        exibirContainerResumo(false);
     }
 
     private void limparDistanciaManual() {
@@ -342,33 +334,19 @@ public class SimulacaoFreteFragment extends Fragment {
         adicionarWatcher();
     }
 
-    private void removerWatcher() {
-        binding.entradaTextoDistancia.removeTextChangedListener(distanciaManualWatcher);
-    }
-
     private void limparCampoDeDistancia() {
         clearText(binding.entradaTextoDistancia);
         precificacaoFreteViewModel.setDistancia(0);
+    }
+
+    private void removerWatcher() {
+        binding.entradaTextoDistancia.removeTextChangedListener(distanciaManualWatcher);
     }
 
     private void adicionarWatcher() {
         binding.entradaTextoDistancia.addTextChangedListener(distanciaManualWatcher);
     }
 
-    private double resolverDistanciaAtiva() {
-        double distanciaManual = lerDistanciaManual();
-        if (isNotEmpty(distanciaManual)) return distanciaManual;
-        return lerDistanciaDefinidaPelaRota();
-    }
-
-    private double lerDistanciaManual() {
-        return getDouble(binding.entradaTextoDistancia);
-    }
-
-    private double lerDistanciaDefinidaPelaRota() {
-        RotaState rota = rotaViewModel.getState().getValue();
-        return isNotEmpty(rota) ? rota.getDistancia() : 0.0;
-    }
 
     private void registrarLauncherDePermissao() {
         solicitacaoDePermissaoLauncher = register(this, (concedida, result) -> {
@@ -406,11 +384,11 @@ public class SimulacaoFreteFragment extends Fragment {
     }
 
     private void registrarCallbackDeBotaoVoltar() {
-        requireActivity().getOnBackPressedDispatcher().
-                addCallback(this, new OnBackPressedCallback(true) {
+        requireActivity().getOnBackPressedDispatcher()
+                .addCallback(this, new OnBackPressedCallback(true) {
                     @Override
                     public void handleOnBackPressed() {
-                        navigateBack();
+                        navegarDeVolta();
                     }
                 });
     }
@@ -418,9 +396,26 @@ public class SimulacaoFreteFragment extends Fragment {
     private void abrirBuscaDeLocalizacao() {
         new BuscaLocalizacaoBottomSheetDialogFragment().show(getChildFragmentManager(), null);
     }
-    private void navigateBack() {NavHostFragment.findNavController(this).popBackStack();}
-    private boolean isRotaDefinida() {return isNotEmpty(rotaViewModel.getState().getValue());}
-    private boolean existemTransportesDisponiveis() {return isNotEmpty(transporteViewModel.getState().getValue());}
+
+    private void navegarDeVolta() {
+        NavHostFragment.findNavController(this).popBackStack();
+    }
+
+    private double lerDistanciaManual() {
+        return getDouble(binding.entradaTextoDistancia);
+    }
+
+    private boolean isRotaDefinida() {
+        return isNotEmpty(rotaAtual);
+    }
+
+    private boolean existemTransportesDisponiveis() {
+        return isNotEmpty(transportesAtuais);
+    }
+
+    private boolean existeDistanciaAtiva() {
+        return isRotaDefinida() || isDistanciaManualPreenchida();
+    }
     private boolean isDistanciaManualPreenchida() {
         return isNotEmpty(lerDistanciaManual());
     }
