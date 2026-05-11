@@ -129,11 +129,10 @@ public class NegociacaoFragment extends Fragment {
         negociacaoViewModel = new ViewModelProvider(requireActivity()).get(NegociacaoViewModel.class);
         precificacaoFreteViewModel = new ViewModelProvider(requireActivity()).get(PrecificacaoFreteViewModel.class);
         animalViewModel = new ViewModelProvider(requireActivity()).get(AnimalViewModel.class);
-        freteTextWatcher = TextWatcherHelper.SimpleTextWatcher(this::aoFreteManualAlterado);
+        freteTextWatcher = TextWatcherHelper.MoneyTextWatcher(this::aoFreteManualAlterado);
         especificacaoTextWatcher = TextWatcherHelper.SimpleTextWatcher(this::aoEspecificacaoAlterada);
-        valorCabecaTextWatcher = TextWatcherHelper.SimpleTextWatcher(this::aoValorCabecaAlterado);
-        valorKgTextWatcher = TextWatcherHelper.SimpleTextWatcher(this::aoValorKgAlterado);
-
+        valorCabecaTextWatcher = TextWatcherHelper.MoneyTextWatcher(this::aoValorCabecaAlterado);
+        valorKgTextWatcher = TextWatcherHelper.MoneyTextWatcher(this::aoValorKgAlterado);
     }
 
     private void configurarComportamentosDeTela() {

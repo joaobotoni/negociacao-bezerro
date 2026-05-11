@@ -163,7 +163,7 @@ public class NegociacaoViewModel extends ViewModel {
     }
 
     public void limparProposta() {
-        proposta = new PropostaState(BigDecimal.ZERO, BigDecimal.ZERO, BigDecimal.ZERO, BigDecimal.ZERO, FreteState.NAO_SELECIONADO);
+        proposta = new PropostaState(BigDecimal.ZERO, BigDecimal.ZERO, BigDecimal.ZERO, null, FreteState.NAO_SELECIONADO);
         state.postValue(build());
     }
 
