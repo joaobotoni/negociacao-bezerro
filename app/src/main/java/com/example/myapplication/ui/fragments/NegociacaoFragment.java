@@ -630,19 +630,13 @@ public class NegociacaoFragment extends Fragment {
     private boolean isIdadePreenchida() {
         return isNotEmpty(binding.campoIdadeEntrada);
     }
-
     private boolean isSexoSelecionado() {
         return isNotEmpty(obterValorSexoSelecionado());
     }
-
     private boolean isCampoFreteVazio() {
         return !isNotEmpty(binding.campoFreteEntrada);
     }
-
-    private boolean isCampoValorCabecaVazio() {
-        return !isNotEmpty(binding.campoValorCabecaEntrada);
-    }
-
+    private boolean isCampoValorCabecaVazio() {return !isNotEmpty(binding.campoValorCabecaEntrada);}
     private boolean isCampoValorKgVazio() {
         return !isNotEmpty(binding.campoValorKgEntrada);
     }
