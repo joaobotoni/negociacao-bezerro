@@ -19,7 +19,6 @@ public class EmpresaState {
     public String getNome() {
         return nome;
     }
-
     public boolean isSelected() {
         return isSelected;
     }

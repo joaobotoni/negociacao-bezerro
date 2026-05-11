@@ -1,7 +1,7 @@
 package com.example.myapplication.utils.mappers.domain;
 
 import com.example.myapplication.data.source.local.entities.Raca;
-import com.example.myapplication.ui.state.RacaState;
+import com.example.myapplication.ui.state.animal.RacaState;
 import com.example.myapplication.utils.mappers.Mapper;
 
 import javax.inject.Inject;

@@ -36,7 +36,7 @@ import com.example.myapplication.R;
 import com.example.myapplication.data.models.Transporte;
 import com.example.myapplication.databinding.FragmentSimulacaoFreteBinding;
 import com.example.myapplication.ui.adapters.TransporteAdapter;
-import com.example.myapplication.ui.state.CategoriaState;
+import com.example.myapplication.ui.state.animal.CategoriaState;
 import com.example.myapplication.ui.state.PrecificacaoFreteState;
 import com.example.myapplication.ui.state.RotaState;
 import com.example.myapplication.ui.state.TransporteState;

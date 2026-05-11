@@ -155,6 +155,8 @@
     <string name="validacao_frete_obrigatorio">Simule o frete ou informe o valor manualmente</string>
     <string name="erro_chave_api_ausente">Erro ao fazer a requisição para calcular rota</string>
     <string name="erro_busca_endereco">Erro ao buscar endereço. Verifique sua conexão.</string>
+    <string name="aviso_informe_frete_antes_corretor">Informe o frete antes de adicionar um corretor</string>
+    <string name="aviso_preencha_campos_obrigatorios">Preencha todos os campos obrigatórios</string>
 
     <string name="url_directions">"https://routes.googleapis.com/directions/v2:computeRoutes";</string>
     <string name="url_usuario_gespec">http://%1$s:%2$s/gespec/gespecservices/UsuarioService/obtem/%3$s/%4$s/%5$s</string>

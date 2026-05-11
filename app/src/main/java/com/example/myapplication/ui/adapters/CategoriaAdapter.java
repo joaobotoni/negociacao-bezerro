@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.databinding.ItemCategoriaBinding;
-import com.example.myapplication.ui.state.CategoriaState;
+import com.example.myapplication.ui.state.animal.CategoriaState;
 
 import java.util.Objects;
 

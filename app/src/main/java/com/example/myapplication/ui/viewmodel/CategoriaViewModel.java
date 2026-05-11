@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel;
 
 import com.example.myapplication.data.repositories.CategoriaFreteRepository;
 import com.example.myapplication.ui.helpers.TaskHelper;
-import com.example.myapplication.ui.state.CategoriaState;
+import com.example.myapplication.ui.state.animal.CategoriaState;
 import com.example.myapplication.utils.mappers.domain.CategoriaMapper;
 
 import java.util.List;

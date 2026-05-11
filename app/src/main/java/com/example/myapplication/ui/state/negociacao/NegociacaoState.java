@@ -1,8 +1,4 @@
-package com.example.myapplication.ui.state;
-
-import com.example.myapplication.ui.state.negociacao.CotacaoState;
-import com.example.myapplication.ui.state.negociacao.FechamentoState;
-import com.example.myapplication.ui.state.negociacao.PropostaState;
+package com.example.myapplication.ui.state.negociacao;
 
 public class NegociacaoState {
     private final CotacaoState cotacao;

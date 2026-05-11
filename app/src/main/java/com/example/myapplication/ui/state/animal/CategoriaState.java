@@ -1,12 +1,11 @@
-package com.example.myapplication.ui.state;
+package com.example.myapplication.ui.state.animal;
 
-public class RacaState {
-
+public class CategoriaState {
     private final int id;
     private final String descricao;
     private final boolean isSelected;
 
-    public RacaState(int id, String descricao, boolean isSelected) {
+    public CategoriaState(int id, String descricao, boolean isSelected) {
         this.id = id;
         this.descricao = descricao;
         this.isSelected = isSelected;

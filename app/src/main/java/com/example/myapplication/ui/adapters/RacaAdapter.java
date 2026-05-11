@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.databinding.ItemRacaBinding;
-import com.example.myapplication.ui.state.RacaState;
+import com.example.myapplication.ui.state.animal.RacaState;
 
 import java.util.Objects;
 

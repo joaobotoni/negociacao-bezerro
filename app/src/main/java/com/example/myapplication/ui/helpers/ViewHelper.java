@@ -1,6 +1,7 @@
 package com.example.myapplication.ui.helpers;
 
 import android.content.Context;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -10,6 +11,8 @@ import androidx.annotation.Nullable;
 import androidx.annotation.PluralsRes;
 import androidx.annotation.StringRes;
 
+import com.google.android.material.chip.Chip;
+import com.google.android.material.chip.ChipGroup;
 import com.google.android.material.textfield.TextInputLayout;
 
 import java.math.BigDecimal;
@@ -109,6 +112,30 @@ public class ViewHelper {
             }
         }
         textView.setText(context.getString(resId, Arrays.asList(args).toArray()));
+    }
+
+    public static void setTextSafely(@NonNull EditText field, @NonNull String value, @NonNull TextWatcher watcher) {
+        if (field.hasFocus()) {
+            return;
+        }
+        field.setText(value);
+    }
+
+    public static void selectChip(@NonNull ChipGroup chipGroup, @NonNull String text) {
+        for (int i = 0; i < chipGroup.getChildCount(); i++) {
+            Chip chip = (Chip) chipGroup.getChildAt(i);
+            if (chip.getText().toString().equals(text)) {
+                chip.setChecked(true);
+                return;
+            }
+        }
+    }
+
+    @Nullable
+    public static String getCheckedChipText(@NonNull ChipGroup chipGroup) {
+        int chipId = chipGroup.getCheckedChipId();
+        Chip chip = chipGroup.findViewById(chipId);
+        return chip != null ? chip.getText().toString() : null;
     }
 
 

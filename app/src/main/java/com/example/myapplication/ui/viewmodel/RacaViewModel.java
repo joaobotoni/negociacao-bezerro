@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel;
 
 import com.example.myapplication.data.repositories.RacaRepository;
 import com.example.myapplication.ui.helpers.TaskHelper;
-import com.example.myapplication.ui.state.RacaState;
+import com.example.myapplication.ui.state.animal.RacaState;
 import com.example.myapplication.utils.mappers.domain.RacaMapper;
 
 import java.util.List;

@@ -1,7 +1,7 @@
 package com.example.myapplication.utils.mappers.domain;
 
 import com.example.myapplication.data.source.local.entities.CategoriaFrete;
-import com.example.myapplication.ui.state.CategoriaState;
+import com.example.myapplication.ui.state.animal.CategoriaState;
 import com.example.myapplication.utils.mappers.Mapper;
 
 import javax.inject.Inject;
