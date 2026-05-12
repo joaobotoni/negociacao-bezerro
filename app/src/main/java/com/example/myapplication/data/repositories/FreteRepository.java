@@ -2,9 +2,9 @@ package com.example.myapplication.data.repositories;
 
 
 
-import static com.example.myapplication.utils.BigDecimalUtil.ARREDONDAMENTO_FINANCEIRO;
-import static com.example.myapplication.utils.BigDecimalUtil.ESCALA_CALCULO;
-import static com.example.myapplication.utils.BigDecimalUtil.ESCALA_MONETARIA;
+import static com.example.myapplication.utils.DecimalUtil.ARREDONDAMENTO_FINANCEIRO;
+import static com.example.myapplication.utils.DecimalUtil.ESCALA_CALCULO;
+import static com.example.myapplication.utils.DecimalUtil.ESCALA_MONETARIA;
 
 import com.example.myapplication.data.models.PrecificacaoFrete;
 import com.example.myapplication.data.models.Transporte;

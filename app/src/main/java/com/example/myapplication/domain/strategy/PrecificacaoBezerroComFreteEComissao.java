@@ -1,7 +1,7 @@
 package com.example.myapplication.domain.strategy;
 
-import static com.example.myapplication.utils.BigDecimalUtil.ARREDONDAMENTO_PADRAO;
-import static com.example.myapplication.utils.BigDecimalUtil.ESCALA_MONETARIA;
+import static com.example.myapplication.utils.DecimalUtil.ARREDONDAMENTO_PADRAO;
+import static com.example.myapplication.utils.DecimalUtil.ESCALA_MONETARIA;
 
 import com.example.myapplication.data.models.ParametrosBezerro;
 import com.example.myapplication.data.models.PrecificacaoBezerro;

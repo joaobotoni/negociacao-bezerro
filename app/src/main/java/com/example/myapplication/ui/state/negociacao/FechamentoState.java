@@ -22,5 +22,5 @@ public class FechamentoState {
 
     public BigDecimal getValorTotal() { return valorTotal; }
     public BigDecimal getComissaoPorKg() { return comissaoPorKg; }
-    public boolean isComissaoAplicada() { return !isComissaoAplicada; }
+    public boolean isComissaoAplicada() { return isComissaoAplicada; }
 }

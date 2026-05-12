@@ -1,5 +1,7 @@
 package com.example.myapplication.ui.helpers;
 
+import static com.example.myapplication.utils.DecimalUtil.CURRENCY_FORMAT;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
@@ -10,9 +12,6 @@ import java.text.ParseException;
 import java.util.Locale;
 
 public class FormatHelper {
-    private static final Locale LOCALE_BR = new Locale("pt", "BR");
-    private static final DecimalFormatSymbols SYMBOLS = new DecimalFormatSymbols(LOCALE_BR);
-    public static final DecimalFormat CURRENCY_FORMAT = new DecimalFormat("#,##0.00", SYMBOLS);
     @NonNull
     public static Integer getInt(@Nullable String value) {
         if (value == null || value.trim().isEmpty()) return 0;

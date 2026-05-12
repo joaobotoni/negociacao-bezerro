@@ -1,11 +1,9 @@
 package com.example.myapplication.data.repositories;
 
-import static com.example.myapplication.utils.BigDecimalUtil.ARREDONDAMENTO_PADRAO;
-import static com.example.myapplication.utils.BigDecimalUtil.CEM;
-import static com.example.myapplication.utils.BigDecimalUtil.ESCALA_CALCULO;
-import static com.example.myapplication.utils.BigDecimalUtil.ESCALA_MONETARIA;
-
-import com.example.myapplication.data.source.local.entities.ValorReferencia;
+import static com.example.myapplication.utils.DecimalUtil.ARREDONDAMENTO_PADRAO;
+import static com.example.myapplication.utils.DecimalUtil.CEM;
+import static com.example.myapplication.utils.DecimalUtil.ESCALA_CALCULO;
+import static com.example.myapplication.utils.DecimalUtil.ESCALA_MONETARIA;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;

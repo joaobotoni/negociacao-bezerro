@@ -17,7 +17,7 @@ public class PropostaState {
         this.valorPorCabeca = valorPorCabeca;
         this.valorTotal = valorTotal;
         this.fretePorKg = fretePorKg;
-        this.isFreteDescontado = fretePorKg != null;
+        this.isFreteDescontado = freteState != null && freteState != FreteState.NAO_SELECIONADO;
         this.freteState = freteState;
     }
 

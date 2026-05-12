@@ -321,7 +321,7 @@ public class NegociacaoFragment extends Fragment {
 
     private void aoSelecionarCorretorNaLista(@Nullable CorretorState corretorState) {
         if (isCorretorNaoSelecionado(corretorState)) {
-            limparFechamento();
+            limparValores();
             limparVariacao();
             limparCardCorretor();
             return;
@@ -355,7 +355,7 @@ public class NegociacaoFragment extends Fragment {
 
     private void atualizarValoresCotado(@Nullable CotacaoState cotacaoState) {
         if (isCotacaoSemEstado(cotacaoState)) return;
-        preencherCamposIniciais(cotacaoState);
+        preencherCamposEditaveis(cotacaoState.getValorPorCabeca(), cotacaoState.getValorPorKg());
         exibirValorEtapaCotado(formatCurrency(cotacaoState.getValorPorCabeca()));
         exibirDescricaoEtapaCotado(formatCurrency(cotacaoState.getValorPorKg()));
     }
@@ -363,7 +363,7 @@ public class NegociacaoFragment extends Fragment {
     private void atualizarValoresPedido(@Nullable PropostaState propostaState) {
         if (isPropostaSemEstado(propostaState)) return;
         if (!isFreteDescontado(propostaState)) return;
-        preencherCamposIniciais(propostaState);
+        preencherCamposEditaveis(propostaState.getValorPorCabeca(), propostaState.getValorPorKg());
         exibirValorEtapaPedido(formatCurrency(propostaState.getValorPorCabeca()));
         exibirDescricaoEtapaPedido(formatCurrency(propostaState.getValorPorKg()));
         exibirBadgeFrete(formatCurrency(propostaState.getFretePorKg()));
@@ -372,7 +372,7 @@ public class NegociacaoFragment extends Fragment {
 
     private void atualizarValoresFechamento(@Nullable FechamentoState fechamentoState) {
         if (isFechamentoSemEstado(fechamentoState)) return;
-        if (isComissaoAplicada(fechamentoState)) return;
+        if (!isComissaoAplicada(fechamentoState)) return;
         exibirValorEtapaFinal(formatCurrency(fechamentoState.getValorPorCabeca()));
         exibirDescricaoEtapaFinal(formatCurrency(fechamentoState.getValorPorKg()));
         exibirBadgeCorretor(formatCurrency(fechamentoState.getComissaoPorKg()));
@@ -435,20 +435,15 @@ public class NegociacaoFragment extends Fragment {
 
     private void limparFreteEDependencias() {
         limparHelperTextFrete();
-        limparProposta();
-        limparFechamento();
+        limparValores();
         limparVariacao();
         limparCardFrete();
         limparSelecaoCorretor();
         limparCardCorretor();
     }
 
-    private void limparProposta() {
-        negociacaoViewModel.limparProposta();
-    }
-
-    private void limparFechamento() {
-        negociacaoViewModel.limparFechamento();
+    private void limparValores() {
+        negociacaoViewModel.limpar();
     }
 
     private void limparVariacao() {
@@ -561,14 +556,9 @@ public class NegociacaoFragment extends Fragment {
         AlertHelper.showSnackBarErro(binding.getRoot(), getString(R.string.aviso_preencha_campos_obrigatorios));
     }
 
-    private void preencherCamposIniciais(@NonNull CotacaoState cotacaoState) {
-        setTextSafely(binding.campoValorCabecaEntrada, formatCurrency(cotacaoState.getValorPorCabeca()), valorCabecaTextWatcher);
-        setTextSafely(binding.campoValorKgEntrada, formatCurrency(cotacaoState.getValorPorKg()), valorKgTextWatcher);
-    }
-
-    private void preencherCamposIniciais(@NonNull PropostaState propostaState) {
-        setTextSafely(binding.campoValorCabecaEntrada, formatCurrency(propostaState.getValorPorCabeca()), valorCabecaTextWatcher);
-        setTextSafely(binding.campoValorKgEntrada, formatCurrency(propostaState.getValorPorKg()), valorKgTextWatcher);
+    private void preencherCamposEditaveis(BigDecimal valorPorCabeca, BigDecimal valorPorKg) {
+        setTextSafely(binding.campoValorCabecaEntrada, formatCurrency(valorPorCabeca), valorCabecaTextWatcher);
+        setTextSafely(binding.campoValorKgEntrada, formatCurrency(valorPorKg), valorKgTextWatcher);
     }
 
     private void preencherCampoValorFrete(@NonNull PrecificacaoFreteState freteState) {

@@ -1,9 +1,9 @@
 package com.example.myapplication.ui.viewmodel;
 
-import static com.example.myapplication.utils.BigDecimalUtil.ARREDONDAMENTO_PADRAO;
-import static com.example.myapplication.utils.BigDecimalUtil.CEM;
-import static com.example.myapplication.utils.BigDecimalUtil.ESCALA_CALCULO;
-import static com.example.myapplication.utils.BigDecimalUtil.ESCALA_MONETARIA;
+import static com.example.myapplication.utils.DecimalUtil.ARREDONDAMENTO_PADRAO;
+import static com.example.myapplication.utils.DecimalUtil.CEM;
+import static com.example.myapplication.utils.DecimalUtil.ESCALA_CALCULO;
+import static com.example.myapplication.utils.DecimalUtil.ESCALA_MONETARIA;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -162,12 +162,8 @@ public class NegociacaoViewModel extends ViewModel {
                 .setScale(ESCALA_MONETARIA, ARREDONDAMENTO_PADRAO);
     }
 
-    public void limparProposta() {
-        proposta = new PropostaState(BigDecimal.ZERO, BigDecimal.ZERO, BigDecimal.ZERO, null, FreteState.NAO_SELECIONADO);
-        state.postValue(build());
-    }
-
-    public void limparFechamento() {
+    public void limpar() {
+        proposta = new PropostaState(BigDecimal.ZERO, BigDecimal.ZERO, BigDecimal.ZERO, BigDecimal.ZERO, FreteState.NAO_SELECIONADO);
         fechamento = new FechamentoState(BigDecimal.ZERO, BigDecimal.ZERO, BigDecimal.ZERO, BigDecimal.ZERO);
         state.postValue(build());
     }
