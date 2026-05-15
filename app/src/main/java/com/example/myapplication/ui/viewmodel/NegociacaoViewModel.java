@@ -5,6 +5,8 @@ import static com.example.myapplication.utils.DecimalUtil.CEM;
 import static com.example.myapplication.utils.DecimalUtil.ESCALA_CALCULO;
 import static com.example.myapplication.utils.DecimalUtil.ESCALA_MONETARIA;
 
+import android.util.Log;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Transformations;
@@ -25,6 +27,7 @@ import com.example.myapplication.ui.state.negociacao.NegociacaoState;
 import com.example.myapplication.ui.state.negociacao.PropostaState;
 
 import java.math.BigDecimal;
+import java.util.Locale;
 
 import dagger.hilt.android.lifecycle.HiltViewModel;
 import jakarta.inject.Inject;

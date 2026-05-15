@@ -83,7 +83,7 @@ public class NegociacaoFragment extends Fragment {
     private int quantidade;
 
     private CotacaoState cotacaoAtual;
-    private PropostaState propostaAtual;
+    PropostaState propostaAtual;
     private FechamentoState fechamentoAtual;
     private PrecificacaoFreteState freteAtual;
     private CorretorState corretorAtual;
@@ -198,7 +198,8 @@ public class NegociacaoFragment extends Fragment {
 
     private void configurarTextWatcherIdade() {
         binding.campoIdadeEntrada.setOnFocusChangeListener((v, hasFocus) -> {
-            if (hasFocus) binding.campoIdadeEntrada.addTextChangedListener(especificacaoTextWatcher);
+            if (hasFocus)
+                binding.campoIdadeEntrada.addTextChangedListener(especificacaoTextWatcher);
             else binding.campoIdadeEntrada.removeTextChangedListener(especificacaoTextWatcher);
         });
     }
@@ -316,6 +317,7 @@ public class NegociacaoFragment extends Fragment {
         racaAtual = raca;
         if (isRacaNaoSelecionada(raca)) return;
         animalViewModel.atualizarRaca(raca);
+        atualizarEstadoDoBotaoFinalizar();
     }
 
     private void onCategoriaSelecionada(@Nullable CategoriaState categoria) {
@@ -323,21 +325,25 @@ public class NegociacaoFragment extends Fragment {
         if (isCategoriaNaoSelecionada(categoria)) return;
         animalViewModel.atualizarCategoria(categoria);
         transporteViewModel.recomendar(categoria.getId(), quantidade);
+        atualizarEstadoDoBotaoFinalizar();
     }
 
     private void onCotacaoAtualizada(@Nullable CotacaoState cotacao) {
         cotacaoAtual = cotacao;
         atualizarValoresCotado(cotacao);
+        atualizarEstadoDoBotaoFinalizar();
     }
 
     private void onPropostaAtualizada(@Nullable PropostaState proposta) {
         propostaAtual = proposta;
         atualizarValoresPedido(proposta);
+        atualizarEstadoDoBotaoFinalizar();
     }
 
     private void onFechamentoAtualizado(@Nullable FechamentoState fechamento) {
         fechamentoAtual = fechamento;
         atualizarValoresFechamento(fechamento);
+        atualizarEstadoDoBotaoFinalizar();
     }
 
     private void onFreteAtualizado(@Nullable PrecificacaoFreteState frete) {
@@ -350,6 +356,7 @@ public class NegociacaoFragment extends Fragment {
         if (isCorretorNaoSelecionado(corretor)) {
             limparVariacao();
             limparCardCorretor();
+            limpar();
             return;
         }
         exibirDadosCorretor(corretor);
@@ -368,7 +375,7 @@ public class NegociacaoFragment extends Fragment {
 
     private void aoFreteManualAlterado() {
         if (isCampoFreteVazio() || isValorZero(obterValorTotalFrete())) {
-            limparFreteEDependencias();
+            limparFrete();
             return;
         }
         calcularIncidenciaFreteManual();
@@ -384,6 +391,7 @@ public class NegociacaoFragment extends Fragment {
 
     private void aoEspecificacaoAlterada() {
         animalViewModel.atualizarEspecificacao(obterValorSexoSelecionado(), obterTextoIdade());
+        atualizarEstadoDoBotaoFinalizar();
     }
 
     private void aoSelecionarRacaNaLista(@NonNull RacaState raca) {
@@ -501,19 +509,20 @@ public class NegociacaoFragment extends Fragment {
         selectChip(binding.listaSexos, sexo);
     }
 
-    private void limparFreteEDependencias() {
+    private void limparFrete() {
         limparHelperTextFrete();
-        limparProposta();
+        limparProposta();      // já chama limpar()
         limparVariacao();
         limparCardFrete();
         limparSelecaoCorretor();
         limparCardCorretor();
+        limpar();              // chamado de novo via limparProposta() e aqui
     }
 
     private void limparProposta() {
-//        negociacaoViewModel.limpar(cotacao);
         restaurarPlaceholderProposta();
         restaurarPlaceholderFechamento();
+        limpar();
     }
 
     private void limparVariacao() {
@@ -682,7 +691,7 @@ public class NegociacaoFragment extends Fragment {
 
     @NonNull
     private String formatarDescricaoCorretor(@NonNull CorretorState corretor) {
-        return String.format(Locale.getDefault(), "R$ %s/%s -> R$ %s/t",
+        return String.format(Locale.getDefault(), "R$ %s/%s - R$ %s/t",
                 formatCurrency(corretor.getComissao()),
                 corretor.getTipoComissao(),
                 formatCurrency(corretor.getComissao().multiply(BigDecimal.valueOf(quantidade))));
@@ -701,7 +710,7 @@ public class NegociacaoFragment extends Fragment {
     }
 
     private void navegarParaSimulacaoDeFrete() {
-        if (isCategoriaInvalidaParaFrete()) {
+        if (isCategoriaNaoSelecionada(categoriaAtual)) {
             exibirErroCategoriaParaFrete();
             return;
         }
@@ -738,10 +747,14 @@ public class NegociacaoFragment extends Fragment {
 
 
     private void finalizar() {
-        if (isFormularioIncompleto()) exibirErroCamposObrigatorios();
+        if (isFormularioIncompleto()){
+            exibirErroCamposObrigatorios();
+        }
     }
 
-
+    private void atualizarEstadoDoBotaoFinalizar() {
+        binding.botaoFinalizar.setEnabled(isProntoParaFinalizar());
+    }
 
     @NonNull
     private BigDecimal obterValorParcialFrete(@Nullable PrecificacaoFreteState frete) {
@@ -776,14 +789,22 @@ public class NegociacaoFragment extends Fragment {
     private BigDecimal obterComissaoTotal() {
         return isCorretorNaoSelecionado(corretorAtual) ? BigDecimal.ZERO : corretorAtual.getComissao();
     }
+
     @Nullable
     private Integer obterTextoIdade() {
         return isIdadePreenchida() ? parseInt(binding.campoIdadeEntrada) : null;
     }
 
+    private boolean isProntoParaFinalizar() {
+        return !isFormularioIncompleto() && !isNegociacaoIncompleta();
+    }
+
+    private boolean isNegociacaoIncompleta(){
+        return isCotacaoSemEstado(cotacaoAtual) || isPropostaSemEstado(propostaAtual) || isFechamentoSemEstado(fechamentoAtual);
+    }
+
     private boolean isFormularioIncompleto() {
-        return !isIdadePreenchida() || !isSexoSelecionado()
-                || isCategoriaInvalidaParaFrete() || isRacaNaoSelecionada(racaAtual);
+        return !isIdadePreenchida() || !isSexoSelecionado() || isCategoriaNaoSelecionada(categoriaAtual) || isRacaNaoSelecionada(racaAtual);
     }
 
     private boolean isIdadePreenchida() {
@@ -798,17 +819,12 @@ public class NegociacaoFragment extends Fragment {
         return !isNotEmpty(binding.campoFreteEntrada);
     }
 
-    private boolean isFreteIndisponivel() {return freteAtual == null;}
-    private boolean isCategoriaInvalidaParaFrete() {
-        return categoriaAtual == null;
+    private boolean isFreteIndisponivel() {
+        return freteAtual == null;
     }
 
     private boolean isCotacaoIndisponivel() {
         return cotacaoAtual == null;
-    }
-
-    private boolean isPropostaIndisponivel() {
-        return propostaAtual == null;
     }
 
     private boolean isCotacaoSemEstado(@Nullable CotacaoState cotacao) {
@@ -863,7 +879,13 @@ public class NegociacaoFragment extends Fragment {
         return valor.compareTo(BigDecimal.ZERO) == 0;
     }
 
-    private boolean isRecalculoInvalido(@NonNull BigDecimal valor, @Nullable CotacaoState cotacao, @Nullable PrecificacaoFreteState frete) {
+    private boolean isRecalculoInvalido(@NonNull BigDecimal valor, @Nullable CotacaoState cotacao,
+                                        @Nullable PrecificacaoFreteState frete) {
         return isValorZero(valor) || cotacao == null || frete == null;
     }
+
+    private void limpar(){
+        negociacaoViewModel.limpar(cotacaoAtual);
+    }
+
 }

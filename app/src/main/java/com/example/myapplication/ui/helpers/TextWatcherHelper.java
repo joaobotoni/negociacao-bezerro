@@ -91,7 +91,6 @@ public final class TextWatcherHelper {
 
         public CurrencyFormatter(double maxValue, @NonNull NumberFormat format) {
             Objects.requireNonNull(format, "format must not be null");
-
             this.maxValue = maxValue;
             this.format = format;
         }
