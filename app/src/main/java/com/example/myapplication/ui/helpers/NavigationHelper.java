@@ -11,7 +11,7 @@ import androidx.navigation.fragment.NavHostFragment;
 public final class NavigationHelper {
 
     private NavigationHelper() {
-        throw new AssertionError("NavigationHelper is a utility class and must not be instantiated.");
+        throw new AssertionError("NavigationHelper é uma classe utilitária e não deve ser instanciada.");
     }
 
     public static void navegar(@NonNull Fragment fragment, @IdRes int destinoAtual, @NonNull NavDirections direcoes) {

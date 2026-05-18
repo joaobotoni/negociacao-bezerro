@@ -25,7 +25,7 @@ import java.util.List;
 public final class FileHelper {
 
     private FileHelper() {
-        throw new AssertionError("FileHelper is a utility class and must not be instantiated.");
+        throw new AssertionError("FileHelper é uma classe utilitária e não deve ser instanciada.");
     }
 
     @NonNull

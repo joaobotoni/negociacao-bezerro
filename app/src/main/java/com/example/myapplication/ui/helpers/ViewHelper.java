@@ -10,6 +10,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.PluralsRes;
 import androidx.annotation.StringRes;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
@@ -22,33 +24,33 @@ import java.util.Collection;
 public final class ViewHelper {
 
     private ViewHelper() {
-        throw new AssertionError("ViewHelper is a utility class and must not be instantiated.");
+        throw new AssertionError("ViewHelper é uma classe utilitária e não deve ser instanciada.");
     }
 
-    @NonNull
-    public static String requireText(@Nullable TextView view) {
-        if (view == null || view.getText() == null) return "";
-        return view.getText().toString().trim();
+    public static boolean isNull(@Nullable Object value) {
+        return value == null;
     }
 
-    @NonNull
-    public static Integer parseInt(@Nullable EditText view) {
-        return FormatHelper.parseInt(requireText(view));
+    public static boolean isNotNull(@Nullable Object value) {
+        return value != null;
     }
 
-    @NonNull
-    public static Float parseFloat(@Nullable EditText view) {
-        return FormatHelper.parseFloat(requireText(view));
+    @SafeVarargs
+    public static <T> boolean anyNull(@Nullable T... values) {
+        if (values == null) return true;
+        for (T value : values) {
+            if (value == null) return true;
+        }
+        return false;
     }
 
-    @NonNull
-    public static Double parseDouble(@Nullable EditText view) {
-        return FormatHelper.parseDouble(requireText(view));
-    }
-
-    @NonNull
-    public static BigDecimal parseDecimal(@Nullable EditText view) {
-        return FormatHelper.parseDecimal(requireText(view));
+    @SafeVarargs
+    public static <T> boolean noneNull(@Nullable T... values) {
+        if (values == null) return false;
+        for (T value : values) {
+            if (value == null) return false;
+        }
+        return true;
     }
 
     public static <T> boolean isEmpty(@Nullable T value) {
@@ -90,20 +92,34 @@ public final class ViewHelper {
         return value != null ? value : fallback;
     }
 
+    @NonNull
+    public static String requireText(@Nullable TextView view) {
+        if (view == null || view.getText() == null) return "";
+        return view.getText().toString().trim();
+    }
+
+    @NonNull
+    public static Integer parseInt(@Nullable EditText view) {
+        return FormatHelper.parseInt(requireText(view));
+    }
+
+    @NonNull
+    public static Float parseFloat(@Nullable EditText view) {
+        return FormatHelper.parseFloat(requireText(view));
+    }
+
+    @NonNull
+    public static Double parseDouble(@Nullable EditText view) {
+        return FormatHelper.parseDouble(requireText(view));
+    }
+
+    @NonNull
+    public static BigDecimal parseDecimal(@Nullable EditText view) {
+        return FormatHelper.parseDecimal(requireText(view));
+    }
+
     public static void setText(@NonNull TextView textView, @Nullable String text) {
         textView.setText(text != null ? text.trim() : "");
-    }
-
-    public static void setHelperText(@NonNull TextInputLayout layout, @Nullable String text) {
-        layout.setHelperText(text != null ? text.trim() : "");
-    }
-
-    public static void setPluralText(@NonNull TextView textView, @NonNull Context context, @PluralsRes int resId, @Nullable Integer quantity) {
-        if (quantity == null) {
-            textView.setText("");
-            return;
-        }
-        textView.setText(context.getResources().getQuantityString(resId, quantity, quantity));
     }
 
     @SafeVarargs
@@ -117,11 +133,29 @@ public final class ViewHelper {
         textView.setText(context.getString(resId, Arrays.asList(args).toArray()));
     }
 
+    public static void setPluralText(@NonNull TextView textView, @NonNull Context context, @PluralsRes int resId, @Nullable Integer quantity) {
+        if (quantity == null) {
+            textView.setText("");
+            return;
+        }
+        textView.setText(context.getResources().getQuantityString(resId, quantity, quantity));
+    }
+
+    public static void clearText(@NonNull TextView... views) {
+        for (TextView view : views) {
+            if (view != null) view.setText("");
+        }
+    }
+
     public static void setTextSafely(@NonNull EditText field, @NonNull String value, @NonNull TextWatcher watcher) {
         if (field.hasFocus()) return;
         field.removeTextChangedListener(watcher);
         field.setText(value);
         field.addTextChangedListener(watcher);
+    }
+
+    public static void setHelperText(@NonNull TextInputLayout layout, @Nullable String text) {
+        layout.setHelperText(text != null ? text.trim() : "");
     }
 
     public static void selectChip(@NonNull ChipGroup chipGroup, @NonNull String text) {
@@ -141,11 +175,6 @@ public final class ViewHelper {
         return chip != null ? chip.getText().toString() : null;
     }
 
-    public static void clearText(@NonNull TextView... views) {
-        for (TextView view : views) {
-            if (view != null) view.setText("");
-        }
-    }
 
     public static void setVisible(boolean visible, @NonNull View... views) {
         int visibility = visible ? View.VISIBLE : View.GONE;

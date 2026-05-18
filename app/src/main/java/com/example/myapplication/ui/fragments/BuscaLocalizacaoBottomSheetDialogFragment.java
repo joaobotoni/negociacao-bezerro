@@ -1,6 +1,7 @@
 package com.example.myapplication.ui.fragments;
 
 import static com.example.myapplication.ui.helpers.AlertHelper.showSnackBarErro;
+import static com.example.myapplication.ui.helpers.RecyclerViewHelper.setupVerticalRecyclerView;
 import static com.example.myapplication.ui.helpers.TextWatcherHelper.searchTextWatcher;
 import static com.example.myapplication.ui.helpers.ViewHelper.requireText;
 
@@ -23,6 +24,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.example.myapplication.R;
 import com.example.myapplication.databinding.FragmentBottomSheetCorretorBuscaEnderecoBinding;
+import com.example.myapplication.ui.adapters.EmpresaAdapter;
 import com.example.myapplication.ui.adapters.LocationAdapter;
 import com.example.myapplication.ui.state.frete.LocalizacaoState;
 import com.example.myapplication.ui.viewmodel.BuscaLocalizacaoViewModel;
@@ -95,8 +97,7 @@ public class BuscaLocalizacaoBottomSheetDialogFragment extends BottomSheetDialog
 
     private void iniciarRecyclerView() {
         adapter = new LocationAdapter(this::onLocalizacaoSelecionada);
-        binding.recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
-        binding.recyclerView.setAdapter(adapter);
+        setupVerticalRecyclerView(binding.recyclerView, adapter, requireContext());
     }
 
     private void configurarInput() {

@@ -13,7 +13,7 @@ import java.util.Locale;
 public final class FormatHelper {
 
     private FormatHelper() {
-        throw new AssertionError("FormatHelper is a utility class and must not be instantiated.");
+        throw new AssertionError("FormatHelper é uma classe utilitária e não deve ser instanciada.");
     }
 
     @NonNull

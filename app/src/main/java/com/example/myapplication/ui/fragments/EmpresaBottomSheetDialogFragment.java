@@ -1,5 +1,7 @@
 package com.example.myapplication.ui.fragments;
 
+import static com.example.myapplication.ui.helpers.RecyclerViewHelper.setupVerticalRecyclerView;
+
 import android.app.Dialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -81,8 +83,7 @@ public class EmpresaBottomSheetDialogFragment extends BottomSheetDialogFragment 
 
     private void configurarRecyclerViewEmpresa() {
         adapter = new EmpresaAdapter(this::aoSelecionarEmpresaNaLista);
-        binding.recyclerViewEmpresas.setLayoutManager(new LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false));
-        binding.recyclerViewEmpresas.setAdapter(adapter);
+        setupVerticalRecyclerView(binding.recyclerViewEmpresas, adapter, requireContext());
     }
 
     private void aoSelecionarEmpresaNaLista(EmpresaState empresaUiState) {

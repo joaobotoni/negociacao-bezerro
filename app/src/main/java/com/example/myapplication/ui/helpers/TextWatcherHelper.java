@@ -12,7 +12,7 @@ import java.util.Objects;
 public final class TextWatcherHelper {
 
     private TextWatcherHelper() {
-        throw new AssertionError("TextWatcherHelper is a utility class and must not be instantiated.");
+        throw new AssertionError("TextWatcherHelper é uma classe utilitária e não deve ser instanciada.");
     }
 
     public interface TextFormatter {

@@ -17,7 +17,7 @@ import javax.inject.Inject;
 public final class TaskHelper {
 
     private TaskHelper(){
-        throw new AssertionError("TaskHelper is a utility class and must not be instantiated.");
+        throw new AssertionError("TaskHelper é uma classe utilitária e não deve ser instanciada.");
     }
     private final ExecutorService executor;
     private final Handler handler;

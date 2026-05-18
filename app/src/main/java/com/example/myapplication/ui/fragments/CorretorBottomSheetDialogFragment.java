@@ -1,5 +1,7 @@
 package com.example.myapplication.ui.fragments;
 
+import static com.example.myapplication.ui.helpers.RecyclerViewHelper.setupVerticalRecyclerView;
+
 import android.app.Dialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -82,8 +84,7 @@ public class CorretorBottomSheetDialogFragment extends BottomSheetDialogFragment
 
     private void configurarRecyclerViewCorretor() {
         adapter = new CorretorAdapter(this::aoSelecionarCorretorNaLista);
-        binding.recyclerViewCorretores.setLayoutManager(new LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false));
-        binding.recyclerViewCorretores.setAdapter(adapter);
+        setupVerticalRecyclerView(binding.recyclerViewCorretores, adapter, requireContext());
     }
 
     private void aoSelecionarCorretorNaLista(CorretorState corretorState) {

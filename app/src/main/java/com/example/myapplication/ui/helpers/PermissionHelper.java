@@ -16,7 +16,7 @@ import java.util.Map;
 public final class PermissionHelper {
 
     private PermissionHelper() {
-        throw new AssertionError("PermissionHelper is a utility class and must not be instantiated.");
+        throw new AssertionError("PermissionHelper é uma classe utilitária e não deve ser instanciada.");
     }
 
     public static boolean hasPermissions(@Nullable Context context, @NonNull String... permissions) {

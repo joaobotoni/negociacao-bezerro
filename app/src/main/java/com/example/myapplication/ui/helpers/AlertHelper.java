@@ -14,7 +14,7 @@ import com.google.android.material.snackbar.Snackbar;
 public final class AlertHelper {
 
     private AlertHelper(){
-        throw new AssertionError("AlertHelper is a utility class and must not be instantiated.");
+        throw new AssertionError("AlertHelper é uma classe utilitária e não deve ser instanciada.");
     }
     public static void showSnackBarSucesso(View view, String message) {
         if (view != null && message != null) {
