@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/simulacaoFragment"
-        android:name="com.example.myapplication.ui.fragments.SimulacaoFragment"
+        android:name="com.omni.negociacaobezerros.ui.fragments.SimulacaoFragment"
         android:label="SimulacaoFragment">
         <action
             android:id="@+id/action_simulacaoFragment_to_negociacaoFragment"
@@ -15,7 +15,7 @@
 
     <fragment
         android:id="@+id/negociacaoFragment"
-        android:name="com.example.myapplication.ui.fragments.NegociacaoFragment"
+        android:name="com.omni.negociacaobezerros.ui.fragments.NegociacaoFragment"
         android:label="NegociacaoFragment">
         <action
             android:id="@+id/action_negociacaoFragment_to_simulacaoFreteeFragment"
@@ -26,7 +26,7 @@
 
     <fragment
         android:id="@+id/simulacaoFreteeFragment"
-        android:name="com.example.myapplication.ui.fragments.SimulacaoFreteFragment"
+        android:name="com.omni.negociacaobezerros.ui.fragments.SimulacaoFreteFragment"
         android:label="SimulacaoFreteeFragment">
         <argument android:name="cargaTotal" app:argType="integer" android:defaultValue="0" />
         <argument android:name="pesoMedio" app:argType="float" android:defaultValue="0.0" />
