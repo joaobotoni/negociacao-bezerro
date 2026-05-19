@@ -19,49 +19,39 @@ import dagger.hilt.android.lifecycle.HiltViewModel;
 
 @HiltViewModel
 public class RotaViewModel extends ViewModel {
+
     private final LocalizacaoRepository repositorio;
+    private final RotaMapper mapper;
     private final TaskHelper taskHelper;
-    private final TaskHelper.Cancellables tarefas = new TaskHelper.Cancellables();
-    private final MutableLiveData<RotaState> state = new MutableLiveData<>();
-    private final MutableLiveData<Throwable> error = new MutableLiveData<>();
-    private final RotaMapper rotaMapper;
+
+    private final MutableLiveData<RotaState> state = new MutableLiveData<>(null);
+    private final MutableLiveData<Throwable> erro = new MutableLiveData<>(null);
 
     @Inject
-    public RotaViewModel(TaskHelper taskHelper, LocalizacaoRepository repositorio, RotaMapper rotaMapper) {
+    public RotaViewModel(LocalizacaoRepository repositorio, RotaMapper mapper, TaskHelper taskHelper) {
         this.repositorio = repositorio;
+        this.mapper = mapper;
         this.taskHelper = taskHelper;
-        this.rotaMapper = rotaMapper;
     }
 
-    public LiveData<RotaState> getState() {
-        return state;
-    }
-
-    public LiveData<Throwable> getError() {
-        return error;
-    }
+    public LiveData<RotaState> getState() { return state; }
+    public LiveData<Throwable> getErro() { return erro; }
 
     public void selecionar(Address origem, String destinoQuery) {
-        tarefas.adicionar(taskHelper.execute(
+        taskHelper.execute(
                 () -> calcularRota(origem, destinoQuery),
-                state::postValue,
-                error::postValue
-        ));
-    }
-
-    private RotaState calcularRota(Address origem, String destinoQuery) throws Exception {
-        Address destino = repositorio.enderecoPorNome(destinoQuery).orElseThrow();
-        Rota resposta = repositorio.calcularRota(origem, destino);
-        return rotaMapper.mapFrom(resposta);
+                state::setValue,
+                erro::setValue
+        );
     }
 
     public void limpar() {
         state.setValue(null);
     }
 
-    @Override
-    protected void onCleared() {
-        super.onCleared();
-        tarefas.cancelarTudo();
+    private RotaState calcularRota(Address origem, String destinoQuery) throws Exception {
+        Address destino = repositorio.enderecoPorNome(destinoQuery).orElseThrow();
+        Rota resposta = repositorio.calcularRota(origem, destino);
+        return mapper.mapFrom(resposta);
     }
 }

@@ -87,7 +87,7 @@ public class CorretorBottomSheetDialogFragment extends BottomSheetDialogFragment
     }
 
     private void aoSelecionarCorretorNaLista(CorretorState corretorState) {
-        corretorViewModel.selecionarCorretor(corretorState);
+        corretorViewModel.selecionar(corretorState);
         dismiss();
     }
 }

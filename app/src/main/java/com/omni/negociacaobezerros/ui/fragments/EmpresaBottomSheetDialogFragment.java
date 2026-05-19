@@ -86,7 +86,7 @@ public class EmpresaBottomSheetDialogFragment extends BottomSheetDialogFragment 
     }
 
     private void aoSelecionarEmpresaNaLista(EmpresaState empresaUiState) {
-        empresaViewModel.selecionarEmpresa(empresaUiState);
+        empresaViewModel.selecionar(empresaUiState);
         dismiss();
     }
 }

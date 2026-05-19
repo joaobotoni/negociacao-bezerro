@@ -6,5 +6,5 @@ import dagger.hilt.android.HiltAndroidApp;
 
 
 @HiltAndroidApp
-public class MyApplication extends Application {
+public class NegociacaoBezerroApplication extends Application {
 }

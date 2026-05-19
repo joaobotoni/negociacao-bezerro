@@ -35,9 +35,7 @@ import dagger.hilt.android.AndroidEntryPoint;
 
 @AndroidEntryPoint
 public class BuscaLocalizacaoBottomSheetDialogFragment extends BottomSheetDialogFragment {
-
     public static final String TAG = "BuscaLocalizacaoBottomSheet";
-
     private FragmentBottomSheetCorretorBuscaEnderecoBinding binding;
     private FusedLocationProviderClient fusedClient;
     private BuscaLocalizacaoViewModel buscaLocalizacaoViewModel;
@@ -105,8 +103,8 @@ public class BuscaLocalizacaoBottomSheetDialogFragment extends BottomSheetDialog
 
     private void configurarObservadores() {
         buscaLocalizacaoViewModel.getState().observe(getViewLifecycleOwner(), this::atualizarListaLocalizacoes);
-        buscaLocalizacaoViewModel.getError().observe(getViewLifecycleOwner(), this::tratarErroBusca);
-        rotaViewModel.getError().observe(getViewLifecycleOwner(), this::tratarErroRota);
+        buscaLocalizacaoViewModel.getErro().observe(getViewLifecycleOwner(), this::tratarErroBusca);
+        rotaViewModel.getErro().observe(getViewLifecycleOwner(), this::tratarErroRota);
     }
 
     private void atualizarListaLocalizacoes(@Nullable LocalizacaoState state) {

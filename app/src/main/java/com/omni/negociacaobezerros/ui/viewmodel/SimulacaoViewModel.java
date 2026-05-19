@@ -19,50 +19,47 @@ import jakarta.inject.Inject;
 
 @HiltViewModel
 public class SimulacaoViewModel extends ViewModel {
+
     private final PrecificacaoBezerroRepository precificacaoBezerroRepository;
     private final ValorReferenciaRepository valorReferenciaRepository;
     private final TaskHelper taskHelper;
-    private final TaskHelper.Cancellables tarefas = new TaskHelper.Cancellables();
+
     private final MutableLiveData<CotacaoState> state = new MutableLiveData<>(null);
-    private final MutableLiveData<Throwable> error = new MutableLiveData<>(null);
+    private final MutableLiveData<Throwable> erro = new MutableLiveData<>(null);
 
     @Inject
-    public SimulacaoViewModel(TaskHelper taskHelper, PrecificacaoBezerroRepository precificacaoBezerroRepository, ValorReferenciaRepository valorReferenciaRepository) {
-        this.taskHelper = taskHelper;
+    public SimulacaoViewModel(PrecificacaoBezerroRepository precificacaoBezerroRepository,
+                              ValorReferenciaRepository valorReferenciaRepository,
+                              TaskHelper taskHelper) {
         this.precificacaoBezerroRepository = precificacaoBezerroRepository;
         this.valorReferenciaRepository = valorReferenciaRepository;
+        this.taskHelper = taskHelper;
     }
 
-    public LiveData<CotacaoState> getState() {
-        return state;
-    }
-
-    public LiveData<Throwable> getError() {
-        return error;
-    }
+    public LiveData<CotacaoState> getState() { return state; }
+    public LiveData<Throwable> getErro() { return erro; }
 
     public void processarCotacao(BigDecimal peso, Integer quantidade) {
-        tarefas.adicionar(taskHelper.execute(() -> calcularCotacao(peso, quantidade), state::postValue, error::postValue));
+        taskHelper.execute(
+                () -> calcularCotacao(peso, quantidade),
+                state::setValue,
+                erro::setValue
+        );
     }
 
     public void limpar() {
         state.setValue(null);
     }
 
-    @Override
-    protected void onCleared() {
-        super.onCleared();
-        tarefas.cancelarTudo();
-    }
-
     private CotacaoState calcularCotacao(BigDecimal peso, Integer quantidade) {
-        PrecificacaoBezerro precificacao = precificarBezerroComFrete(peso, quantidade);
-        return new CotacaoState(precificacao.getValorPorKg(), precificacao.getValorPorCabeca(), quantidade, precificacao.getValorTotal());
+        PrecificacaoBezerro p = precificarBezerroComFrete(peso, quantidade);
+        return new CotacaoState(p.getValorPorKg(), p.getValorPorCabeca(), quantidade, p.getValorTotal());
     }
 
     private PrecificacaoBezerro precificarBezerroComFrete(BigDecimal peso, Integer quantidade) {
         return new PrecificacaoBezerroImplementation(
                 new PrecificacaoBezerroComFrete(precificacaoBezerroRepository),
-                valorReferenciaRepository).executar(peso, quantidade);
+                valorReferenciaRepository
+        ).executar(peso, quantidade);
     }
 }

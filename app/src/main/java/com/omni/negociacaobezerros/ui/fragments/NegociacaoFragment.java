@@ -34,8 +34,6 @@ import com.omni.negociacaobezerros.databinding.FragmentNegociacaoBinding;
 import com.omni.negociacaobezerros.ui.adapters.CategoriaAdapter;
 import com.omni.negociacaobezerros.ui.adapters.RacaAdapter;
 
-import com.omni.negociacaobezerros.ui.fragments.negociacao.NegociacaoFragmentArgs;
-import com.omni.negociacaobezerros.ui.fragments.negociacao.NegociacaoFragmentDirections;
 import com.omni.negociacaobezerros.ui.helpers.NavigationHelper;
 import com.omni.negociacaobezerros.ui.helpers.TextWatcherHelper;
 import com.omni.negociacaobezerros.ui.state.animal.AnimalEspecificacaoState;
@@ -246,12 +244,12 @@ public class NegociacaoFragment extends Fragment {
 
     private void observarRacas() {
         racaViewModel.getState().observe(getViewLifecycleOwner(), this::attachListaRacas);
-        racaViewModel.getRacaSelecionada().observe(getViewLifecycleOwner(), this::onRacaSelecionada);
+        racaViewModel.getSelecionada().observe(getViewLifecycleOwner(), this::onRacaSelecionada);
     }
 
     private void observarCategorias() {
         categoriaViewModel.getState().observe(getViewLifecycleOwner(), this::attachListaCategorias);
-        categoriaViewModel.getCategoriaSelecionada().observe(getViewLifecycleOwner(), this::onCategoriaSelecionada);
+        categoriaViewModel.getSelecionada().observe(getViewLifecycleOwner(), this::onCategoriaSelecionada);
     }
 
     private void observarAnimal() {
@@ -279,11 +277,11 @@ public class NegociacaoFragment extends Fragment {
     }
 
     private void observarCorretor() {
-        corretorViewModel.getCorretorSelecionado().observe(getViewLifecycleOwner(), this::onCorretorSelecionado);
+        corretorViewModel.getSelecionado().observe(getViewLifecycleOwner(), this::onCorretorSelecionado);
     }
 
     private void observarEmpresa() {
-        empresaViewModel.getEmpresaSelecionada().observe(getViewLifecycleOwner(), this::onEmpresaSelecionada);
+        empresaViewModel.getSelecionada().observe(getViewLifecycleOwner(), this::onEmpresaSelecionada);
     }
 
     private void onRacaSelecionada(@Nullable RacaState raca) {
@@ -351,11 +349,11 @@ public class NegociacaoFragment extends Fragment {
 
 
     private void aoSelecionarRacaNaLista(@NonNull RacaState raca) {
-        racaViewModel.selecionarRaca(raca);
+        racaViewModel.selecionar(raca);
     }
 
     private void aoSelecionarCategoriaNaLista(@NonNull CategoriaState categoria) {
-        categoriaViewModel.selecionarCategoria(categoria);
+        categoriaViewModel.selecionar(categoria);
     }
 
     private void aoEspecificacaoAlterada() {

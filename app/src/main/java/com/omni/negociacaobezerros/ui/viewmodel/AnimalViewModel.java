@@ -22,7 +22,6 @@ public class AnimalViewModel extends ViewModel {
     @Inject
     public AnimalViewModel() {
     }
-
     public LiveData<AnimalState> getAnimalState() {
         return animalState;
     }

@@ -19,13 +19,14 @@ import dagger.hilt.android.lifecycle.HiltViewModel;
 
 @HiltViewModel
 public class RacaViewModel extends ViewModel {
+
     private final RacaRepository repositorio;
     private final RacaMapper mapper;
     private final TaskHelper taskHelper;
-    private final TaskHelper.Cancellables tarefas = new TaskHelper.Cancellables();
+
     private final MutableLiveData<List<RacaState>> state = new MutableLiveData<>(null);
-    private final MutableLiveData<Throwable> error = new MutableLiveData<>(null);
-    private final MutableLiveData<RacaState> racaSelecionada = new MutableLiveData<>(null);
+    private final MutableLiveData<Throwable> erro = new MutableLiveData<>(null);
+    private final MutableLiveData<RacaState> selecionada = new MutableLiveData<>(null);
 
     @Inject
     public RacaViewModel(RacaRepository repositorio, RacaMapper mapper, TaskHelper taskHelper) {
@@ -35,49 +36,27 @@ public class RacaViewModel extends ViewModel {
         carregar();
     }
 
-    public LiveData<List<RacaState>> getState() {
-        return state;
+    public LiveData<List<RacaState>> getState() { return state; }
+    public LiveData<Throwable> getErro() { return erro; }
+    public LiveData<RacaState> getSelecionada() { return selecionada; }
+
+    public void carregar() {
+        taskHelper.execute(
+                () -> repositorio.getAll().stream().map(mapper::mapFrom).collect(Collectors.toList()),
+                state::setValue,
+                erro::setValue
+        );
     }
 
-    public LiveData<Throwable> getError() {
-        return error;
-    }
-
-    public LiveData<RacaState> getRacaSelecionada() {
-        return racaSelecionada;
-    }
-
-    public void selecionarRaca(RacaState selecionada) {
+    public void selecionar(RacaState escolhida) {
         if (state.getValue() == null) return;
-
-        List<RacaState> newList = state.getValue().stream()
+        state.setValue(state.getValue().stream()
                 .map(item -> new RacaState(
                         item.getId(),
                         item.getDescricao(),
-                        Objects.equals(item.getId(), selecionada.getId())))
-                .collect(Collectors.toList());
-
-        state.setValue(newList);
-        racaSelecionada.setValue(selecionada);
-    }
-
-    public void carregar() {
-        listarRacas();
-    }
-
-    private void listarRacas() {
-        tarefas.adicionar(taskHelper.execute(
-                () -> repositorio.getAll().stream()
-                        .map(mapper::mapFrom)
-                        .collect(Collectors.toList()),
-                state::postValue,
-                error::postValue
-        ));
-    }
-
-    @Override
-    protected void onCleared() {
-        super.onCleared();
-        tarefas.cancelarTudo();
+                        Objects.equals(item.getId(),
+                                escolhida.getId())))
+                .collect(Collectors.toList()));
+        selecionada.setValue(escolhida);
     }
 }

@@ -19,13 +19,14 @@ import dagger.hilt.android.lifecycle.HiltViewModel;
 
 @HiltViewModel
 public class EmpresaViewModel extends ViewModel {
+
     private final EmpresaRepository repositorio;
     private final EmpresaMapper mapper;
     private final TaskHelper taskHelper;
-    private final TaskHelper.Cancellables tarefas = new TaskHelper.Cancellables();
+
     private final MutableLiveData<List<EmpresaState>> state = new MutableLiveData<>(null);
-    private final MutableLiveData<Throwable> error = new MutableLiveData<>(null);
-    private final MutableLiveData<EmpresaState> empresaSelecionada = new MutableLiveData<>(null);
+    private final MutableLiveData<Throwable> erro = new MutableLiveData<>(null);
+    private final MutableLiveData<EmpresaState> selecionada = new MutableLiveData<>(null);
 
     @Inject
     public EmpresaViewModel(EmpresaRepository repositorio, EmpresaMapper mapper, TaskHelper taskHelper) {
@@ -35,58 +36,38 @@ public class EmpresaViewModel extends ViewModel {
         carregar();
     }
 
-    public LiveData<List<EmpresaState>> getState() {
-        return state;
+    public LiveData<List<EmpresaState>> getState() { return state; }
+    public LiveData<Throwable> getErro() { return erro; }
+    public LiveData<EmpresaState> getSelecionada() { return selecionada; }
+
+    public void carregar() {
+        taskHelper.execute(
+                () -> repositorio.getAll().stream().map(mapper::mapFrom).collect(Collectors.toList()),
+                state::setValue,
+                erro::setValue
+        );
     }
 
-    public LiveData<Throwable> getError() {
-        return error;
-    }
-
-    public LiveData<EmpresaState> getEmpresaSelecionada() {
-        return empresaSelecionada;
-    }
-
-    public void selecionarEmpresa(EmpresaState selecionada) {
+    public void selecionar(EmpresaState escolhida) {
         if (state.getValue() == null) return;
-
-        List<EmpresaState> newList = state.getValue().stream()
+        state.setValue(state.getValue().stream()
                 .map(item -> new EmpresaState(
                         item.getId(),
                         item.getNome(),
-                        Objects.equals(item.getId(), selecionada.getId())))
-                .collect(Collectors.toList());
-
-        state.setValue(newList);
-        empresaSelecionada.setValue(selecionada);
-    }
-
-    public void carregar() {
-        listarEmpresas();
-    }
-
-    private void listarEmpresas() {
-        tarefas.adicionar(taskHelper.execute(
-                () -> repositorio.getAll().stream()
-                        .map(mapper::mapFrom)
-                        .collect(Collectors.toList()),
-                state::postValue,
-                error::postValue
-        ));
-    }
-
-    @Override
-    protected void onCleared() {
-        super.onCleared();
-        tarefas.cancelarTudo();
+                        Objects.equals(item.getId(),
+                                escolhida.getId())))
+                .collect(Collectors.toList()));
+        selecionada.setValue(escolhida);
     }
 
     public void limparSelecao() {
-        empresaSelecionada.setValue(null);
         if (state.getValue() == null) return;
-        List<EmpresaState> newList = state.getValue().stream()
-                .map(item -> new EmpresaState(item.getId(), item.getNome(), false))
-                .collect(Collectors.toList());
-        state.setValue(newList);
+        state.setValue(state.getValue().stream()
+                .map(item -> new EmpresaState(
+                        item.getId(),
+                        item.getNome(),
+                        false))
+                .collect(Collectors.toList()));
+        selecionada.setValue(null);
     }
 }

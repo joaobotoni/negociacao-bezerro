@@ -8,6 +8,7 @@ import static com.omni.negociacaobezerros.ui.helpers.PermissionHelper.register;
 import static com.omni.negociacaobezerros.ui.helpers.PermissionHelper.request;
 import static com.omni.negociacaobezerros.ui.helpers.RecyclerViewHelper.setupHorizontalRecyclerView;
 import static com.omni.negociacaobezerros.ui.helpers.TextWatcherHelper.simpleTextWatcher;
+import static com.omni.negociacaobezerros.ui.helpers.ViewHelper.clearText;
 import static com.omni.negociacaobezerros.ui.helpers.ViewHelper.isEmpty;
 import static com.omni.negociacaobezerros.ui.helpers.ViewHelper.isNotEmpty;
 import static com.omni.negociacaobezerros.ui.helpers.ViewHelper.isNotNull;
@@ -15,6 +16,7 @@ import static com.omni.negociacaobezerros.ui.helpers.ViewHelper.isNull;
 import static com.omni.negociacaobezerros.ui.helpers.ViewHelper.orElse;
 import static com.omni.negociacaobezerros.ui.helpers.ViewHelper.parseDouble;
 import static com.omni.negociacaobezerros.ui.helpers.ViewHelper.setText;
+import static com.omni.negociacaobezerros.ui.helpers.ViewHelper.setVisible;
 
 import android.Manifest;
 import android.content.Intent;
@@ -204,7 +206,7 @@ public class SimulacaoFreteFragment extends Fragment {
     }
 
     private void observarCategoria() {
-        categoriaViewModel.getCategoriaSelecionada().observe(getViewLifecycleOwner(), this::onCategoriaAtualizada);
+        categoriaViewModel.getSelecionada().observe(getViewLifecycleOwner(), this::onCategoriaAtualizada);
     }
 
     private void observarFrete() {

@@ -19,13 +19,14 @@ import dagger.hilt.android.lifecycle.HiltViewModel;
 
 @HiltViewModel
 public class CategoriaViewModel extends ViewModel {
+
     private final CategoriaFreteRepository repositorio;
     private final CategoriaMapper mapper;
     private final TaskHelper taskHelper;
-    private final TaskHelper.Cancellables tarefas = new TaskHelper.Cancellables();
+
     private final MutableLiveData<List<CategoriaState>> state = new MutableLiveData<>(null);
-    private final MutableLiveData<Throwable> error = new MutableLiveData<>(null);
-    private final MutableLiveData<CategoriaState> categoriaSelecionada = new MutableLiveData<>(null);
+    private final MutableLiveData<Throwable> erro = new MutableLiveData<>(null);
+    private final MutableLiveData<CategoriaState> selecionada = new MutableLiveData<>(null);
 
     @Inject
     public CategoriaViewModel(CategoriaFreteRepository repositorio, CategoriaMapper mapper, TaskHelper taskHelper) {
@@ -35,58 +36,36 @@ public class CategoriaViewModel extends ViewModel {
         carregar();
     }
 
-    public LiveData<List<CategoriaState>> getState() {
-        return state;
+    public LiveData<List<CategoriaState>> getState() { return state; }
+    public LiveData<Throwable> getErro() { return erro; }
+    public LiveData<CategoriaState> getSelecionada() { return selecionada; }
+
+    public void carregar() {
+        taskHelper.execute(
+                () -> repositorio.getAll().stream().map(mapper::mapFrom).collect(Collectors.toList()),
+                state::setValue,
+                erro::setValue
+        );
     }
 
-    public LiveData<Throwable> getError() {
-        return error;
-    }
-
-    public LiveData<CategoriaState> getCategoriaSelecionada() {
-        return categoriaSelecionada;
-    }
-
-    public void selecionarCategoria(CategoriaState selecionada) {
+    public void selecionar(CategoriaState escolhida) {
         if (state.getValue() == null) return;
-
-        List<CategoriaState> newList = state.getValue().stream()
+        state.setValue(state.getValue().stream()
                 .map(item -> new CategoriaState(
                         item.getId(),
                         item.getDescricao(),
-                        Objects.equals(item.getId(), selecionada.getId())))
-                .collect(Collectors.toList());
-
-        state.setValue(newList);
-        categoriaSelecionada.setValue(selecionada);
-    }
-
-    public void carregar() {
-        listarCategorias();
-    }
-
-    private void listarCategorias() {
-        tarefas.adicionar(taskHelper.execute(
-                () -> repositorio.getAll().stream()
-                        .map(mapper::mapFrom)
-                        .collect(Collectors.toList()),
-                state::postValue,
-                error::postValue
-        ));
-    }
-
-    @Override
-    protected void onCleared() {
-        super.onCleared();
-        tarefas.cancelarTudo();
+                        Objects.equals(item.getId(),
+                                escolhida.getId()))
+                )
+                .collect(Collectors.toList()));
+        selecionada.setValue(escolhida);
     }
 
     public void limparSelecao() {
-        categoriaSelecionada.setValue(null);
         if (state.getValue() == null) return;
-        List<CategoriaState> newList = state.getValue().stream()
+        state.setValue(state.getValue().stream()
                 .map(item -> new CategoriaState(item.getId(), item.getDescricao(), false))
-                .collect(Collectors.toList());
-        state.setValue(newList);
+                .collect(Collectors.toList()));
+        selecionada.setValue(null);
     }
 }

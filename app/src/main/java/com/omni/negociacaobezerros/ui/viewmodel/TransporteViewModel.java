@@ -1,6 +1,5 @@
 package com.omni.negociacaobezerros.ui.viewmodel;
 
-
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
@@ -18,39 +17,26 @@ import jakarta.inject.Inject;
 @HiltViewModel
 public class TransporteViewModel extends ViewModel {
     private final TransporteRepository repositorio;
+    private final TransporteMapper mapper;
     private final TaskHelper taskHelper;
-    private final TaskHelper.Cancellables tarefas = new TaskHelper.Cancellables();
-    private final MutableLiveData<List<TransporteState>> state = new MutableLiveData<>();
-    private final MutableLiveData<Throwable> error = new MutableLiveData<>();
-    private final TransporteMapper transporteMapper;
+    private final MutableLiveData<List<TransporteState>> state = new MutableLiveData<>(null);
+    private final MutableLiveData<Throwable> erro = new MutableLiveData<>(null);
 
     @Inject
-    public TransporteViewModel(TransporteRepository repositorio, TaskHelper taskHelper, TransporteMapper transporteMapper) {
+    public TransporteViewModel(TransporteRepository repositorio, TransporteMapper mapper, TaskHelper taskHelper) {
         this.repositorio = repositorio;
+        this.mapper = mapper;
         this.taskHelper = taskHelper;
-        this.transporteMapper = transporteMapper;
     }
 
-    public LiveData<List<TransporteState>> getState() {
-        return state;
-    }
-
-    public LiveData<Throwable> getError() {
-        return error;
-    }
+    public LiveData<List<TransporteState>> getState() { return state; }
+    public LiveData<Throwable> getErro() { return erro; }
 
     public void recomendar(long categoria, int quantidade) {
-        tarefas.adicionar(taskHelper.execute(
-                () -> transporteMapper
-                        .mapFrom(repositorio.recomendarTransportes(categoria, quantidade)),
-                state::postValue,
-                error::postValue
-        ));
-    }
-
-    @Override
-    protected void onCleared() {
-        super.onCleared();
-        tarefas.cancelarTudo();
+        taskHelper.execute(
+                () -> mapper.mapFrom(repositorio.recomendarTransportes(categoria, quantidade)),
+                state::setValue,
+                erro::setValue
+        );
     }
 }

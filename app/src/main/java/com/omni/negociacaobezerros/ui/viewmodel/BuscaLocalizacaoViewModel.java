@@ -9,46 +9,45 @@ import com.omni.negociacaobezerros.data.repositories.LocalizacaoRepository;
 import com.omni.negociacaobezerros.ui.helpers.TaskHelper;
 import com.omni.negociacaobezerros.ui.state.frete.LocalizacaoState;
 
+import java.io.IOException;
+
 import javax.inject.Inject;
 
 import dagger.hilt.android.lifecycle.HiltViewModel;
 
 @HiltViewModel
 public class BuscaLocalizacaoViewModel extends ViewModel {
+
     private final LocalizacaoRepository repositorio;
     private final TaskHelper taskHelper;
-    private final TaskHelper.Cancellables tarefas = new TaskHelper.Cancellables();
+
     private final MutableLiveData<LocalizacaoState> state = new MutableLiveData<>(null);
-    private final MutableLiveData<Throwable> error = new MutableLiveData<>(null);
+    private final MutableLiveData<Throwable> erro = new MutableLiveData<>(null);
+
     @Inject
     public BuscaLocalizacaoViewModel(LocalizacaoRepository repositorio, TaskHelper taskHelper) {
         this.repositorio = repositorio;
         this.taskHelper = taskHelper;
     }
 
-    public LiveData<LocalizacaoState> getState() {
-        return state;
-    }
-
-    public LiveData<Throwable> getError() {
-        return error;
-    }
+    public LiveData<LocalizacaoState> getState() { return state; }
+    public LiveData<Throwable> getErro() { return erro; }
 
     public void buscar(String consulta, double latitude, double longitude) {
-        tarefas.adicionar(taskHelper.execute(
-                () -> {
-                    String codigo = repositorio.paisDeCoordenadas(latitude, longitude).orElseThrow(() ->
-                            new RuntimeException("Código do pais não encontrado"));
-                    return new LocalizacaoState(repositorio.enderecosPorTexto(consulta, codigo), false);
-                },
-                state::postValue,
-                error::postValue
-        ));
+        taskHelper.execute(
+                () -> carregarLocalizacoes(consulta, latitude, longitude),
+                state::setValue,
+                erro::setValue
+        );
     }
 
-    @Override
-    protected void onCleared() {
-        super.onCleared();
-        tarefas.cancelarTudo();
+    private LocalizacaoState carregarLocalizacoes(String consulta, double latitude, double longitude) throws Exception {
+        String codigoPais = obterCodigoPais(latitude, longitude);
+        return new LocalizacaoState(repositorio.enderecosPorTexto(consulta, codigoPais), false);
+    }
+
+    private String obterCodigoPais(double latitude, double longitude) throws IOException {
+        return repositorio.paisDeCoordenadas(latitude, longitude)
+                .orElseThrow(() -> new RuntimeException("Código do país não encontrado"));
     }
 }
