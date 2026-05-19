@@ -49,7 +49,14 @@ public class PrecificacaoFreteViewModel extends ViewModel {
     public void calcularFrete(List<Transporte> transportes, double distancia, int cargaTotal, BigDecimal pesoMedio) {
         taskHelper.execute(
                 () -> mapper.mapFrom(repositorio.calcularFrete(transportes, distancia, cargaTotal, pesoMedio)),
-                state::setValue,
+                frete -> {
+                    FreteState estado = new FreteState(
+                            frete.getValorTotal(),
+                            frete.getValorParcial(),
+                            StatusFrete.SIMULADO
+                    );
+                    state.setValue(estado);
+                },
                 erro::setValue
         );
     }

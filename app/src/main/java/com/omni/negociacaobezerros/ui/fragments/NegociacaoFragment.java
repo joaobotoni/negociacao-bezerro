@@ -285,27 +285,27 @@ public class NegociacaoFragment extends Fragment {
     }
 
     private void onRacaSelecionada(@Nullable RacaState raca) {
-        racaAtual = raca;
+        this.racaAtual = raca;
         if (!isRacaSelecionada(raca)) return;
         animalViewModel.atualizarRaca(raca);
         atualizarEstadoDoBotaoFinalizar();
     }
 
-    private void onCategoriaSelecionada(@Nullable CategoriaState categoria) {
-        categoriaAtual = categoria;
+    private void onCategoriaSelecionada(CategoriaState categoria) {
+        this.categoriaAtual = categoria;
         if (!isCategoriaSelecionada(categoria)) return;
         animalViewModel.atualizarCategoria(categoria);
         transporteViewModel.recomendar(categoria.getId(), quantidade);
         atualizarEstadoDoBotaoFinalizar();
     }
 
-    private void onAnimalAtualizado(@Nullable AnimalState animal) {
+    private void onAnimalAtualizado(AnimalState animal) {
         if (!isAnimalValido(animal)) return;
         restaurarEspecificacao(animal.getEspecificacao());
     }
 
-    private void onCotacaoAtualizada(@Nullable CotacaoState cotacao) {
-        cotacaoAtual = cotacao;
+    private void onCotacaoAtualizada(CotacaoState cotacao) {
+        this.cotacaoAtual = cotacao;
         if (!isCotacaoValida(cotacao)) return;
         atualizarValoresCotadosNaTabela(cotacao);
         attachCampoValoresCotados(cotacao);
@@ -313,27 +313,27 @@ public class NegociacaoFragment extends Fragment {
     }
 
     private void onPropostaAtualizada(@Nullable PropostaState proposta) {
-        propostaAtual = proposta;
+        this.propostaAtual = proposta;
         atualizarValoresPedidoNaTabela(proposta);
         atualizarEstadoDoBotaoFinalizar();
     }
 
     private void onFechamentoAtualizado(@Nullable FechamentoState fechamento) {
-        fechamentoAtual = fechamento;
+        this.fechamentoAtual = fechamento;
         atualizarValoresFechamentoNaTabela(fechamento);
         atualizarEstadoDoBotaoFinalizar();
     }
 
-    private void onFreteAtualizado(@Nullable FreteState frete) {
-        freteAtual = frete;
+    private void onFreteAtualizado(FreteState frete) {
+        this.freteAtual = frete;
         if (!isFreteValido(frete)) return;
         processarProposta(frete);
         atualizarCampoFrete(frete);
         atualizarEstadoCardFrete(frete);
     }
 
-    private void onCorretorSelecionado(@Nullable CorretorState corretor) {
-        corretorAtual = corretor;
+    private void onCorretorSelecionado(CorretorState corretor) {
+        this.corretorAtual = corretor;
         if (!isCorretorSelecionado(corretor)) {
             restaurarCardCorretor();
             return;
@@ -342,7 +342,7 @@ public class NegociacaoFragment extends Fragment {
         processarFechamento(corretor);
     }
 
-    private void onEmpresaSelecionada(@Nullable EmpresaState empresa) {
+    private void onEmpresaSelecionada(EmpresaState empresa) {
         if (!isEmpresaSelecionada(empresa)) return;
         attachNomeEmpresa(empresa);
     }
@@ -446,7 +446,7 @@ public class NegociacaoFragment extends Fragment {
         attachValorKgEtapaCotado(cotacao);
     }
 
-    private void atualizarValoresPedidoNaTabela(@Nullable PropostaState proposta) {
+    private void atualizarValoresPedidoNaTabela(PropostaState proposta) {
         if (isPropostaIndisponivel(proposta)) {
             restaurarPlaceholderProposta();
             return;
@@ -458,7 +458,7 @@ public class NegociacaoFragment extends Fragment {
         attachValorFornecedor(proposta);
     }
 
-    private void atualizarValoresFechamentoNaTabela(@Nullable FechamentoState fechamento) {
+    private void atualizarValoresFechamentoNaTabela(FechamentoState fechamento) {
         if (isFechamentoIndisponivel(fechamento)) {
             restaurarPlaceholderFechamento();
             return;
@@ -498,7 +498,7 @@ public class NegociacaoFragment extends Fragment {
         setText(binding.textoDescricaoFrete, getString(R.string.descricao_frete_vazio));
     }
 
-    private void restaurarEspecificacao(@Nullable AnimalEspecificacaoState especificacao) {
+    private void restaurarEspecificacao(AnimalEspecificacaoState especificacao) {
         if (!isEspecificacaoValida(especificacao)) return;
         restaurarIdade(especificacao.getIdade());
         restaurarSexo(especificacao.getSexo());
@@ -509,7 +509,7 @@ public class NegociacaoFragment extends Fragment {
         setTextSafely(binding.campoIdadeEntrada, String.valueOf(idade), especificacaoTextWatcher);
     }
 
-    private void restaurarSexo(@Nullable String sexo) {
+    private void restaurarSexo(String sexo) {
         if (!isSexoValido(sexo)) return;
         selectChip(binding.listaSexos, sexo);
     }
@@ -786,19 +786,19 @@ public class NegociacaoFragment extends Fragment {
         return isNotNull(proposta);
     }
 
-    public boolean isPropostaIndisponivel(@Nullable PropostaState proposta) {
+    public boolean isPropostaIndisponivel(PropostaState proposta) {
         return !isPropostaValida(proposta) || isFreteNaoDescontado(proposta);
     }
 
-    public boolean isFreteNaoDescontado(@NonNull PropostaState proposta) {
+    public boolean isFreteNaoDescontado(PropostaState proposta) {
         return !proposta.isFreteDescontado();
     }
 
-    public boolean isFechamentoValido(@Nullable FechamentoState fechamento) {
+    public boolean isFechamentoValido(FechamentoState fechamento) {
         return isNotNull(fechamento);
     }
 
-    public boolean isFechamentoIndisponivel(@Nullable FechamentoState fechamento) {
+    public boolean isFechamentoIndisponivel(FechamentoState fechamento) {
         return !isFechamentoValido(fechamento) || isComissaoNaoAplicada(fechamento);
     }
 
@@ -850,7 +850,11 @@ public class NegociacaoFragment extends Fragment {
         return isCotacaoValida(cotacao) && isPropostaValida(proposta) && isFechamentoValido(fechamento);
     }
 
-    public boolean isProntoParaFinalizar(@Nullable CategoriaState categoria, @Nullable RacaState raca, @Nullable CotacaoState cotacao, @Nullable PropostaState proposta, @Nullable FechamentoState fechamento) {
+    public boolean isProntoParaFinalizar(@Nullable CategoriaState categoria,
+                                         @Nullable RacaState raca,
+                                         @Nullable CotacaoState cotacao,
+                                         @Nullable PropostaState proposta,
+                                         @Nullable FechamentoState fechamento) {
         return isFormularioValido(categoria, raca) && isNegociacaoValida(cotacao, proposta, fechamento);
     }
 

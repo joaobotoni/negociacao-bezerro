@@ -20,6 +20,6 @@ public class PrecificacaoFreteMapper implements Mapper<FreteState, PrecificacaoF
 
     @Override
     public FreteState mapFrom(PrecificacaoFrete o) {
-        return new FreteState(o.getValorTotal(), o.getValorParcial(), StatusFrete.SIMULADO);
+        return new FreteState(o.getValorTotal(), o.getValorParcial(), StatusFrete.NAO_SELECIONADO);
     }
 }

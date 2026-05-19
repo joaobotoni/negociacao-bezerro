@@ -60,7 +60,7 @@ public class NegociacaoViewModel extends ViewModel {
                                     BigDecimal freteTotalLote, StatusFrete statusFrete, BigDecimal comissaoTotal) {
         taskHelper.execute(
                 () -> criarNegociacao(cotacao, peso, quantidade, freteTotalLote, statusFrete, comissaoTotal),
-                state::setValue,
+                state::postValue,
                 erro::setValue
         );
     }
@@ -70,7 +70,7 @@ public class NegociacaoViewModel extends ViewModel {
                                         BigDecimal fretePorKg, StatusFrete statusFrete) {
         taskHelper.execute(
                 () -> atualizarPropostaPorKg(cotacao, fechamento, novoValorPorKg, peso, quantidade, fretePorKg, statusFrete),
-                state::setValue,
+                state::postValue,
                 erro::setValue
         );
     }
@@ -80,17 +80,9 @@ public class NegociacaoViewModel extends ViewModel {
                                             BigDecimal fretePorKg, StatusFrete statusFrete) {
         taskHelper.execute(
                 () -> atualizarPropostaPorCabeca(cotacao, fechamento, novoValorPorCabeca, peso, quantidade, fretePorKg, statusFrete),
-                state::setValue,
+                state::postValue,
                 erro::setValue
         );
-    }
-
-    public void limpar() {
-        state.setValue(new NegociacaoState(null, null, null));
-    }
-
-    public void limparParcialmente(CotacaoState cotacao) {
-        state.setValue(new NegociacaoState(cotacao, null, null));
     }
     private NegociacaoState criarNegociacao(CotacaoState cotacao, BigDecimal peso, Integer quantidade,
                                             BigDecimal freteTotalLote, StatusFrete statusFrete, BigDecimal comissaoTotal) {
@@ -100,7 +92,6 @@ public class NegociacaoViewModel extends ViewModel {
         FechamentoState fechamento = precificarFechamento(peso, quantidade, comissaoPorKg);
         return new NegociacaoState(cotacao, proposta, fechamento, PRE_CALCULADA);
     }
-
     private NegociacaoState atualizarPropostaPorKg(CotacaoState cotacao, FechamentoState fechamento,
                                                    BigDecimal novoValorPorKg, BigDecimal peso, Integer quantidade,
                                                    BigDecimal fretePorKg, StatusFrete statusFrete) {
@@ -190,10 +181,21 @@ public class NegociacaoViewModel extends ViewModel {
     }
 
     private double calcularVariacao(CotacaoState cotacao, FechamentoState fechamento) {
+        if (cotacao.getValorTotal() == null || cotacao.getValorTotal().compareTo(BigDecimal.ZERO) == 0) {
+            return 0.0;
+        }
         return fechamento.getValorTotal().subtract(cotacao.getValorTotal())
                 .divide(cotacao.getValorTotal(), ESCALA_CALCULO, ARREDONDAMENTO_PADRAO)
                 .multiply(CEM)
                 .setScale(ESCALA_MONETARIA, ARREDONDAMENTO_PADRAO)
                 .doubleValue();
+    }
+
+    public void limpar() {
+        state.setValue(new NegociacaoState(null, null, null));
+    }
+
+    public void limparParcialmente(CotacaoState cotacao) {
+        state.setValue(new NegociacaoState(cotacao, null, null));
     }
 }
