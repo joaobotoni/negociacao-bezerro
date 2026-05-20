@@ -145,11 +145,22 @@ public final class ViewHelper {
         }
     }
 
-    public static void setTextSafely(@NonNull EditText field, @NonNull String value, @NonNull TextWatcher watcher) {
+    public static void setTextSafely(@NonNull EditText field, @NonNull String value, @NonNull TextWatcher... watchers) {
         if (field.hasFocus()) return;
-        field.removeTextChangedListener(watcher);
-        field.setText(value);
-        field.addTextChangedListener(watcher);
+        for (TextWatcher w : watchers) field.removeTextChangedListener(w);
+        try {
+            field.setText(value);
+            field.setSelection(field.getText().length());
+        } finally {
+            for (TextWatcher w : watchers) field.addTextChangedListener(w);
+        }
+    }
+
+    public static void setTextSafely(@NonNull EditText field, @NonNull TextInputLayout layout,
+                                     @NonNull String value, @NonNull String helperText,
+                                     @NonNull TextWatcher... watchers) {
+        setTextSafely(field, value, watchers);
+        layout.setHelperText(helperText);
     }
 
     public static void setHelperText(@NonNull TextInputLayout layout, @Nullable String text) {

@@ -619,6 +619,9 @@
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/card_composicao"
                 android:layout_width="match_parent"
+                style="?attr/materialCardViewFilledStyle"
+                app:cardBackgroundColor="@android:color/transparent"
+
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -927,8 +930,8 @@
                 style="?attr/materialCardViewFilledStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                app:cardBackgroundColor="?attr/colorSurfaceContainerHigh"
+                android:layout_marginTop="10dp"
+                app:cardBackgroundColor="@android:color/transparent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/card_composicao"
@@ -984,7 +987,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="24dp"
-                app:cardBackgroundColor="?attr/colorPrimary"
+                app:cardBackgroundColor="@android:color/transparent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -1003,7 +1006,7 @@
                         android:text="@string/rotulo_valor_total"
                         android:textAllCaps="true"
                         android:textAppearance="?attr/textAppearanceLabelMedium"
-                        android:textColor="?attr/colorOnPrimary"
+                        android:textColor="?attr/colorPrimary"
                         android:textStyle="bold"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -1014,7 +1017,7 @@
                         android:layout_height="wrap_content"
                         android:text="@string/placeholder_valor_total"
                         android:textAppearance="?attr/textAppearanceHeadlineSmall"
-                        android:textColor="?attr/colorOnPrimary"
+                        android:textColor="?attr/colorPrimary"
                         android:textStyle="bold"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -1026,7 +1029,7 @@
                         android:alpha="0.8"
                         android:text="@string/prefixo_moeda"
                         android:textAppearance="?attr/textAppearanceTitleMedium"
-                        android:textColor="?attr/colorOnPrimary"
+                        android:textColor="?attr/colorPrimary"
                         app:layout_constraintBaseline_toBaselineOf="@id/texto_valor_total"
                         app:layout_constraintEnd_toStartOf="@id/texto_valor_total" />
 
@@ -1039,7 +1042,7 @@
                         android:text="@string/rotulo_variacao"
                         android:textAllCaps="true"
                         android:textAppearance="?attr/textAppearanceLabelSmall"
-                        android:textColor="?attr/colorOnPrimary"
+                        android:textColor="?attr/colorPrimary"
                         android:textStyle="bold"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/texto_rotulo_total" />
@@ -1052,7 +1055,7 @@
                         android:alpha="0.75"
                         android:text="@string/placeholder_valor_total"
                         android:textAppearance="?attr/textAppearanceLabelSmall"
-                        android:textColor="?attr/colorOnPrimary"
+                        android:textColor="?attr/colorPrimary"
                         android:textStyle="bold"
                         app:layout_constraintBaseline_toBaselineOf="@id/texto_rotulo_variacao"
                         app:layout_constraintStart_toEndOf="@id/texto_rotulo_variacao" />

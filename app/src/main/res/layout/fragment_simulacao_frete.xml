@@ -477,7 +477,7 @@
                     android:text="@string/titulo_resumo_frete"
                     android:textAllCaps="true"
                     android:textAppearance="?attr/textAppearanceLabelLarge"
-                    android:textColor="?attr/colorOnSurfaceVariant"
+                    android:textColor="?attr/colorPrimary"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -621,9 +621,8 @@
             android:fontFamily="sans-serif-medium"
             android:text="@string/acao_continuar"
             android:textSize="14sp"
-            app:icon="@drawable/check_24px"
+            app:icon="@drawable/arrow_forward_24px"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
