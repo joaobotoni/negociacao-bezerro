@@ -6,6 +6,7 @@
     <string name="botao_voltar">Voltar</string>
     <string name="botao_prosseguir">Prosseguir</string>
     <string name="botao_finalizar">Finalizar negociação</string>
+    <string name="botao_concluir">Concluir</string>
     <string name="acao_continuar">Continuar</string>
     <string name="dialogo_botao_positivo">Ok</string>
     <string name="dialogo_botao_negativo">Não</string>
@@ -48,6 +49,8 @@
 
     <string name="titulo_nova_negociacao">Nova negociação</string>
     <string name="subtitulo_simulacao_rapida">Comece com uma simulação rápida</string>
+    <string name="subtitulo_negociacao_registrada">Negociação registrada com sucesso</string>
+
     <string name="rotulo_estimativa_lote">ESTIMATIVA DO LOTE</string>
     <string name="rotulo_quantidade_animais">Animais</string>
     <string name="rotulo_peso_medio">Peso Médio</string>
@@ -100,6 +103,7 @@
 
     <string name="titulo_valor_total">Valor total</string>
     <string name="titulo_valor_por_kg_frete">Valor por kg</string>
+    <string name="titulo_operacao_concluida">OPERAÇÃO CONCLUÍDA</string>
 
     <string name="rotulo_composicao_valor">Composição do valor</string>
     <string name="rotulo_etapa_cotado">Valor cotado</string>

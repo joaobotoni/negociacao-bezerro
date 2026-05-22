@@ -2,12 +2,14 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/navigation"
+    xmlns:tools="http://schemas.android.com/tools"
     app:startDestination="@id/simulacaoFragment">
 
     <fragment
         android:id="@+id/simulacaoFragment"
         android:name="com.omni.negociacaobezerros.ui.fragments.SimulacaoFragment"
-        android:label="SimulacaoFragment">
+        android:label="SimulacaoFragment"
+        tools:layout="@layout/fragment_simulacao">
         <action
             android:id="@+id/action_simulacaoFragment_to_negociacaoFragment"
             app:destination="@id/negociacaoFragment" />
@@ -16,20 +18,43 @@
     <fragment
         android:id="@+id/negociacaoFragment"
         android:name="com.omni.negociacaobezerros.ui.fragments.NegociacaoFragment"
-        android:label="NegociacaoFragment">
+        android:label="NegociacaoFragment"
+        tools:layout="@layout/fragment_negociacao">
         <action
             android:id="@+id/action_negociacaoFragment_to_simulacaoFreteeFragment"
             app:destination="@id/simulacaoFreteeFragment" />
-        <argument android:name="cargaTotal" app:argType="integer" android:defaultValue="0" />
-        <argument android:name="pesoMedio" app:argType="float" android:defaultValue="0.0" />
+        <argument
+            android:name="cargaTotal"
+            app:argType="integer"
+            android:defaultValue="0" />
+        <argument
+            android:name="pesoMedio"
+            app:argType="float"
+            android:defaultValue="0.0" />
+        <action
+            android:id="@+id/action_negociacaoFragment_to_sucessoFragment"
+            app:destination="@id/sucessoFragment" />
     </fragment>
 
     <fragment
         android:id="@+id/simulacaoFreteeFragment"
         android:name="com.omni.negociacaobezerros.ui.fragments.SimulacaoFreteFragment"
-        android:label="SimulacaoFreteeFragment">
-        <argument android:name="cargaTotal" app:argType="integer" android:defaultValue="0" />
-        <argument android:name="pesoMedio" app:argType="float" android:defaultValue="0.0" />
+        android:label="SimulacaoFreteeFragment"
+        tools:layout="@layout/fragment_simulacao_frete">
+        <argument
+            android:name="cargaTotal"
+            app:argType="integer"
+            android:defaultValue="0" />
+        <argument
+            android:name="pesoMedio"
+            app:argType="float"
+            android:defaultValue="0.0" />
     </fragment>
+
+    <fragment
+        android:id="@+id/sucessoFragment"
+        android:name="com.omni.negociacaobezerros.ui.fragments.SucessoFragment"
+        android:label="SucessoFragment"
+        tools:layout="@layout/fragment_sucess" />
 
 </navigation>

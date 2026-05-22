@@ -428,9 +428,11 @@ public class NegociacaoFragment extends Fragment {
     private boolean isCampoFreteEmFoco() {
         return binding.campoFreteEntrada.hasFocus();
     }
+
     private boolean isFreteInvalidoParaCalculo() {
         return isFreteNaoPreenchido() || isValorZero(lerValorTotalFrete());
     }
+
     private void onValorCabecaAlterado() {
         processarRecalculoPorCabeca(lerValorPorCabeca());
     }
@@ -453,26 +455,12 @@ public class NegociacaoFragment extends Fragment {
 
     private void dispararNegociacaoComFrete(@NonNull FreteState frete) {
         if (!isCotacaoValida(cotacaoAtual)) return;
-        negociacaoViewModel.processarNegociacao(
-                cotacaoAtual,
-                BigDecimal.valueOf(peso),
-                quantidade,
-                frete.getValorTotal(),
-                frete.getFreteState(),
-                resolverComissaoAtual()
-        );
+        negociacaoViewModel.processarNegociacao(cotacaoAtual, BigDecimal.valueOf(peso), quantidade, frete.getValorTotal(), frete.getFreteState(), resolverComissaoAtual());
     }
 
     private void dispararFechamentoComCorretor(@NonNull CorretorState corretor) {
         if (!isCotacaoValida(cotacaoAtual) || !isFreteValido(freteAtual)) return;
-        negociacaoViewModel.processarNegociacao(
-                cotacaoAtual,
-                BigDecimal.valueOf(peso),
-                quantidade,
-                freteAtual.getValorTotal(),
-                freteAtual.getFreteState(),
-                corretor.getComissao()
-        );
+        negociacaoViewModel.processarNegociacao(cotacaoAtual, BigDecimal.valueOf(peso), quantidade, freteAtual.getValorTotal(), freteAtual.getFreteState(), corretor.getComissao());
     }
 
     private void calcularIncidenciaFreteManual() {
@@ -480,7 +468,7 @@ public class NegociacaoFragment extends Fragment {
     }
 
     private void limparFreteSimuladoSeAtivo() {
-        if (isFreteSimulado(freteAtual)){
+        if (isFreteSimulado(freteAtual)) {
             limparEstadoDeFrete();
         }
     }
@@ -499,11 +487,7 @@ public class NegociacaoFragment extends Fragment {
     }
 
     private void recalcularPropostaPorCabeca(@NonNull BigDecimal valorPorCabeca) {
-        negociacaoViewModel.recalcularPropostaPorCabeca(
-                cotacaoAtual, fechamentoAtual,
-                valorPorCabeca, BigDecimal.valueOf(peso), quantidade,
-                resolverValorParcialFrete(), resolverStatusFrete()
-        );
+        negociacaoViewModel.recalcularPropostaPorCabeca(cotacaoAtual, fechamentoAtual, valorPorCabeca, BigDecimal.valueOf(peso), quantidade, resolverValorParcialFrete(), resolverStatusFrete());
     }
 
     private void processarRecalculoPorKg(@NonNull BigDecimal valorPorKg) {
@@ -516,11 +500,7 @@ public class NegociacaoFragment extends Fragment {
     }
 
     private void recalcularPropostaPorKg(@NonNull BigDecimal valorPorKg) {
-        negociacaoViewModel.recalcularPropostaPorKg(
-                cotacaoAtual, fechamentoAtual,
-                valorPorKg, BigDecimal.valueOf(peso), quantidade,
-                resolverValorParcialFrete(), resolverStatusFrete()
-        );
+        negociacaoViewModel.recalcularPropostaPorKg(cotacaoAtual, fechamentoAtual, valorPorKg, BigDecimal.valueOf(peso), quantidade, resolverValorParcialFrete(), resolverStatusFrete());
     }
 
     private void notificarRacaNoAnimal(@NonNull RacaState raca) {
@@ -649,9 +629,7 @@ public class NegociacaoFragment extends Fragment {
     }
 
     private void exibirValorNosCampoFrete(@NonNull FreteState frete) {
-        setTextSafely(binding.campoFreteEntrada, binding.campoFreteLayout,
-                formatCurrency(frete.getValorTotal()), formatarHelperFrete(frete.getValorParcial()),
-                freteTextWatcher);
+        setTextSafely(binding.campoFreteEntrada, binding.campoFreteLayout, formatCurrency(frete.getValorTotal()), formatarHelperFrete(frete.getValorParcial()), freteTextWatcher);
     }
 
     private void sincronizarCardFrete(@NonNull FreteState frete) {
@@ -807,10 +785,7 @@ public class NegociacaoFragment extends Fragment {
     }
 
     private void navegarParaSimulacaoDeFrete() {
-        navegar(this, R.id.negociacaoFragment,
-                NegociacaoFragmentDirections
-                        .actionNegociacaoFragmentToSimulacaoFreteeFragment()
-                        .setCargaTotal(quantidade).setPesoMedio((float) peso));
+        navegar(this, R.id.negociacaoFragment, NegociacaoFragmentDirections.actionNegociacaoFragmentToSimulacaoFreteeFragment().setCargaTotal(quantidade).setPesoMedio((float) peso));
     }
 
     private void exibirBottomSheetEmpresa() {
@@ -852,7 +827,11 @@ public class NegociacaoFragment extends Fragment {
 
     @NonNull
     private BigDecimal resolverComissaoAtual() {
-        return isCorretorSelecionado(corretorAtual) ? corretorAtual.getComissao() : BigDecimal.ZERO;
+        if (isCorretorSelecionado(corretorAtual)) return corretorAtual.getComissao();
+        if (fechamentoAtual != null && fechamentoAtual.getComissaoPorKg() != null) {
+            return fechamentoAtual.getComissaoPorKg().multiply(BigDecimal.valueOf(peso));
+        }
+        return BigDecimal.ZERO;
     }
 
     @NonNull
@@ -967,16 +946,11 @@ public class NegociacaoFragment extends Fragment {
     }
 
     private boolean isFormularioCompleto() {
-        return temIdadePreenchida()
-                && temSexoSelecionado()
-                && isCategoriaSelecionada(categoriaAtual)
-                && isRacaSelecionada(racaAtual);
+        return temIdadePreenchida() && temSexoSelecionado() && isCategoriaSelecionada(categoriaAtual) && isRacaSelecionada(racaAtual);
     }
 
     private boolean isNegociacaoCompleta() {
-        return isCotacaoValida(cotacaoAtual)
-                && !isPropostaIndisponivel(propostaAtual)
-                && !isFechamentoIndisponivel(fechamentoAtual);
+        return isCotacaoValida(cotacaoAtual) && !isPropostaIndisponivel(propostaAtual) && !isFechamentoIndisponivel(fechamentoAtual);
     }
 
     private boolean isProntoParaFinalizar() {
@@ -1020,9 +994,8 @@ public class NegociacaoFragment extends Fragment {
 
     @NonNull
     private String formatarDescricaoCorretor(@NonNull CorretorState corretor) {
-        return String.format(Locale.getDefault(), "R$ %s/%s - R$ %s/t",
-                formatCurrency(corretor.getComissao()), corretor.getTipoComissao(),
-                formatCurrency(corretor.getComissao().multiply(BigDecimal.valueOf(quantidade))));
+        return String.format(Locale.getDefault(), "R$ %s/%s - R$ %s/t", formatCurrency(corretor.getComissao()),
+                corretor.getTipoComissao(), formatCurrency(corretor.getComissao().multiply(BigDecimal.valueOf(quantidade))));
     }
 
     @NonNull
