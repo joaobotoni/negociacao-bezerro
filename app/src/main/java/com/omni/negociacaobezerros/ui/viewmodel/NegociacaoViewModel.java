@@ -35,8 +35,9 @@ public class NegociacaoViewModel extends ViewModel {
     private final ValorReferenciaRepository valorReferenciaRepository;
     private final TaskHelper taskHelper;
     private final MutableLiveData<NegociacaoState> state = new MutableLiveData<>(null);
-    public final LiveData<PropostaState> proposta = Transformations.map(state, s -> s != null ? s.getProposta() : null);
-    public final LiveData<FechamentoState> fechamento = Transformations.map(state, s -> s != null ? s.getFechamento() : null);
+
+    public final LiveData<PropostaState> proposta = Transformations.map(state, this::extrairProposta);
+    public final LiveData<FechamentoState> fechamento = Transformations.map(state, this::extrairFechamento);
     public final LiveData<Double> variacao = Transformations.map(state, this::extrairVariacao);
     private final MutableLiveData<Throwable> erro = new MutableLiveData<>(null);
     @Inject
@@ -52,8 +53,9 @@ public class NegociacaoViewModel extends ViewModel {
     public LiveData<PropostaState> getProposta() { return proposta; }
     public LiveData<FechamentoState> getFechamento() { return fechamento; }
     public LiveData<Double> getVariacao() { return variacao; }
-    public void processarNegociacao(CotacaoState cotacao, BigDecimal peso, Integer quantidade,
-                                    BigDecimal freteTotalLote, StatusFrete statusFrete, BigDecimal comissaoTotal) {
+
+    
+    public void processarNegociacao(CotacaoState cotacao, BigDecimal peso, Integer quantidade, BigDecimal freteTotalLote, StatusFrete statusFrete, BigDecimal comissaoTotal) {
         taskHelper.execute(
                 () -> criarNegociacao(cotacao, peso, quantidade, freteTotalLote, statusFrete, comissaoTotal),
                 state::postValue,
@@ -153,6 +155,15 @@ public class NegociacaoViewModel extends ViewModel {
     private BigDecimal calcularTotalLote(BigDecimal valorPorCabeca, Integer quantidade) {
         return valorPorCabeca.multiply(BigDecimal.valueOf(quantidade))
                 .setScale(ESCALA_MONETARIA, ARREDONDAMENTO_PADRAO);
+    }
+
+
+    private PropostaState extrairProposta(NegociacaoState negociacaoState) {
+        return negociacaoState != null ? negociacaoState.getProposta() : null;
+    }
+
+    private FechamentoState extrairFechamento(NegociacaoState negociacaoState) {
+        return negociacaoState != null ? negociacaoState.getFechamento() : null;
     }
 
     private Double extrairVariacao(NegociacaoState s) {

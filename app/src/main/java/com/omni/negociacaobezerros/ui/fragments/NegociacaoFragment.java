@@ -428,8 +428,9 @@ public class NegociacaoFragment extends Fragment {
     private boolean isCampoFreteEmFoco() {
         return binding.campoFreteEntrada.hasFocus();
     }
-
-    private boolean isFreteInvalidoParaCalculo() {return isFreteNaoPreenchido() || isValorZero(lerValorTotalFrete());}
+    private boolean isFreteInvalidoParaCalculo() {
+        return isFreteNaoPreenchido() || isValorZero(lerValorTotalFrete());
+    }
     private void onValorCabecaAlterado() {
         processarRecalculoPorCabeca(lerValorPorCabeca());
     }
@@ -569,7 +570,7 @@ public class NegociacaoFragment extends Fragment {
     }
 
     private void preencherCamposComValoresCotados(@NonNull CotacaoState cotacao) {
-        if(!isPropostaIndisponivel(propostaAtual)) return;
+        if (!isPropostaIndisponivel(propostaAtual)) return;
         setTextSafely(binding.campoValorCabecaEntrada, formatCurrency(cotacao.getValorPorCabeca()), valorCabecaTextWatcher, valorKgTextWatcher);
         setTextSafely(binding.campoValorKgEntrada, formatCurrency(cotacao.getValorPorKg()), valorCabecaTextWatcher, valorKgTextWatcher);
     }
