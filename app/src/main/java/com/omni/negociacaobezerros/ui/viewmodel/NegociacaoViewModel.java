@@ -50,14 +50,11 @@ public class NegociacaoViewModel extends ViewModel {
         this.taskHelper = taskHelper;
     }
 
-
     public LiveData<NegociacaoState> getState() {
         return state;
     }
 
-    public LiveData<Throwable> getErro() {
-        return erro;
-    }
+    public LiveData<Throwable> getErro() {return erro;}
     public LiveData<PropostaState> getProposta() {
         return proposta;
     }
@@ -71,13 +68,9 @@ public class NegociacaoViewModel extends ViewModel {
     }
 
     public void processarNegociacao(CotacaoState cotacao, BigDecimal peso, Integer quantidade, BigDecimal freteTotalLote, StatusFrete statusFrete, BigDecimal comissaoTotal) {
-
         BigDecimal fretePorKg = Calculator.distribuirFretePorKg(freteTotalLote, peso, quantidade);
         BigDecimal comissaoPorKg = Calculator.distribuirComissaoPorKg(comissaoTotal, peso);
-
-        if (Validator.isEstadoAtualCompativel(state.getValue(), fretePorKg, statusFrete, comissaoPorKg))
-            return;
-
+        if (Validator.isEstadoAtualCompativel(state.getValue(), fretePorKg, statusFrete, comissaoPorKg)) return;
         taskHelper.execute(() -> Factory.criarNegociacao(precificacaoBezerroRepository, valorReferenciaRepository, cotacao, peso, quantidade, fretePorKg, statusFrete, comissaoPorKg), state::postValue, erro::setValue);
     }
 
@@ -123,7 +116,6 @@ public class NegociacaoViewModel extends ViewModel {
     }
 
     private static final class Validator {
-
         static boolean isEstadoAtualCompativel(NegociacaoState estadoAtual, BigDecimal fretePorKgNovo, StatusFrete statusFreteNovo, BigDecimal comissaoPorKgNova) {
             if (!hasEstadoCompleto(estadoAtual)) return false;
             return isFreteCompativel(estadoAtual.getProposta(), statusFreteNovo, fretePorKgNovo) && isComissaoCompativel(estadoAtual.getFechamento(), comissaoPorKgNova);
@@ -141,7 +133,6 @@ public class NegociacaoViewModel extends ViewModel {
             return Calculator.isValorIgual(fechamento.getComissaoPorKg(), comissaoPorKgNova);
         }
     }
-
     private static final class Factory {
 
         static NegociacaoState criarNegociacao(PrecificacaoBezerroRepository precificacaoRepo, ValorReferenciaRepository referenciaRepo, CotacaoState cotacao, BigDecimal peso, Integer quantidade, BigDecimal fretePorKg, StatusFrete statusFrete, BigDecimal comissaoPorKg) {

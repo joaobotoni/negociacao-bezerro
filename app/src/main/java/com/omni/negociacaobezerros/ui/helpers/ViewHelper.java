@@ -28,11 +28,9 @@ public final class ViewHelper {
     public static boolean isNull(@Nullable Object value) {
         return value == null;
     }
-
     public static boolean isNotNull(@Nullable Object value) {
         return value != null;
     }
-
     @SafeVarargs
     public static <T> boolean anyNull(@Nullable T... values) {
         if (values == null) return true;
@@ -156,9 +154,7 @@ public final class ViewHelper {
         }
     }
 
-    public static void setTextSafely(@NonNull EditText field, @NonNull TextInputLayout layout,
-                                     @NonNull String value, @NonNull String helperText,
-                                     @NonNull TextWatcher... watchers) {
+    public static void setTextSafely(@NonNull EditText field, @NonNull TextInputLayout layout, @NonNull String value, @NonNull String helperText, @NonNull TextWatcher... watchers) {
         setTextSafely(field, value, watchers);
         layout.setHelperText(helperText);
     }

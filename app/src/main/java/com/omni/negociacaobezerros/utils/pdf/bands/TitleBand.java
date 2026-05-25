@@ -10,10 +10,9 @@ import com.omni.negociacaobezerros.utils.pdf.TextAlignment;
 
 public class TitleBand extends TextBand {
 
-    private static final float DEFAULT_FONT_SIZE  = 18f;
-    private static final float SEPARATOR_PADDING  = 5f;
-    private static final float SEPARATOR_HEIGHT   = 0.5f;
-
+    private static final float DEFAULT_FONT_SIZE = 18f;
+    private static final float SEPARATOR_PADDING = 5f;
+    private static final float SEPARATOR_HEIGHT = 0.5f;
     private final boolean showSeparator;
 
     public TitleBand(String text) {
@@ -21,9 +20,7 @@ public class TitleBand extends TextBand {
     }
 
     public TitleBand(String text, TextAlignment alignment, boolean showSeparator) {
-        super(text, DEFAULT_FONT_SIZE, alignment,
-                6f,
-                showSeparator ? SEPARATOR_PADDING + SEPARATOR_HEIGHT + 8f : 6f);
+        super(text, DEFAULT_FONT_SIZE, alignment, 6f, showSeparator ? SEPARATOR_PADDING + SEPARATOR_HEIGHT + 8f : 6f);
         this.showSeparator = showSeparator;
     }
 

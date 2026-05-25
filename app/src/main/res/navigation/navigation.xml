@@ -55,6 +55,7 @@
         android:id="@+id/sucessoFragment"
         android:name="com.omni.negociacaobezerros.ui.fragments.SucessoFragment"
         android:label="SucessoFragment"
-        tools:layout="@layout/fragment_sucess" />
-
+        tools:layout="@layout/fragment_sucess" >
+        <argument android:name="valorFrete" app:argType="float" android:defaultValue="0.0"/>
+    </fragment>
 </navigation>

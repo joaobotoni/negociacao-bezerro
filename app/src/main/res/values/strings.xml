@@ -33,6 +33,8 @@
     <string name="placeholder_valor_total">0,00</string>
     <string name="placeholder_valor_quantidade">0</string>
     <string name="placeholder_valor_com_km_default">0,00</string>
+    <string name="placeholder_variacao">--%</string>
+
 
     <string name="placeholder_valor_com_moeda">R$ %s</string>
     <string name="placeholder_valor_com_moeda_default">R$ 0,00</string>
@@ -62,6 +64,7 @@
     <string name="rotulo_empresa">Empresa</string>
     <string name="rotulo_selecionar_empresa">Selecionar empresa</string>
     <string name="rotulo_negociacao">Negociação</string>
+    <string name="rotulo_negociacao_concluida">Negociação Concluída</string>
     <string name="titulo_selecionar_corretor">Selecionar corretor</string>
     <string name="rotulo_especificacoes_animais">Especificações dos animais</string>
     <string name="rotulo_valor_fornecedor">Fornecedor</string>
@@ -70,7 +73,8 @@
     <string name="descricao_apelido_empresa">%s</string>
     <string name="descricao_apelido_empresa_default">-</string>
     <string name="texto_nome_empresa">%s</string>
-    <string name="texto_nome_empresa_default">-</string>
+    <string name="texto_sem_empresa">Sem empresa</string>
+
 
     <string name="texto_sem_corretor">Sem corretor</string>
     <string name="texto_nome_corretor">Sem nome</string>

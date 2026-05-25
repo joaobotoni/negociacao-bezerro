@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Environment;
 import android.os.FileUtils;
 import android.provider.MediaStore;
 
@@ -35,18 +36,17 @@ public final class FileHelper {
 
     @NonNull
     @RequiresApi(api = Build.VERSION_CODES.Q)
-    public static Uri salvar(@NonNull Context context, @NonNull File file, @NonNull String mimeType, @NonNull String pasta) throws IOException {
+    public static Uri salvar(@NonNull Context context, @NonNull File file, @NonNull String mimeType) throws IOException {
         ContentValues values = new ContentValues();
         values.put(MediaStore.MediaColumns.DISPLAY_NAME, file.getName());
         values.put(MediaStore.MediaColumns.MIME_TYPE, mimeType);
-        values.put(MediaStore.MediaColumns.RELATIVE_PATH, pasta);
+        values.put(MediaStore.MediaColumns.RELATIVE_PATH, Environment.DIRECTORY_DOCUMENTS + "/Negociação Bezerros");
 
         ContentResolver resolver = context.getContentResolver();
         Uri uri = resolver.insert(MediaStore.Files.getContentUri("external"), values);
         if (uri == null) throw new IOException("Falha ao registrar arquivo.");
 
-        try (InputStream in = new FileInputStream(file);
-             OutputStream out = resolver.openOutputStream(uri)) {
+        try (InputStream in = new FileInputStream(file); OutputStream out = resolver.openOutputStream(uri)) {
             if (out == null) throw new IOException("Falha ao abrir stream.");
             FileUtils.copy(in, out);
         }
@@ -69,8 +69,7 @@ public final class FileHelper {
     public static Intent criarIntentCompartilharMultiplos(@NonNull Context context, @NonNull List<File> files, @NonNull String mimeType, @NonNull String titulo) {
         ArrayList<Uri> uris = new ArrayList<>();
         for (File file : files) uris.add(getUri(context, file));
-        Intent intent = new Intent(Intent.ACTION_SEND_MULTIPLE)
-                .setType(mimeType)
+        Intent intent = new Intent(Intent.ACTION_SEND_MULTIPLE).setType(mimeType)
                 .putParcelableArrayListExtra(Intent.EXTRA_STREAM, uris)
                 .addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
         return Intent.createChooser(intent, titulo);

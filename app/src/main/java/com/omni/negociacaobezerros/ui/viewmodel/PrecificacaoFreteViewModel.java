@@ -20,7 +20,6 @@ import dagger.hilt.android.lifecycle.HiltViewModel;
 
 @HiltViewModel
 public class PrecificacaoFreteViewModel extends ViewModel {
-
     private final FreteRepository repositorio;
     private final PrecificacaoFreteMapper mapper;
     private final TaskHelper taskHelper;
@@ -40,8 +39,8 @@ public class PrecificacaoFreteViewModel extends ViewModel {
     public LiveData<FreteState> getState() { return state; }
     public LiveData<BigDecimal> getIncidencia() { return incidencia; }
     public LiveData<Double> getDistancia() { return distancia; }
-    public LiveData<Throwable> getErro() { return erro; }
 
+    public LiveData<Throwable> getErro() { return erro; }
     public void setDistancia(double value) {
         distancia.setValue(value);
     }

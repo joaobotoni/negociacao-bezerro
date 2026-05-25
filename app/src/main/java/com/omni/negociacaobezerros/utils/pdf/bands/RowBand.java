@@ -7,7 +7,6 @@ import android.text.Layout;
 import android.text.StaticLayout;
 import android.text.TextPaint;
 
-
 import com.omni.negociacaobezerros.utils.pdf.PdfBand;
 import com.omni.negociacaobezerros.utils.pdf.PdfColors;
 import com.omni.negociacaobezerros.utils.pdf.TextAlignment;
@@ -23,6 +22,7 @@ public class RowBand implements PdfBand {
     private final float height;
     private final List<Column> columns;
     private boolean isHeader = false;
+    private boolean drawBottomLine = true;
 
     public RowBand(float fontSize, float height, Column... columns) {
         this.fontSize = fontSize;
@@ -32,6 +32,11 @@ public class RowBand implements PdfBand {
 
     public RowBand asHeader() {
         this.isHeader = true;
+        return this;
+    }
+
+    public RowBand withBottomLine(boolean draw) {
+        this.drawBottomLine = draw;
         return this;
     }
 
@@ -74,7 +79,9 @@ public class RowBand implements PdfBand {
             cursorX += colWidth;
         }
 
-        drawHorizonLine(canvas, x, y + height, contentWidth);
+        if (drawBottomLine) {
+            drawHorizonLine(canvas, x, y + height, contentWidth);
+        }
     }
 
     private void drawBackground(Canvas canvas, float x, float y, float contentWidth) {
@@ -100,9 +107,12 @@ public class RowBand implements PdfBand {
 
     private Layout.Alignment toLayoutAlignment(TextAlignment alignment) {
         switch (alignment) {
-            case CENTER: return Layout.Alignment.ALIGN_CENTER;
-            case RIGHT:  return Layout.Alignment.ALIGN_OPPOSITE;
-            default:     return Layout.Alignment.ALIGN_NORMAL;
+            case CENTER:
+                return Layout.Alignment.ALIGN_CENTER;
+            case RIGHT:
+                return Layout.Alignment.ALIGN_OPPOSITE;
+            default:
+                return Layout.Alignment.ALIGN_NORMAL;
         }
     }
 
@@ -113,7 +123,6 @@ public class RowBand implements PdfBand {
     }
 
     public static class Column {
-
         final String text;
         final float weight;
         final TextAlignment alignment;
