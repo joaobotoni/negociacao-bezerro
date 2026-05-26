@@ -589,7 +589,7 @@ public class NegociacaoFragment extends Fragment {
     }
 
     private void exibirValorKgCotado(@NonNull CotacaoState cotacao) {
-        setText(binding.textoDescricaoEtapaCotado, formatarValorEtapa(cotacao.getValorPorKg()));
+        setText(binding.textoDescricaoEtapaCotado, formatarValorEtapaPorKg(cotacao.getValorPorKg()));
     }
 
     private void preencherCamposComValoresCotados(@NonNull CotacaoState cotacao) {
@@ -624,7 +624,7 @@ public class NegociacaoFragment extends Fragment {
     }
 
     private void exibirValorKgProposta(@NonNull PropostaState proposta) {
-        setText(binding.textoDescricaoEtapaPedido, formatarValorEtapa(proposta.getValorPorKg()));
+        setText(binding.textoDescricaoEtapaPedido, formatarValorEtapaPorKg(proposta.getValorPorKg()));
     }
 
     private void exibirBadgeFreteProposta(@NonNull PropostaState proposta) {
@@ -655,7 +655,7 @@ public class NegociacaoFragment extends Fragment {
     }
 
     private void exibirValorKgFechamento(@NonNull FechamentoState fechamento) {
-        setText(binding.textoDescricaoEtapaFinal, formatarValorEtapa(fechamento.getValorPorKg()));
+        setText(binding.textoDescricaoEtapaFinal, formatarValorEtapaPorKg(fechamento.getValorPorKg()));
     }
 
     private void exibirBadgeCorretorFechamento(@NonNull FechamentoState fechamento) {
@@ -1192,6 +1192,11 @@ public class NegociacaoFragment extends Fragment {
 
     @NonNull
     private String formatarValorEtapa(@NonNull BigDecimal valor) {
+        return String.format(Locale.getDefault(), "%s", formatCurrency(valor));
+    }
+
+    @NonNull
+    private String formatarValorEtapaPorKg(@NonNull BigDecimal valor) {
         return String.format(Locale.getDefault(), "R$ %s", formatCurrency(valor));
     }
 

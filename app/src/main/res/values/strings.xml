@@ -7,7 +7,7 @@
     <string name="botao_prosseguir">Prosseguir</string>
     <string name="botao_finalizar">Finalizar negociação</string>
     <string name="botao_concluir">Concluir</string>
-    <string name="acao_continuar">Continuar</string>
+    <string name="acao_finalizar_simulacao">Finalizar simulação frete</string>
     <string name="dialogo_botao_positivo">Ok</string>
     <string name="dialogo_botao_negativo">Não</string>
 
@@ -145,8 +145,8 @@
 
     <string name="amostra_valor_total">125.000</string>
     <string name="amostra_valor_quantidade">50</string>
-    <string name="amostra_valor_por_cabeca">R$ 2.500</string>
-    <string name="amostra_valor_por_kg">R$ 6,80</string>
+    <string name="amostra_valor_por_cabeca">2.500</string>
+    <string name="amostra_valor_por_kg">6,80</string>
     <string name="amostra_opcao_categoria">Categoria</string>
     <string name="amostra_opcao_raca">Raça</string>
 

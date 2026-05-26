@@ -22,7 +22,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/titulo_nova_negociacao"
-            android:textAppearance="?attr/textAppearanceTitleLarge"/>
+            android:textAppearance="?attr/textAppearanceTitleLarge" />
 
         <TextView
             android:id="@+id/texto_subtitulo_toolbar"
@@ -132,7 +132,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="@string/placeholder_valor_quantidade"
-                                android:textAppearance="?attr/textAppearanceTitleMedium"
+                                android:textAppearance="?attr/textAppearanceBodyMedium"
                                 android:textColor="?attr/colorOnPrimaryContainer"
                                 android:textStyle="bold"
                                 tools:text="50" />
@@ -143,14 +143,14 @@
                                 android:layout_marginStart="2dp"
                                 android:alpha="0.70"
                                 android:text="@string/sufixo_cabecas"
-                                android:textAppearance="?attr/textAppearanceLabelSmall"
+                                android:textAppearance="?attr/textAppearanceBodySmall"
                                 android:textColor="?attr/colorOnPrimaryContainer" />
                         </LinearLayout>
 
                         <View
-                            android:layout_width="4dp"
-                            android:layout_height="4dp"
-                            android:layout_marginHorizontal="10dp"
+                            android:layout_width="3dp"
+                            android:layout_height="3dp"
+                            android:layout_marginHorizontal="8dp"
                             android:alpha="0.45"
                             android:background="@drawable/bg_indicador_separador" />
 
@@ -161,11 +161,21 @@
                             android:orientation="horizontal">
 
                             <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="1dp"
+                                android:layout_marginBottom="1dp"
+                                android:text="@string/prefixo_moeda"
+                                android:textAppearance="?attr/textAppearanceBodySmall"
+                                android:textColor="?attr/colorOnPrimaryContainer"
+                                android:textStyle="bold" />
+
+                            <TextView
                                 android:id="@+id/texto_valor_por_cabeca"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="@string/placeholder_valor_com_moeda_default"
-                                android:textAppearance="?attr/textAppearanceTitleMedium"
+                                android:textAppearance="?attr/textAppearanceBodyMedium"
                                 android:textColor="?attr/colorOnPrimaryContainer"
                                 android:textStyle="bold"
                                 tools:text="@string/amostra_valor_por_cabeca" />
@@ -176,14 +186,14 @@
                                 android:layout_marginStart="2dp"
                                 android:alpha="0.70"
                                 android:text="@string/sufixo_por_cabeca"
-                                android:textAppearance="?attr/textAppearanceLabelSmall"
+                                android:textAppearance="?attr/textAppearanceBodySmall"
                                 android:textColor="?attr/colorOnPrimaryContainer" />
                         </LinearLayout>
 
                         <View
-                            android:layout_width="4dp"
-                            android:layout_height="4dp"
-                            android:layout_marginHorizontal="10dp"
+                            android:layout_width="3dp"
+                            android:layout_height="3dp"
+                            android:layout_marginHorizontal="8dp"
                             android:alpha="0.45"
                             android:background="@drawable/bg_indicador_separador" />
 
@@ -194,11 +204,21 @@
                             android:orientation="horizontal">
 
                             <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="1dp"
+                                android:layout_marginBottom="1dp"
+                                android:text="@string/prefixo_moeda"
+                                android:textAppearance="?attr/textAppearanceBodySmall"
+                                android:textColor="?attr/colorOnPrimaryContainer"
+                                android:textStyle="bold" />
+
+                            <TextView
                                 android:id="@+id/texto_valor_por_kg"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="@string/placeholder_valor_com_moeda_default"
-                                android:textAppearance="?attr/textAppearanceTitleMedium"
+                                android:textAppearance="?attr/textAppearanceBodyMedium"
                                 android:textColor="?attr/colorOnPrimaryContainer"
                                 android:textStyle="bold"
                                 tools:text="@string/amostra_valor_por_kg" />
@@ -209,7 +229,7 @@
                                 android:layout_marginStart="2dp"
                                 android:alpha="0.70"
                                 android:text="@string/sufixo_kg"
-                                android:textAppearance="?attr/textAppearanceLabelSmall"
+                                android:textAppearance="?attr/textAppearanceBodySmall"
                                 android:textColor="?attr/colorOnPrimaryContainer" />
                         </LinearLayout>
                     </LinearLayout>
@@ -318,8 +338,8 @@
         android:id="@+id/botao_prosseguir"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/botao_prosseguir"
         android:enabled="false"
+        android:text="@string/botao_prosseguir"
         app:icon="@drawable/arrow_forward_24px"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />

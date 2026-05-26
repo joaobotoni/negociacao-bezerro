@@ -619,7 +619,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-medium"
-            android:text="@string/acao_continuar"
+            android:text="@string/acao_finalizar_simulacao"
             android:textSize="14sp"
             app:icon="@drawable/arrow_forward_24px"
             app:layout_constraintEnd_toEndOf="parent"

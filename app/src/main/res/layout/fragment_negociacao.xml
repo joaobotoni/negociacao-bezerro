@@ -233,7 +233,6 @@
                     app:chipIconVisible="true"
                     app:chipStrokeColor="@color/chip_stroke_selector"
                     app:shapeAppearance="?attr/shapeAppearanceCornerExtraExtraLarge" />
-
             </com.google.android.material.chip.ChipGroup>
 
             <com.google.android.material.card.MaterialCardView
@@ -849,7 +848,7 @@
                         style="?attr/materialCardViewFilledStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="6dp"
+                        android:layout_marginTop="16dp"
                         android:layout_marginEnd="4dp"
                         app:cardBackgroundColor="?attr/colorSurfaceVariant"
                         app:layout_constraintEnd_toStartOf="@id/card_badge_etapa_corretor"
@@ -889,7 +888,7 @@
                         style="?attr/materialCardViewFilledStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="6dp"
+                        android:layout_marginTop="16dp"
                         app:cardBackgroundColor="?attr/colorSecondaryContainer"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/texto_valor_etapa_final"
@@ -986,7 +985,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:layout_marginBottom="24dp"
                 app:cardBackgroundColor="@android:color/transparent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -1070,7 +1068,6 @@
         android:layout_height="wrap_content"
         android:background="?attr/colorSurface"
         android:paddingHorizontal="20dp"
-        android:paddingTop="12dp"
         android:paddingBottom="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

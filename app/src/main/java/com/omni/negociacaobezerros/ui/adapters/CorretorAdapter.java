@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.omni.negociacaobezerros.databinding.ItemCorretorBinding;
 import com.omni.negociacaobezerros.ui.state.empresa.CorretorState;
 
+import java.util.Locale;
 import java.util.Objects;
 
 public class CorretorAdapter extends ListAdapter<CorretorState, CorretorAdapter.ViewHolder> {
@@ -55,7 +56,8 @@ public class CorretorAdapter extends ListAdapter<CorretorState, CorretorAdapter.
         protected void bind(CorretorState corretor) {
             this.item = corretor;
             setText(binding.textoNomeCorretor, corretor.getNome());
-            setText(binding.textoComissao, formatCurrency(corretor.getComissao()));
+            setText(binding.textoComissao, String.format(Locale.getDefault(), "R$ %s/%s",
+                    formatCurrency(corretor.getComissao()), corretor.getTipoComissao()));
             setVisible(corretor.isSelected(), binding.checkImage);
         }
     }
