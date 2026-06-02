@@ -1,4 +1,4 @@
-package com.omni.negociacaobezerros.domain.implementation;
+package com.omni.negociacaobezerros.domain.usecase;
 
 import com.omni.negociacaobezerros.data.models.ParametrosBezerro;
 import com.omni.negociacaobezerros.data.models.PrecificacaoBezerro;
@@ -10,22 +10,31 @@ import java.math.BigDecimal;
 
 import jakarta.inject.Inject;
 
-public final class PrecificacaoBezerroImplementation {
+public final class PrecificarBezerroUseCase {
+
     private final PrecificacaoBezerroStrategy strategy;
     private final ValorReferenciaRepository valorReferenciaRepository;
+
     @Inject
-    public PrecificacaoBezerroImplementation(PrecificacaoBezerroStrategy strategy, ValorReferenciaRepository valorReferenciaRepository) {
+    public PrecificarBezerroUseCase(PrecificacaoBezerroStrategy strategy, ValorReferenciaRepository valorReferenciaRepository) {
         this.strategy = strategy;
         this.valorReferenciaRepository = valorReferenciaRepository;
     }
 
-    public PrecificacaoBezerro executar(BigDecimal peso, Integer quantidade) {
-        return strategy.calcular(peso, quantidade, parametrosAtuais());
+    public PrecificacaoBezerro calcular(BigDecimal peso, Integer quantidade) {
+        return strategy.calcular(peso, quantidade, getParametrosByValorReferencia());
     }
 
-    private ParametrosBezerro parametrosAtuais() {
-        ValorReferencia referencia = valorReferenciaRepository.findMaisRecente()
+    private ParametrosBezerro getParametrosByValorReferencia() {
+        return fromReferencia(getValorReferencia());
+    }
+
+    private ValorReferencia getValorReferencia() {
+        return valorReferenciaRepository.findMaisRecente()
                 .orElseThrow(() -> new IllegalStateException("Nenhum valor de referência cadastrado"));
+    }
+
+    private ParametrosBezerro fromReferencia(ValorReferencia referencia) {
         return new ParametrosBezerro(
                 BigDecimal.valueOf(referencia.getValorArrobaBoi()),
                 BigDecimal.valueOf(referencia.getAgioBezerro()),

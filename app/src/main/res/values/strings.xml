@@ -179,4 +179,76 @@
         <item quantity="other">%1$d veículos</item>
     </plurals>
 
+
+    <!-- Títulos de toolbar -->
+    <string name="title_nova_negociacao">Nova negociação</string>
+    <string name="title_negociacao_finalizada">Negociação finalizada</string>
+
+    <!-- Labels de seção -->
+    <string name="label_sexo">Sexo</string>
+    <string name="label_medidas_lote">Medidas do lote</string>
+    <string name="label_tabela_precos">Tabela de preços</string>
+    <string name="label_proposta">Proposta</string>
+    <string name="label_composicao_valor">Composição do valor</string>
+    <string name="label_resumo_financeiro">Resumo financeiro</string>
+
+    <!-- Chips -->
+    <string name="chip_macho">Macho</string>
+    <string name="chip_femea">Fêmea</string>
+
+    <!-- Hints de campos -->
+    <string name="hint_peso_medio">Peso médio</string>
+    <string name="hint_quantidade">Quantidade</string>
+    <string name="hint_por_cabeca">R$ / cabeça</string>
+    <string name="hint_por_kg">R$ / kg</string>
+    <string name="hint_valor_frete">Valor do frete</string>
+
+    <!-- Botões -->
+    <string name="btn_proximo">Próximo</string>
+    <string name="btn_finalizar_negociacao">Finalizar negociação</string>
+    <string name="btn_compartilhar">Compartilhar</string>
+    <string name="btn_exportar_pdf">Exportar PDF</string>
+    <string name="btn_nova_negociacao">Nova negociação</string>
+
+    <!-- Descrições de acessibilidade (contentDescription) -->
+    <string name="cd_toolbar">Barra de navegação</string>
+    <string name="cd_voltar">Voltar</string>
+    <string name="cd_fechar">Fechar</string>
+    <string name="cd_mais_opcoes">Mais opções</string>
+    <string name="cd_sucesso">Negociação concluída com sucesso</string>
+    <string name="tabela_valor_padrao">R$ 0,00</string>
+
+    <string name="tabela_quilo_label">Por quilo</string>
+    <string name="tabela_cabeca_label">Por cabeça</string>
+    <string name="tabela_total_label">Valor total</string>
+
+    <string name="tabela_helper_informe_peso">Informe o peso médio</string>
+
+
+    <string name="resumo_fornecedor_label">Valor pago ao fornecedor</string>
+    <string name="resumo_fornecedor_helper">Pedido bruto pelo lote</string>
+    <string name="resumo_frete_label">Frete</string>
+    <string name="resumo_frete_helper">Valor fixo</string>
+    <string name="resumo_valor_padrao">R$ 0,00</string>
+    <string name="resumo_valor_negativo_padrao">− R$ 0,00</string>
+
+    <string name="resumo_corretor_label">Corretor</string>
+    <string name="resumo_corretor_helper">Comissão por intermediação</string>
+
+
+    <string name="sucesso_titulo_padrao">Proposta enviada</string>
+    <string name="sucesso_subtitulo_padrao">Empresa · — cab. de Nelore</string>
+
+
+    <string name="total_label_padrao">Valor final de fechamento</string>
+    <string name="total_delta_padrao">+ R$ 0,00 vs. cotado (0,0 %)</string>
+
+
+    <string name="cd_icon_por_cabeca">Ícone campo por cabeça</string>
+    <string name="cd_icon_por_kg">Ícone campo por kg</string>
+    <string name="cd_icon_frete">Ícone campo frete</string>
+
+    <string name="cd_card_simular_frete">Simular um frete. Calcule o custo do transporte por km, cabeça ou valor fixo. Toque para abrir.</string>
+    <string name="cd_card_corretor">Sem corretor. Sem comissão aplicada. Toque para alterar.</string>
+
 </resources>

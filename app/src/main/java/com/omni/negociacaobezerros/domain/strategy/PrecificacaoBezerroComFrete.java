@@ -9,17 +9,30 @@ import java.math.BigDecimal;
 
 import jakarta.inject.Inject;
 
-public class PrecificacaoBezerroComFrete implements PrecificacaoBezerroStrategy {
-    private final PrecificacaoBezerroRepository precificacaoBezerroRepository;
+public final class PrecificacaoBezerroComFrete implements PrecificacaoBezerroStrategy {
+    private final PrecificacaoBezerroRepository repository;
+
     @Inject
-    public PrecificacaoBezerroComFrete(PrecificacaoBezerroRepository precificacaoBezerroRepository) {
-        this.precificacaoBezerroRepository = precificacaoBezerroRepository;
+    public PrecificacaoBezerroComFrete(PrecificacaoBezerroRepository repository) {
+        this.repository = repository;
     }
+
     @Override
     public PrecificacaoBezerro calcular(BigDecimal peso, Integer quantidade, ParametrosBezerro parametros) {
-        BigDecimal valorPorKg = precificacaoBezerroRepository.calcularValorPorKg(peso, parametros.precoPorArroba, parametros.percentualAgio, parametros.pesoBaseKg);
-        BigDecimal valorPorCabeca = precificacaoBezerroRepository.calcularValorPorCabeca(peso, parametros.precoPorArroba, parametros.percentualAgio, parametros.pesoBaseKg);
-        BigDecimal valorTotal = precificacaoBezerroRepository.calcularValorTotalLote(valorPorCabeca, quantidade);
+        BigDecimal valorPorKg = getValorKg(peso, parametros);
+        BigDecimal valorPorCabeca = getValorCabeca(peso, parametros);
+        BigDecimal valorTotal = getValorTotal(valorPorCabeca, quantidade);
         return new PrecificacaoBezerro(valorPorKg, valorPorCabeca, valorTotal, quantidade);
+    }
+    private BigDecimal getValorKg(BigDecimal peso, ParametrosBezerro parametros) {
+        return repository.calcularValorPorKg(peso, parametros.precoPorArroba, parametros.percentualAgio, parametros.pesoBaseKg);
+    }
+
+    private BigDecimal getValorCabeca(BigDecimal peso, ParametrosBezerro parametros) {
+        return repository.calcularValorPorCabeca(peso, parametros.precoPorArroba, parametros.percentualAgio, parametros.pesoBaseKg);
+    }
+
+    private BigDecimal getValorTotal(BigDecimal valorPorCabeca, Integer quantidade) {
+        return repository.calcularValorTotalLote(valorPorCabeca, quantidade);
     }
 }
