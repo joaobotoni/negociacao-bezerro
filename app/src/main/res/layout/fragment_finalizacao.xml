@@ -43,8 +43,8 @@
                     android:layout_width="64dp"
                     android:layout_height="64dp"
                     android:contentDescription="@string/cd_sucesso"
-                    android:src="@drawable/verified_24px"
                     android:scaleType="fitCenter"
+                    android:src="@drawable/verified_24px"
                     app:tint="?attr/colorPrimary" />
 
             </com.google.android.material.card.MaterialCardView>
@@ -73,221 +73,217 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
                 android:text="@string/label_resumo_financeiro"
+                android:textAllCaps="true"
                 android:textAppearance="?attr/textAppearanceLabelLarge" />
 
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/cardResumo"
-                style="?attr/materialCardViewFilledStyle"
+            <LinearLayout
+                android:id="@+id/layoutResumo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                app:cardBackgroundColor="?attr/colorSurfaceContainer">
+                android:layout_marginTop="24dp"
+                android:orientation="vertical"
+                android:padding="8dp">
 
                 <LinearLayout
-                    android:id="@+id/layoutResumo"
+                    android:id="@+id/layoutItemFornecedor"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="16dp">
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/cardIconFornecedor"
+                        style="?attr/materialCardViewFilledStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:cardBackgroundColor="?attr/colorSurfaceContainer"
+                        app:cardCornerRadius="16dp"
+                        app:contentPadding="8dp">
+
+                        <ImageView
+                            android:id="@+id/ivIconFornecedor"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:contentDescription="@null"
+                            android:src="@drawable/approval_delegation_24px" />
+                    </com.google.android.material.card.MaterialCardView>
 
                     <LinearLayout
-                        android:id="@+id/layoutItemFornecedor"
-                        android:layout_width="match_parent"
+                        android:id="@+id/layoutTextoFornecedor"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:gravity="center_vertical"
-                        android:orientation="horizontal">
-
-                        <com.google.android.material.card.MaterialCardView
-                            android:id="@+id/cardIconFornecedor"
-                            style="?attr/materialCardViewFilledStyle"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            app:cardCornerRadius="16dp"
-                            app:contentPadding="8dp">
-
-                            <ImageView
-                                android:id="@+id/ivIconFornecedor"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:importantForAccessibility="no"
-                                android:src="@drawable/approval_delegation_24px" />
-                        </com.google.android.material.card.MaterialCardView>
-
-                        <LinearLayout
-                            android:id="@+id/layoutTextoFornecedor"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="16dp"
-                            android:layout_weight="1"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:id="@+id/tvResumoFornecedorLabel"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="@string/resumo_fornecedor_label"
-                                android:textAppearance="?attr/textAppearanceBodyMedium"
-                                android:textColor="?attr/colorOnSurface"
-                                android:textStyle="bold" />
-
-                            <TextView
-                                android:id="@+id/tvResumoFornecedorHelper"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="4dp"
-                                android:text="@string/resumo_fornecedor_helper"
-                                android:textAppearance="?attr/textAppearanceBodySmall"
-                                android:textColor="?attr/colorOnSurfaceVariant" />
-                        </LinearLayout>
+                        android:layout_marginStart="16dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
 
                         <TextView
-                            android:id="@+id/tvResumoFornecedorValor"
+                            android:id="@+id/tvResumoFornecedorLabel"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="16dp"
-                            android:text="@string/resumo_valor_padrao"
-                            android:textAppearance="?attr/textAppearanceTitleMedium"
+                            android:text="@string/resumo_fornecedor_label"
+                            android:textAppearance="?attr/textAppearanceBodyMedium"
+                            android:textColor="?attr/colorOnSurface"
                             android:textStyle="bold" />
-                    </LinearLayout>
-
-                    <View
-                        android:id="@+id/divisorResumo"
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginTop="16dp"
-                        android:layout_marginBottom="16dp"
-                        android:background="?attr/colorOutlineVariant" />
-
-                    <LinearLayout
-                        android:id="@+id/layoutItemFrete"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center_vertical"
-                        android:orientation="horizontal">
-
-                        <com.google.android.material.card.MaterialCardView
-                            android:id="@+id/cardIconFrete"
-                            style="?attr/materialCardViewFilledStyle"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            app:cardCornerRadius="16dp"
-                            app:contentPadding="8dp">
-
-                            <ImageView
-                                android:id="@+id/ivIconFrete"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:importantForAccessibility="no"
-                                android:src="@drawable/delivery_truck_speed_24px" />
-                        </com.google.android.material.card.MaterialCardView>
-
-                        <LinearLayout
-                            android:id="@+id/layoutTextoFrete"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="16dp"
-                            android:layout_weight="1"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:id="@+id/tvResumoFreteLabel"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="@string/resumo_frete_label"
-                                android:textAppearance="?attr/textAppearanceBodyMedium"
-                                android:textColor="?attr/colorOnSurface"
-                                android:textStyle="bold" />
-
-                            <TextView
-                                android:id="@+id/tvResumoFreteHelper"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="4dp"
-                                android:text="@string/resumo_frete_helper"
-                                android:textAppearance="?attr/textAppearanceBodySmall"
-                                android:textColor="?attr/colorOnSurfaceVariant" />
-                        </LinearLayout>
 
                         <TextView
-                            android:id="@+id/tvResumoFreteValor"
+                            android:id="@+id/tvResumoFornecedorHelper"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="16dp"
-                            android:text="@string/resumo_valor_padrao"
-                            android:textAppearance="?attr/textAppearanceTitleMedium"
-                            android:textStyle="bold" />
+                            android:layout_marginTop="4dp"
+                            android:text="@string/resumo_fornecedor_helper"
+                            android:textAppearance="?attr/textAppearanceBodySmall"
+                            android:textColor="?attr/colorOnSurfaceVariant" />
                     </LinearLayout>
 
-                    <View
-                        android:id="@+id/divisorResumoCorretor"
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginTop="16dp"
-                        android:layout_marginBottom="16dp"
-                        android:background="?attr/colorOutlineVariant" />
-
-                    <LinearLayout
-                        android:id="@+id/layoutItemCorretor"
-                        android:layout_width="match_parent"
+                    <TextView
+                        android:id="@+id/tvResumoFornecedorValor"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:gravity="center_vertical"
-                        android:orientation="horizontal">
-
-                        <com.google.android.material.card.MaterialCardView
-                            android:id="@+id/cardIconCorretor"
-                            style="?attr/materialCardViewFilledStyle"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            app:cardCornerRadius="16dp"
-                            app:contentPadding="8dp">
-
-                            <ImageView
-                                android:id="@+id/ivIconCorretor"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:importantForAccessibility="no"
-                                android:src="@drawable/handshake_24px" />
-                        </com.google.android.material.card.MaterialCardView>
-
-                        <LinearLayout
-                            android:id="@+id/layoutTextoCorretor"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="16dp"
-                            android:layout_weight="1"
-                            android:orientation="vertical">
-
-                            <TextView
-                                android:id="@+id/tvResumoCorretorLabel"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="@string/resumo_corretor_label"
-                                android:textAppearance="?attr/textAppearanceBodyMedium"
-                                android:textColor="?attr/colorOnSurface"
-                                android:textStyle="bold" />
-
-                            <TextView
-                                android:id="@+id/tvResumoCorretorHelper"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="4dp"
-                                android:text="@string/resumo_corretor_helper"
-                                android:textAppearance="?attr/textAppearanceBodySmall"
-                                android:textColor="?attr/colorOnSurfaceVariant" />
-                        </LinearLayout>
-
-                        <TextView
-                            android:id="@+id/tvResumoCorretorValor"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="16dp"
-                            android:text="@string/resumo_valor_padrao"
-                            android:textAppearance="?attr/textAppearanceTitleMedium"
-                            android:textStyle="bold" />
-                    </LinearLayout>
-
+                        android:layout_marginStart="16dp"
+                        android:text="@string/resumo_valor_padrao"
+                        android:textAppearance="?attr/textAppearanceTitleMedium"
+                        android:textStyle="bold" />
                 </LinearLayout>
-            </com.google.android.material.card.MaterialCardView>
+
+                <View
+                    android:id="@+id/divisorResumo"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:background="?attr/colorOutlineVariant" />
+
+                <LinearLayout
+                    android:id="@+id/layoutItemFrete"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/cardIconFrete"
+                        style="?attr/materialCardViewFilledStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:cardBackgroundColor="?attr/colorSurfaceContainer"
+                        app:cardCornerRadius="16dp"
+                        app:contentPadding="8dp">
+
+                        <ImageView
+                            android:id="@+id/ivIconFrete"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:contentDescription="@null"
+                            android:src="@drawable/delivery_truck_speed_24px" />
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <LinearLayout
+                        android:id="@+id/layoutTextoFrete"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tvResumoFreteLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/resumo_frete_label"
+                            android:textAppearance="?attr/textAppearanceBodyMedium"
+                            android:textColor="?attr/colorOnSurface"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tvResumoFreteHelper"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:text="@string/resumo_frete_helper"
+                            android:textAppearance="?attr/textAppearanceBodySmall"
+                            android:textColor="?attr/colorOnSurfaceVariant" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/tvResumoFreteValor"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:text="@string/resumo_valor_padrao"
+                        android:textAppearance="?attr/textAppearanceTitleMedium"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <View
+                    android:id="@+id/divisorResumoCorretor"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:background="?attr/colorOutlineVariant" />
+
+                <LinearLayout
+                    android:id="@+id/layoutItemCorretor"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/cardIconCorretor"
+                        style="?attr/materialCardViewFilledStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:cardBackgroundColor="?attr/colorSurfaceContainer"
+                        app:cardCornerRadius="16dp"
+                        app:contentPadding="8dp">
+
+                        <ImageView
+                            android:id="@+id/ivIconCorretor"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:contentDescription="@null"
+                            android:src="@drawable/handshake_24px" />
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <LinearLayout
+                        android:id="@+id/layoutTextoCorretor"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tvResumoCorretorLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/resumo_corretor_label"
+                            android:textAppearance="?attr/textAppearanceBodyMedium"
+                            android:textColor="?attr/colorOnSurface"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tvResumoCorretorHelper"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:text="@string/resumo_frete_helper"
+                            android:textAppearance="?attr/textAppearanceBodySmall"
+                            android:textColor="?attr/colorOnSurfaceVariant" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/tvResumoCorretorValor"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:text="@string/resumo_valor_padrao"
+                        android:textAppearance="?attr/textAppearanceTitleMedium"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+            </LinearLayout>
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/cardTotal"
@@ -295,7 +291,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                app:cardBackgroundColor="?attr/colorSurfaceContainer">
+                app:cardBackgroundColor="?attr/colorSurfaceContainer"
+                app:shapeAppearance="?attr/shapeAppearanceCornerLarge">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/layoutTotal"
@@ -307,7 +304,7 @@
                         android:id="@+id/ivTotalIcon"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:importantForAccessibility="no"
+                        android:contentDescription="@null"
                         android:src="@drawable/verified_24px"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
@@ -315,35 +312,31 @@
 
                     <TextView
                         android:id="@+id/tvTotalLabel"
-                        android:layout_width="0dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="16dp"
                         android:text="@string/total_label_padrao"
                         android:textAppearance="?attr/textAppearanceLabelLarge"
-                        app:layout_constraintEnd_toStartOf="@id/ivTotalIcon"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
                         android:id="@+id/tvTotalValor"
-                        android:layout_width="0dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:text="@string/resumo_valor_padrao"
                         android:textAppearance="?attr/textAppearanceHeadlineMedium"
                         android:textStyle="bold"
-                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/tvTotalLabel" />
 
                     <TextView
                         android:id="@+id/tvTotalDelta"
-                        android:layout_width="0dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
                         android:text="@string/total_delta_padrao"
                         android:textAppearance="?attr/textAppearanceBodySmall"
-                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/tvTotalValor" />
 
@@ -352,6 +345,7 @@
 
             <LinearLayout
                 android:id="@+id/containerBotoesAcao"
+                style="?android:attr/buttonBarStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
@@ -359,7 +353,7 @@
 
                 <Button
                     android:id="@+id/btnCompartilhar"
-                    style="?attr/materialButtonOutlinedStyle"
+                    style="?android:attr/buttonBarButtonStyle"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
@@ -369,7 +363,7 @@
 
                 <Button
                     android:id="@+id/btnExportarPdf"
-                    style="?attr/materialButtonOutlinedStyle"
+                    style="?android:attr/buttonBarButtonStyle"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"

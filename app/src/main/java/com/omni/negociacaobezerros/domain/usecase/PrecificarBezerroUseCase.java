@@ -36,9 +36,9 @@ public final class PrecificarBezerroUseCase {
 
     private ParametrosBezerro fromReferencia(ValorReferencia referencia) {
         return new ParametrosBezerro(
+                BigDecimal.valueOf(referencia.getPesoBezerro()),
                 BigDecimal.valueOf(referencia.getValorArrobaBoi()),
-                BigDecimal.valueOf(referencia.getAgioBezerro()),
-                BigDecimal.valueOf(referencia.getPesoBezerro())
+                BigDecimal.valueOf(referencia.getAgioBezerro())
         );
     }
 }

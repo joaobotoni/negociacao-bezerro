@@ -1,23 +1,30 @@
 package com.omni.negociacaobezerros.data.repositories;
 
-
-
 import com.omni.negociacaobezerros.data.source.local.dao.ValorReferenciaDao;
 import com.omni.negociacaobezerros.data.source.local.entities.ValorReferencia;
+import com.omni.negociacaobezerros.data.source.remote.gespec.GespecValorReferenciaService;
+import com.omni.negociacaobezerros.di.network.RetrofitManager;
 
 import java.util.List;
 import java.util.Optional;
 
 import javax.inject.Inject;
 
-public class ValorReferenciaRepository {
 
+public class ValorReferenciaRepository {
     private final ValorReferenciaDao dao;
+    private final RetrofitManager retrofitManager;
 
     @Inject
-    public ValorReferenciaRepository(ValorReferenciaDao dao) {
+    public ValorReferenciaRepository(ValorReferenciaDao dao, RetrofitManager retrofitManager) {
         this.dao = dao;
+        this.retrofitManager = retrofitManager;
     }
+
+    private GespecValorReferenciaService service() {
+        return retrofitManager.getRetrofit().create(GespecValorReferenciaService.class);
+    }
+
 
     public List<ValorReferencia> getAll() {
         return dao.getAll();
@@ -50,4 +57,5 @@ public class ValorReferenciaRepository {
     public void deleteAll() {
         dao.deleteAll();
     }
+
 }

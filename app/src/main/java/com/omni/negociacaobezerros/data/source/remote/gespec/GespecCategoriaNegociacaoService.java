@@ -1,4 +1,4 @@
-package com.omni.negociacaobezerros.data.source.remote.retrofit.gespec;
+package com.omni.negociacaobezerros.data.source.remote.gespec;
 
 
 import com.omni.negociacaobezerros.data.source.local.entities.CategoriaNegociacao;
@@ -9,7 +9,7 @@ import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
 
-public interface CategoriaNegociacaoService {
+public interface GespecCategoriaNegociacaoService {
 
     @GET("categoriasNeg/{usuario}")
     Call<List<CategoriaNegociacao>> getAll(@Path("usuario") String usuario);

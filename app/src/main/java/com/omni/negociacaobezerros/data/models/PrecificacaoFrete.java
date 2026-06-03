@@ -4,18 +4,18 @@ import java.math.BigDecimal;
 
 public class PrecificacaoFrete {
     private final BigDecimal valorTotal;
-    private final BigDecimal valorParcial;
+    private final BigDecimal valorPorKg;
 
-    public PrecificacaoFrete(BigDecimal valorTotal, BigDecimal valorParcial) {
+    public PrecificacaoFrete(BigDecimal valorTotal, BigDecimal valorPorKg) {
         this.valorTotal = valorTotal;
-        this.valorParcial = valorParcial;
+        this.valorPorKg = valorPorKg;
     }
 
     public BigDecimal getValorTotal() {
         return valorTotal;
     }
 
-    public BigDecimal getValorParcial() {
-        return valorParcial;
+    public BigDecimal getValorPorKg() {
+        return valorPorKg;
     }
 }

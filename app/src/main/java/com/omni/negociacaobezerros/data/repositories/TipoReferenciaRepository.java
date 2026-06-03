@@ -4,6 +4,8 @@ package com.omni.negociacaobezerros.data.repositories;
 
 import com.omni.negociacaobezerros.data.source.local.dao.TipoReferenciaDao;
 import com.omni.negociacaobezerros.data.source.local.entities.TipoReferencia;
+import com.omni.negociacaobezerros.data.source.remote.gespec.GespecTipoReferenciaService;
+import com.omni.negociacaobezerros.di.network.RetrofitManager;
 
 import java.util.List;
 import java.util.Optional;
@@ -11,12 +13,18 @@ import java.util.Optional;
 import javax.inject.Inject;
 
 public class TipoReferenciaRepository {
-
     private final TipoReferenciaDao dao;
 
+    private final RetrofitManager retrofitManager;
+
     @Inject
-    public TipoReferenciaRepository(TipoReferenciaDao dao) {
+    public TipoReferenciaRepository(TipoReferenciaDao dao, RetrofitManager retrofitManager) {
         this.dao = dao;
+        this.retrofitManager = retrofitManager;
+    }
+
+    private GespecTipoReferenciaService service(){
+        return retrofitManager.getRetrofit().create(GespecTipoReferenciaService.class);
     }
 
     public List<TipoReferencia> getAll() {

@@ -1,0 +1,14 @@
+package com.omni.negociacaobezerros.data.source.remote.gespec;
+
+import com.omni.negociacaobezerros.data.source.local.entities.TipoVeiculoFrete;
+
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.http.GET;
+import retrofit2.http.Path;
+
+public interface GespecTipoVeiculoFreteService {
+    @GET("tiposVeiculoFrete/{usuario}")
+    Call<List<TipoVeiculoFrete>> getAll(@Path("usuario") String usuario);
+}

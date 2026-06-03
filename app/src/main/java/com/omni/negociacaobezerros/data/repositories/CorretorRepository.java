@@ -2,12 +2,14 @@ package com.omni.negociacaobezerros.data.repositories;
 
 
 
-import static com.omni.negociacaobezerros.utils.DecimalUtil.ARREDONDAMENTO_PADRAO;
-import static com.omni.negociacaobezerros.utils.DecimalUtil.CEM;
-import static com.omni.negociacaobezerros.utils.DecimalUtil.ESCALA_CALCULO;
+import static com.omni.negociacaobezerros.utils.format.Decimals.ARREDONDAMENTO_PADRAO;
+import static com.omni.negociacaobezerros.utils.format.Decimals.CEM;
+import static com.omni.negociacaobezerros.utils.format.Decimals.ESCALA_CALCULO;
 
 import com.omni.negociacaobezerros.data.source.local.dao.CorretorDao;
 import com.omni.negociacaobezerros.data.source.local.entities.Corretor;
+import com.omni.negociacaobezerros.data.source.remote.gespec.GespecCorretorService;
+import com.omni.negociacaobezerros.di.network.RetrofitManager;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -17,9 +19,16 @@ import javax.inject.Inject;
 
 public class CorretorRepository {
     private final CorretorDao dao;
+    private final RetrofitManager retrofitManager;
+
     @Inject
-    public CorretorRepository(CorretorDao dao) {
+    public CorretorRepository(CorretorDao dao, RetrofitManager retrofitManager) {
         this.dao = dao;
+        this.retrofitManager = retrofitManager;
+    }
+
+    private GespecCorretorService service() {
+        return retrofitManager.getRetrofit().create(GespecCorretorService.class);
     }
 
     public List<Corretor> getAll() {

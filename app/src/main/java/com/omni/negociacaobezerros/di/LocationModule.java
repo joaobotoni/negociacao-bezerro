@@ -15,7 +15,6 @@ import dagger.hilt.components.SingletonComponent;
 @Module
 @InstallIn(SingletonComponent.class)
 public class LocationModule {
-
     @Provides
     @Singleton
     public Geocoder provideGeocoder(@ApplicationContext Context context) {

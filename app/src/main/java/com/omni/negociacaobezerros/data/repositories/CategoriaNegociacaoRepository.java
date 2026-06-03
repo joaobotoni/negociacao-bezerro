@@ -2,19 +2,27 @@ package com.omni.negociacaobezerros.data.repositories;
 
 import com.omni.negociacaobezerros.data.source.local.dao.CategoriaNegociacaoDao;
 import com.omni.negociacaobezerros.data.source.local.entities.CategoriaNegociacao;
+import com.omni.negociacaobezerros.data.source.remote.gespec.GespecCategoriaNegociacaoService;
+import com.omni.negociacaobezerros.di.network.RetrofitManager;
 
 import java.util.List;
 import java.util.Optional;
 
 import javax.inject.Inject;
 
-public class CategoriaNegRepository {
+public class CategoriaNegociacaoRepository {
 
     private final CategoriaNegociacaoDao dao;
+    private final RetrofitManager retrofitManager;
 
     @Inject
-    public CategoriaNegRepository(CategoriaNegociacaoDao dao) {
+    public CategoriaNegociacaoRepository(CategoriaNegociacaoDao dao, RetrofitManager retrofitManager) {
         this.dao = dao;
+        this.retrofitManager = retrofitManager;
+    }
+
+    private GespecCategoriaNegociacaoService service() {
+        return retrofitManager.getRetrofit().create(GespecCategoriaNegociacaoService.class);
     }
 
     public List<CategoriaNegociacao> getAll() {

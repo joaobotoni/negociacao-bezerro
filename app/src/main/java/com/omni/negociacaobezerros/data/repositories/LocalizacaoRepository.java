@@ -17,13 +17,11 @@ import java.util.stream.Collectors;
 import javax.inject.Inject;
 
 public class LocalizacaoRepository {
-
     private static final int BUSCA_MAXIMA = 10;
     private static final int BUSCA_UNICA = 1;
     private static final double METROS_POR_KM = 1000.0;
     private final Geocoder geocoder;
     private final RoutesRemoteDataSource rotasDataSource;
-
     @Inject
     public LocalizacaoRepository(Geocoder geocoder, RoutesRemoteDataSource rotasDataSource) {
         this.geocoder = geocoder;

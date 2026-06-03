@@ -1,6 +1,6 @@
-package com.omni.negociacaobezerros.ui.helpers;
+package com.omni.negociacaobezerros.utils.format;
 
-import static com.omni.negociacaobezerros.utils.DecimalUtil.createCurrencyFormat;
+import static com.omni.negociacaobezerros.utils.format.Decimals.createCurrencyFormat;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -10,9 +10,9 @@ import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.util.Locale;
 
-public final class FormatHelper {
+public final class Numbers {
 
-    private FormatHelper() {
+    private Numbers() {
         throw new AssertionError("FormatHelper é uma classe utilitária e não deve ser instanciada.");
     }
 

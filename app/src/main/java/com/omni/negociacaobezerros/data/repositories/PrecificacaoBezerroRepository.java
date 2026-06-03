@@ -1,9 +1,9 @@
 package com.omni.negociacaobezerros.data.repositories;
 
-import static com.omni.negociacaobezerros.utils.DecimalUtil.ARREDONDAMENTO_PADRAO;
-import static com.omni.negociacaobezerros.utils.DecimalUtil.CEM;
-import static com.omni.negociacaobezerros.utils.DecimalUtil.ESCALA_CALCULO;
-import static com.omni.negociacaobezerros.utils.DecimalUtil.ESCALA_MONETARIA;
+import static com.omni.negociacaobezerros.utils.format.Decimals.ARREDONDAMENTO_PADRAO;
+import static com.omni.negociacaobezerros.utils.format.Decimals.CEM;
+import static com.omni.negociacaobezerros.utils.format.Decimals.ESCALA_CALCULO;
+import static com.omni.negociacaobezerros.utils.format.Decimals.ESCALA_MONETARIA;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;

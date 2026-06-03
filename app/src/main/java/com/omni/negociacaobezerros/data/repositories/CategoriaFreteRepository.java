@@ -4,6 +4,8 @@ package com.omni.negociacaobezerros.data.repositories;
 
 import com.omni.negociacaobezerros.data.source.local.dao.CategoriaFreteDao;
 import com.omni.negociacaobezerros.data.source.local.entities.CategoriaFrete;
+import com.omni.negociacaobezerros.data.source.remote.gespec.GespecCategoriaFreteService;
+import com.omni.negociacaobezerros.di.network.RetrofitManager;
 
 import java.util.List;
 import java.util.Optional;
@@ -13,9 +15,15 @@ import javax.inject.Inject;
 public class CategoriaFreteRepository {
     private final CategoriaFreteDao dao;
 
+    private final RetrofitManager retrofitManager;
     @Inject
-    public CategoriaFreteRepository(CategoriaFreteDao dao) {
+    public CategoriaFreteRepository(CategoriaFreteDao dao, RetrofitManager retrofitManager) {
         this.dao = dao;
+        this.retrofitManager = retrofitManager;
+    }
+
+    private GespecCategoriaFreteService service(){
+        return retrofitManager.getRetrofit().create(GespecCategoriaFreteService.class);
     }
 
     public List<CategoriaFrete> getAll() {

@@ -15,11 +15,14 @@ import java.util.Optional;
 
 import javax.inject.Inject;
 
+import retrofit2.Retrofit;
+
 public class TransporteRepository {
     private final CapacidadeFreteDao capacidadeDao;
     private final TipoVeiculoFreteDao tipoVeiculoDao;
+
     @Inject
-    public TransporteRepository(CapacidadeFreteDao capacidadeDao, TipoVeiculoFreteDao tipoVeiculoDao) {
+    public TransporteRepository(CapacidadeFreteDao capacidadeDao, TipoVeiculoFreteDao tipoVeiculoDao, Retrofit retrofit) {
         this.capacidadeDao = capacidadeDao;
         this.tipoVeiculoDao = tipoVeiculoDao;
     }

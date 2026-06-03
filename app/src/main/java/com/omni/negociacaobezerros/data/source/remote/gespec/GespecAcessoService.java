@@ -1,4 +1,4 @@
-package com.omni.negociacaobezerros.data.source.remote.retrofit.gespec;
+package com.omni.negociacaobezerros.data.source.remote.gespec;
 
 import retrofit2.Call;
 import retrofit2.http.Header;

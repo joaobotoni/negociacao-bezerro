@@ -32,7 +32,8 @@
                 android:id="@+id/cardDica"
                 style="?attr/materialCardViewFilledStyle"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                app:cardBackgroundColor="?attr/colorSurfaceContainer">
 
                 <LinearLayout
                     android:id="@+id/layoutDica"
@@ -66,9 +67,9 @@
                             android:id="@+id/tvDicaValor"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="8dp"
+                            android:layout_marginTop="4dp"
                             android:text="@string/descricao_dica_proxima_etapa"
-                            android:textAppearance="?attr/textAppearanceBodyMedium" />
+                            android:textAppearance="?attr/textAppearanceBodySmall" />
                     </LinearLayout>
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
@@ -77,7 +78,7 @@
                 android:id="@+id/sectionSexo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="16dp"
                 android:orientation="vertical">
 
                 <TextView
@@ -85,6 +86,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/label_sexo"
+                    android:textAllCaps="true"
                     android:textAppearance="?attr/textAppearanceLabelLarge" />
 
                 <com.google.android.material.chip.ChipGroup
@@ -99,14 +101,16 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/chip_macho"
-                        app:chipIcon="@drawable/male_24px" />
+                        app:chipIcon="@drawable/male_24px"
+                        app:shapeAppearance="?attr/shapeAppearanceCornerExtraExtraLarge" />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/chipFemea"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/chip_femea"
-                        app:chipIcon="@drawable/female_24px" />
+                        app:chipIcon="@drawable/female_24px"
+                        app:shapeAppearance="?attr/shapeAppearanceCornerExtraExtraLarge" />
                 </com.google.android.material.chip.ChipGroup>
             </LinearLayout>
 
@@ -114,7 +118,7 @@
                 android:id="@+id/sectionMedidas"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="16dp"
                 android:orientation="vertical">
 
                 <TextView
@@ -122,6 +126,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/label_medidas_lote"
+                    android:textAllCaps="true"
                     android:textAppearance="?attr/textAppearanceLabelLarge" />
 
                 <LinearLayout
@@ -129,6 +134,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
+                    android:baselineAligned="false"
                     android:orientation="horizontal">
 
                     <com.google.android.material.textfield.TextInputLayout
@@ -138,7 +144,8 @@
                         android:layout_marginEnd="8dp"
                         android:layout_weight="1"
                         android:hint="@string/hint_peso_medio"
-                        app:startIconDrawable="@drawable/scale_24px">
+                        app:shapeAppearance="?attr/shapeAppearanceCornerSmall"
+                        app:startIconDrawable="@drawable/sync_alt_24px">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/etPeso"
@@ -154,6 +161,7 @@
                         android:layout_marginStart="8dp"
                         android:layout_weight="1"
                         android:hint="@string/hint_quantidade"
+                        app:shapeAppearance="?attr/shapeAppearanceCornerSmall"
                         app:startIconDrawable="@drawable/swap_vert_24px">
 
                         <com.google.android.material.textfield.TextInputEditText
@@ -170,228 +178,207 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:padding="8dp">
 
-                <TextView
-                    android:id="@+id/tvLabelTabela"
+                <LinearLayout
+                    android:id="@+id/layoutItemQuilo"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/label_tabela_precos"
-                    android:textAppearance="?attr/textAppearanceLabelLarge" />
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
 
-                <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/cardTabela"
-                    style="?attr/materialCardViewFilledStyle"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    app:cardBackgroundColor="?attr/colorSurfaceContainer">
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/cardIconQuilo"
+                        style="?attr/materialCardViewFilledStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:cardBackgroundColor="?attr/colorSurfaceContainer"
+                        app:cardCornerRadius="16dp"
+                        app:contentPadding="8dp">
+
+                        <ImageView
+                            android:id="@+id/ivIconQuilo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:importantForAccessibility="no"
+                            android:src="@drawable/weight_24px" />
+                    </com.google.android.material.card.MaterialCardView>
 
                     <LinearLayout
-                        android:id="@+id/layoutTabela"
-                        android:layout_width="match_parent"
+                        android:id="@+id/layoutTextoQuilo"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:padding="16dp">
+                        android:layout_marginStart="16dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
 
-                        <LinearLayout
-                            android:id="@+id/layoutItemQuilo"
-                            android:layout_width="match_parent"
+                        <TextView
+                            android:id="@+id/tvTabelaQuiloLabel"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:gravity="center_vertical"
-                            android:orientation="horizontal">
+                            android:text="@string/tabela_quilo_label"
+                            android:textAppearance="?attr/textAppearanceBodyMedium"
+                            android:textColor="?attr/colorOnSurface"
+                            android:textStyle="bold" />
 
-                            <com.google.android.material.card.MaterialCardView
-                                android:id="@+id/cardIconQuilo"
-                                style="?attr/materialCardViewFilledStyle"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                app:cardCornerRadius="16dp"
-                                app:contentPadding="8dp">
-
-                                <ImageView
-                                    android:id="@+id/ivIconQuilo"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:importantForAccessibility="no"
-                                    android:src="@drawable/scale_24px" />
-                            </com.google.android.material.card.MaterialCardView>
-
-                            <LinearLayout
-                                android:id="@+id/layoutTextoQuilo"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="16dp"
-                                android:layout_weight="1"
-                                android:orientation="vertical">
-
-                                <TextView
-                                    android:id="@+id/tvTabelaQuiloLabel"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="@string/tabela_quilo_label"
-                                    android:textAppearance="?attr/textAppearanceBodyMedium"
-                                    android:textColor="?attr/colorOnSurface"
-                                    android:textStyle="bold" />
-
-                                <TextView
-                                    android:id="@+id/tvTabelaQuiloHelper"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="4dp"
-                                    android:text="@string/tabela_helper_informe_peso"
-                                    android:textAppearance="?attr/textAppearanceBodySmall"
-                                    android:textColor="?attr/colorOnSurfaceVariant" />
-                            </LinearLayout>
-
-                            <TextView
-                                android:id="@+id/tvTabelaQuiloValor"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="16dp"
-                                android:text="@string/tabela_valor_padrao"
-                                android:textAppearance="?attr/textAppearanceTitleMedium"
-                                android:textStyle="bold" />
-                        </LinearLayout>
-
-                        <View
-                            android:id="@+id/divisorTabela"
-                            android:layout_width="match_parent"
-                            android:layout_height="1dp"
-                            android:layout_marginTop="16dp"
-                            android:layout_marginBottom="16dp"
-                            android:background="?attr/colorOutlineVariant" />
-
-                        <LinearLayout
-                            android:id="@+id/layoutItemCabeca"
-                            android:layout_width="match_parent"
+                        <TextView
+                            android:id="@+id/tvTabelaQuiloHelper"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:gravity="center_vertical"
-                            android:orientation="horizontal">
-
-                            <com.google.android.material.card.MaterialCardView
-                                android:id="@+id/cardIconCabeca"
-                                style="?attr/materialCardViewFilledStyle"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                app:cardCornerRadius="16dp"
-                                app:contentPadding="8dp">
-
-                                <ImageView
-                                    android:id="@+id/ivIconCabeca"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:importantForAccessibility="no"
-                                    android:src="@drawable/sell_24px" />
-                            </com.google.android.material.card.MaterialCardView>
-
-                            <LinearLayout
-                                android:id="@+id/layoutTextoCabeca"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="16dp"
-                                android:layout_weight="1"
-                                android:orientation="vertical">
-
-                                <TextView
-                                    android:id="@+id/tvTabelaCabecaLabel"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="@string/tabela_cabeca_label"
-                                    android:textAppearance="?attr/textAppearanceBodyMedium"
-                                    android:textColor="?attr/colorOnSurface"
-                                    android:textStyle="bold" />
-
-                                <TextView
-                                    android:id="@+id/tvTabelaCabecaHelper"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="4dp"
-                                    android:text="@string/tabela_helper_informe_peso"
-                                    android:textAppearance="?attr/textAppearanceBodySmall"
-                                    android:textColor="?attr/colorOnSurfaceVariant" />
-                            </LinearLayout>
-
-                            <TextView
-                                android:id="@+id/tvTabelaCabecaValor"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="16dp"
-                                android:text="@string/tabela_valor_padrao"
-                                android:textAppearance="?attr/textAppearanceTitleMedium"
-                                android:textStyle="bold" />
-                        </LinearLayout>
-
-                        <View
-                            android:id="@+id/divisorTabelaTotal"
-                            android:layout_width="match_parent"
-                            android:layout_height="1dp"
-                            android:layout_marginTop="16dp"
-                            android:layout_marginBottom="16dp"
-                            android:background="?attr/colorOutlineVariant" />
-
-                        <LinearLayout
-                            android:id="@+id/layoutItemTotal"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:gravity="center_vertical"
-                            android:orientation="horizontal">
-
-                            <com.google.android.material.card.MaterialCardView
-                                android:id="@+id/cardIconTotal"
-                                style="?attr/materialCardViewFilledStyle"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                app:cardCornerRadius="16dp"
-                                app:contentPadding="8dp">
-
-                                <ImageView
-                                    android:id="@+id/ivIconTotal"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:importantForAccessibility="no"
-                                    android:src="@drawable/inventory_2_24px" />
-                            </com.google.android.material.card.MaterialCardView>
-
-                            <LinearLayout
-                                android:id="@+id/layoutTextoTotal"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="16dp"
-                                android:layout_weight="1"
-                                android:orientation="vertical">
-
-                                <TextView
-                                    android:id="@+id/tvTabelaTotalLabel"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="@string/tabela_total_label"
-                                    android:textAppearance="?attr/textAppearanceBodyMedium"
-                                    android:textColor="?attr/colorOnSurface"
-                                    android:textStyle="bold" />
-
-                                <TextView
-                                    android:id="@+id/tvTabelaTotalHelper"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="4dp"
-                                    android:text="@string/tabela_helper_informe_peso"
-                                    android:textAppearance="?attr/textAppearanceBodySmall"
-                                    android:textColor="?attr/colorOnSurfaceVariant" />
-                            </LinearLayout>
-
-                            <TextView
-                                android:id="@+id/tvTabelaTotalValor"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="16dp"
-                                android:text="@string/tabela_valor_padrao"
-                                android:textAppearance="?attr/textAppearanceTitleMedium"
-                                android:textStyle="bold" />
-                        </LinearLayout>
-
+                            android:layout_marginTop="4dp"
+                            android:text="@string/tabela_helper_informe_peso"
+                            android:textAppearance="?attr/textAppearanceBodySmall"
+                            android:textColor="?attr/colorOnSurfaceVariant" />
                     </LinearLayout>
-                </com.google.android.material.card.MaterialCardView>
+
+                    <TextView
+                        android:id="@+id/tvTabelaQuiloValor"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:text="@string/tabela_valor_padrao"
+                        android:textAppearance="?attr/textAppearanceTitleMedium"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <View
+                    android:id="@+id/divisorTabela"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:background="?attr/colorOutlineVariant" />
+
+                <LinearLayout
+                    android:id="@+id/layoutItemCabeca"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/cardIconCabeca"
+                        style="?attr/materialCardViewFilledStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:cardBackgroundColor="?attr/colorSurfaceContainer"
+                        app:cardCornerRadius="16dp"
+                        app:contentPadding="8dp">
+
+                        <ImageView
+                            android:id="@+id/ivIconCabeca"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:importantForAccessibility="no"
+                            android:src="@drawable/sell_24px" />
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <LinearLayout
+                        android:id="@+id/layoutTextoCabeca"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tvTabelaCabecaLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/tabela_cabeca_label"
+                            android:textAppearance="?attr/textAppearanceBodyMedium"
+                            android:textColor="?attr/colorOnSurface"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tvTabelaCabecaHelper"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:text="@string/tabela_helper_informe_peso"
+                            android:textAppearance="?attr/textAppearanceBodySmall"
+                            android:textColor="?attr/colorOnSurfaceVariant" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/tvTabelaCabecaValor"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:text="@string/tabela_valor_padrao"
+                        android:textAppearance="?attr/textAppearanceTitleMedium"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <View
+                    android:id="@+id/divisorTabelaTotal"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:background="?attr/colorOutlineVariant" />
+
+                <LinearLayout
+                    android:id="@+id/layoutItemTotal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/cardIconTotal"
+                        style="?attr/materialCardViewFilledStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:cardBackgroundColor="?attr/colorSurfaceContainer"
+                        app:cardCornerRadius="16dp"
+                        app:contentPadding="8dp">
+
+                        <ImageView
+                            android:id="@+id/ivIconTotal"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:importantForAccessibility="no"
+                            android:src="@drawable/inventory_2_24px" />
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <LinearLayout
+                        android:id="@+id/layoutTextoTotal"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tvTabelaTotalLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/tabela_total_label"
+                            android:textAppearance="?attr/textAppearanceBodyMedium"
+                            android:textColor="?attr/colorOnSurface"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tvTabelaTotalHelper"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:text="@string/tabela_helper_informe_peso"
+                            android:textAppearance="?attr/textAppearanceBodySmall"
+                            android:textColor="?attr/colorOnSurfaceVariant" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/tvTabelaTotalValor"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:text="@string/tabela_valor_padrao"
+                        android:textAppearance="?attr/textAppearanceTitleMedium"
+                        android:textStyle="bold" />
+                </LinearLayout>
             </LinearLayout>
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>

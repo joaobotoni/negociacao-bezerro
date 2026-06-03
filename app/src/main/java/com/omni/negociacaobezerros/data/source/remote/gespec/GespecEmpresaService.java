@@ -1,4 +1,4 @@
-package com.omni.negociacaobezerros.data.source.remote.retrofit.gespec;
+package com.omni.negociacaobezerros.data.source.remote.gespec;
 
 
 import com.omni.negociacaobezerros.data.source.local.entities.Empresa;

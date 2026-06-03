@@ -2,14 +2,16 @@ package com.omni.negociacaobezerros.data.repositories;
 
 
 
-import static com.omni.negociacaobezerros.utils.DecimalUtil.ARREDONDAMENTO_FINANCEIRO;
-import static com.omni.negociacaobezerros.utils.DecimalUtil.ESCALA_CALCULO;
-import static com.omni.negociacaobezerros.utils.DecimalUtil.ESCALA_MONETARIA;
+import static com.omni.negociacaobezerros.utils.format.Decimals.ARREDONDAMENTO_FINANCEIRO;
+import static com.omni.negociacaobezerros.utils.format.Decimals.ESCALA_CALCULO;
+import static com.omni.negociacaobezerros.utils.format.Decimals.ESCALA_MONETARIA;
 
 import com.omni.negociacaobezerros.data.models.PrecificacaoFrete;
 import com.omni.negociacaobezerros.data.models.Transporte;
 import com.omni.negociacaobezerros.data.source.local.dao.FreteDao;
 import com.omni.negociacaobezerros.data.source.local.entities.Frete;
+import com.omni.negociacaobezerros.data.source.remote.gespec.GespecFreteService;
+import com.omni.negociacaobezerros.di.network.RetrofitManager;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -19,10 +21,14 @@ import javax.inject.Inject;
 
 public class FreteRepository {
     private final FreteDao dao;
-
+    private final RetrofitManager retrofitManager;
     @Inject
-    public FreteRepository(FreteDao dao) {
+    public FreteRepository(FreteDao dao, RetrofitManager retrofitManager) {
         this.dao = dao;
+        this.retrofitManager = retrofitManager;
+    }
+    private GespecFreteService service(){
+        return retrofitManager.getRetrofit().create(GespecFreteService.class);
     }
 
     public List<Frete> getAll() {
@@ -32,7 +38,6 @@ public class FreteRepository {
     public Optional<Frete> findById(long id) {
         return Optional.ofNullable(dao.findById(id));
     }
-
     public Optional<Frete> buscarPorVeiculoEDistancia(long idVeiculo, double distancia) {
         return Optional.ofNullable(dao.findByVehicleAndDistance(idVeiculo, distancia));
     }

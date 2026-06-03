@@ -142,14 +142,12 @@
     <string name="dialogo_titulo_permissao_localizacao">Permissão de localização necessária</string>
     <string name="dialogo_mensagem_permissao_localizacao">Para usar este recurso, você precisa permitir o acesso à localização nas configurações do aplicativo.</string>
 
-
     <string name="amostra_valor_total">125.000</string>
     <string name="amostra_valor_quantidade">50</string>
     <string name="amostra_valor_por_cabeca">2.500</string>
     <string name="amostra_valor_por_kg">6,80</string>
     <string name="amostra_opcao_categoria">Categoria</string>
     <string name="amostra_opcao_raca">Raça</string>
-
 
     <string name="chave_api_google_maps">com.google.android.geo.API_KEY</string>
     <string name="aviso_selecione_categoria_frete">Selecione a categoria do animal antes de simular o frete</string>
@@ -197,7 +195,7 @@
     <string name="chip_femea">Fêmea</string>
 
     <!-- Hints de campos -->
-    <string name="hint_peso_medio">Peso médio</string>
+    <string name="hint_peso_medio">Peso</string>
     <string name="hint_quantidade">Quantidade</string>
     <string name="hint_por_cabeca">R$ / cabeça</string>
     <string name="hint_por_kg">R$ / kg</string>
@@ -225,8 +223,8 @@
     <string name="tabela_helper_informe_peso">Informe o peso médio</string>
 
 
-    <string name="resumo_fornecedor_label">Valor pago ao fornecedor</string>
-    <string name="resumo_fornecedor_helper">Pedido bruto pelo lote</string>
+    <string name="resumo_fornecedor_label">Fornecedor</string>
+    <string name="resumo_fornecedor_helper">Valor Pedido</string>
     <string name="resumo_frete_label">Frete</string>
     <string name="resumo_frete_helper">Valor fixo</string>
     <string name="resumo_valor_padrao">R$ 0,00</string>
@@ -250,5 +248,11 @@
 
     <string name="cd_card_simular_frete">Simular um frete. Calcule o custo do transporte por km, cabeça ou valor fixo. Toque para abrir.</string>
     <string name="cd_card_corretor">Sem corretor. Sem comissão aplicada. Toque para alterar.</string>
+
+    <string name="label_empresa_compradora">Empresa compradora</string>
+    <string name="title_selecionar_empresa">Selecionar empresa</string>
+    <string name="desc_selecionar_empresa">Toque para escolher a empresa</string>
+    <string name="label_historico_recente">Histórico recente</string>
+    <string name="msg_aviso_alterar_empresa">A empresa pode ser alterada a qualquer momento antes de finalizar</string>
 
 </resources>

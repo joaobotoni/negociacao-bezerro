@@ -14,6 +14,7 @@ import androidx.annotation.StringRes;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
 import com.google.android.material.textfield.TextInputLayout;
+import com.omni.negociacaobezerros.utils.format.Numbers;
 
 import java.math.BigDecimal;
 import java.util.Arrays;
@@ -96,22 +97,22 @@ public final class ViewHelper {
 
     @NonNull
     public static Integer parseInt(@Nullable EditText view) {
-        return FormatHelper.parseInt(requireText(view));
+        return Numbers.parseInt(requireText(view));
     }
 
     @NonNull
     public static Float parseFloat(@Nullable EditText view) {
-        return FormatHelper.parseFloat(requireText(view));
+        return Numbers.parseFloat(requireText(view));
     }
 
     @NonNull
     public static Double parseDouble(@Nullable EditText view) {
-        return FormatHelper.parseDouble(requireText(view));
+        return Numbers.parseDouble(requireText(view));
     }
 
     @NonNull
     public static BigDecimal parseDecimal(@Nullable EditText view) {
-        return FormatHelper.parseDecimal(requireText(view));
+        return Numbers.parseDecimal(requireText(view));
     }
 
     public static void setText(@NonNull TextView textView, @Nullable String text) {

@@ -2,6 +2,8 @@ package com.omni.negociacaobezerros.data.repositories;
 
 import com.omni.negociacaobezerros.data.source.local.dao.CapacidadeFreteDao;
 import com.omni.negociacaobezerros.data.source.local.entities.CapacidadeFrete;
+import com.omni.negociacaobezerros.data.source.remote.gespec.GespecCapacidadeFreteService;
+import com.omni.negociacaobezerros.di.network.RetrofitManager;
 
 import java.util.List;
 import java.util.Optional;
@@ -10,10 +12,14 @@ import javax.inject.Inject;
 
 public class CapacidadeFreteRepository {
     private final CapacidadeFreteDao dao;
-
+    private final RetrofitManager retrofitManager;
     @Inject
-    public CapacidadeFreteRepository(CapacidadeFreteDao dao) {
+    public CapacidadeFreteRepository(CapacidadeFreteDao dao, RetrofitManager retrofitManager) {
         this.dao = dao;
+        this.retrofitManager = retrofitManager;
+    }
+    private GespecCapacidadeFreteService service(){
+        return retrofitManager.getRetrofit().create(GespecCapacidadeFreteService.class);
     }
 
     public List<CapacidadeFrete> getAll() {

@@ -1,7 +1,7 @@
 package com.omni.negociacaobezerros.domain.strategy;
 
-import static com.omni.negociacaobezerros.utils.DecimalUtil.ARREDONDAMENTO_PADRAO;
-import static com.omni.negociacaobezerros.utils.DecimalUtil.ESCALA_MONETARIA;
+import static com.omni.negociacaobezerros.utils.format.Decimals.ARREDONDAMENTO_PADRAO;
+import static com.omni.negociacaobezerros.utils.format.Decimals.ESCALA_MONETARIA;
 
 import com.omni.negociacaobezerros.data.models.ParametrosBezerro;
 import com.omni.negociacaobezerros.data.models.PrecificacaoBezerro;

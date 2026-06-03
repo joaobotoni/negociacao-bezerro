@@ -3,6 +3,8 @@ package com.omni.negociacaobezerros.data.repositories;
 
 import com.omni.negociacaobezerros.data.source.local.dao.EmpresaDao;
 import com.omni.negociacaobezerros.data.source.local.entities.Empresa;
+import com.omni.negociacaobezerros.data.source.remote.gespec.GespecEmpresaService;
+import com.omni.negociacaobezerros.di.network.RetrofitManager;
 
 import java.util.List;
 import java.util.Optional;
@@ -10,12 +12,16 @@ import java.util.Optional;
 import javax.inject.Inject;
 
 public class EmpresaRepository {
-
     private final EmpresaDao dao;
-
+    private final RetrofitManager retrofitManager;
     @Inject
-    public EmpresaRepository(EmpresaDao dao) {
+    public EmpresaRepository(EmpresaDao dao, RetrofitManager retrofitManager) {
         this.dao = dao;
+        this.retrofitManager = retrofitManager;
+    }
+
+    private GespecEmpresaService service() {
+        return retrofitManager.getRetrofit().create(GespecEmpresaService.class);
     }
 
     public List<Empresa> getAll() {

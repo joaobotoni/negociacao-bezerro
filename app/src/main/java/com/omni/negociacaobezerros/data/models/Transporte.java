@@ -1,7 +1,6 @@
 package com.omni.negociacaobezerros.data.models;
 
 public class Transporte {
-
     private final long id;
     private final String nomeVeiculo;
     private final int quantidade;
