@@ -16,14 +16,13 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
+        <ImageView
             android:id="@+id/tvIniciais"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="12dp"
-            android:textAppearance="?attr/textAppearanceLabelLarge"
-            android:textColor="?attr/colorOnSecondaryContainer"
-            tools:text="BD" />
+            android:src="@drawable/domain_24px"
+            android:textColor="?attr/colorOnSecondaryContainer" />
 
     </com.google.android.material.card.MaterialCardView>
 

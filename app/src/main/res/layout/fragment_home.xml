@@ -39,68 +39,71 @@
                 android:textAppearance="?attr/textAppearanceLabelLarge" />
 
 
-            <LinearLayout
+            <com.google.android.material.card.MaterialCardView
                 android:id="@+id/containerSelecionarEmpresa"
                 android:layout_width="match_parent"
+                style="?attr/materialCardViewFilledStyle"
+                app:cardBackgroundColor="?attr/colorSurfaceContainer"
+                app:shapeAppearance="?attr/shapeAppearanceCornerLarge"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
-                android:background="@drawable/bg_dashed_border"
                 android:clickable="true"
-                android:focusable="true"
-                android:gravity="center_vertical"
-                android:minHeight="56dp"
-                android:orientation="horizontal"
-                android:padding="16dp"
-                android:contentDescription="@null">
+                android:focusable="true">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp">
 
                     <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/cardIconeEmpresa"
                         style="?attr/materialCardViewFilledStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         app:cardCornerRadius="100dp"
-                        app:strokeWidth="0dp">
+                        app:strokeWidth="0dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
 
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:contentDescription="@null"
+                            android:importantForAccessibility="no"
                             android:padding="10dp"
                             android:src="@drawable/domain_24px" />
 
                     </com.google.android.material.card.MaterialCardView>
 
-                    <LinearLayout
+                    <TextView
+                        android:id="@+id/tvTituloEmpresa"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="12dp"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
+                        android:text="@string/title_selecionar_empresa"
+                        android:textColor="?attr/colorOnSurface"
+                        android:textSize="15sp"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/cardIconeEmpresa"
+                        app:layout_constraintTop_toTopOf="@id/cardIconeEmpresa" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/title_selecionar_empresa"
-                            android:textColor="#1A1A1A"
-                            android:textSize="15sp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="2dp"
-                            android:text="@string/desc_selecionar_empresa"
-                            android:textSize="12sp" />
-
-                    </LinearLayout>
-
-                    <ImageView
-                        android:layout_width="wrap_content"
+                    <TextView
+                        android:id="@+id/tvDescricaoEmpresa"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:contentDescription="@null"
-                        app:tint="?attr/colorOnSurfaceVariant"
-                        android:src="@drawable/touch_app_24px" />
-                </LinearLayout>
+                        android:layout_marginStart="12dp"
+                        android:layout_marginTop="2dp"
+                        android:text="@string/desc_selecionar_empresa"
+                        android:textColor="?attr/colorOnSurfaceVariant"
+                        android:textSize="12sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/cardIconeEmpresa"
+                        app:layout_constraintTop_toBottomOf="@id/tvTituloEmpresa" />
 
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </com.google.android.material.card.MaterialCardView>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
