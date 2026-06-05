@@ -1,45 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:contentDescription="@string/cd_toolbar"
-        app:layout_constraintTop_toTopOf="parent"
-        app:navigationIcon="@drawable/arrow_back_24px"
-        app:title="@string/title_negociacao_finalizada" />
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:contentDescription="@string/cd_toolbar"
+            app:navigationIcon="@drawable/arrow_back_24px"
+            app:title="@string/title_negociacao_finalizada" />
+
+    </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.core.widget.NestedScrollView
-        android:id="@+id/nsvBody"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="0dp"
         android:clipToPadding="false"
+        android:fillViewport="true"
         app:layout_constraintBottom_toTopOf="@id/btnNovaNegociacao"
-        app:layout_constraintTop_toBottomOf="@id/toolbar">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/appBarLayout">
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="16dp">
+            android:paddingHorizontal="16dp"
+            android:paddingTop="24dp"
+            android:paddingBottom="16dp">
 
             <com.google.android.material.card.MaterialCardView
-                android:id="@+id/cardSucessoContainer"
+                android:id="@+id/cardIconeSucesso"
                 style="?attr/materialCardViewFilledStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="24dp"
                 app:cardBackgroundColor="?attr/colorSurfaceContainerHigh"
                 app:cardCornerRadius="64dp"
-                app:contentPadding="24dp">
+                app:contentPadding="24dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
                 <ImageView
-                    android:id="@+id/ivSucesso"
+                    android:id="@+id/ivIconeSucesso"
                     android:layout_width="64dp"
                     android:layout_height="64dp"
                     android:contentDescription="@string/cd_sucesso"
@@ -51,264 +66,270 @@
 
             <TextView
                 android:id="@+id/tvTituloSucesso"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:gravity="center"
                 android:text="@string/sucesso_titulo_padrao"
-                android:textAppearance="?attr/textAppearanceHeadlineSmall" />
+                android:textAppearance="?attr/textAppearanceHeadlineSmall"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/cardIconeSucesso" />
 
             <TextView
                 android:id="@+id/tvSubtituloSucesso"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:gravity="center"
                 android:text="@string/sucesso_subtitulo_padrao"
-                android:textAppearance="?attr/textAppearanceBodyMedium" />
+                android:textAppearance="?attr/textAppearanceBodyMedium"
+                android:textColor="?attr/colorOnSurfaceVariant"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvTituloSucesso" />
 
             <TextView
-                android:id="@+id/tvLabelResumo"
-                android:layout_width="match_parent"
+                android:id="@+id/tvSecaoResumo"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
                 android:text="@string/label_resumo_financeiro"
                 android:textAllCaps="true"
-                android:textAppearance="?attr/textAppearanceLabelLarge" />
+                android:textAppearance="?attr/textAppearanceLabelLarge"
+                android:textColor="?attr/colorOnSurfaceVariant"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvSubtituloSucesso" />
 
-            <LinearLayout
-                android:id="@+id/layoutResumo"
-                android:layout_width="match_parent"
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardResumo"
+                style="?attr/materialCardViewFilledStyle"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:orientation="vertical"
-                android:padding="8dp">
+                android:layout_marginTop="8dp"
+                app:cardBackgroundColor="?attr/colorSurfaceContainer"
+                app:shapeAppearance="?attr/shapeAppearanceCornerLarge"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvSecaoResumo">
 
-                <LinearLayout
-                    android:id="@+id/layoutItemFornecedor"
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
+                    android:padding="16dp">
 
                     <com.google.android.material.card.MaterialCardView
-                        android:id="@+id/cardIconFornecedor"
+                        android:id="@+id/cardIconeFornecedor"
                         style="?attr/materialCardViewFilledStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        app:cardBackgroundColor="?attr/colorSurfaceContainer"
-                        app:cardCornerRadius="16dp"
-                        app:contentPadding="8dp">
+                        app:cardBackgroundColor="?attr/colorSurfaceContainerHigh"
+                        app:cardCornerRadius="12dp"
+                        app:contentPadding="8dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
 
                         <ImageView
-                            android:id="@+id/ivIconFornecedor"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:contentDescription="@null"
+                            android:importantForAccessibility="no"
                             android:src="@drawable/approval_delegation_24px" />
+
                     </com.google.android.material.card.MaterialCardView>
 
-                    <LinearLayout
-                        android:id="@+id/layoutTextoFornecedor"
+                    <TextView
+                        android:id="@+id/tvFornecedorLabel"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:id="@+id/tvResumoFornecedorLabel"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/resumo_fornecedor_label"
-                            android:textAppearance="?attr/textAppearanceBodyMedium"
-                            android:textColor="?attr/colorOnSurface"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:id="@+id/tvResumoFornecedorHelper"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="4dp"
-                            android:text="@string/resumo_fornecedor_helper"
-                            android:textAppearance="?attr/textAppearanceBodySmall"
-                            android:textColor="?attr/colorOnSurfaceVariant" />
-                    </LinearLayout>
+                        android:text="@string/resumo_fornecedor_label"
+                        android:textAppearance="?attr/textAppearanceTitleSmall"
+                        android:textColor="?attr/colorOnSurface"
+                        app:layout_constraintEnd_toStartOf="@id/tvFornecedorValor"
+                        app:layout_constraintStart_toEndOf="@id/cardIconeFornecedor"
+                        app:layout_constraintTop_toTopOf="@id/cardIconeFornecedor" />
 
                     <TextView
-                        android:id="@+id/tvResumoFornecedorValor"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:text="@string/resumo_valor_padrao"
-                        android:textAppearance="?attr/textAppearanceTitleMedium"
-                        android:textStyle="bold" />
-                </LinearLayout>
-
-                <View
-                    android:id="@+id/divisorResumo"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginBottom="16dp"
-                    android:background="?attr/colorOutlineVariant" />
-
-                <LinearLayout
-                    android:id="@+id/layoutItemFrete"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
-
-                    <com.google.android.material.card.MaterialCardView
-                        android:id="@+id/cardIconFrete"
-                        style="?attr/materialCardViewFilledStyle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        app:cardBackgroundColor="?attr/colorSurfaceContainer"
-                        app:cardCornerRadius="16dp"
-                        app:contentPadding="8dp">
-
-                        <ImageView
-                            android:id="@+id/ivIconFrete"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:contentDescription="@null"
-                            android:src="@drawable/delivery_truck_speed_24px" />
-                    </com.google.android.material.card.MaterialCardView>
-
-                    <LinearLayout
-                        android:id="@+id/layoutTextoFrete"
+                        android:id="@+id/tvFornecedorHelper"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:id="@+id/tvResumoFreteLabel"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/resumo_frete_label"
-                            android:textAppearance="?attr/textAppearanceBodyMedium"
-                            android:textColor="?attr/colorOnSurface"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:id="@+id/tvResumoFreteHelper"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="4dp"
-                            android:text="@string/resumo_frete_helper"
-                            android:textAppearance="?attr/textAppearanceBodySmall"
-                            android:textColor="?attr/colorOnSurfaceVariant" />
-                    </LinearLayout>
+                        android:layout_marginTop="4dp"
+                        android:text="@string/resumo_fornecedor_helper"
+                        android:textAppearance="?attr/textAppearanceBodySmall"
+                        android:textColor="?attr/colorOnSurfaceVariant"
+                        app:layout_constraintEnd_toStartOf="@id/tvFornecedorValor"
+                        app:layout_constraintStart_toEndOf="@id/cardIconeFornecedor"
+                        app:layout_constraintTop_toBottomOf="@id/tvFornecedorLabel" />
 
                     <TextView
-                        android:id="@+id/tvResumoFreteValor"
+                        android:id="@+id/tvFornecedorValor"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
                         android:text="@string/resumo_valor_padrao"
                         android:textAppearance="?attr/textAppearanceTitleMedium"
-                        android:textStyle="bold" />
-                </LinearLayout>
+                        app:layout_constraintBottom_toBottomOf="@id/cardIconeFornecedor"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/cardIconeFornecedor" />
 
-                <View
-                    android:id="@+id/divisorResumoCorretor"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginBottom="16dp"
-                    android:background="?attr/colorOutlineVariant" />
-
-                <LinearLayout
-                    android:id="@+id/layoutItemCorretor"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
+                    <View
+                        android:id="@+id/divisorFornecedorFrete"
+                        android:layout_width="0dp"
+                        android:layout_height="1dp"
+                        android:layout_marginVertical="16dp"
+                        android:background="?attr/colorOutlineVariant"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/cardIconeFornecedor" />
 
                     <com.google.android.material.card.MaterialCardView
-                        android:id="@+id/cardIconCorretor"
+                        android:id="@+id/cardIconeFrete"
                         style="?attr/materialCardViewFilledStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        app:cardBackgroundColor="?attr/colorSurfaceContainer"
-                        app:cardCornerRadius="16dp"
-                        app:contentPadding="8dp">
+                        app:cardBackgroundColor="?attr/colorSurfaceContainerHigh"
+                        app:cardCornerRadius="12dp"
+                        app:contentPadding="8dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/divisorFornecedorFrete">
 
                         <ImageView
-                            android:id="@+id/ivIconCorretor"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:contentDescription="@null"
+                            android:importantForAccessibility="no"
+                            android:src="@drawable/local_shipping_24px" />
+
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <TextView
+                        android:id="@+id/tvFreteLabel"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:text="@string/resumo_frete_label"
+                        android:textAppearance="?attr/textAppearanceTitleSmall"
+                        android:textColor="?attr/colorOnSurface"
+                        app:layout_constraintEnd_toStartOf="@id/tvFreteValor"
+                        app:layout_constraintStart_toEndOf="@id/cardIconeFrete"
+                        app:layout_constraintTop_toTopOf="@id/cardIconeFrete" />
+
+                    <TextView
+                        android:id="@+id/tvFreteHelper"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="4dp"
+                        android:text="@string/resumo_frete_helper"
+                        android:textAppearance="?attr/textAppearanceBodySmall"
+                        android:textColor="?attr/colorOnSurfaceVariant"
+                        app:layout_constraintEnd_toStartOf="@id/tvFreteValor"
+                        app:layout_constraintStart_toEndOf="@id/cardIconeFrete"
+                        app:layout_constraintTop_toBottomOf="@id/tvFreteLabel" />
+
+                    <TextView
+                        android:id="@+id/tvFreteValor"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/resumo_valor_padrao"
+                        android:textAppearance="?attr/textAppearanceTitleMedium"
+                        app:layout_constraintBottom_toBottomOf="@id/cardIconeFrete"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/cardIconeFrete" />
+
+                    <View
+                        android:id="@+id/divisorFreteCorretor"
+                        android:layout_width="0dp"
+                        android:layout_height="1dp"
+                        android:layout_marginVertical="16dp"
+                        android:background="?attr/colorOutlineVariant"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/cardIconeFrete" />
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/cardIconeCorretor"
+                        style="?attr/materialCardViewFilledStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:cardBackgroundColor="?attr/colorSurfaceContainerHigh"
+                        app:cardCornerRadius="12dp"
+                        app:contentPadding="8dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/divisorFreteCorretor">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:importantForAccessibility="no"
                             android:src="@drawable/handshake_24px" />
+
                     </com.google.android.material.card.MaterialCardView>
 
-                    <LinearLayout
-                        android:id="@+id/layoutTextoCorretor"
+                    <TextView
+                        android:id="@+id/tvCorretorLabel"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:id="@+id/tvResumoCorretorLabel"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/resumo_corretor_label"
-                            android:textAppearance="?attr/textAppearanceBodyMedium"
-                            android:textColor="?attr/colorOnSurface"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:id="@+id/tvResumoCorretorHelper"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="4dp"
-                            android:text="@string/resumo_frete_helper"
-                            android:textAppearance="?attr/textAppearanceBodySmall"
-                            android:textColor="?attr/colorOnSurfaceVariant" />
-                    </LinearLayout>
+                        android:text="@string/resumo_corretor_label"
+                        android:textAppearance="?attr/textAppearanceTitleSmall"
+                        android:textColor="?attr/colorOnSurface"
+                        app:layout_constraintEnd_toStartOf="@id/tvCorretorValor"
+                        app:layout_constraintStart_toEndOf="@id/cardIconeCorretor"
+                        app:layout_constraintTop_toTopOf="@id/cardIconeCorretor" />
 
                     <TextView
-                        android:id="@+id/tvResumoCorretorValor"
-                        android:layout_width="wrap_content"
+                        android:id="@+id/tvCorretorHelper"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
+                        android:layout_marginTop="4dp"
+                        android:text="@string/resumo_frete_helper"
+                        android:textAppearance="?attr/textAppearanceBodySmall"
+                        android:textColor="?attr/colorOnSurfaceVariant"
+                        app:layout_constraintEnd_toStartOf="@id/tvCorretorValor"
+                        app:layout_constraintStart_toEndOf="@id/cardIconeCorretor"
+                        app:layout_constraintTop_toBottomOf="@id/tvCorretorLabel" />
+
+                    <TextView
+                        android:id="@+id/tvCorretorValor"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:text="@string/resumo_valor_padrao"
                         android:textAppearance="?attr/textAppearanceTitleMedium"
-                        android:textStyle="bold" />
-                </LinearLayout>
+                        app:layout_constraintBottom_toBottomOf="@id/cardIconeCorretor"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/cardIconeCorretor" />
 
-            </LinearLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </com.google.android.material.card.MaterialCardView>
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/cardTotal"
                 style="?attr/materialCardViewFilledStyle"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="8dp"
                 app:cardBackgroundColor="?attr/colorSurfaceContainer"
-                app:shapeAppearance="?attr/shapeAppearanceCornerLarge">
+                app:shapeAppearance="?attr/shapeAppearanceCornerLarge"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/cardResumo">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/layoutTotal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:padding="16dp">
 
                     <ImageView
-                        android:id="@+id/ivTotalIcon"
+                        android:id="@+id/ivTotalIcone"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:contentDescription="@null"
+                        android:importantForAccessibility="no"
                         android:src="@drawable/verified_24px"
+                        app:tint="?attr/colorOnSurfaceVariant"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:tint="?attr/colorOnSurfaceVariant" />
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
                         android:id="@+id/tvTotalLabel"
@@ -316,6 +337,7 @@
                         android:layout_height="wrap_content"
                         android:text="@string/total_label_padrao"
                         android:textAppearance="?attr/textAppearanceLabelLarge"
+                        android:textColor="?attr/colorOnSurfaceVariant"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -326,7 +348,6 @@
                         android:layout_marginTop="8dp"
                         android:text="@string/resumo_valor_padrao"
                         android:textAppearance="?attr/textAppearanceHeadlineMedium"
-                        android:textStyle="bold"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/tvTotalLabel" />
 
@@ -337,52 +358,50 @@
                         android:layout_marginTop="4dp"
                         android:text="@string/total_delta_padrao"
                         android:textAppearance="?attr/textAppearanceBodySmall"
+                        android:textColor="?attr/colorOnSurfaceVariant"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/tvTotalValor" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
+
             </com.google.android.material.card.MaterialCardView>
 
-            <LinearLayout
-                android:id="@+id/containerBotoesAcao"
-                style="?android:attr/buttonBarStyle"
-                android:layout_width="match_parent"
+            <Button
+                android:id="@+id/btnCompartilhar"
+                style="@style/Widget.Material3.Button.TonalButton"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
-                android:orientation="horizontal">
+                android:layout_marginEnd="8dp"
+                android:text="@string/btn_compartilhar"
+                app:icon="@drawable/share_24px"
+                app:layout_constraintEnd_toStartOf="@id/btnExportarPdf"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/cardTotal" />
 
-                <Button
-                    android:id="@+id/btnCompartilhar"
-                    style="?android:attr/buttonBarButtonStyle"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="8dp"
-                    android:layout_weight="1"
-                    android:text="@string/btn_compartilhar"
-                    app:icon="@drawable/share_24px" />
+            <Button
+                android:id="@+id/btnExportarPdf"
+                style="@style/Widget.Material3.Button.TonalButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="@string/btn_exportar_pdf"
+                app:icon="@drawable/folder_open_24px"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/btnCompartilhar"
+                app:layout_constraintTop_toBottomOf="@id/cardTotal" />
 
-                <Button
-                    android:id="@+id/btnExportarPdf"
-                    style="?android:attr/buttonBarButtonStyle"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_weight="1"
-                    android:text="@string/btn_exportar_pdf"
-                    app:icon="@drawable/folder_open_24px" />
-            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-        </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 
     <Button
         android:id="@+id/btnNovaNegociacao"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:padding="16dp"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginBottom="16dp"
         android:text="@string/btn_nova_negociacao"
-        android:textSize="16sp"
         app:icon="@drawable/arrow_forward_24px"
         app:iconGravity="end"
         app:layout_constraintBottom_toBottomOf="parent"

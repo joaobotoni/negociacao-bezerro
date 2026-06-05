@@ -29,49 +29,93 @@
             android:padding="16dp">
 
             <com.google.android.material.card.MaterialCardView
-                android:id="@+id/cardDica"
+                android:id="@+id/cardComprador"
                 style="?attr/materialCardViewFilledStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:cardBackgroundColor="?attr/colorSurfaceContainer">
+                app:cardBackgroundColor="?attr/colorSurfaceContainer"
+                app:shapeAppearance="?attr/shapeAppearanceCornerLarge">
 
-                <LinearLayout
-                    android:id="@+id/layoutDica"
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
                     android:padding="16dp">
 
-                    <ImageView
-                        android:id="@+id/ivDicaIcon"
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/containerIcone"
+                        style="?attr/materialCardViewFilledStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:importantForAccessibility="no"
-                        android:src="@drawable/lightbulb_24px" />
+                        app:cardCornerRadius="16dp"
+                        app:contentPadding="8dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
 
-                    <LinearLayout
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:importantForAccessibility="no"
+                            android:src="@drawable/domain_24px" />
+
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <TextView
+                        android:id="@+id/tvCompradorTitulo"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="16dp"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
+                        android:layout_marginEnd="16dp"
+                        android:text="Comprador"
+                        android:textAppearance="?attr/textAppearanceTitleSmall"
+                        app:layout_constraintEnd_toStartOf="@+id/tvArrobaTitulo"
+                        app:layout_constraintStart_toEndOf="@+id/containerIcone"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-                        <TextView
-                            android:id="@+id/tvDicaTitulo"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/titulo_dica_proxima_etapa"
-                            android:textAppearance="?attr/textAppearanceTitleMedium" />
+                    <TextView
+                        android:id="@+id/tvCompradorNome"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:text="Bom sucesso"
+                        android:textAppearance="?attr/textAppearanceTitleMedium"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="@+id/tvCompradorTitulo"
+                        app:layout_constraintStart_toStartOf="@+id/tvCompradorTitulo"
+                        app:layout_constraintTop_toBottomOf="@+id/tvCompradorTitulo" />
 
-                        <TextView
-                            android:id="@+id/tvDicaValor"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="4dp"
-                            android:text="@string/descricao_dica_proxima_etapa"
-                            android:textAppearance="?attr/textAppearanceBodySmall" />
-                    </LinearLayout>
-                </LinearLayout>
+                    <TextView
+                        android:id="@+id/tvArrobaTitulo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Arroba"
+                        android:textAppearance="?attr/textAppearanceTitleSmall"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tvMoedaSimb"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="2dp"
+                        android:text="R$"
+                        app:layout_constraintBaseline_toBaselineOf="@+id/tvArrobaValor"
+                        app:layout_constraintEnd_toStartOf="@+id/tvArrobaValor" />
+
+                    <TextView
+                        android:id="@+id/tvArrobaValor"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:text="@string/placeholder_valor_total"
+                        android:textAppearance="?attr/textAppearanceBodyLarge"
+                        android:textColor="?attr/colorPrimary"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tvArrobaTitulo" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
             </com.google.android.material.card.MaterialCardView>
 
             <LinearLayout
@@ -199,8 +243,8 @@
 
                         <ImageView
                             android:id="@+id/ivIconQuilo"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_width="28dp"
+                            android:layout_height="24dp"
                             android:importantForAccessibility="no"
                             android:src="@drawable/weight_24px" />
                     </com.google.android.material.card.MaterialCardView>

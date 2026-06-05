@@ -206,7 +206,6 @@
     <string name="btn_finalizar_negociacao">Finalizar negociação</string>
     <string name="btn_compartilhar">Compartilhar</string>
     <string name="btn_exportar_pdf">Exportar PDF</string>
-    <string name="btn_nova_negociacao">Nova negociação</string>
 
     <!-- Descrições de acessibilidade (contentDescription) -->
     <string name="cd_toolbar">Barra de navegação</string>
@@ -234,7 +233,7 @@
     <string name="resumo_corretor_helper">Comissão por intermediação</string>
 
 
-    <string name="sucesso_titulo_padrao">Proposta enviada</string>
+    <string name="sucesso_titulo_padrao">Negociação enviada</string>
     <string name="sucesso_subtitulo_padrao">Empresa · Bom Sucesso</string>
 
 

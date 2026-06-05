@@ -1,110 +1,123 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
         android:layout_width="0dp"
-        android:layout_height="?attr/actionBarSize"
-        android:contentDescription="@string/cd_toolbar"
+        android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:navigationContentDescription="@string/cd_voltar"
-        app:navigationIcon="@android:drawable/ic_menu_revert"
-        app:title="@string/title_nova_negociacao" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <ImageButton
-        android:id="@+id/btnMais"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="4dp"
-        android:background="?attr/selectableItemBackgroundBorderless"
-        android:contentDescription="@string/cd_mais_opcoes"
-        android:minWidth="48dp"
-        android:minHeight="48dp"
-        app:layout_constraintBottom_toBottomOf="@id/toolbar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/toolbar"
-        tools:src="@android:drawable/ic_menu_more" />
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:contentDescription="@string/cd_toolbar"
+            app:navigationContentDescription="@string/cd_voltar"
+            app:navigationIcon="@drawable/arrow_back_24px"
+            app:title="@string/title_nova_negociacao">
+
+            <ImageButton
+                android:id="@+id/btnMais"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginEnd="4dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@string/cd_mais_opcoes"
+                android:minWidth="48dp"
+                android:minHeight="48dp"
+                tools:src="@android:drawable/ic_menu_more" />
+
+        </com.google.android.material.appbar.MaterialToolbar>
+
+    </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.core.widget.NestedScrollView
-        android:id="@+id/nsvBody"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:clipToPadding="false"
+        android:fillViewport="true"
         app:layout_constraintBottom_toTopOf="@id/btnFinalizar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/toolbar">
+        app:layout_constraintTop_toBottomOf="@id/appBarLayout">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingStart="16dp"
-            android:paddingEnd="16dp"
-            android:paddingBottom="24dp">
+            android:paddingHorizontal="16dp"
+            android:paddingTop="16dp"
+            android:paddingBottom="16dp">
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/cardReferencia"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                app:shapeAppearance="?attr/shapeAppearanceCornerLarge"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
-                <LinearLayout
-                    android:id="@+id/layoutReferencia"
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
                     android:padding="16dp">
 
                     <ImageView
-                        android:id="@+id/ivReferenciaIcon"
+                        android:id="@+id/ivReferenciaIcone"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="16dp"
-                        android:contentDescription="@null"
                         android:importantForAccessibility="no"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
                         tools:src="@android:drawable/ic_menu_recent_history" />
 
-                    <LinearLayout
+                    <TextView
+                        android:id="@+id/tvReferenciaTitulo"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
+                        android:layout_marginStart="16dp"
+                        android:textAppearance="?attr/textAppearanceTitleSmall"
+                        android:textColor="?attr/colorOnSurface"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/ivReferenciaIcone"
+                        app:layout_constraintTop_toTopOf="@id/ivReferenciaIcone"
+                        tools:text="Valores simulados (referência)" />
 
-                        <TextView
-                            android:id="@+id/tvReferenciaTitulo"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:textAppearance="?attr/textAppearanceTitleMedium"
-                            tools:text="Valores simulados (referência)" />
+                    <TextView
+                        android:id="@+id/tvReferenciaValores"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="4dp"
+                        android:textAppearance="?attr/textAppearanceBodySmall"
+                        android:textColor="?attr/colorOnSurfaceVariant"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/ivReferenciaIcone"
+                        app:layout_constraintTop_toBottomOf="@id/tvReferenciaTitulo"
+                        tools:text="R$ 9,50 /kg · R$ 0,00 /cab." />
 
-                        <TextView
-                            android:id="@+id/tvReferenciaValores"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="4dp"
-                            android:textAppearance="?attr/textAppearanceBodyMedium"
-                            tools:text="R$ 9,50 /kg · R$ 0,00 /cab." />
-                    </LinearLayout>
-                </LinearLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
             </com.google.android.material.card.MaterialCardView>
 
             <TextView
-                android:id="@+id/tvLabelProposta"
-                android:layout_width="0dp"
+                android:id="@+id/tvSecaoProposta"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
                 android:text="@string/label_proposta"
-                android:textAppearance="?attr/textAppearanceLabelSmall"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:textAllCaps="true"
+                android:textAppearance="?attr/textAppearanceLabelLarge"
+                android:textColor="?attr/colorOnSurfaceVariant"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/cardReferencia" />
 
@@ -116,16 +129,17 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
                 android:hint="@string/hint_por_cabeca"
+                app:startIconDrawable="@android:drawable/ic_menu_edit"
                 app:layout_constraintEnd_toStartOf="@id/tilPorKg"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tvLabelProposta"
-                app:startIconDrawable="@android:drawable/ic_menu_edit">
+                app:layout_constraintTop_toBottomOf="@id/tvSecaoProposta">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etPorCabeca"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="numberDecimal" />
+
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -135,16 +149,17 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:hint="@string/hint_por_kg"
+                app:startIconDrawable="@android:drawable/ic_menu_edit"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/tilPorCabeca"
-                app:layout_constraintTop_toBottomOf="@id/tvLabelProposta"
-                app:startIconDrawable="@android:drawable/ic_menu_edit">
+                app:layout_constraintTop_toBottomOf="@id/tvSecaoProposta">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etPorKg"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="numberDecimal" />
+
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -152,18 +167,19 @@
                 style="@style/Widget.Material3.TextInputLayout.FilledBox"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="8dp"
                 android:hint="@string/hint_valor_frete"
+                app:startIconDrawable="@android:drawable/ic_menu_edit"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tilPorCabeca"
-                app:startIconDrawable="@android:drawable/ic_menu_edit">
+                app:layout_constraintTop_toBottomOf="@id/tilPorCabeca">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/etFrete"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="numberDecimal" />
+
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.card.MaterialCardView
@@ -173,49 +189,53 @@
                 android:layout_marginTop="16dp"
                 android:clickable="true"
                 android:focusable="true"
+                app:shapeAppearance="?attr/shapeAppearanceCornerLarge"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tilFrete">
 
-                <LinearLayout
-                    android:id="@+id/layoutSimularFrete"
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
                     android:padding="16dp">
 
                     <ImageView
-                        android:id="@+id/ivSimularFreteIcon"
+                        android:id="@+id/ivSimularFreteIcone"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="16dp"
-                        android:contentDescription="@null"
                         android:importantForAccessibility="no"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
                         tools:src="@android:drawable/ic_menu_directions" />
 
-                    <LinearLayout
+                    <TextView
+                        android:id="@+id/tvSimularFreteTitulo"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
+                        android:layout_marginStart="16dp"
+                        android:textAppearance="?attr/textAppearanceTitleSmall"
+                        android:textColor="?attr/colorOnSurface"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/ivSimularFreteIcone"
+                        app:layout_constraintTop_toTopOf="@id/ivSimularFreteIcone"
+                        tools:text="Simular um frete" />
 
-                        <TextView
-                            android:id="@+id/tvSimularFreteTitulo"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:textAppearance="?attr/textAppearanceTitleMedium"
-                            tools:text="Simular um frete" />
+                    <TextView
+                        android:id="@+id/tvSimularFreteSub"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="4dp"
+                        android:textAppearance="?attr/textAppearanceBodySmall"
+                        android:textColor="?attr/colorOnSurfaceVariant"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/ivSimularFreteIcone"
+                        app:layout_constraintTop_toBottomOf="@id/tvSimularFreteTitulo"
+                        tools:text="Calcule o custo do transporte por km, cabeça ou valor fixo" />
 
-                        <TextView
-                            android:id="@+id/tvSimularFreteSub"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="4dp"
-                            android:textAppearance="?attr/textAppearanceBodyMedium"
-                            tools:text="Calcule o custo do transporte por km, cabeça ou valor fixo" />
-                    </LinearLayout>
-                </LinearLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
             </com.google.android.material.card.MaterialCardView>
 
             <com.google.android.material.card.MaterialCardView
@@ -225,138 +245,154 @@
                 android:layout_marginTop="8dp"
                 android:clickable="true"
                 android:focusable="true"
+                app:shapeAppearance="?attr/shapeAppearanceCornerLarge"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/cardSimularFrete">
 
-                <LinearLayout
-                    android:id="@+id/layoutCorretor"
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
                     android:padding="16dp">
 
                     <ImageView
-                        android:id="@+id/ivCorretorIcon"
+                        android:id="@+id/ivCorretorIcone"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="16dp"
-                        android:contentDescription="@null"
                         android:importantForAccessibility="no"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
                         tools:src="@android:drawable/ic_menu_agenda" />
 
-                    <LinearLayout
+                    <TextView
+                        android:id="@+id/tvCorretorTitulo"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:orientation="vertical">
+                        android:layout_marginStart="16dp"
+                        android:textAppearance="?attr/textAppearanceTitleSmall"
+                        android:textColor="?attr/colorOnSurface"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/ivCorretorIcone"
+                        app:layout_constraintTop_toTopOf="@id/ivCorretorIcone"
+                        tools:text="Sem corretor" />
 
-                        <TextView
-                            android:id="@+id/tvCorretorTitulo"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:textAppearance="?attr/textAppearanceTitleMedium"
-                            tools:text="Sem corretor" />
+                    <TextView
+                        android:id="@+id/tvCorretorSub"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="4dp"
+                        android:textAppearance="?attr/textAppearanceBodySmall"
+                        android:textColor="?attr/colorOnSurfaceVariant"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/ivCorretorIcone"
+                        app:layout_constraintTop_toBottomOf="@id/tvCorretorTitulo"
+                        tools:text="Sem comissão aplicada" />
 
-                        <TextView
-                            android:id="@+id/tvCorretorSub"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="4dp"
-                            android:textAppearance="?attr/textAppearanceBodyMedium"
-                            tools:text="Sem comissão aplicada" />
-                    </LinearLayout>
-                </LinearLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
             </com.google.android.material.card.MaterialCardView>
 
             <TextView
-                android:id="@+id/tvLabelComposicao"
-                android:layout_width="0dp"
+                android:id="@+id/tvSecaoComposicao"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
                 android:text="@string/label_composicao_valor"
-                android:textAppearance="?attr/textAppearanceLabelSmall"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:textAllCaps="true"
+                android:textAppearance="?attr/textAppearanceLabelLarge"
+                android:textColor="?attr/colorOnSurfaceVariant"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/cardCorretor" />
 
-            <LinearLayout
-                android:id="@+id/containerComposicao"
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardComposicaoPedido"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:orientation="vertical"
+                app:shapeAppearance="?attr/shapeAppearanceCornerLarge"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tvLabelComposicao">
+                app:layout_constraintTop_toBottomOf="@id/tvSecaoComposicao">
 
-                <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/cardComposicaoPedido"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:padding="16dp">
-
-                        <TextView
-                            android:id="@+id/tvStepPedidoLabel"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:textAppearance="?attr/textAppearanceBodyMedium"
-                            tools:text="Pedido / Proposto" />
-
-                        <TextView
-                            android:id="@+id/tvStepPedidoValor"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="4dp"
-                            android:textAppearance="?attr/textAppearanceTitleMedium"
-                            tools:text="R$ 0,00 \n R$ 0,00/kg" />
-                    </LinearLayout>
-                </com.google.android.material.card.MaterialCardView>
-
-                <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/cardComposicaoFechamento"
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp">
+                    android:padding="16dp">
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
+                    <TextView
+                        android:id="@+id/tvPedidoLabel"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:padding="16dp">
+                        android:textAppearance="?attr/textAppearanceBodyMedium"
+                        android:textColor="?attr/colorOnSurfaceVariant"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="Pedido / Proposto" />
 
-                        <TextView
-                            android:id="@+id/tvStepFechamentoLabel"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:textAppearance="?attr/textAppearanceBodyMedium"
-                            tools:text="Fechamento" />
+                    <TextView
+                        android:id="@+id/tvPedidoValor"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:textAppearance="?attr/textAppearanceTitleMedium"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tvPedidoLabel"
+                        tools:text="R$ 0,00 / R$ 0,00/kg" />
 
-                        <TextView
-                            android:id="@+id/tvStepFechamentoValor"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="4dp"
-                            android:textAppearance="?attr/textAppearanceTitleMedium"
-                            tools:text="R$ 0,00" />
-                    </LinearLayout>
-                </com.google.android.material.card.MaterialCardView>
-            </LinearLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardComposicaoFechamento"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                app:shapeAppearance="?attr/shapeAppearanceCornerLarge"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/cardComposicaoPedido">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:id="@+id/tvFechamentoLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?attr/textAppearanceBodyMedium"
+                        android:textColor="?attr/colorOnSurfaceVariant"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="Fechamento" />
+
+                    <TextView
+                        android:id="@+id/tvFechamentoValor"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:textAppearance="?attr/textAppearanceTitleMedium"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tvFechamentoLabel"
+                        tools:text="R$ 0,00" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
         </androidx.constraintlayout.widget.ConstraintLayout>
+
     </androidx.core.widget.NestedScrollView>
 
     <Button
         android:id="@+id/btnFinalizar"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginHorizontal="16dp"
         android:layout_marginBottom="16dp"
         android:text="@string/btn_finalizar_negociacao"
         app:icon="@android:drawable/checkbox_on_background"

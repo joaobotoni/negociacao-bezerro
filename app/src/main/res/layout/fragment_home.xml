@@ -5,50 +5,65 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:contentDescription="@string/cd_toolbar"
-        app:layout_constraintTop_toTopOf="parent"
-        app:title="@string/title_negociacao_finalizada" />
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:contentDescription="@string/cd_toolbar"
+            app:title="Nova Negociação" />
+
+    </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.core.widget.NestedScrollView
-        android:id="@+id/nsvBody"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="0dp"
         android:clipToPadding="false"
         android:fillViewport="true"
         app:layout_constraintBottom_toTopOf="@id/btnProximo"
-        app:layout_constraintTop_toBottomOf="@id/toolbar">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/appBarLayout">
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingBottom="24dp">
+            android:paddingHorizontal="16dp"
+            android:paddingTop="24dp"
+            android:paddingBottom="16dp">
 
             <TextView
+                android:id="@+id/tvSecaoEmpresa"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
                 android:text="@string/label_empresa_compradora"
                 android:textAllCaps="true"
-                android:textAppearance="?attr/textAppearanceLabelLarge" />
-
+                android:textAppearance="?attr/textAppearanceLabelLarge"
+                android:textColor="?attr/colorOnSurfaceVariant"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <com.google.android.material.card.MaterialCardView
-                android:id="@+id/containerSelecionarEmpresa"
-                android:layout_width="match_parent"
+                android:id="@+id/cardSelecionarEmpresa"
                 style="?attr/materialCardViewFilledStyle"
-                app:cardBackgroundColor="?attr/colorSurfaceContainer"
-                app:shapeAppearance="?attr/shapeAppearanceCornerLarge"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_margin="16dp"
+                android:layout_marginTop="8dp"
                 android:clickable="true"
-                android:focusable="true">
+                android:contentDescription="@null"
+                android:focusable="true"
+                app:cardBackgroundColor="?attr/colorSurfaceContainer"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvSecaoEmpresa"
+                app:shapeAppearance="?attr/shapeAppearanceCornerLarge">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
@@ -60,8 +75,9 @@
                         style="?attr/materialCardViewFilledStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        app:cardCornerRadius="100dp"
-                        app:strokeWidth="0dp"
+                        app:cardBackgroundColor="?attr/colorSecondaryContainer"
+                        app:cardCornerRadius="12dp"
+                        app:contentPadding="8dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent">
@@ -70,58 +86,65 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:importantForAccessibility="no"
-                            android:padding="10dp"
-                            android:src="@drawable/domain_24px" />
+                            android:src="@drawable/domain_24px"
+                            app:tint="?attr/colorOnSecondaryContainer" />
 
                     </com.google.android.material.card.MaterialCardView>
 
                     <TextView
-                        android:id="@+id/tvTituloEmpresa"
+                        android:id="@+id/tvNomeEmpresa"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="12dp"
+                        android:layout_marginStart="16dp"
                         android:text="@string/title_selecionar_empresa"
+                        android:textAppearance="?attr/textAppearanceTitleSmall"
                         android:textColor="?attr/colorOnSurface"
-                        android:textSize="15sp"
-                        android:textStyle="bold"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@id/cardIconeEmpresa"
-                        app:layout_constraintTop_toTopOf="@id/cardIconeEmpresa" />
+                        app:layout_constraintTop_toTopOf="@id/cardIconeEmpresa"
+                        tools:text="Empresa Ltda." />
 
                     <TextView
                         android:id="@+id/tvDescricaoEmpresa"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="12dp"
-                        android:layout_marginTop="2dp"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="4dp"
                         android:text="@string/desc_selecionar_empresa"
+                        android:textAppearance="?attr/textAppearanceBodySmall"
                         android:textColor="?attr/colorOnSurfaceVariant"
-                        android:textSize="12sp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@id/cardIconeEmpresa"
-                        app:layout_constraintTop_toBottomOf="@id/tvTituloEmpresa" />
+                        app:layout_constraintTop_toBottomOf="@id/tvNomeEmpresa"
+                        tools:text="Toque para selecionar" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
             </com.google.android.material.card.MaterialCardView>
+
             <TextView
+                android:id="@+id/tvSecaoHistorico"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
+                android:layout_marginTop="24dp"
                 android:text="@string/label_historico_recente"
                 android:textAllCaps="true"
-                android:textAppearance="?attr/textAppearanceLabelLarge" />
+                android:textAppearance="?attr/textAppearanceLabelLarge"
+                android:textColor="?attr/colorOnSurfaceVariant"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/cardSelecionarEmpresa" />
 
             <com.google.android.material.card.MaterialCardView
-                android:id="@+id/cardHistorico"
+                android:id="@+id/cardHistoricoRecente"
                 style="?attr/materialCardViewFilledStyle"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_margin="16dp"
+                android:layout_marginTop="8dp"
                 app:cardBackgroundColor="?attr/colorSurfaceContainer"
-                app:cardCornerRadius="12dp">
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvSecaoHistorico"
+                app:shapeAppearance="?attr/shapeAppearanceCornerLarge">
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rvHistoricoRecente"
@@ -129,50 +152,50 @@
                     android:layout_height="wrap_content"
                     android:clipToPadding="false"
                     android:nestedScrollingEnabled="false"
-                    android:paddingTop="8dp"
-                    android:paddingBottom="8dp"
+                    android:paddingVertical="4dp"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     tools:itemCount="3"
                     tools:listitem="@layout/item_empresa" />
+
             </com.google.android.material.card.MaterialCardView>
 
             <LinearLayout
-                android:layout_width="match_parent"
+                android:id="@+id/layoutAviso"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="16dp"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
+                android:layout_marginTop="16dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/cardHistoricoRecente">
 
                 <ImageView
+                    android:id="@+id/icAviso"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:contentDescription="@null"
+                    android:importantForAccessibility="no"
                     android:src="@drawable/info_24px"
                     app:tint="?attr/colorOnSurfaceVariant" />
 
                 <TextView
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
-                    android:layout_weight="1"
                     android:text="@string/msg_aviso_alterar_empresa"
-                    android:textAppearance="?attr/textAppearanceBodyMedium"
+                    android:textAppearance="?attr/textAppearanceBodySmall"
                     android:textColor="?attr/colorOnSurfaceVariant" />
             </LinearLayout>
-
-        </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
 
     <Button
         android:id="@+id/btnProximo"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:padding="16dp"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginBottom="16dp"
         android:text="@string/btn_proximo"
-        android:textSize="16sp"
         app:icon="@drawable/arrow_forward_24px"
         app:iconGravity="end"
         app:layout_constraintBottom_toBottomOf="parent"
