@@ -109,7 +109,7 @@
 
     <!-- Cotação -->
     <string name="ncotacao_title">Nova cotação</string>
-    <string name="cotacao_label_comprador">Comprador</string>
+    <string name="cotacao_label_comprador">Empresa compradora</string>
     <string name="cotacao_label_arroba">Arroba</string>
     <string name="cotacao_label_sexo">Sexo</string>
     <string name="cotacao_chip_macho">Macho</string>
@@ -192,7 +192,7 @@
     <!-- Sincronização -->
     <string name="conexao_title">Conexão remota</string>
     <string name="conexao_titulo_estabelecer">Estabelecer conexão</string>
-    <string name="conexao_desc_conectar">Conecte-se ao servidor para sincronizar</string>
+    <string name="conexao_desc_conectar">Conectar para sincronizar</string>
     <string name="conexao_label_servidor">Servidor</string>
     <string name="conexao_hint_site">Site</string>
     <string name="conexao_hint_ip">Endereço IP</string>

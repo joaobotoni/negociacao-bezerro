@@ -10,7 +10,7 @@
     android:focusable="true"
     app:cardBackgroundColor="?attr/colorSurfaceContainerLow"
     android:layout_marginBottom="@dimen/size_small"
-    app:shapeAppearance="?attr/shapeAppearanceCornerExtraLarge">
+    app:shapeAppearance="?attr/shapeAppearanceCornerExtraExtraLarge">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

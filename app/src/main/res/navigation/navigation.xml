@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation"
-    app:startDestination="@id/cotacaoFragment">
+    app:startDestination="@id/conexaoFragment">
     <fragment
         android:id="@+id/cotacaoFragment"
         android:name="com.omni.negociacaobezerros.ui.fragments.CotacaoFragment"
