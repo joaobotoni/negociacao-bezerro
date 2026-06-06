@@ -9,19 +9,18 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.omni.negociacaobezerros.databinding.FragmentNegociacaoBinding;
+import com.omni.negociacaobezerros.databinding.FragmentSincronizacaoBinding;
 
-public class NegociacaoFragment extends Fragment {
+public class SincronizacaoFragment extends Fragment {
 
-    private FragmentNegociacaoBinding binding;
+    private FragmentSincronizacaoBinding binding;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        binding = FragmentNegociacaoBinding.inflate(inflater, container, false);
+        binding = FragmentSincronizacaoBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
-
 
     @Override
     public void onDestroyView() {

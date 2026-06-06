@@ -1,0 +1,17 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/menu_home_sincronizacao"
+        android:icon="@drawable/sync_24px"
+        android:title="@string/sincronizacao_title"
+        android:contentDescription="@string/sincronizacao_title"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/menu_home_opcao_1"
+        android:title="@string/conexao_title"
+        android:icon="@drawable/more_vert_24px"
+        android:contentDescription="@string/conexao_title"
+        app:showAsAction="ifRoom" />
+</menu>

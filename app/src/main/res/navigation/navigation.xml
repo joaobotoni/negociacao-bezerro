@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation"
-    app:startDestination="@id/homeFragment">
+    app:startDestination="@id/cotacaoFragment">
     <fragment
         android:id="@+id/cotacaoFragment"
         android:name="com.omni.negociacaobezerros.ui.fragments.CotacaoFragment"
@@ -16,4 +16,12 @@
         android:id="@+id/homeFragment"
         android:name="com.omni.negociacaobezerros.ui.fragments.HomeFragment"
         android:label="HomeFragment" />
+    <fragment
+        android:id="@+id/conexaoFragment"
+        android:name="com.omni.negociacaobezerros.ui.fragments.ConexaoFragment"
+        android:label="ConexaoFragment" />
+    <fragment
+        android:id="@+id/sincronizacaoFragment"
+        android:name="com.omni.negociacaobezerros.ui.fragments.SincronizacaoFragment"
+        android:label="SincronizacaoFragment" />
 </navigation>

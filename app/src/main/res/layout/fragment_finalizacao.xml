@@ -1,407 +1,380 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/appBarLayout"
-        android:layout_width="0dp"
+        android:id="@+id/constraint_layout_finalizacao_appbar"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/toolbar"
+            android:id="@+id/constraint_layout_finalizacao_toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:contentDescription="@string/cd_toolbar"
+            app:navigationContentDescription="@string/cd_voltar"
             app:navigationIcon="@drawable/arrow_back_24px"
-            app:title="@string/title_negociacao_finalizada" />
-
+            app:title="@string/finalizacao_title" />
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.core.widget.NestedScrollView
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
         android:clipToPadding="false"
         android:fillViewport="true"
-        app:layout_constraintBottom_toTopOf="@id/btnNovaNegociacao"
+        app:layout_constraintBottom_toTopOf="@id/button_finalizacao_nova_negociacao"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/appBarLayout">
+        app:layout_constraintTop_toBottomOf="@id/constraint_layout_finalizacao_appbar">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingHorizontal="16dp"
-            android:paddingTop="24dp"
-            android:paddingBottom="16dp">
+            android:paddingHorizontal="@dimen/size_medium"
+            android:paddingTop="@dimen/size_large"
+            android:paddingBottom="@dimen/size_medium">
 
             <com.google.android.material.card.MaterialCardView
-                android:id="@+id/cardIconeSucesso"
+                android:id="@+id/card_view_finalizacao_icone_sucesso"
                 style="?attr/materialCardViewFilledStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:cardBackgroundColor="?attr/colorSurfaceContainerHigh"
-                app:cardCornerRadius="64dp"
-                app:contentPadding="24dp"
+                app:contentPadding="@dimen/size_large"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toTopOf="parent"
+                app:shapeAppearance="?attr/shapeAppearanceCornerExtraExtraLarge">
 
                 <ImageView
-                    android:id="@+id/ivIconeSucesso"
-                    android:layout_width="64dp"
-                    android:layout_height="64dp"
+                    android:id="@+id/image_view_finalizacao_icone_sucesso"
+                    android:layout_width="@dimen/size_extra_large"
+                    android:layout_height="@dimen/size_extra_large"
                     android:contentDescription="@string/cd_sucesso"
                     android:scaleType="fitCenter"
-                    android:src="@drawable/verified_24px"
-                    app:tint="?attr/colorPrimary" />
+                    android:src="@drawable/verified_24px" />
 
             </com.google.android.material.card.MaterialCardView>
 
             <TextView
-                android:id="@+id/tvTituloSucesso"
-                android:layout_width="0dp"
+                android:id="@+id/text_view_finalizacao_titulo_sucesso"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="@dimen/size_medium"
                 android:gravity="center"
-                android:text="@string/sucesso_titulo_padrao"
+                android:text="@string/finalizacao_sucesso_titulo"
                 android:textAppearance="?attr/textAppearanceHeadlineSmall"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/cardIconeSucesso" />
+                app:layout_constraintTop_toBottomOf="@id/card_view_finalizacao_icone_sucesso" />
 
             <TextView
-                android:id="@+id/tvSubtituloSucesso"
-                android:layout_width="0dp"
+                android:id="@+id/text_view_finalizacao_subtitulo_sucesso"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="@dimen/size_extra_small"
                 android:gravity="center"
-                android:text="@string/sucesso_subtitulo_padrao"
+                android:text="@string/finalizacao_sucesso_subtitulo"
                 android:textAppearance="?attr/textAppearanceBodyMedium"
                 android:textColor="?attr/colorOnSurfaceVariant"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tvTituloSucesso" />
+                app:layout_constraintTop_toBottomOf="@id/text_view_finalizacao_titulo_sucesso" />
 
-            <TextView
-                android:id="@+id/tvSecaoResumo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:text="@string/label_resumo_financeiro"
-                android:textAllCaps="true"
-                android:textAppearance="?attr/textAppearanceLabelLarge"
-                android:textColor="?attr/colorOnSurfaceVariant"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tvSubtituloSucesso" />
 
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/cardResumo"
-                style="?attr/materialCardViewFilledStyle"
-                android:layout_width="0dp"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraint_layout_finalizacao_resumo"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                app:cardBackgroundColor="?attr/colorSurfaceContainer"
-                app:shapeAppearance="?attr/shapeAppearanceCornerLarge"
+                android:layout_marginTop="@dimen/size_extra_small"
+                android:padding="@dimen/size_small"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tvSecaoResumo">
+                app:layout_constraintTop_toBottomOf="@id/text_view_finalizacao_subtitulo_sucesso">
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/card_view_finalizacao_icone_fornecedor"
+                    style="?attr/materialCardViewFilledStyle"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="16dp">
-
-                    <com.google.android.material.card.MaterialCardView
-                        android:id="@+id/cardIconeFornecedor"
-                        style="?attr/materialCardViewFilledStyle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        app:cardBackgroundColor="?attr/colorSurfaceContainerHigh"
-                        app:cardCornerRadius="12dp"
-                        app:contentPadding="8dp"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent">
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:importantForAccessibility="no"
-                            android:src="@drawable/approval_delegation_24px" />
-
-                    </com.google.android.material.card.MaterialCardView>
-
-                    <TextView
-                        android:id="@+id/tvFornecedorLabel"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:text="@string/resumo_fornecedor_label"
-                        android:textAppearance="?attr/textAppearanceTitleSmall"
-                        android:textColor="?attr/colorOnSurface"
-                        app:layout_constraintEnd_toStartOf="@id/tvFornecedorValor"
-                        app:layout_constraintStart_toEndOf="@id/cardIconeFornecedor"
-                        app:layout_constraintTop_toTopOf="@id/cardIconeFornecedor" />
-
-                    <TextView
-                        android:id="@+id/tvFornecedorHelper"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginTop="4dp"
-                        android:text="@string/resumo_fornecedor_helper"
-                        android:textAppearance="?attr/textAppearanceBodySmall"
-                        android:textColor="?attr/colorOnSurfaceVariant"
-                        app:layout_constraintEnd_toStartOf="@id/tvFornecedorValor"
-                        app:layout_constraintStart_toEndOf="@id/cardIconeFornecedor"
-                        app:layout_constraintTop_toBottomOf="@id/tvFornecedorLabel" />
-
-                    <TextView
-                        android:id="@+id/tvFornecedorValor"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/resumo_valor_padrao"
-                        android:textAppearance="?attr/textAppearanceTitleMedium"
-                        app:layout_constraintBottom_toBottomOf="@id/cardIconeFornecedor"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="@id/cardIconeFornecedor" />
-
-                    <View
-                        android:id="@+id/divisorFornecedorFrete"
-                        android:layout_width="0dp"
-                        android:layout_height="1dp"
-                        android:layout_marginVertical="16dp"
-                        android:background="?attr/colorOutlineVariant"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/cardIconeFornecedor" />
-
-                    <com.google.android.material.card.MaterialCardView
-                        android:id="@+id/cardIconeFrete"
-                        style="?attr/materialCardViewFilledStyle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        app:cardBackgroundColor="?attr/colorSurfaceContainerHigh"
-                        app:cardCornerRadius="12dp"
-                        app:contentPadding="8dp"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/divisorFornecedorFrete">
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:importantForAccessibility="no"
-                            android:src="@drawable/local_shipping_24px" />
-
-                    </com.google.android.material.card.MaterialCardView>
-
-                    <TextView
-                        android:id="@+id/tvFreteLabel"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:text="@string/resumo_frete_label"
-                        android:textAppearance="?attr/textAppearanceTitleSmall"
-                        android:textColor="?attr/colorOnSurface"
-                        app:layout_constraintEnd_toStartOf="@id/tvFreteValor"
-                        app:layout_constraintStart_toEndOf="@id/cardIconeFrete"
-                        app:layout_constraintTop_toTopOf="@id/cardIconeFrete" />
-
-                    <TextView
-                        android:id="@+id/tvFreteHelper"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginTop="4dp"
-                        android:text="@string/resumo_frete_helper"
-                        android:textAppearance="?attr/textAppearanceBodySmall"
-                        android:textColor="?attr/colorOnSurfaceVariant"
-                        app:layout_constraintEnd_toStartOf="@id/tvFreteValor"
-                        app:layout_constraintStart_toEndOf="@id/cardIconeFrete"
-                        app:layout_constraintTop_toBottomOf="@id/tvFreteLabel" />
-
-                    <TextView
-                        android:id="@+id/tvFreteValor"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/resumo_valor_padrao"
-                        android:textAppearance="?attr/textAppearanceTitleMedium"
-                        app:layout_constraintBottom_toBottomOf="@id/cardIconeFrete"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="@id/cardIconeFrete" />
-
-                    <View
-                        android:id="@+id/divisorFreteCorretor"
-                        android:layout_width="0dp"
-                        android:layout_height="1dp"
-                        android:layout_marginVertical="16dp"
-                        android:background="?attr/colorOutlineVariant"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/cardIconeFrete" />
-
-                    <com.google.android.material.card.MaterialCardView
-                        android:id="@+id/cardIconeCorretor"
-                        style="?attr/materialCardViewFilledStyle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        app:cardBackgroundColor="?attr/colorSurfaceContainerHigh"
-                        app:cardCornerRadius="12dp"
-                        app:contentPadding="8dp"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/divisorFreteCorretor">
-
-                        <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:importantForAccessibility="no"
-                            android:src="@drawable/handshake_24px" />
-
-                    </com.google.android.material.card.MaterialCardView>
-
-                    <TextView
-                        android:id="@+id/tvCorretorLabel"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:text="@string/resumo_corretor_label"
-                        android:textAppearance="?attr/textAppearanceTitleSmall"
-                        android:textColor="?attr/colorOnSurface"
-                        app:layout_constraintEnd_toStartOf="@id/tvCorretorValor"
-                        app:layout_constraintStart_toEndOf="@id/cardIconeCorretor"
-                        app:layout_constraintTop_toTopOf="@id/cardIconeCorretor" />
-
-                    <TextView
-                        android:id="@+id/tvCorretorHelper"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginTop="4dp"
-                        android:text="@string/resumo_frete_helper"
-                        android:textAppearance="?attr/textAppearanceBodySmall"
-                        android:textColor="?attr/colorOnSurfaceVariant"
-                        app:layout_constraintEnd_toStartOf="@id/tvCorretorValor"
-                        app:layout_constraintStart_toEndOf="@id/cardIconeCorretor"
-                        app:layout_constraintTop_toBottomOf="@id/tvCorretorLabel" />
-
-                    <TextView
-                        android:id="@+id/tvCorretorValor"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/resumo_valor_padrao"
-                        android:textAppearance="?attr/textAppearanceTitleMedium"
-                        app:layout_constraintBottom_toBottomOf="@id/cardIconeCorretor"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="@id/cardIconeCorretor" />
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-            </com.google.android.material.card.MaterialCardView>
-
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/cardTotal"
-                style="?attr/materialCardViewFilledStyle"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                app:cardBackgroundColor="?attr/colorSurfaceContainer"
-                app:shapeAppearance="?attr/shapeAppearanceCornerLarge"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/cardResumo">
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="16dp">
+                    app:cardBackgroundColor="?attr/colorSurfaceContainerLow"
+                    app:contentPadding="@dimen/size_extra_small"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:shapeAppearance="?attr/shapeAppearanceCornerExtraExtraLarge">
 
                     <ImageView
-                        android:id="@+id/ivTotalIcone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:importantForAccessibility="no"
+                        android:src="@drawable/approval_delegation_24px" />
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <TextView
+                    android:id="@+id/text_view_finalizacao_fornecedor_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/size_medium"
+                    android:text="@string/resumo_fornecedor_label"
+                    android:textAppearance="?attr/textAppearanceTitleSmall"
+                    android:textColor="?attr/colorOnSurface"
+                    app:layout_constraintStart_toEndOf="@id/card_view_finalizacao_icone_fornecedor"
+                    app:layout_constraintTop_toTopOf="@id/card_view_finalizacao_icone_fornecedor" />
+
+                <TextView
+                    android:id="@+id/text_view_finalizacao_fornecedor_helper"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/size_medium"
+                    android:text="@string/resumo_fornecedor_helper"
+                    android:textAppearance="?attr/textAppearanceBodySmall"
+                    android:textColor="?attr/colorOnSurfaceVariant"
+                    app:layout_constraintStart_toEndOf="@id/card_view_finalizacao_icone_fornecedor"
+                    app:layout_constraintTop_toBottomOf="@id/text_view_finalizacao_fornecedor_label" />
+
+                <TextView
+                    android:id="@+id/text_view_finalizacao_fornecedor_valor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/resumo_valor_padrao"
+                    android:textAppearance="?attr/textAppearanceTitleMedium"
+                    app:layout_constraintBottom_toBottomOf="@id/card_view_finalizacao_icone_fornecedor"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/card_view_finalizacao_icone_fornecedor" />
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:id="@+id/divider_finalizacao_fornecedor_frete"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/size_medium"
+                    android:layout_marginBottom="@dimen/size_medium"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/card_view_finalizacao_icone_fornecedor" />
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/card_view_finalizacao_icone_frete"
+                    style="?attr/materialCardViewFilledStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/size_medium"
+                    app:cardBackgroundColor="?attr/colorSurfaceContainerLow"
+                    app:contentPadding="@dimen/size_extra_small"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/divider_finalizacao_fornecedor_frete"
+                    app:shapeAppearance="?attr/shapeAppearanceCornerExtraExtraLarge">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:importantForAccessibility="no"
+                        android:src="@drawable/local_shipping_24px" />
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <TextView
+                    android:id="@+id/text_view_finalizacao_frete_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/size_medium"
+                    android:text="@string/resumo_frete_label"
+                    android:textAppearance="?attr/textAppearanceTitleSmall"
+                    android:textColor="?attr/colorOnSurface"
+                    app:layout_constraintStart_toEndOf="@id/card_view_finalizacao_icone_frete"
+                    app:layout_constraintTop_toTopOf="@id/card_view_finalizacao_icone_frete" />
+
+                <TextView
+                    android:id="@+id/text_view_finalizacao_frete_helper"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/size_medium"
+                    android:text="@string/resumo_frete_helper"
+                    android:textAppearance="?attr/textAppearanceBodySmall"
+                    android:textColor="?attr/colorOnSurfaceVariant"
+                    app:layout_constraintStart_toEndOf="@id/card_view_finalizacao_icone_frete"
+                    app:layout_constraintTop_toBottomOf="@id/text_view_finalizacao_frete_label" />
+
+                <TextView
+                    android:id="@+id/text_view_finalizacao_frete_valor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/resumo_valor_padrao"
+                    android:textAppearance="?attr/textAppearanceTitleMedium"
+                    app:layout_constraintBottom_toBottomOf="@id/card_view_finalizacao_icone_frete"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/card_view_finalizacao_icone_frete" />
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:id="@+id/divider_finalizacao_frete_corretor"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/size_medium"
+                    android:layout_marginBottom="@dimen/size_medium"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/card_view_finalizacao_icone_frete" />
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/card_view_finalizacao_icone_corretor"
+                    style="?attr/materialCardViewFilledStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/size_medium"
+                    app:cardBackgroundColor="?attr/colorSurfaceContainerLow"
+                    app:contentPadding="@dimen/size_extra_small"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/divider_finalizacao_frete_corretor"
+                    app:shapeAppearance="?attr/shapeAppearanceCornerExtraExtraLarge">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:importantForAccessibility="no"
+                        android:src="@drawable/handshake_24px" />
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <TextView
+                    android:id="@+id/text_view_finalizacao_corretor_label"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/size_medium"
+                    android:text="@string/resumo_corretor_label"
+                    android:textAppearance="?attr/textAppearanceTitleSmall"
+                    android:textColor="?attr/colorOnSurface"
+                    app:layout_constraintStart_toEndOf="@id/card_view_finalizacao_icone_corretor"
+                    app:layout_constraintTop_toTopOf="@id/card_view_finalizacao_icone_corretor" />
+
+                <TextView
+                    android:id="@+id/text_view_finalizacao_corretor_helper"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/size_medium"
+                    android:text="@string/resumo_corretor_helper"
+                    android:textAppearance="?attr/textAppearanceBodySmall"
+                    android:textColor="?attr/colorOnSurfaceVariant"
+                    app:layout_constraintStart_toEndOf="@id/card_view_finalizacao_icone_corretor"
+                    app:layout_constraintTop_toBottomOf="@id/text_view_finalizacao_corretor_label" />
+
+                <TextView
+                    android:id="@+id/text_view_finalizacao_corretor_valor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/resumo_valor_padrao"
+                    android:textAppearance="?attr/textAppearanceTitleMedium"
+                    app:layout_constraintBottom_toBottomOf="@id/card_view_finalizacao_icone_corretor"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/card_view_finalizacao_icone_corretor" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/card_view_finalizacao_total"
+                style="?attr/materialCardViewFilledStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/size_extra_small"
+                app:cardBackgroundColor="?attr/colorSurfaceContainerLow"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/constraint_layout_finalizacao_resumo"
+                app:shapeAppearance="?attr/shapeAppearanceCornerExtraLarge">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/size_medium">
+
+                    <ImageView
+                        android:id="@+id/image_view_finalizacao_total_icone"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:importantForAccessibility="no"
                         android:src="@drawable/verified_24px"
-                        app:tint="?attr/colorOnSurfaceVariant"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:tint="?attr/colorOnSurfaceVariant" />
 
                     <TextView
-                        android:id="@+id/tvTotalLabel"
+                        android:id="@+id/text_view_finalizacao_total_label"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/total_label_padrao"
+                        android:text="@string/finalizacao_total_label"
                         android:textAppearance="?attr/textAppearanceLabelLarge"
                         android:textColor="?attr/colorOnSurfaceVariant"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
-                        android:id="@+id/tvTotalValor"
+                        android:id="@+id/text_view_finalizacao_total_valor"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
+                        android:layout_marginTop="@dimen/size_extra_small"
                         android:text="@string/resumo_valor_padrao"
+                        android:textStyle="bold"
                         android:textAppearance="?attr/textAppearanceHeadlineMedium"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/tvTotalLabel" />
+                        app:layout_constraintTop_toBottomOf="@id/text_view_finalizacao_total_label" />
 
                     <TextView
-                        android:id="@+id/tvTotalDelta"
+                        android:id="@+id/text_view_finalizacao_total_delta"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="4dp"
-                        android:text="@string/total_delta_padrao"
+                        android:layout_marginTop="@dimen/size_extra_small"
+                        android:text="@string/finalizacao_total_delta_padrao"
                         android:textAppearance="?attr/textAppearanceBodySmall"
                         android:textColor="?attr/colorOnSurfaceVariant"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/tvTotalValor" />
+                        app:layout_constraintTop_toBottomOf="@id/text_view_finalizacao_total_valor" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
-
             </com.google.android.material.card.MaterialCardView>
 
             <Button
-                android:id="@+id/btnCompartilhar"
-                style="@style/Widget.Material3.Button.TonalButton"
+                android:id="@+id/button_finalizacao_compartilhar"
+                style="?attr/materialButtonTonalStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:layout_marginEnd="8dp"
-                android:text="@string/btn_compartilhar"
+                android:layout_marginTop="@dimen/size_large"
+                android:layout_marginEnd="@dimen/size_extra_small"
+                android:text="@string/acao_compartilhar"
                 app:icon="@drawable/share_24px"
-                app:layout_constraintEnd_toStartOf="@id/btnExportarPdf"
+                app:layout_constraintEnd_toStartOf="@id/button_finalizacao_exportar_pdf"
+                app:layout_constraintHorizontal_weight="1"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/cardTotal" />
+                app:layout_constraintTop_toBottomOf="@id/card_view_finalizacao_total" />
 
             <Button
-                android:id="@+id/btnExportarPdf"
-                style="@style/Widget.Material3.Button.TonalButton"
+                android:id="@+id/button_finalizacao_exportar_pdf"
+                style="?attr/materialButtonTonalStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:text="@string/btn_exportar_pdf"
+                android:layout_marginTop="@dimen/size_large"
+                android:text="@string/acao_exportar_pdf"
                 app:icon="@drawable/folder_open_24px"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/btnCompartilhar"
-                app:layout_constraintTop_toBottomOf="@id/cardTotal" />
-
+                app:layout_constraintHorizontal_weight="1"
+                app:layout_constraintStart_toEndOf="@id/button_finalizacao_compartilhar"
+                app:layout_constraintTop_toBottomOf="@id/card_view_finalizacao_total" />
         </androidx.constraintlayout.widget.ConstraintLayout>
-
     </androidx.core.widget.NestedScrollView>
 
     <Button
-        android:id="@+id/btnNovaNegociacao"
-        android:layout_width="0dp"
+        android:id="@+id/button_finalizacao_nova_negociacao"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginBottom="16dp"
-        android:text="@string/btn_nova_negociacao"
+        android:layout_marginHorizontal="@dimen/size_medium"
+        android:layout_marginBottom="@dimen/size_medium"
+        android:text="@string/acao_nova_negociacao"
+        android:paddingVertical="@dimen/size_medium"
+        android:textSize="@dimen/text_size_medium"
         app:icon="@drawable/arrow_forward_24px"
         app:iconGravity="end"
         app:layout_constraintBottom_toBottomOf="parent"

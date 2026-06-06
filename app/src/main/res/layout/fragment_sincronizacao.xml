@@ -1,244 +1,179 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/constraint_layout_finalizacao_appbar"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:contentDescription="@string/cd_toolbar"
-        app:layout_constraintTop_toTopOf="parent"
-        app:navigationContentDescription="@string/cd_voltar"
-        app:navigationIcon="@drawable/arrow_back_24px"
-        app:title="Conexão remota" />
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/constraint_layout_sincronizacao_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:contentDescription="@string/cd_toolbar"
+            app:navigationContentDescription="@string/cd_voltar"
+            app:navigationIcon="@drawable/arrow_back_24px"
+            app:title="@string/sincronizacao_title" />
+    </com.google.android.material.appbar.AppBarLayout>
+
 
     <androidx.core.widget.NestedScrollView
-        android:id="@+id/nsvBody"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:clipToPadding="false"
-        app:layout_constraintBottom_toTopOf="@id/btnProximo"
-        app:layout_constraintTop_toBottomOf="@id/toolbar">
+        android:fillViewport="true"
+        app:layout_constraintBottom_toTopOf="@id/button_sincronizacao_proximo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/constraint_layout_finalizacao_appbar">
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="16dp">
+            android:paddingHorizontal="@dimen/size_medium"
+            android:paddingTop="@dimen/size_large"
+            android:paddingBottom="@dimen/size_medium">
 
             <com.google.android.material.card.MaterialCardView
-                android:id="@+id/cardComprador"
+                android:id="@+id/card_view_sincronizacao"
                 style="?attr/materialCardViewFilledStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:cardBackgroundColor="?attr/colorSurfaceContainer"
-                app:shapeAppearance="?attr/shapeAppearanceCornerLarge">
+                android:clickable="true"
+                android:contentDescription="@null"
+                android:focusable="true"
+                app:cardBackgroundColor="?attr/colorSurfaceContainerLow"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:shapeAppearance="?attr/shapeAppearanceCornerExtraLarge">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="16dp">
+                    android:padding="@dimen/size_medium">
 
                     <com.google.android.material.card.MaterialCardView
-                        android:id="@+id/containerIcone"
+                        android:id="@+id/card_view_sincronizacao_icone_dns"
                         style="?attr/materialCardViewFilledStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        app:cardCornerRadius="16dp"
-                        app:contentPadding="8dp"
+                        app:cardBackgroundColor="?attr/colorSurfaceContainer"
+                        app:contentPadding="@dimen/size_extra_small"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent">
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:shapeAppearance="?attr/shapeAppearanceCornerExtraExtraLarge">
 
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:importantForAccessibility="no"
-                            android:src="@drawable/flowchart_24px" />
+                            android:src="@drawable/dns_24px"
+                            app:tint="?attr/colorOnSecondaryContainer" />
 
                     </com.google.android.material.card.MaterialCardView>
 
                     <TextView
-                        android:id="@+id/tvCompradorTitulo"
-                        android:layout_width="0dp"
+                        android:id="@+id/text_view_sincronizacao_title"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginEnd="16dp"
-                        android:text="Estabelecer conexão"
-                        android:textAppearance="?attr/textAppearanceTitleMedium"
-                        app:layout_constraintStart_toEndOf="@+id/containerIcone"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        android:layout_marginStart="@dimen/size_medium"
+                        android:text="@string/sincronizacao_card_title"
+                        android:textAppearance="?attr/textAppearanceTitleSmall"
+                        android:textColor="?attr/colorOnSurface"
+                        app:layout_constraintStart_toEndOf="@id/card_view_sincronizacao_icone_dns"
+                        app:layout_constraintTop_toTopOf="@id/card_view_sincronizacao_icone_dns" />
 
                     <TextView
-                        android:id="@+id/tvCompradorNome"
-                        android:layout_width="0dp"
+                        android:id="@+id/text_view_sincronizacao_descricao"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="2dp"
-                        android:text="Conecte-se ao servidor para sincronizar suas negociações"
-                        android:textAppearance="?attr/textAppearanceBodyMedium"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="@+id/tvCompradorTitulo"
-                        app:layout_constraintTop_toBottomOf="@+id/tvCompradorTitulo" />
-
+                        android:layout_marginStart="@dimen/size_medium"
+                        android:text="@string/sincronizacao_card_desc"
+                        android:textAppearance="?attr/textAppearanceBodySmall"
+                        android:textColor="?attr/colorOnSurfaceVariant"
+                        app:layout_constraintStart_toEndOf="@id/card_view_sincronizacao_icone_dns"
+                        app:layout_constraintTop_toBottomOf="@id/text_view_sincronizacao_title" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </com.google.android.material.card.MaterialCardView>
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/sectionConexaoRemota"
-                android:layout_marginTop="24dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:id="@+id/tvLabelConexao"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:text="SERVIDOR"
-                    android:textAllCaps="true"
-                    android:textAppearance="?attr/textAppearanceLabelLarge"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/tilSiteConexao"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
-                    android:hint="Site"
-                    app:shapeAppearance="?attr/shapeAppearanceCornerSmall"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:startIconDrawable="@drawable/language_24px"
-                    app:layout_constraintTop_toBottomOf="@id/tvLabelConexao">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/etSiteConexao"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="textUri" />
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/tilIpConexao"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
-                    android:layout_marginEnd="8dp"
-                    android:hint="Endereço IP"
-                    app:shapeAppearance="?attr/shapeAppearanceCornerSmall"
-                    app:layout_constraintHorizontal_weight="7"
-                    app:layout_constraintEnd_toStartOf="@id/tilPortaConexao"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tilSiteConexao"
-                    app:startIconDrawable="@drawable/dns_24px"
-                    >
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/etIpConexao"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="text" />
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/tilPortaConexao"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
-                    android:hint="Porta"
-                    app:shapeAppearance="?attr/shapeAppearanceCornerSmall"
-                    app:layout_constraintHorizontal_weight="4"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/tilIpConexao"
-                    app:layout_constraintTop_toBottomOf="@id/tilSiteConexao"
-                    app:startIconDrawable="@drawable/settings_ethernet_24px">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/etPortaConexao"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="number" />
-                </com.google.android.material.textfield.TextInputLayout>
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/sectionFormularioDuplo"
-                android:layout_width="match_parent"
-                android:layout_marginTop="24dp"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:id="@+id/tvLabelFormulario"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:text="Credenciais"
-                    android:textAllCaps="true"
-                    android:textAppearance="?attr/textAppearanceLabelLarge"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/tilCampoEsquerdo"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
-                    android:layout_marginEnd="8dp"
-                    android:hint="Usuário"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_weight="1"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/tvLabelFormulario"
-                    app:startIconDrawable="@drawable/person_24px"
-                    app:shapeAppearance="?attr/shapeAppearanceCornerSmall">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/etCampoEsquerdo"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="text" />
-                </com.google.android.material.textfield.TextInputLayout>
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <LinearLayout
+                android:id="@+id/constraint_layout_home_aviso"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
+                android:layout_marginTop="@dimen/size_medium"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/card_view_sincronizacao">
 
                 <ImageView
+                    android:id="@+id/image_view_sincronizacao_icone_aviso"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:contentDescription="@null"
-                    android:src="@drawable/lock_24px"
+                    android:importantForAccessibility="no"
+                    android:src="@drawable/history_24px"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
                     app:tint="?attr/colorOnSurfaceVariant" />
 
                 <TextView
+                    android:id="@+id/text_view_sincronizacao_aviso"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_weight="1"
-                    android:text="Sincronização com o servidor remoto"
-                    android:textAppearance="?attr/textAppearanceBodyMedium"
-                    android:textColor="?attr/colorOnSurfaceVariant" />
-            </LinearLayout>
-        </LinearLayout>
+                    android:layout_marginStart="@dimen/size_extra_small"
+                    android:text="@string/sincronizacao_msg_aviso"
+                    android:textAppearance="?attr/textAppearanceBodySmall"
+                    android:textColor="?attr/colorOnSurfaceVariant"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/image_view_sincronizacao_icone_aviso"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/text_view_sincronizacao_label_aguardando_envio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/size_large"
+                android:text="@string/sincronizacao_label_aguardando_envio"
+                android:textAllCaps="true"
+                android:textAppearance="?attr/textAppearanceLabelLarge"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/constraint_layout_home_aviso" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_view_sincronizacao_negociacoes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/size_small"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:listitem="@layout/item_negociacao"
+                tools:itemCount="3"
+                app:layout_constraintTop_toBottomOf="@id/text_view_sincronizacao_label_aguardando_envio" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
 
-        <Button
-        android:id="@+id/btnProximo"
+
+    <Button
+        android:id="@+id/button_sincronizacao_proximo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:padding="16dp"
-        android:text="@string/btn_proximo"
-        android:textSize="16sp"
-        app:icon="@drawable/arrow_forward_24px"
+        android:layout_marginHorizontal="@dimen/size_medium"
+        android:layout_marginBottom="@dimen/size_medium"
+        android:paddingVertical="@dimen/size_medium"
+        android:text="@string/acao_sincronizar"
+        android:textSize="@dimen/text_size_medium"
+        app:icon="@drawable/cloud_download_24px"
         app:iconGravity="end"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

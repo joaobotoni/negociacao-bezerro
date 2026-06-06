@@ -6,81 +6,69 @@
     android:layout_height="match_parent">
 
     <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/appBarLayout"
-        android:layout_width="0dp"
+        android:id="@+id/constraint_layout_home_appbar"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/toolbar"
+            android:id="@+id/constraint_layout_home_toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:contentDescription="@string/cd_toolbar"
-            app:title="Nova Negociação" />
-
+            app:menu="@menu/menu_home"
+            app:title="@string/home_title_selecionar_empresa" />
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.core.widget.NestedScrollView
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
         android:clipToPadding="false"
         android:fillViewport="true"
-        app:layout_constraintBottom_toTopOf="@id/btnProximo"
+        app:layout_constraintBottom_toTopOf="@id/button_home_proximo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/appBarLayout">
+        app:layout_constraintTop_toBottomOf="@id/constraint_layout_home_appbar">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingHorizontal="16dp"
-            android:paddingTop="24dp"
-            android:paddingBottom="16dp">
-
-            <TextView
-                android:id="@+id/tvSecaoEmpresa"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/label_empresa_compradora"
-                android:textAllCaps="true"
-                android:textAppearance="?attr/textAppearanceLabelLarge"
-                android:textColor="?attr/colorOnSurfaceVariant"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+            android:paddingHorizontal="@dimen/size_medium"
+            android:paddingTop="@dimen/size_large"
+            android:paddingBottom="@dimen/size_medium">
 
             <com.google.android.material.card.MaterialCardView
-                android:id="@+id/cardSelecionarEmpresa"
+                android:id="@+id/card_view_home_selecionar_empresa"
                 style="?attr/materialCardViewFilledStyle"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
                 android:clickable="true"
                 android:contentDescription="@null"
                 android:focusable="true"
-                app:cardBackgroundColor="?attr/colorSurfaceContainer"
+                app:cardBackgroundColor="?attr/colorSurfaceContainerLow"
+                app:shapeAppearance="?attr/shapeAppearanceCornerExtraLarge"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tvSecaoEmpresa"
-                app:shapeAppearance="?attr/shapeAppearanceCornerLarge">
+                app:layout_constraintTop_toTopOf="parent">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="16dp">
+                    android:padding="@dimen/size_medium">
 
                     <com.google.android.material.card.MaterialCardView
-                        android:id="@+id/cardIconeEmpresa"
+                        android:id="@+id/card_view_home_icone_empresa"
                         style="?attr/materialCardViewFilledStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        app:cardBackgroundColor="?attr/colorSecondaryContainer"
-                        app:cardCornerRadius="12dp"
-                        app:contentPadding="8dp"
+                        app:cardBackgroundColor="?attr/colorSurfaceContainer"
+                        app:contentPadding="@dimen/size_extra_small"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent">
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:shapeAppearance="?attr/shapeAppearanceCornerExtraExtraLarge">
 
                         <ImageView
                             android:layout_width="wrap_content"
@@ -92,110 +80,114 @@
                     </com.google.android.material.card.MaterialCardView>
 
                     <TextView
-                        android:id="@+id/tvNomeEmpresa"
-                        android:layout_width="0dp"
+                        android:id="@+id/text_view_home_nome_empresa"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:text="@string/title_selecionar_empresa"
+                        android:layout_marginStart="@dimen/size_medium"
+                        android:text="@string/home_title_selecionar_empresa"
                         android:textAppearance="?attr/textAppearanceTitleSmall"
                         android:textColor="?attr/colorOnSurface"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@id/cardIconeEmpresa"
-                        app:layout_constraintTop_toTopOf="@id/cardIconeEmpresa"
+                        app:layout_constraintStart_toEndOf="@id/card_view_home_icone_empresa"
+                        app:layout_constraintTop_toTopOf="@id/card_view_home_icone_empresa"
                         tools:text="Empresa Ltda." />
 
                     <TextView
-                        android:id="@+id/tvDescricaoEmpresa"
-                        android:layout_width="0dp"
+                        android:id="@+id/text_view_home_descricao_empresa"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginTop="4dp"
-                        android:text="@string/desc_selecionar_empresa"
+                        android:layout_marginStart="@dimen/size_medium"
+                        android:text="@string/home_desc_selecionar_empresa"
                         android:textAppearance="?attr/textAppearanceBodySmall"
                         android:textColor="?attr/colorOnSurfaceVariant"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@id/cardIconeEmpresa"
-                        app:layout_constraintTop_toBottomOf="@id/tvNomeEmpresa"
+                        app:layout_constraintStart_toEndOf="@id/card_view_home_icone_empresa"
+                        app:layout_constraintTop_toBottomOf="@id/text_view_home_nome_empresa"
                         tools:text="Toque para selecionar" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
-
             </com.google.android.material.card.MaterialCardView>
 
             <TextView
-                android:id="@+id/tvSecaoHistorico"
+                android:id="@+id/text_view_home_secao_historico"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:text="@string/label_historico_recente"
+                android:layout_marginTop="@dimen/size_large"
+                android:text="@string/home_label_historico_recente"
                 android:textAllCaps="true"
                 android:textAppearance="?attr/textAppearanceLabelLarge"
                 android:textColor="?attr/colorOnSurfaceVariant"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/cardSelecionarEmpresa" />
+                app:layout_constraintTop_toBottomOf="@id/card_view_home_selecionar_empresa" />
 
             <com.google.android.material.card.MaterialCardView
-                android:id="@+id/cardHistoricoRecente"
+                android:id="@+id/card_view_home_historico_recente"
                 style="?attr/materialCardViewFilledStyle"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                app:cardBackgroundColor="?attr/colorSurfaceContainer"
+                android:layout_marginTop="@dimen/size_extra_small"
+                app:cardBackgroundColor="?attr/colorSurfaceContainerLow"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tvSecaoHistorico"
-                app:shapeAppearance="?attr/shapeAppearanceCornerLarge">
+                app:layout_constraintTop_toBottomOf="@id/text_view_home_secao_historico"
+                app:shapeAppearance="?attr/shapeAppearanceCornerExtraLarge">
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rvHistoricoRecente"
+                    android:id="@+id/recycler_view_home_historico"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:clipToPadding="false"
                     android:nestedScrollingEnabled="false"
-                    android:paddingVertical="4dp"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     tools:itemCount="3"
                     tools:listitem="@layout/item_empresa" />
 
             </com.google.android.material.card.MaterialCardView>
 
-            <LinearLayout
-                android:id="@+id/layoutAviso"
-                android:layout_width="0dp"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraint_layout_home_aviso"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:gravity="center"
-                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/size_medium"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/cardHistoricoRecente">
+                app:layout_constraintTop_toBottomOf="@id/card_view_home_historico_recente">
 
                 <ImageView
-                    android:id="@+id/icAviso"
+                    android:id="@+id/image_view_home_icone_aviso"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:importantForAccessibility="no"
                     android:src="@drawable/info_24px"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
                     app:tint="?attr/colorOnSurfaceVariant" />
 
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:id="@+id/text_view_home_aviso"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:text="@string/msg_aviso_alterar_empresa"
+                    android:layout_marginStart="@dimen/size_extra_small"
+                    android:text="@string/home_msg_aviso"
                     android:textAppearance="?attr/textAppearanceBodySmall"
-                    android:textColor="?attr/colorOnSurfaceVariant" />
-            </LinearLayout>
+                    android:textColor="?attr/colorOnSurfaceVariant"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/image_view_home_icone_aviso"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
 
     <Button
-        android:id="@+id/btnProximo"
-        android:layout_width="0dp"
+        android:id="@+id/button_home_proximo"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginBottom="16dp"
-        android:text="@string/btn_proximo"
+        android:layout_marginHorizontal="@dimen/size_medium"
+        android:layout_marginBottom="@dimen/size_medium"
+        android:textSize="@dimen/text_size_medium"
+        android:paddingVertical="@dimen/size_medium"
+        android:text="@string/acao_proximo"
         app:icon="@drawable/arrow_forward_24px"
         app:iconGravity="end"
         app:layout_constraintBottom_toBottomOf="parent"
