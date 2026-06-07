@@ -72,7 +72,6 @@ public class TransporteRepository {
                 ));
             }
         }
-
         return transportes;
     }
 }

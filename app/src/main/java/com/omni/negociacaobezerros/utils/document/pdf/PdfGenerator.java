@@ -1,4 +1,4 @@
-package com.omni.negociacaobezerros.utils.pdf;
+package com.omni.negociacaobezerros.utils.document.pdf;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -38,7 +38,7 @@ public class PdfGenerator {
     public File generate(@NonNull Context context, @NonNull String fileName) throws IOException {
         PdfDocument document = new PdfDocument();
 
-        int totalPages    = countTotalPages();
+        int totalPages = countTotalPages();
         float footerHeight = footer != null ? footer.getHeight() : 0f;
         float usableBottom = config.pageHeight - config.marginBottom - footerHeight;
 
@@ -92,14 +92,11 @@ public class PdfGenerator {
     }
 
     private PdfDocument.Page startPage(PdfDocument document, int pageNumber) {
-        PdfDocument.PageInfo pageInfo = new PdfDocument.PageInfo.Builder(
-                config.pageWidth, config.pageHeight, pageNumber
-        ).create();
+        PdfDocument.PageInfo pageInfo = new PdfDocument.PageInfo.Builder(config.pageWidth, config.pageHeight, pageNumber).create();
         return document.startPage(pageInfo);
     }
 
-    private void drawFooterOnPage(Canvas canvas, float footerHeight,
-                                   int currentPage, int totalPages) {
+    private void drawFooterOnPage(Canvas canvas, float footerHeight, int currentPage, int totalPages) {
         if (footer == null || footerHeight == 0f) return;
         if (footer instanceof PageAware) {
             ((PageAware) footer).setPageInfo(currentPage, totalPages);

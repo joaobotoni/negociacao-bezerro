@@ -1,13 +1,13 @@
-package com.omni.negociacaobezerros.utils.pdf.bands;
+package com.omni.negociacaobezerros.utils.document.pdf.bands;
 
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.text.TextPaint;
 
 
-import com.omni.negociacaobezerros.utils.pdf.PageAware;
-import com.omni.negociacaobezerros.utils.pdf.PdfBand;
-import com.omni.negociacaobezerros.utils.pdf.PdfColors;
+import com.omni.negociacaobezerros.utils.document.pdf.PageAware;
+import com.omni.negociacaobezerros.utils.document.pdf.PdfBand;
+import com.omni.negociacaobezerros.utils.document.pdf.PdfColors;
 
 import java.util.Locale;
 

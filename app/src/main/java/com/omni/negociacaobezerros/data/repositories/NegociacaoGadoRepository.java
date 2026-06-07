@@ -19,7 +19,6 @@ public class NegociacaoGadoRepository {
         this.dao = dao;
         this.retrofitManager = retrofitManager;
     }
-
     private GespecNegociacaoGadoService service(){
         return retrofitManager.getRetrofit().create(GespecNegociacaoGadoService.class);
     }

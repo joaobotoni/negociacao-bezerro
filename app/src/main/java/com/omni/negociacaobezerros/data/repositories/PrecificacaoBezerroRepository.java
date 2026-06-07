@@ -15,7 +15,6 @@ public class PrecificacaoBezerroRepository {
     private static final BigDecimal ARROBAS_ABATE_ESPERADAS = new BigDecimal("21.00");
     private static final BigDecimal TAXA_FIXA_ABATE = new BigDecimal("69.70");
     private static final BigDecimal IMPOSTO_FUNRURAL = new BigDecimal("0.015");
-
     @Inject
     public PrecificacaoBezerroRepository() {}
 

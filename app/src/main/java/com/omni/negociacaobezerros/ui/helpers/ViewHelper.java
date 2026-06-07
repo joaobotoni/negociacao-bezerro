@@ -17,8 +17,8 @@ import com.google.android.material.textfield.TextInputLayout;
 import com.omni.negociacaobezerros.utils.format.Numbers;
 
 import java.math.BigDecimal;
-import java.util.Arrays;
 import java.util.Collection;
+import java.util.Optional;
 
 public final class ViewHelper {
 
@@ -29,163 +29,185 @@ public final class ViewHelper {
     public static boolean isNull(@Nullable Object value) {
         return value == null;
     }
+
     public static boolean isNotNull(@Nullable Object value) {
         return value != null;
     }
+
     @SafeVarargs
     public static <T> boolean anyNull(@Nullable T... values) {
         if (values == null) return true;
-        for (T value : values) {
-            if (value == null) return true;
-        }
+        for (T v : values) if (v == null) return true;
         return false;
     }
 
     @SafeVarargs
     public static <T> boolean noneNull(@Nullable T... values) {
         if (values == null) return false;
-        for (T value : values) {
-            if (value == null) return false;
-        }
+        for (T v : values) if (v == null) return false;
         return true;
     }
 
-    public static <T> boolean isEmpty(@Nullable T value) {
-        if (value == null) return true;
-        if (value instanceof String) return ((String) value).trim().isEmpty();
-        if (value instanceof TextView) return requireText((TextView) value).isEmpty();
-        if (value instanceof Collection) return ((Collection<?>) value).isEmpty();
-        if (value instanceof Object[]) return ((Object[]) value).length == 0;
-        if (value instanceof Integer) return ((Integer) value) == 0;
-        if (value instanceof Double) return ((Double) value) == 0.0;
-        if (value instanceof BigDecimal) return ((BigDecimal) value).compareTo(BigDecimal.ZERO) == 0;
-        return false;
+    public static boolean isEmpty(@Nullable String value) {
+        return value == null || value.trim().isEmpty();
     }
 
-    public static <T> boolean isNotEmpty(@Nullable T value) {
+    public static boolean isEmpty(@Nullable TextView value) {
+        return value == null || text(value).isEmpty();
+    }
+
+    public static boolean isEmpty(@Nullable Collection<?> value) {
+        return value == null || value.isEmpty();
+    }
+
+    public static boolean isEmpty(@Nullable Object[] value) {
+        return value == null || value.length == 0;
+    }
+
+    public static boolean isNullOrZero(@Nullable Integer value) {
+        return value == null || value == 0;
+    }
+
+    public static boolean isNullOrZero(@Nullable Double value) {
+        return value == null || value == 0.0;
+    }
+
+    public static boolean isNullOrZero(@Nullable BigDecimal value) {
+        return value == null || value.compareTo(BigDecimal.ZERO) == 0;
+    }
+
+    public static boolean isNotEmpty(@Nullable String value) {
         return !isEmpty(value);
     }
 
-    @SafeVarargs
-    public static <T> boolean anyEmpty(@Nullable T... values) {
-        if (values == null) return true;
-        for (T value : values) {
-            if (isEmpty(value)) return true;
-        }
-        return false;
+    public static boolean isNotEmpty(@Nullable TextView value) {
+        return !isEmpty(value);
     }
 
-    @SafeVarargs
-    public static <T> boolean noneEmpty(@Nullable T... values) {
-        if (values == null) return false;
-        for (T value : values) {
-            if (isEmpty(value)) return false;
-        }
-        return true;
+    public static boolean isNotEmpty(@Nullable Collection<?> value) {
+        return !isEmpty(value);
     }
+
+    public static boolean isNotEmpty(@Nullable Object[] value) {
+        return !isEmpty(value);
+    }
+
 
     @NonNull
     public static <T> T orElse(@Nullable T value, @NonNull T fallback) {
         return value != null ? value : fallback;
     }
 
+
     @NonNull
-    public static String requireText(@Nullable TextView view) {
+    public static String text(@Nullable TextView view) {
         if (view == null || view.getText() == null) return "";
         return view.getText().toString().trim();
     }
 
     @NonNull
     public static Integer parseInt(@Nullable EditText view) {
-        return Numbers.parseInt(requireText(view));
+        return Numbers.parseInt(text(view));
     }
 
     @NonNull
     public static Float parseFloat(@Nullable EditText view) {
-        return Numbers.parseFloat(requireText(view));
+        return Numbers.parseFloat(text(view));
     }
 
     @NonNull
     public static Double parseDouble(@Nullable EditText view) {
-        return Numbers.parseDouble(requireText(view));
+        return Numbers.parseDouble(text(view));
     }
 
     @NonNull
     public static BigDecimal parseDecimal(@Nullable EditText view) {
-        return Numbers.parseDecimal(requireText(view));
+        return Numbers.parseDecimal(text(view));
     }
 
-    public static void setText(@NonNull TextView textView, @Nullable String text) {
-        textView.setText(text != null ? text.trim() : "");
+    public static void setText(@NonNull TextView view, @Nullable String text) {
+        view.setText(text != null ? text.trim() : "");
     }
 
-    @SafeVarargs
-    public static <T> void setText(@NonNull TextView textView, @NonNull Context context, @StringRes int resId, T... args) {
-        for (T arg : args) {
+    public static void setText(@NonNull TextView view, @NonNull Context context,
+                               @StringRes int resId, @NonNull Object... args) {
+        for (Object arg : args) {
             if (arg == null) {
-                textView.setText("");
+                view.setText("");
                 return;
             }
         }
-        textView.setText(context.getString(resId, Arrays.asList(args).toArray()));
+        view.setText(context.getString(resId, args));
     }
 
-    public static void setPluralText(@NonNull TextView textView, @NonNull Context context, @PluralsRes int resId, @Nullable Integer quantity) {
+    public static void setPluralText(@NonNull TextView view, @NonNull Context context,
+                                     @PluralsRes int resId, @Nullable Integer quantity) {
         if (quantity == null) {
-            textView.setText("");
+            view.setText("");
             return;
         }
-        textView.setText(context.getResources().getQuantityString(resId, quantity, quantity));
-    }
-
-    public static void clearText(@NonNull TextView... views) {
-        for (TextView view : views) {
-            if (view != null) view.setText("");
-        }
-    }
-
-    public static void setTextSafely(@NonNull EditText field, @NonNull String value, @NonNull TextWatcher... watchers) {
-        if (field.hasFocus()) return;
-        for (TextWatcher w : watchers) field.removeTextChangedListener(w);
-        try {
-            field.setText(value);
-            field.setSelection(field.getText().length());
-        } finally {
-            for (TextWatcher w : watchers) field.addTextChangedListener(w);
-        }
-    }
-
-    public static void setTextSafely(@NonNull EditText field, @NonNull TextInputLayout layout, @NonNull String value, @NonNull String helperText, @NonNull TextWatcher... watchers) {
-        setTextSafely(field, value, watchers);
-        layout.setHelperText(helperText);
+        view.setText(context.getResources().getQuantityString(resId, quantity, quantity));
     }
 
     public static void setHelperText(@NonNull TextInputLayout layout, @Nullable String text) {
         layout.setHelperText(text != null ? text.trim() : "");
     }
 
-    public static void selectChip(@NonNull ChipGroup chipGroup, @NonNull String text) {
-        for (int i = 0; i < chipGroup.getChildCount(); i++) {
-            Chip chip = (Chip) chipGroup.getChildAt(i);
-            if (chip.getText().toString().equals(text)) {
-                chip.setChecked(true);
-                return;
+
+    public static void setTextSafely(@NonNull EditText field, @NonNull String value,
+                                     @NonNull TextWatcher... watchers) {
+        if (field.hasFocus()) return;
+        removeWatchers(field, watchers);
+        try {
+            field.setText(value);
+            field.setSelection(field.getText().length());
+        } finally {
+            addWatchers(field, watchers);
+        }
+    }
+
+    public static void setTextSafely(@NonNull EditText field, @NonNull TextInputLayout layout,
+                                     @NonNull String value, @NonNull String helperText,
+                                     @NonNull TextWatcher... watchers) {
+        setTextSafely(field, value, watchers);
+        setHelperText(layout, helperText);
+    }
+
+
+    public static void selectChip(@NonNull ChipGroup group, @NonNull String text) {
+        for (int i = 0; i < group.getChildCount(); i++) {
+            View child = group.getChildAt(i);
+            if (child instanceof Chip) {
+                Chip chip = (Chip) child;
+                if (chip.getText().toString().equals(text)) {
+                    chip.setChecked(true);
+                    return;
+                }
             }
         }
     }
 
-    @Nullable
-    public static String getCheckedChipText(@NonNull ChipGroup chipGroup) {
-        int chipId = chipGroup.getCheckedChipId();
-        Chip chip = chipGroup.findViewById(chipId);
-        return chip != null ? chip.getText().toString() : null;
+    @NonNull
+    public static Optional<String> checkedChip(@NonNull ChipGroup group) {
+        Chip chip = group.findViewById(group.getCheckedChipId());
+        return Optional.ofNullable(chip).map(c -> c.getText().toString());
     }
 
 
     public static void setVisible(boolean visible, @NonNull View... views) {
-        int visibility = visible ? View.VISIBLE : View.GONE;
-        for (View view : views) {
-            if (view != null) view.setVisibility(visibility);
-        }
+        int state = visible ? View.VISIBLE : View.GONE;
+        for (View v : views) if (v != null) v.setVisibility(state);
+    }
+
+    private static void removeWatchers(@NonNull EditText field, @NonNull TextWatcher[] watchers) {
+        for (TextWatcher w : watchers) field.removeTextChangedListener(w);
+    }
+
+    private static void addWatchers(@NonNull EditText field, @NonNull TextWatcher[] watchers) {
+        for (TextWatcher w : watchers) field.addTextChangedListener(w);
+    }
+
+    public static void clear(@NonNull TextView... views) {
+        for (TextView v : views) if (v != null) v.setText("");
     }
 }

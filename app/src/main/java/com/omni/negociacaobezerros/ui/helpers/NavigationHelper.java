@@ -14,15 +14,15 @@ public final class NavigationHelper {
         throw new AssertionError("NavigationHelper é uma classe utilitária e não deve ser instanciada.");
     }
 
-    public static void navegar(@NonNull Fragment fragment, @IdRes int destinoAtual, @NonNull NavDirections direcoes) {
+    public static void navigate(@NonNull Fragment fragment, @IdRes int destinoAtual, @NonNull NavDirections direcoes) {
         NavController controller = NavHostFragment.findNavController(fragment);
-        NavDestination atual = controller.getCurrentDestination();
-        if (atual != null && atual.getId() == destinoAtual) {
+        NavDestination current = controller.getCurrentDestination();
+        if (current != null && current.getId() == destinoAtual) {
             controller.navigate(direcoes);
         }
     }
 
-    public static void voltar(@NonNull Fragment fragment) {
+    public static void back(@NonNull Fragment fragment) {
         NavController controller = NavHostFragment.findNavController(fragment);
         if (controller.getPreviousBackStackEntry() != null) {
             controller.popBackStack();

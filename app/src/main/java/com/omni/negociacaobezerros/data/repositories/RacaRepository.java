@@ -40,7 +40,9 @@ public class RacaRepository {
 
     public void insertAll(List<Raca> racas) {dao.insertAll(racas);}
 
-    public int update(Raca raca) {return dao.update(raca);}
+    public int update(Raca raca) {
+        return dao.update(raca);
+    }
 
     public int delete(Raca raca) {
         return dao.delete(raca);

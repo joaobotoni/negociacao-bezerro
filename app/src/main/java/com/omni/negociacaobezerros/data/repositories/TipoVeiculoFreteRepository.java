@@ -13,7 +13,6 @@ import javax.inject.Inject;
 public class TipoVeiculoFreteRepository {
     private final TipoVeiculoFreteDao dao;
     private final RetrofitManager retrofitManager;
-
     @Inject
     public TipoVeiculoFreteRepository(TipoVeiculoFreteDao dao, RetrofitManager retrofitManager) {
         this.dao = dao;

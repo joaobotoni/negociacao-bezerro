@@ -14,7 +14,6 @@ import javax.inject.Inject;
 public class ValorReferenciaRepository {
     private final ValorReferenciaDao dao;
     private final RetrofitManager retrofitManager;
-
     @Inject
     public ValorReferenciaRepository(ValorReferenciaDao dao, RetrofitManager retrofitManager) {
         this.dao = dao;
@@ -24,7 +23,6 @@ public class ValorReferenciaRepository {
     private GespecValorReferenciaService service() {
         return retrofitManager.getRetrofit().create(GespecValorReferenciaService.class);
     }
-
 
     public List<ValorReferencia> getAll() {
         return dao.getAll();
@@ -57,5 +55,4 @@ public class ValorReferenciaRepository {
     public void deleteAll() {
         dao.deleteAll();
     }
-
 }

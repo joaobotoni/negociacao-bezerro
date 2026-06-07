@@ -64,8 +64,8 @@ public class FreteRepository {
 
     public PrecificacaoFrete calcularFrete(List<Transporte> transportes, double distancia, int cargaTotal, BigDecimal pesoMedio) {
         BigDecimal totalFrete = calcularFreteTotal(transportes, distancia);
-        BigDecimal valorParcial = calcularIncidenciaFretePorKg(totalFrete, pesoMedio, cargaTotal);
-        return new PrecificacaoFrete(totalFrete, valorParcial);
+        BigDecimal valorPorKg = calcularFretePorKg(totalFrete, pesoMedio, cargaTotal);
+        return new PrecificacaoFrete(totalFrete, valorPorKg);
     }
     public BigDecimal calcularFreteTotal(List<Transporte> transportes, double distancia) {
         BigDecimal total = BigDecimal.ZERO;
@@ -81,7 +81,7 @@ public class FreteRepository {
         return total.setScale(ESCALA_MONETARIA, ARREDONDAMENTO_FINANCEIRO);
     }
 
-    public BigDecimal calcularIncidenciaFretePorKg(BigDecimal valorTotalFrete, BigDecimal pesoMedio, int cargaTotal) {
+    public BigDecimal calcularFretePorKg(BigDecimal valorTotalFrete, BigDecimal pesoMedio, int cargaTotal) {
         BigDecimal pesoTotal = pesoMedio.multiply(BigDecimal.valueOf(cargaTotal));
         return valorTotalFrete.divide(pesoTotal, ESCALA_CALCULO, ARREDONDAMENTO_FINANCEIRO)
                 .setScale(ESCALA_MONETARIA, ARREDONDAMENTO_FINANCEIRO);

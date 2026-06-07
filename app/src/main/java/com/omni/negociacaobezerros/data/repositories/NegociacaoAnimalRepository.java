@@ -15,7 +15,6 @@ public class NegociacaoAnimalRepository {
     private final NegociacaoAnimalDao dao;
     private final RetrofitManager retrofitManager;
 
-
     @Inject
     public NegociacaoAnimalRepository(NegociacaoAnimalDao dao, RetrofitManager retrofitManager) {
         this.dao = dao;

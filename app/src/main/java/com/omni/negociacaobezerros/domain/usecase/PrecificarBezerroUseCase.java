@@ -1,5 +1,7 @@
 package com.omni.negociacaobezerros.domain.usecase;
 
+import static com.omni.negociacaobezerros.utils.format.Numbers.parseDecimal;
+
 import com.omni.negociacaobezerros.data.models.ParametrosBezerro;
 import com.omni.negociacaobezerros.data.models.PrecificacaoBezerro;
 import com.omni.negociacaobezerros.data.repositories.ValorReferenciaRepository;
@@ -11,7 +13,6 @@ import java.math.BigDecimal;
 import jakarta.inject.Inject;
 
 public final class PrecificarBezerroUseCase {
-
     private final PrecificacaoBezerroStrategy strategy;
     private final ValorReferenciaRepository valorReferenciaRepository;
 
@@ -35,10 +36,8 @@ public final class PrecificarBezerroUseCase {
     }
 
     private ParametrosBezerro fromReferencia(ValorReferencia referencia) {
-        return new ParametrosBezerro(
-                BigDecimal.valueOf(referencia.getPesoBezerro()),
-                BigDecimal.valueOf(referencia.getValorArrobaBoi()),
-                BigDecimal.valueOf(referencia.getAgioBezerro())
-        );
+        return new ParametrosBezerro(parseDecimal(referencia.getPesoBezerro()),
+                parseDecimal(referencia.getValorArrobaBoi()),
+                parseDecimal(referencia.getAgioBezerro()));
     }
 }

@@ -1,4 +1,4 @@
-package com.omni.negociacaobezerros.utils.pdf;
+package com.omni.negociacaobezerros.utils.document.pdf;
 
 public enum TextAlignment {
     LEFT,

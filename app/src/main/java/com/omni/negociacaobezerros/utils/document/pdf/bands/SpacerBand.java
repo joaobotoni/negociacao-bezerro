@@ -1,8 +1,8 @@
-package com.omni.negociacaobezerros.utils.pdf.bands;
+package com.omni.negociacaobezerros.utils.document.pdf.bands;
 
 import android.graphics.Canvas;
 
-import com.omni.negociacaobezerros.utils.pdf.PdfBand;
+import com.omni.negociacaobezerros.utils.document.pdf.PdfBand;
 
 
 public class SpacerBand implements PdfBand {

@@ -1,4 +1,4 @@
-package com.omni.negociacaobezerros.utils.pdf.bands;
+package com.omni.negociacaobezerros.utils.document.pdf.bands;
 
 import android.graphics.Canvas;
 import android.graphics.Paint;
@@ -6,9 +6,9 @@ import android.text.Layout;
 import android.text.StaticLayout;
 import android.text.TextPaint;
 
-import com.omni.negociacaobezerros.utils.pdf.PdfBand;
-import com.omni.negociacaobezerros.utils.pdf.PdfColors;
-import com.omni.negociacaobezerros.utils.pdf.TextAlignment;
+import com.omni.negociacaobezerros.utils.document.pdf.PdfBand;
+import com.omni.negociacaobezerros.utils.document.pdf.PdfColors;
+import com.omni.negociacaobezerros.utils.document.pdf.TextAlignment;
 
 public class TextBand implements PdfBand {
 
@@ -22,8 +22,7 @@ public class TextBand implements PdfBand {
         this(text, fontSize, alignment, 4f, 4f);
     }
 
-    public TextBand(String text, float fontSize, TextAlignment alignment,
-                    float paddingTop, float paddingBottom) {
+    public TextBand(String text, float fontSize, TextAlignment alignment, float paddingTop, float paddingBottom) {
         this.text = text;
         this.fontSize = fontSize;
         this.alignment = alignment;
