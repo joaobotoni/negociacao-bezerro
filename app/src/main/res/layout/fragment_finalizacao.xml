@@ -54,8 +54,8 @@
 
                 <ImageView
                     android:id="@+id/image_view_finalizacao_icone_sucesso"
-                    android:layout_width="@dimen/size_extra_large"
-                    android:layout_height="@dimen/size_extra_large"
+                    android:layout_width="@dimen/size_huge"
+                    android:layout_height="@dimen/size_huge"
                     android:contentDescription="@string/cd_sucesso"
                     android:scaleType="fitCenter"
                     android:src="@drawable/verified_24px" />
@@ -372,7 +372,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/size_medium"
         android:layout_marginBottom="@dimen/size_medium"
-        android:text="@string/acao_nova_negociacao"
+        android:text="@string/acao_finalizar_negociacao"
         android:paddingVertical="@dimen/size_medium"
         android:textSize="@dimen/text_size_medium"
         app:icon="@drawable/arrow_forward_24px"

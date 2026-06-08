@@ -11,7 +11,7 @@
     <item
         android:id="@+id/menu_home_opcao_1"
         android:title="@string/conexao_title"
-        android:icon="@drawable/more_vert_24px"
+        android:icon="@drawable/settings_24px"
         android:contentDescription="@string/conexao_title"
         app:showAsAction="ifRoom" />
 </menu>

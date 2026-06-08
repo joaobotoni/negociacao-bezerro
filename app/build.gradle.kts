@@ -62,11 +62,11 @@ dependencies {
     implementation(libs.converter.scalars)
     implementation(libs.converter.gson)
     implementation(libs.gson)
+    implementation(libs.material)
 
     implementation(libs.activity.ktx)
     implementation(libs.appcompat)
     implementation(libs.constraintlayout)
-    implementation(libs.material)
     implementation(libs.navigation.fragment.ktx)
     implementation(libs.navigation.ui.ktx)
     testImplementation(libs.junit)

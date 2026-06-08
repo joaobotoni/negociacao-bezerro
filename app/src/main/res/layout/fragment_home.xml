@@ -18,7 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:contentDescription="@string/cd_toolbar"
-            app:menu="@menu/menu_home"
+            app:menu="@menu/menu"
             app:title="@string/home_title_selecionar_empresa" />
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -48,10 +48,10 @@
                 android:contentDescription="@null"
                 android:focusable="true"
                 app:cardBackgroundColor="?attr/colorSurfaceContainerLow"
-                app:shapeAppearance="?attr/shapeAppearanceCornerExtraExtraLarge"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toTopOf="parent"
+                app:shapeAppearance="?attr/shapeAppearanceCornerExtraExtraLarge">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
@@ -74,7 +74,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:importantForAccessibility="no"
-                            android:src="@drawable/domain_24px"
+                            android:src="@drawable/add_business_24px"
                             app:tint="?attr/colorOnSecondaryContainer" />
 
                     </com.google.android.material.card.MaterialCardView>
@@ -103,7 +103,6 @@
                         app:layout_constraintStart_toEndOf="@id/card_view_home_icone_empresa"
                         app:layout_constraintTop_toBottomOf="@id/text_view_home_nome_empresa"
                         tools:text="Toque para selecionar" />
-
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </com.google.android.material.card.MaterialCardView>
 
@@ -119,29 +118,19 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/card_view_home_selecionar_empresa" />
 
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/card_view_home_historico_recente"
-                style="?attr/materialCardViewFilledStyle"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_view_home_historico"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/size_extra_small"
-                app:cardBackgroundColor="?attr/colorSurfaceContainerLow"
+                android:clipToPadding="false"
+                android:nestedScrollingEnabled="false"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/text_view_home_secao_historico"
-                app:shapeAppearance="?attr/shapeAppearanceCornerExtraLarge">
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recycler_view_home_historico"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:clipToPadding="false"
-                    android:nestedScrollingEnabled="false"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    tools:itemCount="3"
-                    tools:listitem="@layout/item_empresa" />
-
-            </com.google.android.material.card.MaterialCardView>
+                tools:itemCount="3"
+                tools:listitem="@layout/item_empresa" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraint_layout_home_aviso"
@@ -150,7 +139,7 @@
                 android:layout_marginTop="@dimen/size_medium"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/card_view_home_historico_recente">
+                app:layout_constraintTop_toBottomOf="@id/recycler_view_home_historico">
 
                 <ImageView
                     android:id="@+id/image_view_home_icone_aviso"
@@ -186,9 +175,9 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/size_medium"
         android:layout_marginBottom="@dimen/size_medium"
-        android:textSize="@dimen/text_size_medium"
         android:paddingVertical="@dimen/size_medium"
         android:text="@string/acao_proximo"
+        android:textSize="@dimen/text_size_medium"
         app:icon="@drawable/arrow_forward_24px"
         app:iconGravity="end"
         app:layout_constraintBottom_toBottomOf="parent"

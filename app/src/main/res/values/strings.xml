@@ -7,12 +7,13 @@
     <string name="acao_proximo">Próximo</string>
     <string name="acao_conectar">Conectar ao servidor</string>
     <string name="acao_sincronizar">Sincronizar agora</string>
+    <string name="acao_salvar">Salvar agora</string>
     <string name="acao_voltar">Voltar</string>
     <string name="acao_finalizar">Finalizar negociação</string>
     <string name="acao_concluir">Concluir</string>
     <string name="acao_compartilhar">Compartilhar</string>
     <string name="acao_exportar_pdf">Exportar PDF</string>
-    <string name="acao_nova_negociacao">Nova negociação</string>
+    <string name="acao_finalizar_negociacao">Finalizar negociação</string>
     <string name="acao_finalizar_simulacao_frete">Finalizar simulação frete</string>
 
     <!-- Geral – Diálogo -->
@@ -203,10 +204,12 @@
 
     <!-- Item negociação -->
     <string name="sincronizacao_item_title">Negociação</string>
+    <string name="item_animal_title">0</string>
     <string name="sincronizacao_item_desc_empresa">Bom Sucesso</string>
     <string name="sincronizacao_item_qtde">40</string>
     <string name="sincronizacao_item_unidade">.cab</string>
     <string name="sincronizacao_item_example_desc">Bom Sucesso . 40 cab</string>
+    <string name="item_negociacao_animal_example_desc">R$ 0,00 . R$ 0,00</string>
 
 
     <!--  Sincronização  -->
@@ -220,5 +223,24 @@
     <string name="sincronizacao_label_qtde_items">3 itens</string>
 
     <string name="chave_api_google_maps">com.google.android.geo.API_KEY</string>
+
+    <string name="negociacao_animal_title">Pesagem do lote</string>
+    <string name="negociacao_animal_card_title">Preço negociado</string>
+    <string name="negociacao_animal_card_unit_one">R$</string>
+    <string name="negociacao_animal_card_unit_two">/kg</string>
+    <string name="negociacao_animal_card_descricao">0,00</string>
+    <string name="negociacao_animal_card_descricao_sexo">Macho</string>
+    <string name="negociacao_animal_helper_text_peso">Informe o peso e adicione</string>
+
+    <string name="negociacao_animal_resumo_peso_medio_label">Peso médio</string>
+    <string name="negociacao_animal_resumo_valor_total_label">Valor total</string>
+
+
+    <string name="negociacao_resumo_valor_cotado_label">Valores cotados (referência)</string>
+    <string name="negociacao_animal_resumo_label_por_kg">/ kg</string>
+    <string name="negociacao_animal_resumo_label_por_cab">/ cab.</string>
+    <string name="negociacao_animal_resumo_kg_label">Total kg</string>
+    <string name="negociacao_animal_resumo_cab_label">Total cab.</string>
+    <string name="helper_frete_default">Valor do frete: R$ 0,00/kg</string>
 
 </resources>

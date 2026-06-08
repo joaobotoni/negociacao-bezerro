@@ -1,0 +1,600 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/constraint_layout_negociacao_appbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/constraint_layout_sincronizacao_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:contentDescription="@string/cd_toolbar"
+            app:navigationContentDescription="@string/cd_voltar"
+            app:navigationIcon="@drawable/arrow_back_24px"
+            app:title="@string/negociacao_title" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nested_scroll_view_negociacao"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:clipToPadding="false"
+        android:fillViewport="true"
+        app:layout_constraintBottom_toTopOf="@id/button_negociacao_proximo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/constraint_layout_negociacao_appbar">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/size_medium">
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/card_valor_total"
+                style="?attr/materialCardViewFilledStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardBackgroundColor="?attr/colorSurfaceContainerLow"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:shapeAppearance="?attr/shapeAppearanceCornerLarge">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp">
+
+                    <ImageView
+                        android:id="@+id/imagem_icone_valor_total"
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
+                        android:alpha="0.55"
+                        android:src="@drawable/trending_up_24px"
+                        app:layout_constraintBottom_toBottomOf="@id/texto_rotulo_titulo"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/texto_rotulo_titulo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:alpha="0.65"
+                        android:text="@string/negociacao_resumo_valor_cotado_label"
+                        android:textAllCaps="true"
+                        android:textAppearance="?attr/textAppearanceLabelSmall"
+                        app:layout_constraintStart_toEndOf="@id/imagem_icone_valor_total"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/container_valor_kg"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/size_small"
+                        android:padding="@dimen/size_small"
+                        app:layout_constraintEnd_toStartOf="@id/container_valor_cab"
+                        app:layout_constraintHorizontal_chainStyle="spread"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/texto_rotulo_titulo"
+                        app:layout_constraintWidth_percent="0.5">
+
+                        <TextView
+                            android:id="@+id/texto_unidade_real_kg"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:alpha="0.6"
+                            android:text="@string/prefixo_moeda"
+                            android:textAppearance="?attr/textAppearanceLabelLarge"
+                            app:layout_constraintBaseline_toBaselineOf="@id/texto_valor_kg"
+                            app:layout_constraintEnd_toStartOf="@id/texto_valor_kg"
+                            app:layout_constraintStart_toStartOf="parent" />
+
+                        <TextView
+                            android:id="@+id/texto_valor_kg"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/size_smallest"
+                            android:text="@string/placeholder_valor_monetario"
+                            android:textAppearance="?attr/textAppearanceTitleLarge"
+                            android:textStyle="bold"
+                            app:layout_constraintEnd_toStartOf="@id/texto_sufixo_kg"
+                            app:layout_constraintStart_toEndOf="@id/texto_unidade_real_kg"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/texto_sufixo_kg"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/size_smallest"
+                            android:alpha="0.55"
+                            android:text="@string/negociacao_animal_resumo_label_por_kg"
+                            android:textAppearance="?attr/textAppearanceLabelLarge"
+                            app:layout_constraintBaseline_toBaselineOf="@id/texto_valor_kg"
+                            app:layout_constraintStart_toEndOf="@id/texto_valor_kg" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/container_valor_cab"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/size_small"
+                        android:padding="@dimen/size_small"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/container_valor_kg"
+                        app:layout_constraintTop_toBottomOf="@id/texto_rotulo_titulo"
+                        app:layout_constraintWidth_percent="0.5">
+
+                        <TextView
+                            android:id="@+id/texto_unidade_real_cab"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:alpha="0.6"
+                            android:text="@string/prefixo_moeda"
+                            android:textAppearance="?attr/textAppearanceLabelLarge"
+                            app:layout_constraintBaseline_toBaselineOf="@id/texto_valor_cab"
+                            app:layout_constraintEnd_toStartOf="@id/texto_valor_cab"
+                            app:layout_constraintStart_toStartOf="parent" />
+
+                        <TextView
+                            android:id="@+id/texto_valor_cab"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/size_smallest"
+                            android:text="@string/placeholder_valor_monetario"
+                            android:textAppearance="?attr/textAppearanceTitleLarge"
+                            android:textStyle="bold"
+                            app:layout_constraintEnd_toStartOf="@id/texto_sufixo_cab"
+                            app:layout_constraintStart_toEndOf="@id/texto_unidade_real_cab"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/texto_sufixo_cab"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/size_smallest"
+                            android:alpha="0.55"
+                            android:text="@string/negociacao_animal_resumo_label_por_cab"
+                            android:textAppearance="?attr/textAppearanceLabelLarge"
+                            app:layout_constraintBaseline_toBaselineOf="@id/texto_valor_cab"
+                            app:layout_constraintStart_toEndOf="@id/texto_valor_cab" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/container_edicao_valores"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/size_medium"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/card_valor_total">
+
+                <TextView
+                    android:id="@+id/texto_titulo_edicao"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Dados da Negociação"
+                    android:textAppearance="?attr/textAppearanceTitleMedium"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/layout_input_valor_kg"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/size_medium"
+                    android:layout_marginEnd="@dimen/size_smallest"
+                    android:hint="Valor por kg"
+                    app:shapeAppearance="?attr/shapeAppearanceCornerSmall"
+                    app:layout_constraintEnd_toStartOf="@id/layout_input_valor_cabeca"
+                    app:layout_constraintHorizontal_chainStyle="spread"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/texto_titulo_edicao">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edit_valor_kg"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="numberDecimal" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/layout_input_valor_cabeca"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/size_smallest"
+                    android:layout_marginTop="@dimen/size_medium"
+                    android:hint="Valor por cabeça"
+                    app:shapeAppearance="?attr/shapeAppearanceCornerSmall"
+
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/layout_input_valor_kg"
+                    app:layout_constraintTop_toBottomOf="@id/texto_titulo_edicao">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edit_valor_cabeca"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="numberDecimal" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/layout_input_valor_frete"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/size_ultra_small"
+                    android:hint="Valor total do frete"
+                    app:helperText="@string/helper_frete_default"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:shapeAppearance="?attr/shapeAppearanceCornerSmall"
+                    app:layout_constraintTop_toBottomOf="@id/layout_input_valor_kg">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/edit_valor_frete"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="numberDecimal" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/card_view_simular_frete"
+                style="?attr/materialCardViewFilledStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:clickable="true"
+                android:contentDescription="@null"
+                android:focusable="true"
+                app:cardBackgroundColor="?attr/colorSurfaceContainerLow"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/container_edicao_valores"
+                app:shapeAppearance="?attr/shapeAppearanceCornerExtraExtraLarge">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/size_medium">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/card_view_frete_icone_dns"
+                        style="?attr/materialCardViewFilledStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:cardBackgroundColor="?attr/colorSurfaceContainer"
+                        app:contentPadding="@dimen/size_small"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:shapeAppearance="?attr/shapeAppearanceCornerExtraExtraLarge">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:importantForAccessibility="no"
+                            android:src="@drawable/delivery_truck_speed_24px"
+                            app:tint="?attr/colorOnSecondaryContainer" />
+
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <TextView
+                        android:id="@+id/text_view_frete_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/size_medium"
+                        android:text="Simular um frete"
+                        android:textAppearance="?attr/textAppearanceTitleSmall"
+                        android:textColor="?attr/colorOnSurface"
+                        app:layout_constraintStart_toEndOf="@id/card_view_frete_icone_dns"
+                        app:layout_constraintTop_toTopOf="@id/card_view_frete_icone_dns" />
+
+                    <TextView
+                        android:id="@+id/text_view_frete_descricao"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/size_medium"
+                        android:text="Defina origem, destino e veículo"
+                        android:textAppearance="?attr/textAppearanceBodySmall"
+                        android:textColor="?attr/colorOnSurfaceVariant"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/card_view_frete_icone_dns"
+                        app:layout_constraintTop_toBottomOf="@id/text_view_frete_title" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/card_view_selecionar_corretor"
+                style="?attr/materialCardViewFilledStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:clickable="true"
+                android:contentDescription="@null"
+                android:focusable="true"
+                app:cardBackgroundColor="?attr/colorSurfaceContainerLow"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/card_view_simular_frete"
+                app:shapeAppearance="?attr/shapeAppearanceCornerExtraExtraLarge">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/size_medium">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/card_view_corretor_icone_dns"
+                        style="?attr/materialCardViewFilledStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:cardBackgroundColor="?attr/colorSurfaceContainer"
+                        app:contentPadding="@dimen/size_small"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:shapeAppearance="?attr/shapeAppearanceCornerExtraExtraLarge">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:importantForAccessibility="no"
+                            android:src="@drawable/handshake_24px"
+                            app:tint="?attr/colorOnSecondaryContainer" />
+
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <TextView
+                        android:id="@+id/text_view_corretor_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/size_medium"
+                        android:text="Sem corretor"
+                        android:textAppearance="?attr/textAppearanceTitleSmall"
+                        android:textColor="?attr/colorOnSurface"
+                        app:layout_constraintStart_toEndOf="@id/card_view_corretor_icone_dns"
+                        app:layout_constraintTop_toTopOf="@id/card_view_corretor_icone_dns" />
+
+                    <TextView
+                        android:id="@+id/text_view_corretor_descricao"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/size_medium"
+                        android:text="Sem comissão"
+                        android:textAppearance="?attr/textAppearanceBodySmall"
+                        android:textColor="?attr/colorOnSurfaceVariant"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/card_view_corretor_icone_dns"
+                        app:layout_constraintTop_toBottomOf="@id/text_view_corretor_title" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/card_composicao"
+                style="?attr/materialCardViewFilledStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                app:cardBackgroundColor="@android:color/transparent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/card_view_selecionar_corretor"
+                app:shapeAppearance="?attr/shapeAppearanceCornerLarge">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="20dp">
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/card_icone_etapa_pedido"
+                        style="?attr/materialCardViewFilledStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:cardBackgroundColor="?attr/colorSecondaryContainer"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:shapeAppearance="?attr/shapeAppearanceCornerExtraLarge">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:padding="12dp"
+                            android:src="@drawable/trending_up_24px"
+                            app:tint="?attr/colorPrimary" />
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <TextView
+                        android:id="@+id/texto_rotulo_etapa_pedido"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:text="VALOR DO PEDIDO"
+                        android:textAllCaps="true"
+                        android:textAppearance="?attr/textAppearanceLabelSmall"
+                        android:textColor="?attr/colorOnSurfaceVariant"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toEndOf="@id/card_icone_etapa_pedido"
+                        app:layout_constraintTop_toTopOf="@id/card_icone_etapa_pedido" />
+
+                    <TextView
+                        android:id="@+id/texto_descricao_etapa_pedido"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:text="R$ 0,00"
+                        android:textAppearance="?attr/textAppearanceLabelMedium"
+                        android:textColor="?attr/colorOnSurfaceVariant"
+                        app:layout_constraintStart_toStartOf="@id/texto_rotulo_etapa_pedido"
+                        app:layout_constraintTop_toBottomOf="@id/texto_rotulo_etapa_pedido" />
+
+                    <TextView
+                        android:id="@+id/texto_valor_etapa_pedido"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0,00"
+                        android:textAppearance="?attr/textAppearanceTitleLarge"
+                        android:textColor="?attr/colorOnSurface"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/card_icone_etapa_pedido" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="4dp"
+                        android:text="R$"
+                        android:textAppearance="?attr/textAppearanceLabelMedium"
+                        android:textColor="?attr/colorOnSurfaceVariant"
+                        app:layout_constraintBaseline_toBaselineOf="@id/texto_valor_etapa_pedido"
+                        app:layout_constraintEnd_toStartOf="@id/texto_valor_etapa_pedido" />
+
+                    <View
+                        android:id="@+id/view_conector_2"
+                        android:layout_width="2dp"
+                        android:layout_height="28dp"
+                        android:background="?attr/colorOutlineVariant"
+                        app:layout_constraintEnd_toEndOf="@id/card_icone_etapa_pedido"
+                        app:layout_constraintStart_toStartOf="@id/card_icone_etapa_pedido"
+                        app:layout_constraintTop_toBottomOf="@id/card_icone_etapa_pedido" />
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/card_icone_etapa_final"
+                        style="?attr/materialCardViewFilledStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:cardBackgroundColor="?attr/colorPrimary"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/view_conector_2"
+                        app:shapeAppearance="?attr/shapeAppearanceCornerExtraLarge"
+                        app:strokeWidth="3dp">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="12dp"
+                            android:src="@drawable/verified_24px"
+                            app:tint="@color/white" />
+                    </com.google.android.material.card.MaterialCardView>
+
+                    <TextView
+                        android:id="@+id/texto_rotulo_etapa_final"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:text="VALOR LÍQUIDO"
+                        android:textAllCaps="true"
+                        android:textAppearance="?attr/textAppearanceLabelSmall"
+                        android:textColor="?attr/colorPrimary"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toEndOf="@id/card_icone_etapa_final"
+                        app:layout_constraintTop_toTopOf="@id/card_icone_etapa_final" />
+
+                    <TextView
+                        android:id="@+id/texto_descricao_etapa_final"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:text="R$ 0,00"
+                        android:textAppearance="?attr/textAppearanceLabelMedium"
+                        android:textColor="?attr/colorOnSurfaceVariant"
+                        app:layout_constraintStart_toStartOf="@id/texto_rotulo_etapa_final"
+                        app:layout_constraintTop_toBottomOf="@id/texto_rotulo_etapa_final" />
+
+                    <TextView
+                        android:id="@+id/texto_valor_etapa_final"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0,00"
+                        android:textAppearance="?attr/textAppearanceTitleLarge"
+                        android:textColor="?attr/colorOnSurface"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/card_icone_etapa_final" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="4dp"
+                        android:text="R$"
+                        android:textAppearance="?attr/textAppearanceLabelMedium"
+                        android:textColor="?attr/colorOnSurfaceVariant"
+                        app:layout_constraintBaseline_toBaselineOf="@id/texto_valor_etapa_final"
+                        app:layout_constraintEnd_toStartOf="@id/texto_valor_etapa_final" />
+
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/card_badge_etapa_corretor"
+                        style="?attr/materialCardViewFilledStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        app:cardBackgroundColor="?attr/colorSecondaryContainer"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/texto_valor_etapa_final"
+                        app:shapeAppearance="?attr/shapeAppearanceCornerExtraLarge">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal"
+                            android:paddingHorizontal="10dp"
+                            android:paddingVertical="4dp">
+
+                            <ImageView
+                                android:id="@+id/icon_badge_etapa_corretor"
+                                android:layout_width="14dp"
+                                android:layout_height="14dp"
+                                android:layout_marginEnd="4dp"
+                                android:src="@drawable/trending_up_24px"
+                                app:tint="?attr/colorPrimary" />
+
+                            <TextView
+                                android:id="@+id/texto_badge_etapa_corretor"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="%0,00"
+                                android:textAppearance="?attr/textAppearanceLabelSmall"
+                                android:textColor="?attr/colorPrimary"
+                                android:textStyle="bold" />
+
+                        </LinearLayout>
+                    </com.google.android.material.card.MaterialCardView>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.card.MaterialCardView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <Button
+        android:id="@+id/button_negociacao_proximo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/size_medium"
+        android:layout_marginBottom="@dimen/size_medium"
+        android:paddingVertical="@dimen/size_medium"
+        android:text="@string/acao_proximo"
+        android:textSize="@dimen/text_size_medium"
+        app:icon="@drawable/arrow_forward_24px"
+        app:iconGravity="end"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

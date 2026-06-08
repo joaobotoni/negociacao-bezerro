@@ -3,23 +3,28 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation"
-    app:startDestination="@id/finalizacaoFragment">
+    app:startDestination="@id/conexaoFragment">
+
     <fragment
         android:id="@+id/cotacaoFragment"
         android:name="com.omni.negociacaobezerros.ui.fragments.CotacaoFragment"
         android:label="CotacaoFragment" />
+
     <fragment
         android:id="@+id/finalizacaoFragment"
         android:name="com.omni.negociacaobezerros.ui.fragments.FinalizacaoFragment"
         android:label="FinalizacaoFragment" />
+
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.omni.negociacaobezerros.ui.fragments.HomeFragment"
         android:label="HomeFragment" />
+
     <fragment
         android:id="@+id/conexaoFragment"
         android:name="com.omni.negociacaobezerros.ui.fragments.ConexaoFragment"
         android:label="ConexaoFragment" />
+
     <fragment
         android:id="@+id/sincronizacaoFragment"
         android:name="com.omni.negociacaobezerros.ui.fragments.SincronizacaoFragment"

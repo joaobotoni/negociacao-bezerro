@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="?attr/materialCardViewFilledStyle"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/size_small"
+    android:clickable="true"
+    android:contentDescription="@null"
+    android:focusable="true"
+    app:cardBackgroundColor="?attr/colorSurfaceContainerLow"
+    app:shapeAppearance="?attr/shapeAppearanceCornerLarge">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/size_small">
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card_view_item_negociacao_animal_icone"
+            style="?attr/materialCardViewFilledStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:cardBackgroundColor="?attr/colorSurfaceContainer"
+            app:contentPadding="@dimen/size_extra_small"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:shapeAppearance="?attr/shapeAppearanceCornerExtraExtraLarge">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:importantForAccessibility="no"
+                android:minWidth="@dimen/size_extra_large"
+                android:minHeight="@dimen/size_extra_large"
+                android:textAppearance="?attr/textAppearanceTitleMedium"
+                android:textColor="?attr/colorOnSecondaryContainer"
+                android:textStyle="bold"
+                tools:text="0" />
+        </com.google.android.material.card.MaterialCardView>
+
+        <TextView
+            android:id="@+id/text_view_item_negociacao_animal_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/size_small"
+            android:textAppearance="?attr/textAppearanceTitleLarge"
+            android:textStyle="bold"
+            app:layout_constraintBaseline_toBaselineOf="@id/text_view_item_negociacao_animal_unidade"
+            app:layout_constraintBottom_toTopOf="@id/text_view_item_negociacao_animal_descricao"
+            app:layout_constraintStart_toEndOf="@id/card_view_item_negociacao_animal_icone"
+            app:layout_constraintTop_toTopOf="@id/card_view_item_negociacao_animal_icone"
+            tools:text="@string/item_animal_title" />
+
+        <TextView
+            android:id="@+id/text_view_item_negociacao_animal_unidade"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/size_ultra_small"
+            android:textAppearance="?attr/textAppearanceBodySmall"
+            android:textColor="?attr/colorOnSurfaceVariant"
+            app:layout_constraintBaseline_toBaselineOf="@id/text_view_item_negociacao_animal_title"
+            app:layout_constraintStart_toEndOf="@id/text_view_item_negociacao_animal_title"
+            tools:text="kg" />
+
+        <TextView
+            android:id="@+id/text_view_item_negociacao_animal_descricao"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/size_small"
+            android:textAppearance="?attr/textAppearanceBodySmall"
+            android:textColor="?attr/colorOnSurfaceVariant"
+            app:layout_constraintBottom_toBottomOf="@id/card_view_item_negociacao_animal_icone"
+            app:layout_constraintStart_toEndOf="@id/card_view_item_negociacao_animal_icone"
+            app:layout_constraintTop_toBottomOf="@id/text_view_item_negociacao_animal_title"
+            tools:text="@string/item_negociacao_animal_example_desc" />
+
+        <Button
+            android:id="@+id/image_view_item_negociacao_animal_edit"
+            style="?attr/materialIconButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/size_small"
+            android:importantForAccessibility="no"
+            app:icon="@drawable/edit_24px"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/image_view_item_negociacao_animal_remove"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="?attr/colorOnSurfaceVariant" />
+
+        <Button
+            android:id="@+id/image_view_item_negociacao_animal_remove"
+            style="?attr/materialIconButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:importantForAccessibility="no"
+            app:icon="@drawable/delete_24px"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:iconTint="@color/design_default_color_error" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.card.MaterialCardView>
