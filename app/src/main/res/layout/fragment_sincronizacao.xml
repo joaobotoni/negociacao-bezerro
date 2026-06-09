@@ -130,7 +130,7 @@
                     android:id="@+id/text_view_sincronizacao_aviso"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/size_extra_small"
+                    android:layout_marginStart="@dimen/size_smaller"
                     android:text="@string/sincronizacao_msg_aviso"
                     android:textAppearance="?attr/textAppearanceBodySmall"
                     android:textColor="?attr/colorOnSurfaceVariant"

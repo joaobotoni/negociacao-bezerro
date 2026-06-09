@@ -122,7 +122,7 @@
                 android:id="@+id/recycler_view_home_historico"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/size_extra_small"
+                android:layout_marginTop="@dimen/size_smaller"
                 android:clipToPadding="false"
                 android:nestedScrollingEnabled="false"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
@@ -130,7 +130,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/text_view_home_secao_historico"
                 tools:itemCount="3"
-                tools:listitem="@layout/item_empresa" />
+                tools:listitem="@layout/item_registro_negociacao" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraint_layout_home_aviso"
@@ -156,7 +156,7 @@
                     android:id="@+id/text_view_home_aviso"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/size_extra_small"
+                    android:layout_marginStart="@dimen/size_smaller"
                     android:text="@string/home_msg_aviso"
                     android:textAppearance="?attr/textAppearanceBodySmall"
                     android:textColor="?attr/colorOnSurfaceVariant"

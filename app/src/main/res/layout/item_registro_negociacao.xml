@@ -12,13 +12,15 @@
     app:cardBackgroundColor="?attr/colorSurfaceContainerLow"
     app:shapeAppearance="?attr/shapeAppearanceCornerExtraExtraLarge">
 
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="@dimen/size_medium">
 
+
         <com.google.android.material.card.MaterialCardView
-            android:id="@+id/card_view_item_negociacao_icone"
+            android:id="@+id/card_view_item_empresa_icone"
             style="?attr/materialCardViewFilledStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -33,44 +35,45 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:importantForAccessibility="no"
-                android:src="@drawable/sell_24px"
+                android:src="@drawable/domain_24px"
                 app:tint="?attr/colorOnSecondaryContainer" />
         </com.google.android.material.card.MaterialCardView>
 
         <TextView
-            android:id="@+id/text_view_item_negociacao_title"
+            android:id="@+id/text_view_item_empresa_nome"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/size_small"
             android:textAppearance="?attr/textAppearanceBodyLarge"
             android:textColor="?attr/colorOnSurface"
-            app:layout_constraintBottom_toTopOf="@id/text_view_item_negociacao_descricao"
-            app:layout_constraintStart_toEndOf="@id/card_view_item_negociacao_icone"
-            app:layout_constraintTop_toTopOf="@id/card_view_item_negociacao_icone"
+            app:layout_constraintBottom_toTopOf="@id/text_view_item_empresa_localizacao"
+            app:layout_constraintStart_toEndOf="@id/card_view_item_empresa_icone"
+            app:layout_constraintTop_toTopOf="@id/card_view_item_empresa_icone"
             app:layout_constraintVertical_chainStyle="packed"
-            tools:text="@string/sincronizacao_item_title" />
+            tools:text="@string/placeholder_company_name" />
 
         <TextView
-            android:id="@+id/text_view_item_negociacao_descricao"
+            android:id="@+id/text_view_item_empresa_localizacao"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/size_small"
             android:textAppearance="?attr/textAppearanceBodySmall"
             android:textColor="?attr/colorOnSurfaceVariant"
-            app:layout_constraintBottom_toBottomOf="@id/card_view_item_negociacao_icone"
-            app:layout_constraintStart_toEndOf="@id/card_view_item_negociacao_icone"
-            app:layout_constraintTop_toBottomOf="@id/text_view_item_negociacao_title"
-            tools:text="@string/sincronizacao_item_example_desc" />
+            app:layout_constraintBottom_toBottomOf="@id/card_view_item_empresa_icone"
+            app:layout_constraintStart_toEndOf="@id/card_view_item_empresa_icone"
+            app:layout_constraintTop_toBottomOf="@id/text_view_item_empresa_nome"
+            tools:text="@string/placeholder_company_location" />
 
         <ImageView
-            android:id="@+id/image_view_item_negociacao"
+            android:id="@+id/image_view_item_empresa_seta"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:importantForAccessibility="no"
-            android:src="@drawable/schedule_24px"
+            android:src="@drawable/arrow_insert_24px"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:tint="?attr/colorOnSurfaceVariant" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </com.google.android.material.card.MaterialCardView>
