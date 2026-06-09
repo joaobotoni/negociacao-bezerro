@@ -242,4 +242,31 @@
     <string name="negociacao_animal_resumo_cab_label">Total cab.</string>
     <string name="helper_frete_default">Valor do frete: R$ 0,00/kg</string>
 
+    <string name="titulo_selecionar_corretor">Selecionar corretor</string>
+    <string name="texto_nome_corretor">Sem nome</string>
+    <string name="descricao_comissao_resumo_default">Comissão R$ 0,00</string>
+
+    <string name="rotulo_selecionar_empresa">Selecionar empresa</string>
+
+    <string name="titulo_frete">Simular frete</string>
+    <string name="titulo_instrucao_preenchimento">Preencha os campos abaixo</string>
+
+    <string name="rotulo_rota">ROTA</string>
+    <string name="rotulo_origem">Origem</string>
+    <string name="rotulo_destino">Destino</string>
+    <string name="rotulo_distancia">Distância</string>
+    <string name="divisor_ou">OU</string>
+    <string name="destino_padrao">Cuiabá</string>
+    <string name="rotulo_explorar_rotas">Toque para explorar rotas</string>
+    <string name="descricao_frete_vazio">Defina origem, destino e veículo</string>
+    <string name="descricao_selecione_origem">Selecione origem</string>
+
+    <string name="placeholder_valor_com_km_default">0,00</string>
+    <string name="rotulo_transporte">TRANSPORTE</string>
+    <string name="titulo_resumo_frete">Resultados</string>
+    <string name="titulo_valor_total">Valor total</string>
+    <string name="titulo_valor_por_kg_frete">Valor por kg</string>
+    <string name="acao_finalizar_simulacao">Finalizar simulação frete</string>
+    <string name="amostra_opcao_categoria">Categoria</string>
+
 </resources>

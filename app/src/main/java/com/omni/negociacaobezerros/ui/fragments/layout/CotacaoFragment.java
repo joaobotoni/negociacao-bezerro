@@ -1,4 +1,5 @@
-package com.omni.negociacaobezerros.ui.fragments;
+package com.omni.negociacaobezerros.ui.fragments.layout;
+
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,16 +10,15 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.omni.negociacaobezerros.databinding.FragmentHomeBinding;
+import com.omni.negociacaobezerros.databinding.FragmentCotacaoBinding;
 
-public class HomeFragment extends Fragment {
-
-    private FragmentHomeBinding binding;
+public class CotacaoFragment extends Fragment {
+    private FragmentCotacaoBinding binding;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        binding = FragmentHomeBinding.inflate(inflater, container, false);
+        binding = FragmentCotacaoBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
 

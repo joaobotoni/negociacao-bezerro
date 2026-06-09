@@ -7,26 +7,26 @@
 
     <fragment
         android:id="@+id/cotacaoFragment"
-        android:name="com.omni.negociacaobezerros.ui.fragments.CotacaoFragment"
+        android:name="com.omni.negociacaobezerros.ui.fragments.layout.CotacaoFragment"
         android:label="CotacaoFragment" />
 
     <fragment
         android:id="@+id/finalizacaoFragment"
-        android:name="com.omni.negociacaobezerros.ui.fragments.FinalizacaoFragment"
+        android:name="com.omni.negociacaobezerros.ui.fragments.layout.FinalizacaoFragment"
         android:label="FinalizacaoFragment" />
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.omni.negociacaobezerros.ui.fragments.HomeFragment"
+        android:name="com.omni.negociacaobezerros.ui.fragments.layout.HomeFragment"
         android:label="HomeFragment" />
 
     <fragment
         android:id="@+id/conexaoFragment"
-        android:name="com.omni.negociacaobezerros.ui.fragments.ConexaoFragment"
+        android:name="com.omni.negociacaobezerros.ui.fragments.layout.ConexaoFragment"
         android:label="ConexaoFragment" />
 
     <fragment
         android:id="@+id/sincronizacaoFragment"
-        android:name="com.omni.negociacaobezerros.ui.fragments.SincronizacaoFragment"
+        android:name="com.omni.negociacaobezerros.ui.fragments.layout.SincronizacaoFragment"
         android:label="SincronizacaoFragment" />
 </navigation>

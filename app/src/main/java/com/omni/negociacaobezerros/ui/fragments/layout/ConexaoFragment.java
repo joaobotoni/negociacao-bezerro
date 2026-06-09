@@ -1,4 +1,4 @@
-package com.omni.negociacaobezerros.ui.fragments;
+package com.omni.negociacaobezerros.ui.fragments.layout;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,7 +12,6 @@ import androidx.fragment.app.Fragment;
 import com.omni.negociacaobezerros.databinding.FragmentConexaoBinding;
 
 public class ConexaoFragment extends Fragment {
-
     private FragmentConexaoBinding binding;
 
     @Nullable
