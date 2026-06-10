@@ -38,8 +38,7 @@
                 android:minHeight="@dimen/size_bigger"
                 android:textAppearance="?attr/textAppearanceTitleMedium"
                 android:textColor="?attr/colorOnSecondaryContainer"
-                android:textStyle="bold"
-                tools:text="0" />
+                android:textStyle="bold" />
         </com.google.android.material.card.MaterialCardView>
 
         <TextView
@@ -52,8 +51,7 @@
             app:layout_constraintBaseline_toBaselineOf="@id/text_view_item_negociacao_animal_unidade"
             app:layout_constraintBottom_toTopOf="@id/text_view_item_negociacao_animal_descricao"
             app:layout_constraintStart_toEndOf="@id/card_view_item_negociacao_animal_icone"
-            app:layout_constraintTop_toTopOf="@id/card_view_item_negociacao_animal_icone"
-            tools:text="@string/item_animal_title" />
+            app:layout_constraintTop_toTopOf="@id/card_view_item_negociacao_animal_icone" />
 
         <TextView
             android:id="@+id/text_view_item_negociacao_animal_unidade"
@@ -63,8 +61,7 @@
             android:textAppearance="?attr/textAppearanceBodySmall"
             android:textColor="?attr/colorOnSurfaceVariant"
             app:layout_constraintBaseline_toBaselineOf="@id/text_view_item_negociacao_animal_title"
-            app:layout_constraintStart_toEndOf="@id/text_view_item_negociacao_animal_title"
-            tools:text="kg" />
+            app:layout_constraintStart_toEndOf="@id/text_view_item_negociacao_animal_title" />
 
         <TextView
             android:id="@+id/text_view_item_negociacao_animal_descricao"
@@ -75,8 +72,7 @@
             android:textColor="?attr/colorOnSurfaceVariant"
             app:layout_constraintBottom_toBottomOf="@id/card_view_item_negociacao_animal_icone"
             app:layout_constraintStart_toEndOf="@id/card_view_item_negociacao_animal_icone"
-            app:layout_constraintTop_toBottomOf="@id/text_view_item_negociacao_animal_title"
-            tools:text="@string/item_negociacao_animal_example_desc" />
+            app:layout_constraintTop_toBottomOf="@id/text_view_item_negociacao_animal_title" />
 
         <Button
             android:id="@+id/image_view_item_negociacao_animal_edit"

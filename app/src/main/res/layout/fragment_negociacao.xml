@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -60,6 +59,7 @@
                         android:layout_width="18dp"
                         android:layout_height="18dp"
                         android:alpha="0.55"
+                        android:contentDescription="@null"
                         android:src="@drawable/trending_up_24px"
                         app:layout_constraintBottom_toBottomOf="@id/texto_rotulo_titulo"
                         app:layout_constraintStart_toStartOf="parent"
@@ -100,7 +100,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="@dimen/size_extra_small"
-                            android:text="@string/placeholder_valor_monetario"
+                            android:text="@string/common_placeholder_decimal"
                             android:textAppearance="?attr/textAppearanceTitleLarge"
                             android:textStyle="bold"
                             app:layout_constraintStart_toEndOf="@id/texto_unidade_real_kg"
@@ -153,7 +153,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="@dimen/size_extra_small"
-                            android:text="@string/placeholder_valor_monetario"
+                            android:text="@string/common_placeholder_decimal"
                             android:textAppearance="?attr/textAppearanceTitleLarge"
                             android:textStyle="bold"
                             app:layout_constraintStart_toEndOf="@id/texto_unidade_real_cab"
@@ -189,7 +189,7 @@
                     android:id="@+id/texto_titulo_edicao"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Dados da Negociação"
+                    android:text="@string/negociacao_label_dados"
                     android:textAppearance="?attr/textAppearanceTitleMedium"
 
                     app:layout_constraintStart_toStartOf="parent"
@@ -201,13 +201,13 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/size_medium"
                     android:layout_marginEnd="@dimen/size_extra_small"
-                    android:hint="Valor por kg"
+                    android:hint="@string/negociacao_hint_por_kg"
                     app:layout_constraintEnd_toStartOf="@id/layout_input_valor_cabeca"
                     app:layout_constraintHorizontal_chainStyle="spread"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:startIconDrawable="@drawable/payments_24px"
                     app:layout_constraintTop_toBottomOf="@id/texto_titulo_edicao"
-                    app:shapeAppearance="?attr/shapeAppearanceCornerSmall">
+                    app:shapeAppearance="?attr/shapeAppearanceCornerSmall"
+                    app:startIconDrawable="@drawable/payments_24px">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/edit_valor_kg"
@@ -222,12 +222,12 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/size_extra_small"
                     android:layout_marginTop="@dimen/size_medium"
-                    app:startIconDrawable="@drawable/payments_24px"
-                    android:hint="Valor por cab"
+                    android:hint="@string/negociacao_hint_por_cabeca"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/layout_input_valor_kg"
                     app:layout_constraintTop_toBottomOf="@id/texto_titulo_edicao"
-                    app:shapeAppearance="?attr/shapeAppearanceCornerSmall">
+                    app:shapeAppearance="?attr/shapeAppearanceCornerSmall"
+                    app:startIconDrawable="@drawable/payments_24px">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/edit_valor_cabeca"
@@ -241,14 +241,14 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/size_ultra_small"
-                    android:hint="Valor total do frete"
-                    app:helperText="@string/helper_frete_default"
+                    android:hint="@string/negociacao_hint_valor_frete"
+                    app:helperText="@string/frete_helper_default"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:startIconDrawable="@drawable/payments_24px"
-
                     app:layout_constraintTop_toBottomOf="@id/layout_input_valor_kg"
-                    app:shapeAppearance="?attr/shapeAppearanceCornerSmall">
+
+                    app:shapeAppearance="?attr/shapeAppearanceCornerSmall"
+                    app:startIconDrawable="@drawable/payments_24px">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/edit_valor_frete"
@@ -305,7 +305,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/size_medium"
-                        android:text="Simular um frete"
+                        android:text="@string/negociacao_label_simular_frete"
                         android:textAppearance="?attr/textAppearanceTitleSmall"
                         android:textColor="?attr/colorOnSurface"
                         app:layout_constraintStart_toEndOf="@id/card_view_frete_icone_dns"
@@ -316,7 +316,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/size_medium"
-                        android:text="Defina origem, destino e veículo"
+                        android:text="@string/negociacao_descricao_simular_frete"
                         android:textAppearance="?attr/textAppearanceBodySmall"
                         android:textColor="?attr/colorOnSurfaceVariant"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -371,7 +371,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/size_medium"
-                        android:text="Sem corretor"
+                        android:text="@string/negociacao_label_sem_corretor"
                         android:textAppearance="?attr/textAppearanceTitleSmall"
                         android:textColor="?attr/colorOnSurface"
                         app:layout_constraintStart_toEndOf="@id/card_view_corretor_icone_dns"
@@ -382,7 +382,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/size_medium"
-                        android:text="Sem comissão"
+                        android:text="@string/negociacao_descricao_sem_comissao"
                         android:textAppearance="?attr/textAppearanceBodySmall"
                         android:textColor="?attr/colorOnSurfaceVariant"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -430,6 +430,7 @@
                             <ImageView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:contentDescription="@null"
                                 android:padding="10dp"
                                 android:src="@drawable/trending_up_24px"
                                 app:tint="?attr/colorPrimary" />
@@ -459,6 +460,7 @@
                             <ImageView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
+                                android:contentDescription="@null"
                                 android:padding="10dp"
                                 android:src="@drawable/verified_24px"
                                 app:tint="@color/white" />
@@ -487,7 +489,7 @@
                                 android:id="@+id/texto_rotulo_etapa_pedido"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="VALOR DO PEDIDO / PROPOSTO"
+                                android:text="@string/negociacao_rotulo_etapa_pedido"
                                 android:textAllCaps="true"
                                 android:textAppearance="?attr/textAppearanceLabelSmall"
                                 android:textColor="?attr/colorOnSurfaceVariant"
@@ -500,7 +502,7 @@
                                 android:id="@+id/texto_valor_etapa_pedido"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="R$ 0,00"
+                                android:text="@string/common_valor_monetario_zero"
                                 android:textAppearance="?attr/textAppearanceTitleLarge"
                                 android:textColor="?attr/colorOnSurface"
                                 android:textStyle="bold"
@@ -511,7 +513,7 @@
                                 android:id="@+id/texto_descricao_etapa_pedido"
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
-                                android:text="R$ 0,00 /kg"
+                                android:text="@string/placeholder_valor_por_kg_default"
                                 android:textAppearance="?attr/textAppearanceLabelMedium"
                                 android:textColor="?attr/colorOnSurfaceVariant"
                                 app:layout_constraintBottom_toBottomOf="parent"
@@ -543,7 +545,7 @@
                                 android:id="@+id/texto_rotulo_etapa_final"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="VALOR DE FECHAMENTO"
+                                android:text="@string/negociacao_rotulo_etapa_final"
                                 android:textAllCaps="true"
                                 android:textAppearance="?attr/textAppearanceLabelSmall"
                                 android:textColor="?attr/colorPrimary"
@@ -556,7 +558,7 @@
                                 android:id="@+id/texto_valor_etapa_final"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="R$ 0,00"
+                                android:text="@string/common_valor_monetario_zero"
                                 android:textAppearance="?attr/textAppearanceTitleLarge"
                                 android:textColor="?attr/colorPrimary"
                                 android:textStyle="bold"
@@ -567,7 +569,7 @@
                                 android:id="@+id/texto_descricao_etapa_final"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="R$ 0,00 /kg"
+                                android:text="@string/placeholder_valor_por_kg_default"
                                 android:textAppearance="?attr/textAppearanceLabelMedium"
                                 android:textColor="?attr/colorPrimary"
                                 app:layout_constraintStart_toStartOf="parent"

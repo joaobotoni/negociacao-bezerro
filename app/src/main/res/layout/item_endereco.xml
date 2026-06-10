@@ -53,8 +53,7 @@
                 android:fontFamily="sans-serif-medium"
                 android:maxLines="1"
                 android:textColor="?attr/colorOnSurface"
-                android:textSize="16sp"
-                tools:text="Brasília" />
+                android:textSize="16sp" />
 
             <TextView
                 android:id="@+id/texto_nome_estado"
@@ -64,8 +63,7 @@
                 android:ellipsize="end"
                 android:maxLines="1"
                 android:textColor="?attr/colorOnSurfaceVariant"
-                android:textSize="12sp"
-                tools:text="Distrito Federal" />
+                android:textSize="12sp" />
 
         </LinearLayout>
 

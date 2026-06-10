@@ -80,7 +80,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/size_medium"
-                        android:text="@string/cotacao_label_comprador"
+                        android:text="@string/common_label_empresa_compradora"
                         android:textAppearance="?attr/textAppearanceBodyMedium"
                         app:layout_constraintStart_toEndOf="@+id/card_view_cotacao_icone_comprador"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -152,7 +152,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/size_smaller"
                 android:layout_marginEnd="@dimen/size_extra_small"
-                android:hint="@string/cotacao_hint_peso_medio"
+                android:hint="@string/common_dica_peso"
                 app:layout_constraintEnd_toStartOf="@id/text_input_layout_cotacao_quantidade"
                 app:layout_constraintHorizontal_weight="1"
                 app:layout_constraintStart_toStartOf="parent"
@@ -241,12 +241,13 @@
                     app:layout_constraintStart_toEndOf="@id/card_view_cotacao_icone_quilo"
                     app:layout_constraintTop_toBottomOf="@id/text_view_cotacao_tabela_quilo_label" />
 
+
                 <TextView
                     android:id="@+id/text_view_cotacao_tabela_quilo_valor"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/size_medium"
-                    android:text="@string/cotacao_tabela_valor_padrao"
+                    android:text="@string/common_valor_monetario_zero"
                     android:textAppearance="?attr/textAppearanceTitleMedium"
                     app:layout_constraintBottom_toBottomOf="@id/card_view_cotacao_icone_quilo"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -312,7 +313,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/size_medium"
-                    android:text="@string/cotacao_tabela_valor_padrao"
+                    android:text="@string/common_valor_monetario_zero"
                     android:textAppearance="?attr/textAppearanceTitleMedium"
                     app:layout_constraintBottom_toBottomOf="@id/card_view_cotacao_icone_cabeca"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -377,7 +378,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/size_medium"
-                    android:text="@string/cotacao_tabela_valor_padrao"
+                    android:text="@string/common_valor_monetario_zero"
                     android:textAppearance="?attr/textAppearanceTitleMedium"
                     app:layout_constraintBottom_toBottomOf="@id/card_view_cotacao_icone_total"
                     app:layout_constraintEnd_toEndOf="parent"

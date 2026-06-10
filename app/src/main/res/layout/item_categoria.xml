@@ -23,7 +23,6 @@
         android:paddingTop="7dp"
         android:paddingEnd="12dp"
         android:paddingBottom="7dp"
-        android:textAppearance="?attr/textAppearanceLabelLarge"
-        tools:text="@string/amostra_opcao_categoria" />
+        android:textAppearance="?attr/textAppearanceLabelLarge" />
 
 </com.google.android.material.card.MaterialCardView>

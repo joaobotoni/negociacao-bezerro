@@ -38,8 +38,7 @@
             android:layout_marginStart="10dp"
             app:layout_constraintStart_toEndOf="@+id/materialCardView2"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            tools:text="Fazenda XYZ" />
+            app:layout_constraintBottom_toBottomOf="parent" />
 
         <ImageView
             android:id="@+id/checkImage"

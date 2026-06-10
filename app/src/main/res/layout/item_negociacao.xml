@@ -47,8 +47,7 @@
             app:layout_constraintBottom_toTopOf="@id/text_view_item_negociacao_descricao"
             app:layout_constraintStart_toEndOf="@id/card_view_item_negociacao_icone"
             app:layout_constraintTop_toTopOf="@id/card_view_item_negociacao_icone"
-            app:layout_constraintVertical_chainStyle="packed"
-            tools:text="@string/sincronizacao_item_title" />
+            app:layout_constraintVertical_chainStyle="packed" />
 
         <TextView
             android:id="@+id/text_view_item_negociacao_descricao"
@@ -59,8 +58,7 @@
             android:textColor="?attr/colorOnSurfaceVariant"
             app:layout_constraintBottom_toBottomOf="@id/card_view_item_negociacao_icone"
             app:layout_constraintStart_toEndOf="@id/card_view_item_negociacao_icone"
-            app:layout_constraintTop_toBottomOf="@id/text_view_item_negociacao_title"
-            tools:text="@string/sincronizacao_item_example_desc" />
+            app:layout_constraintTop_toBottomOf="@id/text_view_item_negociacao_title" />
 
         <ImageView
             android:id="@+id/image_view_item_negociacao"
