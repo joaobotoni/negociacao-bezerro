@@ -42,7 +42,7 @@ public class RoutesRemoteDataSource {
     private static String load(@NonNull Context context) {
         try {
             ApplicationInfo info = context.getPackageManager().getApplicationInfo(context.getPackageName(), PackageManager.GET_META_DATA);
-            String key = info.metaData.getString(context.getString(R.string.chave_api_google_maps));
+            String key = info.metaData.getString(context.getString(R.string.package_chave_api_google_maps));
             if (key == null || key.isEmpty())
                 throw new IllegalStateException(context.getString(R.string.erro_chave_api_ausente));
             return key;
