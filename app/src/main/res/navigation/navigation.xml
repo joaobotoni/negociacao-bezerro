@@ -8,25 +8,74 @@
     <fragment
         android:id="@+id/cotacaoFragment"
         android:name="com.omni.negociacaobezerros.ui.fragments.layout.CotacaoFragment"
-        android:label="CotacaoFragment" />
+        android:label="CotacaoFragment"
+        tools:layout="@layout/fragment_cotacao" />
 
     <fragment
         android:id="@+id/finalizacaoFragment"
         android:name="com.omni.negociacaobezerros.ui.fragments.layout.FinalizacaoFragment"
-        android:label="FinalizacaoFragment" />
+        android:label="FinalizacaoFragment"
+        tools:layout="@layout/fragment_finalizacao" />
 
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.omni.negociacaobezerros.ui.fragments.layout.HomeFragment"
-        android:label="HomeFragment" />
+        android:label="HomeFragment"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_conexaoFragment"
+            app:destination="@id/conexaoFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/conexaoFragment"
         android:name="com.omni.negociacaobezerros.ui.fragments.layout.ConexaoFragment"
-        android:label="ConexaoFragment" />
+        android:label="ConexaoFragment"
+        tools:layout="@layout/fragment_conexao" >
+        <action
+            android:id="@+id/action_conexaoFragment_to_sincronizacaoFragment"
+            app:destination="@id/sincronizacaoFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/sincronizacaoFragment"
         android:name="com.omni.negociacaobezerros.ui.fragments.layout.SincronizacaoFragment"
-        android:label="SincronizacaoFragment" />
+        android:label="SincronizacaoFragment"
+        tools:layout="@layout/fragment_sincronizacao" >
+        <action
+            android:id="@+id/action_sincronizacaoFragment_to_cotacaoFragment"
+            app:destination="@id/cotacaoFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/negociacaoAnimalFragment"
+        android:name="com.omni.negociacaobezerros.ui.fragments.layout.NegociacaoAnimalFragment"
+        android:label="NegociacaoAnimalFragment"
+        tools:layout="@layout/fragment_negociacao_animal" >
+        <action
+            android:id="@+id/action_negociacaoAnimalFragment_to_finalizacaoFragment"
+            app:destination="@id/finalizacaoFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/freteFragment"
+        android:name="com.omni.negociacaobezerros.ui.fragments.layout.FreteFragment"
+        android:label="FreteFragment"
+        tools:layout="@layout/fragment_frete" />
+
+    <fragment
+        android:id="@+id/negociacaoFragment"
+        android:name="com.omni.negociacaobezerros.ui.fragments.layout.NegociacaoFragment"
+        android:label="NegociacaoFragment"
+        tools:layout="@layout/fragment_negociacao" >
+        <action
+            android:id="@+id/action_negociacaoFragment_to_freteFragment"
+            app:destination="@id/freteFragment" />
+        <action
+            android:id="@+id/action_negociacaoFragment_to_negociacaoAnimalFragment"
+            app:destination="@id/negociacaoAnimalFragment" />
+        <action
+            android:id="@+id/action_negociacaoFragment_to_finalizacaoFragment"
+            app:destination="@id/finalizacaoFragment" />
+    </fragment>
 </navigation>

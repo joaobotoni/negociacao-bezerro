@@ -36,6 +36,7 @@
                 android:importantForAccessibility="no"
                 android:minWidth="@dimen/size_bigger"
                 android:minHeight="@dimen/size_bigger"
+                tools:text="@string/placeholder_valor_quantidade"
                 android:textAppearance="?attr/textAppearanceTitleMedium"
                 android:textColor="?attr/colorOnSecondaryContainer"
                 android:textStyle="bold" />
@@ -58,6 +59,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/size_ultra_small"
+            tools:text="@string/tools_item_negociacao_animal_unidade"
             android:textAppearance="?attr/textAppearanceBodySmall"
             android:textColor="?attr/colorOnSurfaceVariant"
             app:layout_constraintBaseline_toBaselineOf="@id/text_view_item_negociacao_animal_title"
@@ -68,6 +70,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/size_small"
+            tools:text="@string/tools_item_negociacao_animal_descricao"
             android:textAppearance="?attr/textAppearanceBodySmall"
             android:textColor="?attr/colorOnSurfaceVariant"
             app:layout_constraintBottom_toBottomOf="@id/card_view_item_negociacao_animal_icone"

@@ -1,272 +1,247 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="app_name">Negociacao Bezerros</string>
 
-    <string name="app_name">My Application</string>
-
-    <!-- Geral – Ações -->
-    <string name="acao_proximo">Próximo</string>
-    <string name="acao_conectar">Conectar ao servidor</string>
-    <string name="acao_sincronizar">Sincronizar agora</string>
-    <string name="acao_salvar">Salvar agora</string>
-    <string name="acao_voltar">Voltar</string>
-    <string name="acao_finalizar">Finalizar negociação</string>
-    <string name="acao_concluir">Concluir</string>
+    <!-- Common: Acoes -->
     <string name="acao_compartilhar">Compartilhar</string>
+    <string name="acao_concluir">Concluir</string>
+    <string name="acao_conectar">Conectar ao servidor</string>
     <string name="acao_exportar_pdf">Exportar PDF</string>
     <string name="acao_finalizar_negociacao">Finalizar negociação</string>
-    <string name="acao_finalizar_simulacao_frete">Finalizar simulação frete</string>
+    <string name="acao_finalizar_simulacao">Finalizar simulação frete</string>
+    <string name="acao_proximo">Próximo</string>
+    <string name="acao_salvar">Salvar agora</string>
+    <string name="acao_sincronizar">Sincronizar agora</string>
+    <string name="acao_voltar">Voltar</string>
 
-    <!-- Geral – Diálogo -->
-    <string name="dialogo_botao_positivo">Ok</string>
-    <string name="dialogo_botao_negativo">Não</string>
-    <string name="dialogo_titulo_confirmar">Confirmar ação</string>
-    <string name="dialogo_titulo_excluir">Excluir item</string>
-    <string name="dialogo_mensagem_excluir">Deseja realmente excluir este item?</string>
-    <string name="dialogo_mensagem_alteracoes_nao_salvas">Há alterações não salvas. Deseja continuar?</string>
-    <string name="dialogo_titulo_permissao_localizacao">Permissão de localização necessária</string>
-    <string name="dialogo_mensagem_permissao_localizacao">Para usar este recurso, você precisa permitir o acesso à localização nas configurações do aplicativo.</string>
+    <!-- Common: Acessibilidade -->
+    <string name="cd_fechar">Fechar</string>
+    <string name="cd_icon_frete">Ícone campo frete</string>
+    <string name="cd_icon_por_cabeca">Ícone campo por cabeça</string>
+    <string name="cd_icon_por_kg">Ícone campo por kg</string>
+    <string name="cd_mais_opcoes">Mais opções</string>
+    <string name="cd_sucesso">Negociação concluída com sucesso</string>
+    <string name="cd_toolbar">Barra de navegação</string>
+    <string name="cd_voltar">Voltar</string>
 
-    <!-- Geral – Erros e Validações -->
-    <string name="erro_chave_api_ausente">Erro ao fazer a requisição para calcular rota</string>
-    <string name="erro_busca_endereco">Erro ao buscar endereço. Verifique sua conexão.</string>
-    <string name="validacao_empresa_obrigatoria">Selecione uma empresa para continuar</string>
-    <string name="validacao_categoria_obrigatoria">Selecione a categoria do animal</string>
-    <string name="validacao_raca_obrigatoria">Selecione a raça do animal</string>
-    <string name="validacao_sexo_obrigatorio">Selecione o sexo do animal</string>
-    <string name="validacao_idade_obrigatoria">Informe a idade do animal</string>
-    <string name="validacao_corretor_obrigatorio">Selecione um corretor</string>
-    <string name="validacao_frete_obrigatorio">Simule o frete ou informe o valor manualmente</string>
-    <string name="aviso_selecione_categoria_frete">Selecione a categoria do animal antes de simular o frete</string>
+    <!-- Common: Avisos -->
     <string name="aviso_informe_frete_antes_corretor">Informe o frete antes de adicionar um corretor</string>
     <string name="aviso_preencha_campos_obrigatorios">Preencha todos os campos obrigatórios</string>
-    <string name="sucesso_negociacao_finalizada">Negociação finalizada com sucesso</string>
+    <string name="aviso_selecione_categoria_frete">Selecione a categoria do animal antes de simular o frete</string>
 
-    <!-- Geral – Dicas (hints) -->
-    <string name="dica_toque_escolher">Toque para escolher</string>
-    <string name="dica_peso_medio">Peso</string>
+    <!-- Common: Dialogo -->
+    <string name="dialogo_botao_negativo">Não</string>
+    <string name="dialogo_botao_positivo">Ok</string>
+    <string name="dialogo_mensagem_alteracoes_nao_salvas">Há alterações não salvas. Deseja continuar?</string>
+    <string name="dialogo_mensagem_excluir">Deseja realmente excluir este item?</string>
+    <string name="dialogo_mensagem_permissao_localizacao">Para usar este recurso, você precisa permitir o acesso à localização nas configurações do aplicativo.</string>
+    <string name="dialogo_titulo_confirmar">Confirmar ação</string>
+    <string name="dialogo_titulo_excluir">Excluir item</string>
+    <string name="dialogo_titulo_permissao_localizacao">Permissão de localização necessária</string>
+
+    <!-- Common: Dicas -->
+    <string name="common_dica_peso">Peso</string>
+    <string name="dica_campo_idade">Idade</string>
+    <string name="dica_distancia_km">Distância em km</string>
+    <string name="dica_helper_campo_idade">Informe a idade em meses</string>
+    <string name="dica_pesquisar_endereco">Pesquisar endereço</string>
     <string name="dica_quantidade_cabecas">Nº animais</string>
+    <string name="dica_toque_escolher">Toque para escolher</string>
     <string name="dica_valor_frete">Valor do Frete</string>
     <string name="dica_valor_por_cabeca">Valor/Cab</string>
     <string name="dica_valor_por_kg">Valor/Kg</string>
-    <string name="dica_distancia_km">Distância em km</string>
-    <string name="dica_pesquisar_endereco">Pesquisar endereço</string>
-    <string name="dica_campo_idade">Idade</string>
-    <string name="dica_helper_campo_idade">Informe a idade em meses</string>
 
-    <!-- Geral – Prefixos, sufixos e unidades -->
+    <!-- Common: Erros e Validacoes -->
+    <string name="erro_busca_endereco">Erro ao buscar endereço. Verifique sua conexão.</string>
+    <string name="erro_chave_api_ausente">Erro ao fazer a requisição para calcular rota</string>
+    <string name="sucesso_negociacao_finalizada">Negociação finalizada com sucesso</string>
+    <string name="validacao_categoria_obrigatoria">Selecione a categoria do animal</string>
+    <string name="validacao_corretor_obrigatorio">Selecione um corretor</string>
+    <string name="validacao_empresa_obrigatoria">Selecione uma empresa para continuar</string>
+    <string name="validacao_frete_obrigatorio">Simule o frete ou informe o valor manualmente</string>
+    <string name="validacao_idade_obrigatoria">Informe a idade do animal</string>
+    <string name="validacao_raca_obrigatoria">Selecione a raça do animal</string>
+    <string name="validacao_sexo_obrigatorio">Selecione o sexo do animal</string>
+
+    <!-- Common: Formatos -->
+    <string name="formato_capacidade_cabecas">Capacidade: %1$d cabeças</string>
+    <string name="formato_numero_percentual"> %1$d%%</string>
+
+    <!-- Common: Placeholders -->
+    <string name="common_label_empresa_compradora">Empresa compradora</string>
+    <string name="common_placeholder_decimal">0,00</string>
+    <string name="common_placeholder_texto">%s</string>
+    <string name="common_valor_monetario_zero">R$ 0,00</string>
+    <string name="placeholder_badge_diferenca">+R$ %s</string>
+    <string name="placeholder_badge_diferenca_default">+R$ 0,00</string>
+    <string name="placeholder_company_location">Ribeirão Preto, SP</string>
+    <string name="placeholder_company_name">Frigorífico Boi Dourado</string>
+    <string name="placeholder_comprador_nome">Bom sucesso</string>
+    <string name="placeholder_valor_com_moeda">R$ %s</string>
+    <string name="placeholder_valor_por_kg">R$ %s /kg</string>
+    <string name="placeholder_valor_por_kg_default">R$ 0,00 /kg</string>
+    <string name="placeholder_valor_quantidade">0</string>
+    <string name="placeholder_variacao">--%</string>
+
+    <!-- Common: Prefixos, Sufixos e Unidades -->
     <string name="prefixo_moeda">R$</string>
     <string name="sufixo_cabecas">/cab</string>
     <string name="sufixo_kg">/kg</string>
     <string name="unidade_kg">kg</string>
     <string name="unidade_km">km</string>
 
-    <!-- Geral – Placeholders -->
-    <string name="placeholder_valor_monetario">0,00</string>
-    <string name="placeholder_valor_total">0,00</string>
-    <string name="placeholder_valor_quantidade">0</string>
-    <string name="placeholder_variacao">--%</string>
-    <string name="placeholder_valor_com_moeda">R$ %s</string>
-    <string name="placeholder_valor_com_moeda_default">R$ 0,00</string>
-    <string name="placeholder_valor_por_kg">R$ %s /kg</string>
-    <string name="placeholder_valor_por_kg_default">R$ 0,00 /kg</string>
-    <string name="placeholder_badge_diferenca">+R$ %s</string>
-    <string name="placeholder_badge_diferenca_default">+R$ 0,00</string>
-    <string name="placeholder_company_name">Frigorífico Boi Dourado</string>
-    <string name="placeholder_company_location">Ribeirão Preto, SP</string>
-    <string name="placeholder_comprador_nome">Bom sucesso</string>
-
-    <!-- Geral – Formatos -->
-    <string name="formato_numero_percentual"> %1$d%%</string>
-    <string name="formato_capacidade_cabecas">Capacidade: %1$d cabeças</string>
-
-    <!-- Geral – Acessibilidade (contentDescription) -->
-    <string name="cd_toolbar">Barra de navegação</string>
-    <string name="cd_voltar">Voltar</string>
-    <string name="cd_fechar">Fechar</string>
-    <string name="cd_mais_opcoes">Mais opções</string>
-    <string name="cd_sucesso">Negociação concluída com sucesso</string>
-    <string name="cd_icon_por_cabeca">Ícone campo por cabeça</string>
-    <string name="cd_icon_por_kg">Ícone campo por kg</string>
-    <string name="cd_icon_frete">Ícone campo frete</string>
-
-    <!-- Geral – URLs -->
-    <string name="url_directions">https://routes.googleapis.com/directions/v2:computeRoutes</string>
-    <string name="url_usuario_gespec">http://%1$s:%2$s/gespec/gespecservices/UsuarioService/obtem/%3$s/%4$s/%5$s</string>
+    <!-- Common: URLs -->
+    <string name="package_chave_api_google_maps">com.google.android.geo.API_KEY</string>
     <string name="url_acesso_gespec">http://%1$s:%2$s/gespec/gespecservices/AcessoService/obtem/%3$s</string>
+    <string name="url_directions">https://routes.googleapis.com/directions/v2:computeRoutes</string>
     <string name="url_negociacao_gespec">http://%1$s:%2$s/gespec/gespecservices/NegGadoService/</string>
+    <string name="url_usuario_gespec">http://%1$s:%2$s/gespec/gespecservices/UsuarioService/obtem/%3$s/%4$s/%5$s</string>
 
-    <!-- Geral – Plurais -->
+    <!-- Common: Plurais -->
     <plurals name="plural_quantidade_veiculos">
         <item quantity="one">%1$d veículo</item>
         <item quantity="other">%1$d veículos</item>
     </plurals>
 
-    <!-- Home -->
-    <string name="home_label_empresa_compradora">Empresa compradora</string>
-    <string name="home_title_selecionar_empresa">Nova Negociação</string>
+    <!-- Fragment: Home -->
     <string name="home_desc_selecionar_empresa">Toque para escolher a empresa</string>
+    <string name="home_empresa_selecionar_label">Selecionar empresa</string>
     <string name="home_label_historico_recente">Histórico recente</string>
     <string name="home_msg_aviso">A empresa pode ser alterada a qualquer momento antes de finalizar</string>
+    <string name="home_title_selecionar_empresa">Nova Negociação</string>
 
-    <!-- Cotação -->
-    <string name="ncotacao_title">Nova cotação</string>
-    <string name="cotacao_label_comprador">Empresa compradora</string>
-    <string name="cotacao_label_arroba">Arroba</string>
-    <string name="cotacao_label_sexo">Sexo</string>
-    <string name="cotacao_chip_macho">Macho</string>
+    <!-- Fragment: Cotacao -->
+    <string name="amostra_opcao_categoria">Categoria</string>
     <string name="cotacao_chip_femea">Fêmea</string>
-    <string name="cotacao_label_medidas_lote">Medidas do lote</string>
-    <string name="cotacao_hint_peso_medio">Peso</string>
+    <string name="cotacao_chip_macho">Macho</string>
     <string name="cotacao_hint_quantidade">Quantidade</string>
-    <string name="cotacao_tabela_quilo_label">Por quilo</string>
-    <string name="cotacao_tabela_cabeca_label">Por cabeça</string>
-    <string name="cotacao_tabela_total_label">Valor total</string>
-    <string name="cotacao_tabela_helper_informe_peso">Informe o peso médio</string>
-    <string name="cotacao_tabela_valor_padrao">R$ 0,00</string>
+    <string name="cotacao_label_arroba">Arroba</string>
+    <string name="cotacao_label_medidas_lote">Medidas do lote</string>
+    <string name="cotacao_label_sexo">Sexo</string>
     <string name="cotacao_msg_aviso">A cotação é apenas uma etapa preliminar da negociação.</string>
+    <string name="cotacao_tabela_cabeca_label">Por cabeça</string>
+    <string name="cotacao_tabela_helper_informe_peso">Informe o peso médio</string>
+    <string name="cotacao_tabela_quilo_label">Por quilo</string>
+    <string name="cotacao_tabela_total_label">Valor total</string>
+    <string name="ncotacao_title">Nova cotação</string>
 
-    <!-- Negociação -->
+    <!-- Fragment: Negociacao -->
     <string name="negociacao_title">Nova negociação</string>
-    <string name="negociacao_label_proposta">Proposta</string>
-    <string name="negociacao_hint_por_cabeca">R$ / cabeça</string>
-    <string name="negociacao_hint_por_kg">R$ / kg</string>
+    <string name="negociacao_title_item">Negociação</string>
+    <string name="negociacao_resumo_valor_cotado_label">Valores cotados (referência)</string>
+    <string name="negociacao_hint_por_kg">Valor por kg</string>
+    <string name="negociacao_hint_por_cabeca">Valor por cab</string>
     <string name="negociacao_hint_valor_frete">Valor do frete</string>
-    <string name="negociacao_label_composicao_valor">Composição do valor</string>
+    <string name="negociacao_label_dados">Dados da Negociação</string>
+    <string name="negociacao_label_simular_frete">Simular um frete</string>
+    <string name="negociacao_descricao_simular_frete">Defina origem, destino e veículo</string>
     <string name="negociacao_cd_card_simular_frete">Simular um frete. Calcule o custo do transporte por km, cabeça ou valor fixo. Toque para abrir.</string>
+    <string name="negociacao_label_sem_corretor">Sem corretor</string>
+    <string name="negociacao_descricao_sem_comissao">Sem comissão</string>
     <string name="negociacao_cd_card_corretor">Sem corretor. Sem comissão aplicada. Toque para alterar.</string>
-    <string name="negociacao_titulo_finalizada">Negociação finalizada</string>
-    <string name="negociacao_sucesso_titulo">Negociação enviada</string>
-    <string name="negociacao_sucesso_subtitulo">Empresa · Bom Sucesso</string>
-    <string name="negociacao_total_label">Valor final de fechamento</string>
-    <string name="negociacao_total_delta_padrao">+ R$ 0,00 vs. cotado (0,0 %)</string>
+    <string name="negociacao_label_composicao_valor">Composição do valor</string>
+    <string name="negociacao_label_proposta">Proposta</string>
+    <string name="negociacao_rotulo_etapa_pedido">VALOR DO PEDIDO / PROPOSTO</string>
+    <string name="negociacao_rotulo_etapa_final">VALOR DE FECHAMENTO</string>
 
-    <!-- Resumo -->
-    <string name="resumo_fornecedor_label">Fornecedor</string>
-    <string name="resumo_fornecedor_helper">Valor Pedido</string>
-    <string name="resumo_frete_label">Frete</string>
-    <string name="resumo_frete_helper">Valor fixo</string>
-    <string name="resumo_corretor_label">Corretor</string>
-    <string name="resumo_corretor_helper">Comissão por intermediação</string>
-    <string name="resumo_valor_padrao">R$ 0,00</string>
-    <string name="resumo_valor_negativo_padrao">− R$ 0,00</string>
-    <string name="resumo_label_financeiro">Resumo financeiro</string>
-    <string name="resumo_total_a_receber_label">Total a receber</string>
-    <string name="resumo_total_a_receber_valor">R$ 0,00</string>
+    <!-- Fragment: NegociacaoAnimal -->
+    <string name="negociacao_animal_card_descricao_sexo">Macho</string>
+    <string name="negociacao_animal_card_title">Preço negociado</string>
+    <string name="negociacao_animal_card_unit_one">R$</string>
+    <string name="negociacao_animal_card_unit_two">/kg</string>
+    <string name="negociacao_animal_helper_text_peso">Informe o peso e adicione</string>
+    <string name="negociacao_animal_resumo_cab_label">Total cab.</string>
+    <string name="negociacao_animal_resumo_kg_label">Total kg</string>
+    <string name="negociacao_animal_resumo_label_por_cab">/ cab.</string>
+    <string name="negociacao_animal_resumo_label_por_kg">/ kg</string>
+    <string name="negociacao_animal_resumo_peso_medio_label">Peso médio</string>
+    <string name="negociacao_animal_resumo_valor_total_label">Valor total</string>
+    <string name="negociacao_animal_title">Pesagem do lote</string>
+    <string name="item_negociacao_animal_example_desc">R$ %1$s . R$ %2$s</string>
 
-    <!-- Frete -->
-    <string name="frete_titulo">Simular frete</string>
-    <string name="frete_descricao_vazio">Defina origem, destino e veículo</string>
-    <string name="frete_descricao_selecione_origem">Selecione origem</string>
-    <string name="frete_texto_origem_destino">%1$s· R$ %2$s</string>
-    <string name="frete_texto_origem_destino_default">R$ 0,00</string>
+    <!-- Fragment: Frete -->
     <string name="frete_descricao_preenchido">Frete R$ %1$s · R$ %2$s</string>
     <string name="frete_descricao_preenchido_default">Frete R$ 0,00 · R$ 0,00</string>
+    <string name="frete_descricao_selecione_origem">Selecione origem</string>
+    <string name="frete_descricao_vazio">Defina origem, destino e veículo</string>
+    <string name="frete_destino_padrao">Cuiabá</string>
+    <string name="frete_divisor_ou">OU</string>
     <string name="frete_helper">Valor do frete: R$ %s/kg</string>
     <string name="frete_helper_default">Valor do frete: R$ 0,00/kg</string>
+    <string name="frete_instrucao_titulo">Preencha os campos abaixo</string>
+    <string name="frete_resumo_titulo">Resultados</string>
+    <string name="frete_rota_destino">Destino</string>
+    <string name="frete_rota_distancia">Distância</string>
+    <string name="frete_rota_explorar">Toque para explorar rotas</string>
+    <string name="frete_rota_label">ROTA</string>
+    <string name="frete_rota_origem">Origem</string>
+    <string name="frete_texto_origem_destino">%1$s· R$ %2$s</string>
+    <string name="frete_texto_origem_destino_default">R$ 0,00</string>
+    <string name="frete_titulo">Simular frete</string>
+    <string name="frete_transporte_label">TRANSPORTE</string>
+    <string name="frete_valor_por_kg_label">Valor por kg</string>
+    <string name="frete_valor_total_label">Valor total</string>
+    <string name="frete_tabela_helper_valor_total">Custo total do transporte</string>
+    <string name="frete_tabela_helper_valor_por_kg">Com base no peso e distância</string>
 
-    <!-- Corretor -->
-    <string name="corretor_titulo_selecionar">Selecionar corretor</string>
-    <string name="corretor_sem_corretor">Sem corretor</string>
-    <string name="corretor_sem_comissao">Sem comissão</string>
+    <!-- Fragment: Corretor -->
     <string name="corretor_descricao_comissao">Comissão R$ %1$s · R$ %2$s</string>
     <string name="corretor_descricao_comissao_default">Comissão R$ 0,00 · R$ 0,00</string>
     <string name="corretor_descricao_comissao_resumo">Comissão R$ %1$s</string>
     <string name="corretor_descricao_comissao_resumo_default">Comissão R$ 0,00</string>
+    <string name="corretor_sem_comissao">Sem comissão</string>
+    <string name="corretor_sem_corretor">Sem corretor</string>
+    <string name="corretor_sem_nome_texto">Sem nome</string>
+    <string name="corretor_titulo_selecionar">Selecionar corretor</string>
 
-    <!-- Rota -->
-    <string name="rota_label">ROTA</string>
-    <string name="rota_label_origem">Origem</string>
-    <string name="rota_label_destino">Destino</string>
-    <string name="rota_label_distancia">Distância</string>
-    <string name="rota_divisor_ou">OU</string>
-    <string name="rota_destino_padrao">Cuiabá</string>
-    <string name="rota_explorar">Toque para explorar rotas</string>
-
-    <!-- Finalização -->
-    <string name="finalizacao_title">Negociação finalizada</string>
-    <string name="finalizacao_sucesso_titulo">Negociação enviada</string>
-    <string name="finalizacao_sucesso_subtitulo">Empresa · Bom Sucesso</string>
+    <!-- Fragment: Finalizacao -->
     <string name="finalizacao_label_resumo_financeiro">Resumo financeiro</string>
-    <string name="finalizacao_total_label">Valor final de fechamento</string>
+    <string name="finalizacao_sucesso_subtitulo">Empresa · Bom Sucesso</string>
+    <string name="finalizacao_sucesso_titulo">Negociação enviada</string>
+    <string name="finalizacao_title">Negociação finalizada</string>
     <string name="finalizacao_total_delta_padrao">+ R$ 0,00 vs. cotado (0,0 %)</string>
+    <string name="finalizacao_total_label">Valor final de fechamento</string>
+    <string name="resumo_corretor_helper">Comissão por intermediação</string>
+    <string name="resumo_corretor_label">Corretor</string>
+    <string name="resumo_fornecedor_helper">Valor Pedido</string>
+    <string name="resumo_fornecedor_label">Fornecedor</string>
+    <string name="resumo_frete_helper">Valor fixo</string>
+    <string name="resumo_frete_label">Frete</string>
+    <string name="resumo_total_a_receber_label">Total a receber</string>
+    <string name="resumo_valor_negativo_padrao">− R$ 0,00</string>
 
-    <!-- Sincronização -->
-    <string name="conexao_title">Conexão remota</string>
-    <string name="conexao_titulo_estabelecer">Estabelecer conexão</string>
+    <!-- Fragment: Sincronizacao -->
     <string name="conexao_desc_conectar">Conectar para sincronizar</string>
-    <string name="conexao_label_servidor">Servidor</string>
-    <string name="conexao_hint_site">Site</string>
+    <string name="conexao_desc_rodape">Sincronização com o servidor remoto</string>
     <string name="conexao_hint_ip">Endereço IP</string>
     <string name="conexao_hint_porta">Porta</string>
-    <string name="conexao_label_credenciais">Credenciais</string>
+    <string name="conexao_hint_site">Site</string>
     <string name="conexao_hint_usuario">Usuário</string>
-    <string name="conexao_desc_rodape">Sincronização com o servidor remoto</string>
+    <string name="conexao_label_credenciais">Credenciais</string>
+    <string name="conexao_label_servidor">Servidor</string>
+    <string name="conexao_title">Conexão remota</string>
+    <string name="conexao_titulo_estabelecer">Estabelecer conexão</string>
 
-    <!-- Item negociação -->
-    <string name="sincronizacao_item_title">Negociação</string>
-    <string name="item_animal_title">0</string>
-    <string name="sincronizacao_item_desc_empresa">Bom Sucesso</string>
-    <string name="sincronizacao_item_qtde">40</string>
-    <string name="sincronizacao_item_unidade">.cab</string>
-    <string name="sincronizacao_item_example_desc">Bom Sucesso . 40 cab</string>
-    <string name="item_negociacao_animal_example_desc">R$ 0,00 . R$ 0,00</string>
-
-    <!--  Sincronização  -->
-
-    <string name="sincronizacao_title">Sincronização</string>
-    <string name="sincronizacao_card_title">Conexão remota</string>
     <string name="sincronizacao_card_desc">Configurar servidor remoto</string>
-    <string name="sincronizacao_msg_aviso">Última sincronização: 06/06/2026 · 08:42</string>
-
+    <string name="sincronizacao_card_title">Conexão remota</string>
+    <string name="sincronizacao_item_desc_empresa">Bom Sucesso</string>
+    <string name="sincronizacao_item_example_desc">Bom Sucesso . %s cab</string>
+    <string name="sincronizacao_item_title">Negociação</string>
+    <string name="sincronizacao_item_unidade">.cab</string>
     <string name="sincronizacao_label_aguardando_envio">Aguardando envio</string>
-    <string name="sincronizacao_label_qtde_items">3 itens</string>
+    <string name="sincronizacao_label_qtde_items">%s itens</string>
+    <string name="sincronizacao_msg_aviso">Última sincronização: 06/06/2026 · 08:42</string>
+    <string name="sincronizacao_title">Sincronização</string>
 
-    <string name="chave_api_google_maps">com.google.android.geo.API_KEY</string>
-
-    <string name="negociacao_animal_title">Pesagem do lote</string>
-    <string name="negociacao_animal_card_title">Preço negociado</string>
-    <string name="negociacao_animal_card_unit_one">R$</string>
-    <string name="negociacao_animal_card_unit_two">/kg</string>
-    <string name="negociacao_animal_card_descricao">0,00</string>
-    <string name="negociacao_animal_card_descricao_sexo">Macho</string>
-    <string name="negociacao_animal_helper_text_peso">Informe o peso e adicione</string>
-
-    <string name="negociacao_animal_resumo_peso_medio_label">Peso médio</string>
-    <string name="negociacao_animal_resumo_valor_total_label">Valor total</string>
-
-
-    <string name="negociacao_resumo_valor_cotado_label">Valores cotados (referência)</string>
-    <string name="negociacao_animal_resumo_label_por_kg">/ kg</string>
-    <string name="negociacao_animal_resumo_label_por_cab">/ cab.</string>
-    <string name="negociacao_animal_resumo_kg_label">Total kg</string>
-    <string name="negociacao_animal_resumo_cab_label">Total cab.</string>
-    <string name="helper_frete_default">Valor do frete: R$ 0,00/kg</string>
-
-    <string name="titulo_selecionar_corretor">Selecionar corretor</string>
-    <string name="texto_nome_corretor">Sem nome</string>
-    <string name="descricao_comissao_resumo_default">Comissão R$ 0,00</string>
-
-    <string name="rotulo_selecionar_empresa">Selecionar empresa</string>
-
-    <string name="titulo_frete">Simular frete</string>
-    <string name="titulo_instrucao_preenchimento">Preencha os campos abaixo</string>
-
-    <string name="rotulo_rota">ROTA</string>
-    <string name="rotulo_origem">Origem</string>
-    <string name="rotulo_destino">Destino</string>
-    <string name="rotulo_distancia">Distância</string>
-    <string name="divisor_ou">OU</string>
-    <string name="destino_padrao">Cuiabá</string>
-    <string name="rotulo_explorar_rotas">Toque para explorar rotas</string>
-    <string name="descricao_frete_vazio">Defina origem, destino e veículo</string>
-    <string name="descricao_selecione_origem">Selecione origem</string>
-
-    <string name="placeholder_valor_com_km_default">0,00</string>
-    <string name="rotulo_transporte">TRANSPORTE</string>
-    <string name="titulo_resumo_frete">Resultados</string>
-    <string name="titulo_valor_total">Valor total</string>
-    <string name="titulo_valor_por_kg_frete">Valor por kg</string>
-    <string name="acao_finalizar_simulacao">Finalizar simulação frete</string>
-    <string name="amostra_opcao_categoria">Categoria</string>
-
+    <!-- Tools: Amostras para o editor (tools:namespace) -->
+    <string name="tools_frete_cidade">Cidade</string>
+    <string name="tools_frete_estado">Estado</string>
+    <string name="tools_item_corretor_nome">Nome do corretor</string>
+    <string name="tools_item_corretor_comissao">Comissão do corretor . tipo</string>
+    <string name="tools_item_empresa_nome">Nome da empresa</string>
+    <string name="tools_item_negociacao_descricao">Nome da empresa . 0 cab</string>
+    <string name="tools_item_negociacao_animal_unidade">0 /kg</string>
+    <string name="tools_item_negociacao_animal_descricao">R$ 0,00 . R$ 0,00</string>
+    <string name="tools_item_registro_localizacao">Cidade e estado</string>
+    <string name="tools_item_transporte_tipo">Nome do transporte</string>
 </resources>
