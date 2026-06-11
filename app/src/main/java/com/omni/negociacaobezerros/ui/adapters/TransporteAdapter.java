@@ -44,7 +44,7 @@ public class TransporteAdapter extends ListAdapter<TransporteUiState, Transporte
         if (tamanhoMudou) notifyItemRangeChanged(0, currentList.size());
     }
 
-    static class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
         private final ItemTransporteBinding binding;
 
         ViewHolder(ItemTransporteBinding binding) {

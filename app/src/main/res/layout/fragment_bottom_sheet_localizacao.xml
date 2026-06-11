@@ -1,18 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:paddingStart="20dp"
-    android:paddingEnd="20dp"
-    android:paddingBottom="20dp">
+    android:paddingStart="@dimen/spacing_screen"
+    android:paddingEnd="@dimen/spacing_screen"
+    android:paddingBottom="@dimen/spacing_screen">
 
     <com.google.android.material.bottomsheet.BottomSheetDragHandleView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/filledTextField"
@@ -20,10 +19,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:boxBackgroundColor="?attr/colorSurface"
-        app:boxCornerRadiusBottomEnd="28dp"
-        app:boxCornerRadiusBottomStart="28dp"
-        app:boxCornerRadiusTopEnd="28dp"
-        app:boxCornerRadiusTopStart="28dp"
+        app:boxCornerRadiusBottomEnd="@dimen/corner_radius_pill"
+        app:boxCornerRadiusBottomStart="@dimen/corner_radius_pill"
+        app:boxCornerRadiusTopEnd="@dimen/corner_radius_pill"
+        app:boxCornerRadiusTopStart="@dimen/corner_radius_pill"
         app:boxStrokeWidth="0dp"
         app:boxStrokeWidthFocused="0dp"
         app:hintEnabled="false"
@@ -37,7 +36,7 @@
             android:hint="@string/dica_pesquisar_endereco"
             android:inputType="text"
             android:paddingTop="0dp"
-            android:paddingBottom="0dp"/>
+            android:paddingBottom="0dp" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -45,6 +44,6 @@
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="10dp"
-        tools:listitem="@layout/item_localizacao"/>
+        android:layout_marginTop="@dimen/spacing_section"
+        tools:listitem="@layout/item_localizacao" />
 </LinearLayout>

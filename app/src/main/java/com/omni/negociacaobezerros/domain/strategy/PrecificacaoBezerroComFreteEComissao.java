@@ -15,7 +15,6 @@ import jakarta.inject.Inject;
 public final class PrecificacaoBezerroComFreteEComissao implements PrecificacaoBezerroStrategy {
     private final PrecificacaoBezerroRepository repository;
     private final BigDecimal comissaoPorKg;
-
     @Inject
     public PrecificacaoBezerroComFreteEComissao(PrecificacaoBezerroRepository repository, BigDecimal comissaoPorKg) {
         this.repository = repository;

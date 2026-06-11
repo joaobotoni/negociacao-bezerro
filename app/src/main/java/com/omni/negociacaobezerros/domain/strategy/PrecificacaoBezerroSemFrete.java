@@ -15,7 +15,6 @@ import jakarta.inject.Inject;
 public final class PrecificacaoBezerroSemFrete implements PrecificacaoBezerroStrategy {
     private final PrecificacaoBezerroRepository repository;
     private final BigDecimal fretePorKg;
-
     @Inject
     public PrecificacaoBezerroSemFrete(PrecificacaoBezerroRepository repository, BigDecimal fretePorKg) {
         this.repository = repository;

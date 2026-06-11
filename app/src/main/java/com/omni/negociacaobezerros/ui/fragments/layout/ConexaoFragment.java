@@ -9,7 +9,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.omni.negociacaobezerros.R;
 import com.omni.negociacaobezerros.databinding.FragmentConexaoBinding;
+import com.omni.negociacaobezerros.ui.helpers.NavigationHelper;
 
 public class ConexaoFragment extends Fragment {
     private FragmentConexaoBinding binding;
@@ -22,8 +24,28 @@ public class ConexaoFragment extends Fragment {
     }
 
     @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        navigate();
+    }
+
+    @Override
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
+    }
+
+    private void navigate() {
+        toSincronizacao();
+        back();
+    }
+
+    private void toSincronizacao() {
+        NavigationHelper.navigateOnMenuItem(this, R.id.conexaoFragment,
+                ConexaoFragmentDirections.actionConexaoFragmentToSincronizacaoFragment(), binding.constraintLayoutConexaoToolbar, R.id.menu_conexao_sincronizacao);
+    }
+
+    private void back() {
+        NavigationHelper.navigateBackOnToolbar(this, binding.constraintLayoutConexaoToolbar);
     }
 }

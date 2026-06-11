@@ -70,6 +70,7 @@
     <!-- Common: Placeholders -->
     <string name="common_label_empresa_compradora">Empresa compradora</string>
     <string name="common_placeholder_decimal">0,00</string>
+    <string name="common_placeholder_percentual">0,00%</string>
     <string name="common_placeholder_texto">%s</string>
     <string name="common_valor_monetario_zero">R$ 0,00</string>
     <string name="placeholder_badge_diferenca">+R$ %s</string>
@@ -127,22 +128,24 @@
 
     <!-- Fragment: Negociacao -->
     <string name="negociacao_title">Nova negociação</string>
+    <string name="negociacao_title_variacao">Variação sobre a cotação</string>
     <string name="negociacao_title_item">Negociação</string>
     <string name="negociacao_resumo_valor_cotado_label">Valores cotados (referência)</string>
-    <string name="negociacao_hint_por_kg">Valor por kg</string>
-    <string name="negociacao_hint_por_cabeca">Valor por cab</string>
+    <string name="negociacao_hint_por_kg">Valor kg</string>
+    <string name="negociacao_hint_por_cabeca">Valor cab</string>
     <string name="negociacao_hint_valor_frete">Valor do frete</string>
     <string name="negociacao_label_dados">Dados da Negociação</string>
     <string name="negociacao_label_simular_frete">Simular um frete</string>
     <string name="negociacao_descricao_simular_frete">Defina origem, destino e veículo</string>
     <string name="negociacao_cd_card_simular_frete">Simular um frete. Calcule o custo do transporte por km, cabeça ou valor fixo. Toque para abrir.</string>
     <string name="negociacao_label_sem_corretor">Sem corretor</string>
-    <string name="negociacao_descricao_sem_comissao">Sem comissão</string>
+    <string name="negociacao_descricao_selecionar_corretor">Vincule um corretor a esta negociação</string>
     <string name="negociacao_cd_card_corretor">Sem corretor. Sem comissão aplicada. Toque para alterar.</string>
     <string name="negociacao_label_composicao_valor">Composição do valor</string>
     <string name="negociacao_label_proposta">Proposta</string>
     <string name="negociacao_rotulo_etapa_pedido">VALOR DO PEDIDO / PROPOSTO</string>
     <string name="negociacao_rotulo_etapa_final">VALOR DE FECHAMENTO</string>
+    <string name="acao_finalizar">Finalizar negociação</string>
 
     <!-- Fragment: NegociacaoAnimal -->
     <string name="negociacao_animal_card_descricao_sexo">Macho</string>
@@ -152,8 +155,8 @@
     <string name="negociacao_animal_helper_text_peso">Informe o peso e adicione</string>
     <string name="negociacao_animal_resumo_cab_label">Total cab.</string>
     <string name="negociacao_animal_resumo_kg_label">Total kg</string>
-    <string name="negociacao_animal_resumo_label_por_cab">/ cab.</string>
-    <string name="negociacao_animal_resumo_label_por_kg">/ kg</string>
+    <string name="negociacao_animal_resumo_label_por_cab">/cab.</string>
+    <string name="negociacao_animal_resumo_label_por_kg">/kg</string>
     <string name="negociacao_animal_resumo_peso_medio_label">Peso médio</string>
     <string name="negociacao_animal_resumo_valor_total_label">Valor total</string>
     <string name="negociacao_animal_title">Pesagem do lote</string>
@@ -168,6 +171,8 @@
 
     <!-- Fragment: Frete -->
     <string name="frete_descricao_preenchido">Frete R$ %1$s · R$ %2$s</string>
+    <string name="frete_card_title_selecao_categoria_animal">Categoria do Animal</string>
+    <string name="frete_card__descricao_selecao_categoria_animal">Selecione a categoria</string>
     <string name="frete_descricao_preenchido_default">Frete R$ 0,00 · R$ 0,00</string>
     <string name="frete_descricao_selecione_origem">Selecione origem</string>
     <string name="frete_descricao_vazio">Defina origem, destino e veículo</string>
@@ -180,12 +185,12 @@
     <string name="frete_rota_destino">Destino</string>
     <string name="frete_rota_distancia">Distância</string>
     <string name="frete_rota_explorar">Toque para explorar rotas</string>
-    <string name="frete_rota_label">ROTA</string>
+    <string name="frete_rota_label">Rota</string>
     <string name="frete_rota_origem">Origem</string>
     <string name="frete_texto_origem_destino">%1$s· R$ %2$s</string>
     <string name="frete_texto_origem_destino_default">R$ 0,00</string>
     <string name="frete_titulo">Simular frete</string>
-    <string name="frete_transporte_label">TRANSPORTE</string>
+    <string name="frete_transporte_label">Transporte</string>
     <string name="frete_valor_por_kg_label">Valor por kg</string>
     <string name="frete_valor_total_label">Valor total</string>
     <string name="frete_tabela_helper_valor_total">Custo total do transporte</string>
@@ -208,7 +213,7 @@
     <string name="finalizacao_title">Negociação finalizada</string>
     <string name="finalizacao_total_delta_padrao">+ R$ 0,00 vs. cotado (0,0 %)</string>
     <string name="finalizacao_total_label">Valor final de fechamento</string>
-    <string name="resumo_corretor_helper">Comissão por intermediação</string>
+    <string name="resumo_corretor_helper">Intermediação</string>
     <string name="resumo_corretor_label">Corretor</string>
     <string name="resumo_fornecedor_helper">Valor Pedido</string>
     <string name="resumo_fornecedor_label">Fornecedor</string>
@@ -253,10 +258,11 @@
     <string name="tools_item_negociacao_animal_unidade">0 /kg</string>
     <string name="tools_item_negociacao_animal_descricao">R$ 0,00 . R$ 0,00</string>
 
+    <string name="tools_item_categoria_nome">Bovino</string>
+
     <string name="tools_item_registro_localizacao">Cidade e estado</string>
     <string name="tools_item_transporte_tipo">Nome do transporte</string>
 
     <string name="tools_nome_cidade_placeholder">Nome da Cidade</string>
     <string name="tools_nome_estado_placeholder">Nome do Estado</string>
-
 </resources>

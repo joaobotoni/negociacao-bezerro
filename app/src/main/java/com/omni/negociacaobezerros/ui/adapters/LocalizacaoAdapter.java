@@ -18,7 +18,6 @@ import com.omni.negociacaobezerros.databinding.ItemLocalizacaoBinding;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-
 public class LocalizacaoAdapter extends ListAdapter<Address, LocalizacaoAdapter.ViewHolder> {
 
     @FunctionalInterface

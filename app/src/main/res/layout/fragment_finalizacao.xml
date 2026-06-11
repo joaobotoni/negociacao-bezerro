@@ -5,6 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="spacing_xl" />
+
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/constraint_layout_finalizacao_appbar"
         android:layout_width="match_parent"
@@ -290,7 +296,7 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="@dimen/spacing_md">
+                    android:padding="@dimen/spacing_lg">
 
                     <ImageView
                         android:id="@+id/image_view_finalizacao_total_icone"
@@ -341,7 +347,7 @@
 
             <Button
                 android:id="@+id/button_finalizacao_compartilhar"
-                style="?attr/materialButtonTonalStyle"
+                style="?attr/borderlessButtonStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_lg"
@@ -355,7 +361,7 @@
 
             <Button
                 android:id="@+id/button_finalizacao_exportar_pdf"
-                style="?attr/materialButtonTonalStyle"
+                style="?attr/borderlessButtonStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_lg"
@@ -374,9 +380,9 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/spacing_md"
         android:layout_marginBottom="@dimen/spacing_md"
-        android:paddingVertical="@dimen/spacing_md"
+        android:paddingVertical="@dimen/spacing_lg"
         android:text="@string/acao_finalizar_negociacao"
-        android:textSize="@dimen/text_md"
+        android:textStyle="bold"
         app:icon="@drawable/arrow_forward_24px"
         app:iconGravity="end"
         app:layout_constraintBottom_toBottomOf="parent"

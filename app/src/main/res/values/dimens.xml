@@ -14,8 +14,18 @@
     <dimen name="spacing_xxxl">48dp</dimen>
     <dimen name="spacing_xxxxl">56dp</dimen>
 
+    <dimen name="spacing_badge">6dp</dimen>
+    <dimen name="spacing_section">10dp</dimen>
+    <dimen name="spacing_screen">20dp</dimen>
+
     <dimen name="icon_sm">18dp</dimen>
+    <dimen name="icon_md">20dp</dimen>
     <dimen name="touch_icon_container">48dp</dimen>
+    <dimen name="bottom_sheet_max_height">400dp</dimen>
+
+    <dimen name="corner_radius_pill">28dp</dimen>
+    <dimen name="chip_padding_vertical">7dp</dimen>
+    <dimen name="stroke_width">1dp</dimen>
 
     <dimen name="text_xs">11sp</dimen>
     <dimen name="text_sm">12sp</dimen>

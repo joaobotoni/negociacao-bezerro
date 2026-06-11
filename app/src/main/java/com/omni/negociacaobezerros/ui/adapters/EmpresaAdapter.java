@@ -15,7 +15,6 @@ import com.omni.negociacaobezerros.databinding.ItemEmpresaBinding;
 import com.omni.negociacaobezerros.ui.states.EmpresaUiState;
 
 import java.util.Objects;
-
 public class EmpresaAdapter extends ListAdapter<EmpresaUiState, EmpresaAdapter.ViewHolder> {
 
     public interface OnClickListener {

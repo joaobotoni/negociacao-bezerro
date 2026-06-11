@@ -2,7 +2,6 @@ package com.omni.negociacaobezerros.ui.adapters;
 
 
 import static com.omni.negociacaobezerros.ui.helpers.ViewHelper.setText;
-import static com.omni.negociacaobezerros.utils.format.Decimals.brl;
 import static com.omni.negociacaobezerros.utils.format.Numbers.formatCurrency;
 
 import android.view.LayoutInflater;
@@ -16,7 +15,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.omni.negociacaobezerros.databinding.ItemNegociacaoAnimalBinding;
 import com.omni.negociacaobezerros.ui.states.NegociacaoAnimalUiState;
 
-import java.math.BigDecimal;
 import java.util.Locale;
 
 public class NegociacaoAnimalAdapter extends ListAdapter<NegociacaoAnimalUiState, NegociacaoAnimalAdapter.ViewHolder> {

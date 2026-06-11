@@ -3,13 +3,21 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation"
-    app:startDestination="@id/conexaoFragment">
+    app:startDestination="@id/homeFragment">
 
     <fragment
         android:id="@+id/cotacaoFragment"
         android:name="com.omni.negociacaobezerros.ui.fragments.layout.CotacaoFragment"
         android:label="CotacaoFragment"
-        tools:layout="@layout/fragment_cotacao" />
+        tools:layout="@layout/fragment_cotacao">
+        <action
+            android:id="@+id/action_cotacaoFragment_to_negociacaoFragment"
+            app:destination="@id/negociacaoFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
 
     <fragment
         android:id="@+id/finalizacaoFragment"
@@ -21,61 +29,112 @@
         android:id="@+id/homeFragment"
         android:name="com.omni.negociacaobezerros.ui.fragments.layout.HomeFragment"
         android:label="HomeFragment"
-        tools:layout="@layout/fragment_home" >
+        tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_homeFragment_to_conexaoFragment"
-            app:destination="@id/conexaoFragment" />
+            app:destination="@id/conexaoFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_homeFragment_to_cotacaoFragment"
+            app:destination="@id/cotacaoFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_homeFragment_to_sincronizacaoFragment"
+            app:destination="@id/sincronizacaoFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
 
     <fragment
         android:id="@+id/conexaoFragment"
         android:name="com.omni.negociacaobezerros.ui.fragments.layout.ConexaoFragment"
         android:label="ConexaoFragment"
-        tools:layout="@layout/fragment_conexao" >
+        tools:layout="@layout/fragment_conexao">
         <action
             android:id="@+id/action_conexaoFragment_to_sincronizacaoFragment"
-            app:destination="@id/sincronizacaoFragment" />
+            app:destination="@id/sincronizacaoFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
 
     <fragment
         android:id="@+id/sincronizacaoFragment"
         android:name="com.omni.negociacaobezerros.ui.fragments.layout.SincronizacaoFragment"
         android:label="SincronizacaoFragment"
-        tools:layout="@layout/fragment_sincronizacao" >
+        tools:layout="@layout/fragment_sincronizacao">
         <action
-            android:id="@+id/action_sincronizacaoFragment_to_cotacaoFragment"
-            app:destination="@id/cotacaoFragment" />
+            android:id="@+id/action_sincronizacaoFragment_to_conexaoFragment"
+            app:destination="@id/conexaoFragment"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_right"
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_left" />
     </fragment>
 
     <fragment
         android:id="@+id/negociacaoAnimalFragment"
         android:name="com.omni.negociacaobezerros.ui.fragments.layout.NegociacaoAnimalFragment"
         android:label="NegociacaoAnimalFragment"
-        tools:layout="@layout/fragment_negociacao_animal" >
+        tools:layout="@layout/fragment_negociacao_animal">
         <action
             android:id="@+id/action_negociacaoAnimalFragment_to_finalizacaoFragment"
-            app:destination="@id/finalizacaoFragment" />
+            app:destination="@id/finalizacaoFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
 
     <fragment
         android:id="@+id/freteFragment"
         android:name="com.omni.negociacaobezerros.ui.fragments.layout.FreteFragment"
         android:label="FreteFragment"
-        tools:layout="@layout/fragment_frete" />
+        tools:layout="@layout/fragment_frete">
+        <action
+            android:id="@+id/action_freteFragment_to_negociacaoFragment"
+            app:destination="@id/negociacaoFragment"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_right"
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_left" />
+    </fragment>
 
     <fragment
         android:id="@+id/negociacaoFragment"
         android:name="com.omni.negociacaobezerros.ui.fragments.layout.NegociacaoFragment"
         android:label="NegociacaoFragment"
-        tools:layout="@layout/fragment_negociacao" >
+        tools:layout="@layout/fragment_negociacao">
         <action
             android:id="@+id/action_negociacaoFragment_to_freteFragment"
-            app:destination="@id/freteFragment" />
+            app:destination="@id/freteFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
         <action
             android:id="@+id/action_negociacaoFragment_to_negociacaoAnimalFragment"
-            app:destination="@id/negociacaoAnimalFragment" />
+            app:destination="@id/negociacaoAnimalFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
         <action
             android:id="@+id/action_negociacaoFragment_to_finalizacaoFragment"
-            app:destination="@id/finalizacaoFragment" />
+            app:destination="@id/finalizacaoFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
+
 </navigation>

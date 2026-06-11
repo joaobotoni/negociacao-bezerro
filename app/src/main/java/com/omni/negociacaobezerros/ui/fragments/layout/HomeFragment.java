@@ -8,8 +8,11 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
 
+import com.omni.negociacaobezerros.R;
 import com.omni.negociacaobezerros.databinding.FragmentHomeBinding;
+import com.omni.negociacaobezerros.ui.helpers.NavigationHelper;
 
 public class HomeFragment extends Fragment {
 
@@ -23,8 +26,47 @@ public class HomeFragment extends Fragment {
     }
 
     @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        navigate();
+    }
+
+
+    @Override
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
+    }
+
+    private void navigate(){
+        toMenu();
+        toCotacao();
+        back();
+    }
+
+
+    private void toMenu() {
+        NavigationHelper.setupMenuItems(binding.constraintLayoutHomeToolbar, itemId -> {
+            if (itemId == R.id.menu_home_sincronizacao) {
+                NavigationHelper.navigate(this, R.id.homeFragment,
+                        HomeFragmentDirections.actionHomeFragmentToSincronizacaoFragment());
+                return true;
+            }
+            if (itemId == R.id.menu_home_conexao) {
+                NavigationHelper.navigate(this, R.id.homeFragment,
+                        HomeFragmentDirections.actionHomeFragmentToConexaoFragment());
+                return true;
+            }
+            return false;
+        });
+    }
+
+    private void toCotacao() {
+        NavigationHelper.navigateOnClick(this, R.id.homeFragment,
+                HomeFragmentDirections.actionHomeFragmentToCotacaoFragment(), binding.buttonHomeProximo);
+    }
+
+    private void back() {
+        NavigationHelper.navigateBackOnToolbar(this, binding.constraintLayoutHomeToolbar);
     }
 }

@@ -33,7 +33,6 @@ public class RegistroNegociacaoAdapter extends ListAdapter<RegistroNegociacaoUiS
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         private final ItemRegistroNegociacaoBinding itemRegistroNegociacaoBinding;
-
         public ViewHolder(@NonNull ItemRegistroNegociacaoBinding itemRegistroNegociacaoBinding) {
             super(itemRegistroNegociacaoBinding.getRoot());
             this.itemRegistroNegociacaoBinding = itemRegistroNegociacaoBinding;

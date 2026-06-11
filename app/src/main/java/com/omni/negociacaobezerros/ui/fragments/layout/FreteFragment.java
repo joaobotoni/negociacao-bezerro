@@ -8,8 +8,11 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
 
+import com.omni.negociacaobezerros.R;
 import com.omni.negociacaobezerros.databinding.FragmentFreteBinding;
+import com.omni.negociacaobezerros.ui.helpers.NavigationHelper;
 
 public class FreteFragment extends Fragment {
     private FragmentFreteBinding binding;
@@ -22,8 +25,29 @@ public class FreteFragment extends Fragment {
     }
 
     @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        navigate();
+    }
+
+
+    @Override
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
+    }
+
+    private void navigate(){
+        toNegociacao();
+        back();
+    }
+
+    private void toNegociacao() {
+        NavigationHelper.navigateOnClick(this, R.id.freteFragment,
+                FreteFragmentDirections.actionFreteFragmentToNegociacaoFragment(), binding.buttonFreteFinalizar);
+    }
+
+    private void back() {
+        NavigationHelper.navigateBackOnToolbar(this, binding.constraintLayoutFreteToolbar);
     }
 }

@@ -2,28 +2,56 @@
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/card_opcao"
-    android:layout_width="wrap_content"
+    style="?attr/materialCardViewFilledStyle"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginEnd="6dp"
-    android:checkable="true"
-    android:clickable="true"
-    android:focusable="true"
-    app:cardBackgroundColor="@color/chip_background_selector"
-    app:checkedIcon="@null"
-    app:shapeAppearance="?attr/shapeAppearanceCornerExtraLarge"
-    app:strokeColor="@color/chip_stroke_selector"
-    app:strokeWidth="1dp">
+    app:cardBackgroundColor="@android:color/transparent">
 
-    <TextView
-        android:id="@+id/texto_opcao"
-        android:layout_width="wrap_content"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingStart="12dp"
-        android:paddingTop="7dp"
-        android:paddingEnd="12dp"
-        tools:text="@string/amostra_opcao_categoria"
-        android:paddingBottom="7dp"
-        android:textAppearance="?attr/textAppearanceLabelLarge" />
+        android:padding="@dimen/spacing_sm">
 
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/card_view_icone_categoria"
+            style="?attr/materialCardViewFilledStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:shapeAppearance="?attr/shapeAppearanceCornerExtraExtraLarge">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@null"
+                android:padding="@dimen/spacing_sm"
+                android:src="@drawable/category_24px"
+                app:tint="?attr/colorPrimary" />
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <TextView
+            android:id="@+id/texto_nome_categoria"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_sm"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/card_view_icone_categoria"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="@string/tools_item_categoria_nome" />
+
+        <ImageView
+            android:id="@+id/image_view_categoria_check"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@null"
+            android:src="@drawable/check_circle_24px"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="?attr/colorPrimary" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </com.google.android.material.card.MaterialCardView>

@@ -15,7 +15,6 @@ import com.omni.negociacaobezerros.ui.states.NegociacaoUiState;
 
 import java.util.Locale;
 import java.util.Objects;
-
 public class NegociacaoAdapter extends ListAdapter<NegociacaoUiState, NegociacaoAdapter.ViewHolder> {
 
     private NegociacaoAdapter() {

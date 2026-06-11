@@ -8,8 +8,11 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
 
+import com.omni.negociacaobezerros.R;
 import com.omni.negociacaobezerros.databinding.FragmentNegociacaoAnimalBinding;
+import com.omni.negociacaobezerros.ui.helpers.NavigationHelper;
 
 public class NegociacaoAnimalFragment extends Fragment {
     private FragmentNegociacaoAnimalBinding binding;
@@ -22,8 +25,29 @@ public class NegociacaoAnimalFragment extends Fragment {
     }
 
     @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        navigate();
+    }
+
+
+    @Override
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
+    }
+
+    private void navigate(){
+        toFinalizacao();
+        back();
+    }
+
+    private void toFinalizacao() {
+        NavigationHelper.navigateOnClick(this, R.id.negociacaoAnimalFragment,
+                NegociacaoAnimalFragmentDirections.actionNegociacaoAnimalFragmentToFinalizacaoFragment(), binding.buttonNegociacaoAnimalSalvar);
+    }
+
+    private void back() {
+        NavigationHelper.navigateBackOnToolbar(this, binding.constraintLayoutNegociacaoAnimalToolbar);
     }
 }

@@ -75,25 +75,33 @@
                             android:src="@drawable/domain_24px" />
                     </com.google.android.material.card.MaterialCardView>
 
-                    <TextView
-                        android:id="@+id/text_view_cotacao_comprador_titulo"
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:id="@+id/container_cotacao_textos_comprador"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/spacing_md"
-                        android:text="@string/common_label_empresa_compradora"
-                        android:textAppearance="?attr/textAppearanceBodyMedium"
-                        app:layout_constraintStart_toEndOf="@+id/card_view_cotacao_icone_comprador"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        android:orientation="vertical"
+                        app:layout_constraintBottom_toBottomOf="@id/card_view_cotacao_icone_comprador"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/card_view_cotacao_icone_comprador"
+                        app:layout_constraintTop_toTopOf="@id/card_view_cotacao_icone_comprador">
 
-                    <TextView
-                        android:id="@+id/text_view_cotacao_comprador_nome"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/placeholder_comprador_nome"
-                        android:textAppearance="?attr/textAppearanceTitleMedium"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="@+id/text_view_cotacao_comprador_titulo"
-                        app:layout_constraintTop_toBottomOf="@+id/text_view_cotacao_comprador_titulo" />
+                        <TextView
+                            android:id="@+id/text_view_cotacao_comprador_titulo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/common_label_empresa_compradora"
+                            android:textAppearance="?attr/textAppearanceTitleSmall" />
+
+                        <TextView
+                            android:id="@+id/text_view_cotacao_comprador_nome"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/placeholder_comprador_nome"
+                            android:textAppearance="?attr/textAppearanceBodySmall" />
+
+                    </LinearLayout>
+
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </com.google.android.material.card.MaterialCardView>
 
@@ -103,8 +111,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_md"
                 android:text="@string/cotacao_label_sexo"
-                android:textAllCaps="true"
-                android:textAppearance="?attr/textAppearanceLabelLarge"
+                android:textAppearance="?attr/textAppearanceTitleMedium"
+                android:textColor="?attr/colorOnSurfaceVariant"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/card_view_cotacao_comprador" />
 
@@ -141,8 +149,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_md"
                 android:text="@string/cotacao_label_medidas_lote"
-                android:textAllCaps="true"
-                android:textAppearance="?attr/textAppearanceLabelLarge"
+                android:textAppearance="?attr/textAppearanceTitleMedium"
+                android:textColor="?attr/colorOnSurfaceVariant"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/chip_cotacao_group_sexo" />
 
@@ -408,7 +416,7 @@
                     android:id="@+id/text_view_home_aviso"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/spacing_xs"
+                    android:layout_marginStart="@dimen/spacing_md"
                     android:text="@string/cotacao_msg_aviso"
                     android:textAppearance="?attr/textAppearanceBodySmall"
                     android:textColor="?attr/colorOnSurfaceVariant"
@@ -427,9 +435,8 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/spacing_md"
         android:layout_marginBottom="@dimen/spacing_md"
-        android:paddingVertical="@dimen/spacing_md"
+        android:paddingVertical="@dimen/spacing_lg"
         android:text="@string/acao_proximo"
-        android:textSize="@dimen/text_md"
         app:icon="@drawable/arrow_forward_24px"
         app:iconGravity="end"
         app:layout_constraintBottom_toBottomOf="parent"

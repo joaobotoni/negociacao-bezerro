@@ -18,7 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:contentDescription="@string/cd_toolbar"
-            app:menu="@menu/menu"
+            app:menu="@menu/menu_home"
             app:title="@string/home_title_selecionar_empresa" />
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -79,28 +79,35 @@
 
                     </com.google.android.material.card.MaterialCardView>
 
-                    <TextView
-                        android:id="@+id/text_view_home_nome_empresa"
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:id="@+id/container_home_textos_empresa"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/spacing_md"
-                        android:text="@string/home_title_selecionar_empresa"
-                        android:textAppearance="?attr/textAppearanceTitleSmall"
-                        android:textColor="?attr/colorOnSurface"
+                        android:orientation="vertical"
+                        app:layout_constraintBottom_toBottomOf="@id/card_view_home_icone_empresa"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@id/card_view_home_icone_empresa"
-                        app:layout_constraintTop_toTopOf="@id/card_view_home_icone_empresa" />
+                        app:layout_constraintTop_toTopOf="@id/card_view_home_icone_empresa">
 
-                    <TextView
-                        android:id="@+id/text_view_home_descricao_empresa"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/spacing_md"
-                        android:text="@string/home_desc_selecionar_empresa"
-                        android:textAppearance="?attr/textAppearanceBodySmall"
-                        android:textColor="?attr/colorOnSurfaceVariant"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toEndOf="@id/card_view_home_icone_empresa"
-                        app:layout_constraintTop_toBottomOf="@id/text_view_home_nome_empresa" />
+                        <TextView
+                            android:id="@+id/text_view_home_nome_empresa"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/home_title_selecionar_empresa"
+                            android:textAppearance="?attr/textAppearanceTitleSmall"
+                            android:textColor="?attr/colorOnSurface" />
+
+                        <TextView
+                            android:id="@+id/text_view_home_descricao_empresa"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/home_desc_selecionar_empresa"
+                            android:textAppearance="?attr/textAppearanceBodySmall"
+                            android:textColor="?attr/colorOnSurfaceVariant" />
+
+                    </LinearLayout>
+
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </com.google.android.material.card.MaterialCardView>
 
@@ -110,8 +117,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/spacing_lg"
                 android:text="@string/home_label_historico_recente"
-                android:textAllCaps="true"
-                android:textAppearance="?attr/textAppearanceLabelLarge"
+                android:textAppearance="?attr/textAppearanceTitleMedium"
                 android:textColor="?attr/colorOnSurfaceVariant"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/card_view_home_selecionar_empresa" />
@@ -154,7 +160,7 @@
                     android:id="@+id/text_view_home_aviso"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/spacing_xs"
+                    android:layout_marginStart="@dimen/spacing_md"
                     android:text="@string/home_msg_aviso"
                     android:textAppearance="?attr/textAppearanceBodySmall"
                     android:textColor="?attr/colorOnSurfaceVariant"
@@ -173,9 +179,8 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/spacing_md"
         android:layout_marginBottom="@dimen/spacing_md"
-        android:paddingVertical="@dimen/spacing_md"
+        android:paddingVertical="@dimen/spacing_lg"
         android:text="@string/acao_proximo"
-        android:textSize="@dimen/text_md"
         app:icon="@drawable/arrow_forward_24px"
         app:iconGravity="end"
         app:layout_constraintBottom_toBottomOf="parent"

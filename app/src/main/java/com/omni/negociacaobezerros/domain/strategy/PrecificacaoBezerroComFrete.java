@@ -11,7 +11,6 @@ import jakarta.inject.Inject;
 
 public final class PrecificacaoBezerroComFrete implements PrecificacaoBezerroStrategy {
     private final PrecificacaoBezerroRepository repository;
-
     @Inject
     public PrecificacaoBezerroComFrete(PrecificacaoBezerroRepository repository) {
         this.repository = repository;

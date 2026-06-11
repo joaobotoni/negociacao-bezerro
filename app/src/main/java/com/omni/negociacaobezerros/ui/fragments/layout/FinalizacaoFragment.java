@@ -8,8 +8,12 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.fragment.NavHostFragment;
 
+import com.omni.negociacaobezerros.R;
 import com.omni.negociacaobezerros.databinding.FragmentFinalizacaoBinding;
+import com.omni.negociacaobezerros.ui.helpers.NavigationHelper;
 
 public class FinalizacaoFragment extends Fragment {
     private FragmentFinalizacaoBinding binding;
@@ -25,5 +29,19 @@ public class FinalizacaoFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        navigate();
+    }
+
+    private void navigate(){
+        back();
+    }
+
+    private void back() {
+        NavigationHelper.navigateBackOnToolbar(this, binding.constraintLayoutFinalizacaoToolbar);
     }
 }

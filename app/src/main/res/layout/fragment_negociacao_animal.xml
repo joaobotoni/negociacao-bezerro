@@ -14,7 +14,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/constraint_layout_sincronizacao_toolbar"
+            android:id="@+id/constraint_layout_negociacao_animal_toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:contentDescription="@string/cd_toolbar"
@@ -132,47 +132,6 @@
                             android:textColor="?attr/colorOnSurfaceVariant" />
 
                     </LinearLayout>
-
-                    <com.google.android.material.card.MaterialCardView
-                        android:id="@+id/card_view_negociacao_animal_badge_sexo"
-                        style="?attr/materialCardViewFilledStyle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        app:cardBackgroundColor="?attr/colorPrimaryContainer"
-                        app:contentPaddingBottom="@dimen/spacing_xxs"
-                        app:contentPaddingLeft="@dimen/spacing_xs"
-                        app:contentPaddingRight="@dimen/spacing_sm"
-                        app:contentPaddingTop="@dimen/spacing_xxs"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:shapeAppearance="?attr/shapeAppearanceCornerExtraExtraLarge">
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:gravity="center_vertical"
-                            android:orientation="horizontal">
-
-                            <ImageView
-                                android:layout_width="@dimen/spacing_md"
-                                android:layout_height="@dimen/spacing_md"
-                                android:importantForAccessibility="no"
-                                android:src="@drawable/male_24px"
-                                app:tint="?attr/colorPrimary" />
-
-                            <TextView
-                                android:id="@+id/text_view_negociacao_animal_badge_sexo"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="@dimen/spacing_xxs"
-                                android:text="@string/negociacao_animal_card_descricao_sexo"
-                                android:textAppearance="?attr/textAppearanceLabelSmall"
-                                android:textColor="?attr/colorPrimary" />
-
-                        </LinearLayout>
-                    </com.google.android.material.card.MaterialCardView>
-
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </com.google.android.material.card.MaterialCardView>
 
@@ -205,6 +164,7 @@
                     android:layout_marginBottom="@dimen/spacing_xxs"
                     android:text="@string/negociacao_animal_progresso_pesados_default"
                     android:textAppearance="?attr/textAppearanceTitleSmall"
+                    android:textColor="?attr/colorOnSurfaceVariant"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toTopOf="@+id/linear_progress_indicator_negociacao_animal"
                     app:layout_constraintStart_toStartOf="parent"
@@ -433,8 +393,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/negociacao_animal_pesados_label"
-                    android:textAllCaps="true"
-                    android:textAppearance="?attr/textAppearanceLabelLarge"
+                    android:textAppearance="?attr/textAppearanceTitleMedium"
                     android:textColor="?attr/colorOnSurfaceVariant"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -460,9 +419,8 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/spacing_md"
         android:layout_marginBottom="@dimen/spacing_md"
-        android:paddingVertical="@dimen/spacing_md"
+        android:paddingVertical="@dimen/spacing_lg"
         android:text="@string/acao_salvar"
-        android:textSize="@dimen/text_md"
         app:icon="@drawable/arrow_forward_24px"
         app:iconGravity="end"
         app:layout_constraintBottom_toBottomOf="parent"

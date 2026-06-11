@@ -2,6 +2,10 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="dashed_border">#CCCCCC</color>
+
+    <color name="azul_100">#6E84A2</color>
+    <color name="azul_200">#526680</color>
+    <color name="azul_300">#46586E</color>
+    <color name="azul_400">#1E3954</color>
 </resources>
 

@@ -1,6 +1,7 @@
 package com.omni.negociacaobezerros.ui.adapters;
 
 import static com.omni.negociacaobezerros.ui.helpers.ViewHelper.setText;
+import static com.omni.negociacaobezerros.ui.helpers.ViewHelper.setVisible;
 
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
@@ -19,7 +20,9 @@ public class CategoriaAdapter extends ListAdapter<CategoriaUiState, CategoriaAda
     public interface OnClickListener {
         void onClick(CategoriaUiState categoria);
     }
+
     private final OnClickListener listener;
+
     public CategoriaAdapter(OnClickListener listener) {
         super(new DiffCallback());
         this.listener = listener;
@@ -36,22 +39,22 @@ public class CategoriaAdapter extends ListAdapter<CategoriaUiState, CategoriaAda
         holder.bind(getItem(position));
     }
 
-    static class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
         private final ItemCategoriaBinding binding;
         private CategoriaUiState item;
 
-        public ViewHolder(ItemCategoriaBinding binding, OnClickListener listener) {
+        public ViewHolder(@NonNull ItemCategoriaBinding binding, OnClickListener listener) {
             super(binding.getRoot());
             this.binding = binding;
-            binding.cardOpcao.setOnClickListener(v -> {
+            binding.getRoot().setOnClickListener(v -> {
                 if (item != null) listener.onClick(item);
             });
         }
 
-        protected void bind(CategoriaUiState estado) {
-            this.item = estado;
-            setText(binding.textoOpcao, estado.getOpcao());
-            binding.cardOpcao.setChecked(estado.isSelecionada());
+        protected void bind(CategoriaUiState categoria) {
+            this.item = categoria;
+            setText(binding.textoNomeCategoria, categoria.getOpcao());
+            setVisible(categoria.isSelecionada(), binding.imageViewCategoriaCheck);
         }
     }
 
