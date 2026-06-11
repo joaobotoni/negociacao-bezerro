@@ -37,7 +37,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="@dimen/size_medium">
+            android:padding="@dimen/spacing_md">
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/card_valor_total"
@@ -52,12 +52,12 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="@dimen/size_medium">
+                    android:padding="@dimen/spacing_md">
 
                     <ImageView
                         android:id="@+id/imagem_icone_valor_total"
-                        android:layout_width="18dp"
-                        android:layout_height="18dp"
+                        android:layout_width="@dimen/icon_sm"
+                        android:layout_height="@dimen/icon_sm"
                         android:alpha="0.55"
                         android:contentDescription="@null"
                         android:src="@drawable/trending_up_24px"
@@ -69,7 +69,7 @@
                         android:id="@+id/texto_rotulo_titulo"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/size_extra_small"
+                        android:layout_marginStart="@dimen/spacing_xxs"
                         android:alpha="0.6"
                         android:text="@string/negociacao_resumo_valor_cotado_label"
                         android:textAllCaps="true"
@@ -81,7 +81,7 @@
                         android:id="@+id/container_valor_kg"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/size_small"
+                        android:layout_marginTop="@dimen/spacing_sm"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/texto_rotulo_titulo">
 
@@ -99,7 +99,7 @@
                             android:id="@+id/texto_valor_kg"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="@dimen/size_extra_small"
+                            android:layout_marginStart="@dimen/spacing_xxs"
                             android:text="@string/common_placeholder_decimal"
                             android:textAppearance="?attr/textAppearanceTitleLarge"
                             android:textStyle="bold"
@@ -110,7 +110,7 @@
                             android:id="@+id/texto_sufixo_kg"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="@dimen/size_extra_small"
+                            android:layout_marginStart="@dimen/spacing_xxs"
                             android:alpha="0.55"
                             android:text="@string/negociacao_animal_resumo_label_por_kg"
                             android:textAppearance="?attr/textAppearanceLabelLarge"
@@ -121,9 +121,9 @@
 
                     <View
                         android:id="@+id/separador_valores"
-                        android:layout_width="1.5dp"
+                        android:layout_width="@dimen/spacing_divider"
                         android:layout_height="0dp"
-                        android:layout_marginStart="@dimen/size_small"
+                        android:layout_marginStart="@dimen/spacing_sm"
                         android:background="?attr/colorOutlineVariant"
                         app:layout_constraintBottom_toBottomOf="@id/container_valor_cab"
                         app:layout_constraintStart_toEndOf="@id/container_valor_kg"
@@ -133,8 +133,8 @@
                         android:id="@+id/container_valor_cab"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/size_small"
-                        android:layout_marginTop="@dimen/size_small"
+                        android:layout_marginStart="@dimen/spacing_sm"
+                        android:layout_marginTop="@dimen/spacing_sm"
                         app:layout_constraintStart_toEndOf="@id/separador_valores"
                         app:layout_constraintTop_toBottomOf="@id/texto_rotulo_titulo">
 
@@ -152,7 +152,7 @@
                             android:id="@+id/texto_valor_cab"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="@dimen/size_extra_small"
+                            android:layout_marginStart="@dimen/spacing_xxs"
                             android:text="@string/common_placeholder_decimal"
                             android:textAppearance="?attr/textAppearanceTitleLarge"
                             android:textStyle="bold"
@@ -163,7 +163,7 @@
                             android:id="@+id/texto_sufixo_cab"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="@dimen/size_extra_small"
+                            android:layout_marginStart="@dimen/spacing_xxs"
                             android:alpha="0.55"
                             android:text="@string/negociacao_animal_resumo_label_por_cab"
                             android:textAppearance="?attr/textAppearanceLabelLarge"
@@ -180,7 +180,7 @@
                 android:id="@+id/container_edicao_valores"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/size_medium"
+                android:layout_marginTop="@dimen/spacing_md"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/card_valor_total">
@@ -199,8 +199,8 @@
                     android:id="@+id/layout_input_valor_kg"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/size_medium"
-                    android:layout_marginEnd="@dimen/size_extra_small"
+                    android:layout_marginTop="@dimen/spacing_md"
+                    android:layout_marginEnd="@dimen/spacing_xxs"
                     android:hint="@string/negociacao_hint_por_kg"
                     app:layout_constraintEnd_toStartOf="@id/layout_input_valor_cabeca"
                     app:layout_constraintHorizontal_chainStyle="spread"
@@ -220,8 +220,8 @@
                     android:id="@+id/layout_input_valor_cabeca"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/size_extra_small"
-                    android:layout_marginTop="@dimen/size_medium"
+                    android:layout_marginStart="@dimen/spacing_xxs"
+                    android:layout_marginTop="@dimen/spacing_md"
                     android:hint="@string/negociacao_hint_por_cabeca"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/layout_input_valor_kg"
@@ -240,7 +240,7 @@
                     android:id="@+id/layout_input_valor_frete"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/size_ultra_small"
+                    android:layout_marginTop="@dimen/spacing_xxs"
                     android:hint="@string/negociacao_hint_valor_frete"
                     app:helperText="@string/frete_helper_default"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -264,7 +264,7 @@
                 style="?attr/materialCardViewFilledStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="@dimen/spacing_md"
                 android:clickable="true"
                 android:contentDescription="@null"
                 android:focusable="true"
@@ -277,7 +277,7 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="@dimen/size_small">
+                    android:padding="@dimen/spacing_md">
 
                     <com.google.android.material.card.MaterialCardView
                         android:id="@+id/card_view_frete_icone_dns"
@@ -285,7 +285,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         app:cardBackgroundColor="?attr/colorSurfaceContainer"
-                        app:contentPadding="@dimen/size_small"
+                        app:contentPadding="@dimen/spacing_md"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
@@ -304,7 +304,7 @@
                         android:id="@+id/text_view_frete_title"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/size_medium"
+                        android:layout_marginStart="@dimen/spacing_md"
                         android:text="@string/negociacao_label_simular_frete"
                         android:textAppearance="?attr/textAppearanceTitleSmall"
                         android:textColor="?attr/colorOnSurface"
@@ -315,7 +315,7 @@
                         android:id="@+id/text_view_frete_descricao"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/size_medium"
+                        android:layout_marginStart="@dimen/spacing_md"
                         android:text="@string/negociacao_descricao_simular_frete"
                         android:textAppearance="?attr/textAppearanceBodySmall"
                         android:textColor="?attr/colorOnSurfaceVariant"
@@ -330,7 +330,7 @@
                 style="?attr/materialCardViewFilledStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="@dimen/spacing_md"
                 android:clickable="true"
                 android:contentDescription="@null"
                 android:focusable="true"
@@ -343,7 +343,7 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="@dimen/size_small">
+                    android:padding="@dimen/spacing_md">
 
                     <com.google.android.material.card.MaterialCardView
                         android:id="@+id/card_view_corretor_icone_dns"
@@ -351,7 +351,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         app:cardBackgroundColor="?attr/colorSurfaceContainer"
-                        app:contentPadding="@dimen/size_small"
+                        app:contentPadding="@dimen/spacing_md"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
@@ -370,7 +370,7 @@
                         android:id="@+id/text_view_corretor_title"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/size_medium"
+                        android:layout_marginStart="@dimen/spacing_md"
                         android:text="@string/negociacao_label_sem_corretor"
                         android:textAppearance="?attr/textAppearanceTitleSmall"
                         android:textColor="?attr/colorOnSurface"
@@ -381,7 +381,7 @@
                         android:id="@+id/text_view_corretor_descricao"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/size_medium"
+                        android:layout_marginStart="@dimen/spacing_md"
                         android:text="@string/negociacao_descricao_sem_comissao"
                         android:textAppearance="?attr/textAppearanceBodySmall"
                         android:textColor="?attr/colorOnSurfaceVariant"
@@ -396,7 +396,7 @@
                 style="?attr/materialCardViewFilledStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="@dimen/spacing_lg"
                 app:cardBackgroundColor="@android:color/transparent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -406,13 +406,13 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingStart="16dp">
+                    android:paddingStart="@dimen/spacing_lg">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:id="@+id/container_timeline"
                         android:layout_width="wrap_content"
                         android:layout_height="0dp"
-                        android:layout_marginBottom="@dimen/size_bigger"
+                        android:layout_marginBottom="@dimen/spacing_xl"
                         app:layout_constraintBottom_toBottomOf="@id/card_etapa_final"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="@id/card_etapa_pedido">
@@ -438,7 +438,7 @@
 
                         <View
                             android:id="@+id/view_conector"
-                            android:layout_width="2dp"
+                            android:layout_width="@dimen/spacing_xxs"
                             android:layout_height="0dp"
                             android:background="?attr/colorOutlineVariant"
                             app:layout_constraintBottom_toTopOf="@id/card_icone_etapa_final"
@@ -473,7 +473,7 @@
                         style="?attr/materialCardViewFilledStyle"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="12dp"
+                        android:layout_marginStart="@dimen/spacing_md"
                         app:cardBackgroundColor="?attr/colorSurfaceContainer"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@id/container_timeline"
@@ -483,7 +483,7 @@
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:padding="@dimen/size_medium">
+                            android:padding="@dimen/spacing_md">
 
                             <TextView
                                 android:id="@+id/texto_rotulo_etapa_pedido"
@@ -528,8 +528,8 @@
                         style="?attr/materialCardViewFilledStyle"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="12dp"
-                        android:layout_marginTop="8dp"
+                        android:layout_marginStart="@dimen/spacing_md"
+                        android:layout_marginTop="@dimen/spacing_sm"
                         app:cardBackgroundColor="?attr/colorPrimaryContainer"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@id/container_timeline"
@@ -539,7 +539,7 @@
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:padding="@dimen/size_medium">
+                            android:padding="@dimen/spacing_md">
 
                             <TextView
                                 android:id="@+id/texto_rotulo_etapa_final"
@@ -585,11 +585,11 @@
         android:id="@+id/button_negociacao_proximo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/size_medium"
-        android:layout_marginBottom="@dimen/size_medium"
-        android:paddingVertical="@dimen/size_medium"
+        android:layout_marginHorizontal="@dimen/spacing_md"
+        android:layout_marginBottom="@dimen/spacing_md"
+        android:paddingVertical="@dimen/spacing_md"
         android:text="@string/acao_proximo"
-        android:textSize="@dimen/text_size_medium"
+        android:textSize="@dimen/text_md"
         app:icon="@drawable/arrow_forward_24px"
         app:iconGravity="end"
         app:layout_constraintBottom_toBottomOf="parent"

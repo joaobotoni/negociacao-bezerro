@@ -38,7 +38,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="@dimen/size_medium">
+            android:padding="@dimen/spacing_md">
 
             <TextView
                 android:id="@+id/text_view_frete_label_distancia"
@@ -54,7 +54,7 @@
                 android:id="@+id/text_input_layout_frete_distancia"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/size_smaller"
+                android:layout_marginTop="@dimen/spacing_xs"
                 android:hint="@string/dica_distancia_km"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -70,13 +70,11 @@
                     android:inputType="numberDecimal" />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <!-- ── DIVISOR "OU" ── -->
-
             <LinearLayout
                 android:id="@+id/linear_layout_frete_divisor_ou"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/size_medium"
+                android:layout_marginTop="@dimen/spacing_md"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -85,15 +83,15 @@
 
                 <View
                     android:layout_width="0dp"
-                    android:layout_height="0.5dp"
+                    android:layout_height="@dimen/spacing_hairline"
                     android:layout_weight="1"
                     android:background="?attr/colorOutline" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:paddingStart="@dimen/size_small"
-                    android:paddingEnd="@dimen/size_small"
+                    android:paddingStart="@dimen/spacing_sm"
+                    android:paddingEnd="@dimen/spacing_sm"
                     android:text="@string/frete_divisor_ou"
                     android:textAllCaps="true"
                     android:textAppearance="?attr/textAppearanceLabelSmall"
@@ -101,7 +99,7 @@
 
                 <View
                     android:layout_width="0dp"
-                    android:layout_height="0.5dp"
+                    android:layout_height="@dimen/spacing_hairline"
                     android:layout_weight="1"
                     android:background="?attr/colorOutline" />
             </LinearLayout>
@@ -111,7 +109,7 @@
                 style="?attr/materialCardViewFilledStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/size_medium"
+                android:layout_marginTop="@dimen/spacing_md"
                 android:clickable="true"
                 android:focusable="true"
                 app:cardBackgroundColor="?attr/colorPrimaryContainer"
@@ -123,7 +121,7 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="@dimen/size_medium">
+                    android:padding="@dimen/spacing_lg">
 
                     <com.google.android.material.card.MaterialCardView
                         android:id="@+id/card_view_frete_icone_explorar"
@@ -131,7 +129,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         app:cardBackgroundColor="?attr/colorPrimary"
-                        app:contentPadding="@dimen/size_small"
+                        app:contentPadding="@dimen/spacing_sm"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
@@ -149,7 +147,7 @@
                         android:id="@+id/text_view_frete_explorar_titulo"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/size_medium"
+                        android:layout_marginStart="@dimen/spacing_md"
                         android:text="@string/frete_rota_explorar"
                         android:textAppearance="?attr/textAppearanceTitleSmall"
                         android:textColor="?attr/colorOnPrimaryContainer"
@@ -161,7 +159,7 @@
                         android:id="@+id/text_view_frete_explorar_descricao"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/size_medium"
+                        android:layout_marginStart="@dimen/spacing_md"
                         android:alpha="0.65"
                         android:text="@string/frete_descricao_selecione_origem"
                         android:textAppearance="?attr/textAppearanceBodySmall"
@@ -189,7 +187,7 @@
                 android:id="@+id/container_rota"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/size_large"
+                android:layout_marginTop="@dimen/spacing_lg"
                 android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -212,8 +210,8 @@
                     style="?attr/materialCardViewFilledStyle"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/size_smaller"
-                    android:layout_marginEnd="@dimen/size_extra_small"
+                    android:layout_marginTop="@dimen/spacing_xs"
+                    android:layout_marginEnd="@dimen/spacing_xxs"
                     app:cardBackgroundColor="?attr/colorSurfaceContainerHigh"
                     app:layout_constraintEnd_toStartOf="@id/card_view_frete_destino"
                     app:layout_constraintHorizontal_weight="1"
@@ -224,7 +222,7 @@
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:padding="@dimen/size_medium">
+                        android:padding="@dimen/spacing_md">
 
                         <ImageView
                             android:id="@+id/image_view_frete_icone_origem"
@@ -240,7 +238,7 @@
                             android:id="@+id/text_view_frete_rotulo_origem"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="@dimen/size_extra_small"
+                            android:layout_marginStart="@dimen/spacing_xxs"
                             android:alpha="0.7"
                             android:text="@string/frete_rota_origem"
                             android:textAllCaps="true"
@@ -254,23 +252,23 @@
                             android:id="@+id/texto_cidade_origem"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/size_small"
-                            tools:text="@string/tools_frete_cidade"
+                            android:layout_marginTop="@dimen/spacing_sm"
                             android:textAppearance="?attr/textAppearanceTitleMedium"
                             android:textColor="?attr/colorOnSurface"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/image_view_frete_icone_origem" />
+                            app:layout_constraintTop_toBottomOf="@id/image_view_frete_icone_origem"
+                            tools:text="@string/tools_frete_cidade" />
 
                         <TextView
                             android:id="@+id/texto_estado_origem"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:alpha="0.65"
-                            tools:text="@string/tools_frete_estado"
                             android:textAppearance="?attr/textAppearanceBodyMedium"
                             android:textColor="?attr/colorOnSurfaceVariant"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/texto_cidade_origem" />
+                            app:layout_constraintTop_toBottomOf="@id/texto_cidade_origem"
+                            tools:text="@string/tools_frete_estado" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </com.google.android.material.card.MaterialCardView>
 
@@ -279,8 +277,8 @@
                     style="?attr/materialCardViewFilledStyle"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/size_extra_small"
-                    android:layout_marginTop="@dimen/size_smaller"
+                    android:layout_marginStart="@dimen/spacing_xxs"
+                    android:layout_marginTop="@dimen/spacing_xs"
                     app:cardBackgroundColor="?attr/colorPrimaryContainer"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_weight="1"
@@ -291,7 +289,7 @@
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:padding="@dimen/size_medium">
+                        android:padding="@dimen/spacing_md">
 
                         <ImageView
                             android:id="@+id/image_view_frete_icone_destino"
@@ -307,7 +305,7 @@
                             android:id="@+id/text_view_frete_rotulo_destino"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="@dimen/size_extra_small"
+                            android:layout_marginStart="@dimen/spacing_xxs"
                             android:alpha="0.7"
                             android:text="@string/frete_rota_destino"
                             android:textAllCaps="true"
@@ -321,23 +319,23 @@
                             android:id="@+id/texto_cidade_destino"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/size_small"
-                            tools:text="@string/tools_frete_cidade"
+                            android:layout_marginTop="@dimen/spacing_sm"
                             android:textAppearance="?attr/textAppearanceTitleMedium"
                             android:textColor="?attr/colorOnPrimaryContainer"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/image_view_frete_icone_destino" />
+                            app:layout_constraintTop_toBottomOf="@id/image_view_frete_icone_destino"
+                            tools:text="@string/tools_frete_cidade" />
 
                         <TextView
                             android:id="@+id/texto_estado_destino"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:alpha="0.65"
-                            tools:text="@string/tools_frete_estado"
                             android:textAppearance="?attr/textAppearanceBodyMedium"
                             android:textColor="?attr/colorOnPrimaryContainer"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/texto_cidade_destino" />
+                            app:layout_constraintTop_toBottomOf="@id/texto_cidade_destino"
+                            tools:text="@string/tools_frete_estado" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </com.google.android.material.card.MaterialCardView>
 
@@ -346,7 +344,7 @@
                     style="?attr/materialCardViewFilledStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/size_smaller"
+                    android:layout_marginTop="@dimen/spacing_xs"
                     app:cardBackgroundColor="?attr/colorSurfaceContainerLow"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -356,7 +354,7 @@
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:padding="@dimen/size_medium">
+                        android:padding="@dimen/spacing_md">
 
                         <com.google.android.material.card.MaterialCardView
                             android:id="@+id/card_view_frete_icone_distancia"
@@ -364,7 +362,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             app:cardBackgroundColor="?attr/colorSurfaceContainer"
-                            app:contentPadding="@dimen/size_small"
+                            app:contentPadding="@dimen/spacing_sm"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
@@ -382,7 +380,7 @@
                             android:id="@+id/text_view_frete_distancia_label"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="@dimen/size_medium"
+                            android:layout_marginStart="@dimen/spacing_md"
                             android:text="@string/frete_rota_distancia"
                             android:textAllCaps="true"
                             android:textAppearance="?attr/textAppearanceLabelSmall"
@@ -395,10 +393,10 @@
                             android:id="@+id/texto_valor_distancia"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="@dimen/size_medium"
+                            android:layout_marginStart="@dimen/spacing_md"
+                            android:layout_marginEnd="@dimen/spacing_xs"
                             android:text="@string/common_placeholder_decimal"
                             android:textAppearance="?attr/textAppearanceTitleMedium"
-                            android:layout_marginEnd="@dimen/size_ultra_small"
                             android:textStyle="bold"
                             app:layout_constraintBottom_toBottomOf="@id/card_view_frete_icone_distancia"
                             app:layout_constraintEnd_toStartOf="@id/text_view_frete_distancia_unidade"
@@ -424,7 +422,7 @@
                 android:id="@+id/container_transporte"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/size_large"
+                android:layout_marginTop="@dimen/spacing_lg"
                 android:visibility="gone"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -445,7 +443,7 @@
                     android:id="@+id/listTransport"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/size_smaller"
+                    android:layout_marginTop="@dimen/spacing_xs"
                     android:orientation="horizontal"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -460,7 +458,7 @@
                 android:id="@+id/container_resumo_valores"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/size_large"
+                android:layout_marginTop="@dimen/spacing_lg"
                 android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -482,13 +480,11 @@
                     android:id="@+id/constraint_layout_frete_tabela"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/size_smaller"
-                    android:padding="@dimen/size_small"
+                    android:layout_marginTop="@dimen/spacing_xs"
+                    android:padding="@dimen/spacing_sm"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/text_view_frete_label_resumo">
-
-                    <!-- Linha: Valor total do frete -->
 
                     <com.google.android.material.card.MaterialCardView
                         android:id="@+id/card_view_frete_icone_total"
@@ -496,7 +492,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         app:cardBackgroundColor="?attr/colorSurfaceContainerLow"
-                        app:contentPadding="@dimen/size_smaller"
+                        app:contentPadding="@dimen/spacing_sm"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
                         app:shapeAppearance="?attr/shapeAppearanceCornerExtraExtraLarge">
@@ -512,7 +508,7 @@
                         android:id="@+id/text_view_frete_tabela_total_label"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/size_medium"
+                        android:layout_marginStart="@dimen/spacing_md"
                         android:text="@string/frete_valor_total_label"
                         android:textAppearance="?attr/textAppearanceBodyMedium"
                         android:textColor="?attr/colorOnSurface"
@@ -524,7 +520,7 @@
                         android:id="@+id/text_view_frete_tabela_total_helper"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/size_medium"
+                        android:layout_marginStart="@dimen/spacing_md"
                         android:text="@string/frete_tabela_helper_valor_total"
                         android:textAppearance="?attr/textAppearanceBodySmall"
                         android:textColor="?attr/colorOnSurfaceVariant"
@@ -535,7 +531,7 @@
                         android:id="@+id/texto_valor_principal"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/size_medium"
+                        android:layout_marginStart="@dimen/spacing_md"
                         android:text="@string/common_valor_monetario_zero"
                         android:textAppearance="?attr/textAppearanceTitleMedium"
                         app:layout_constraintBottom_toBottomOf="@id/card_view_frete_icone_total"
@@ -546,8 +542,8 @@
                         android:id="@+id/divider_frete_total_porkg"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/size_medium"
-                        android:layout_marginBottom="@dimen/size_medium"
+                        android:layout_marginTop="@dimen/spacing_md"
+                        android:layout_marginBottom="@dimen/spacing_md"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/card_view_frete_icone_total" />
@@ -557,9 +553,9 @@
                         style="?attr/materialCardViewFilledStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/size_medium"
+                        android:layout_marginTop="@dimen/spacing_md"
                         app:cardBackgroundColor="?attr/colorSurfaceContainerLow"
-                        app:contentPadding="@dimen/size_smaller"
+                        app:contentPadding="@dimen/spacing_sm"
                         app:layout_constraintBottom_toBottomOf="@id/text_view_frete_tabela_porkg_helper"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/divider_frete_total_porkg"
@@ -576,7 +572,7 @@
                         android:id="@+id/text_view_frete_tabela_porkg_label"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/size_medium"
+                        android:layout_marginStart="@dimen/spacing_md"
                         android:text="@string/frete_valor_por_kg_label"
                         android:textAppearance="?attr/textAppearanceBodyMedium"
                         android:textColor="?attr/colorOnSurface"
@@ -588,7 +584,7 @@
                         android:id="@+id/text_view_frete_tabela_porkg_helper"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/size_medium"
+                        android:layout_marginStart="@dimen/spacing_md"
                         android:text="@string/frete_tabela_helper_valor_por_kg"
                         android:textAppearance="?attr/textAppearanceBodySmall"
                         android:textColor="?attr/colorOnSurfaceVariant"
@@ -599,7 +595,7 @@
                         android:id="@+id/texto_valor_secundario"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/size_medium"
+                        android:layout_marginStart="@dimen/spacing_md"
                         android:text="@string/common_valor_monetario_zero"
                         android:textAppearance="?attr/textAppearanceTitleMedium"
                         app:layout_constraintBottom_toBottomOf="@id/card_view_frete_icone_porkg"
@@ -616,11 +612,11 @@
         android:id="@+id/button_frete_finalizar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/size_medium"
-        android:layout_marginBottom="@dimen/size_medium"
-        android:paddingVertical="@dimen/size_medium"
+        android:layout_marginHorizontal="@dimen/spacing_md"
+        android:layout_marginBottom="@dimen/spacing_md"
+        android:paddingVertical="@dimen/spacing_md"
         android:text="@string/acao_finalizar_simulacao"
-        android:textSize="@dimen/text_size_medium"
+        android:textSize="@dimen/text_md"
         app:icon="@drawable/arrow_forward_24px"
         app:iconGravity="end"
         app:layout_constraintBottom_toBottomOf="parent"

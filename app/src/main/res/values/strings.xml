@@ -157,7 +157,14 @@
     <string name="negociacao_animal_resumo_peso_medio_label">Peso médio</string>
     <string name="negociacao_animal_resumo_valor_total_label">Valor total</string>
     <string name="negociacao_animal_title">Pesagem do lote</string>
+    <string name="negociacao_animal_pesados_label">Animais pesados</string>
     <string name="item_negociacao_animal_example_desc">R$ %1$s . R$ %2$s</string>
+    <string name="negociacao_animal_progresso_pesados_default">0 de 0 pesados</string>
+    <string name="negociacao_animal_progresso_percentual_default">0%</string>
+    <string name="negociacao_animal_progresso_faltam_default">Faltam 0 animais</string>
+    <string name="negociacao_animal_progresso_pesados">%1$d de %2$d pesados</string>
+    <string name="negociacao_animal_progresso_percentual">%1$d%%</string>
+    <string name="negociacao_animal_progresso_faltam">Faltam %1$d animais</string>
 
     <!-- Fragment: Frete -->
     <string name="frete_descricao_preenchido">Frete R$ %1$s · R$ %2$s</string>
@@ -236,12 +243,20 @@
     <!-- Tools: Amostras para o editor (tools:namespace) -->
     <string name="tools_frete_cidade">Cidade</string>
     <string name="tools_frete_estado">Estado</string>
+
     <string name="tools_item_corretor_nome">Nome do corretor</string>
     <string name="tools_item_corretor_comissao">Comissão do corretor . tipo</string>
+
     <string name="tools_item_empresa_nome">Nome da empresa</string>
     <string name="tools_item_negociacao_descricao">Nome da empresa . 0 cab</string>
+
     <string name="tools_item_negociacao_animal_unidade">0 /kg</string>
     <string name="tools_item_negociacao_animal_descricao">R$ 0,00 . R$ 0,00</string>
+
     <string name="tools_item_registro_localizacao">Cidade e estado</string>
     <string name="tools_item_transporte_tipo">Nome do transporte</string>
+
+    <string name="tools_nome_cidade_placeholder">Nome da Cidade</string>
+    <string name="tools_nome_estado_placeholder">Nome do Estado</string>
+
 </resources>

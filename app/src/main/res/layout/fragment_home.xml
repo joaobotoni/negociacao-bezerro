@@ -35,9 +35,9 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingHorizontal="@dimen/size_medium"
-            android:paddingTop="@dimen/size_large"
-            android:paddingBottom="@dimen/size_medium">
+            android:paddingHorizontal="@dimen/spacing_md"
+            android:paddingTop="@dimen/spacing_lg"
+            android:paddingBottom="@dimen/spacing_md">
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/card_view_home_selecionar_empresa"
@@ -56,7 +56,7 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="@dimen/size_medium">
+                    android:padding="@dimen/spacing_md">
 
                     <com.google.android.material.card.MaterialCardView
                         android:id="@+id/card_view_home_icone_empresa"
@@ -64,7 +64,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         app:cardBackgroundColor="?attr/colorSurfaceContainer"
-                        app:contentPadding="@dimen/size_small"
+                        app:contentPadding="@dimen/spacing_md"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
@@ -83,7 +83,7 @@
                         android:id="@+id/text_view_home_nome_empresa"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/size_medium"
+                        android:layout_marginStart="@dimen/spacing_md"
                         android:text="@string/home_title_selecionar_empresa"
                         android:textAppearance="?attr/textAppearanceTitleSmall"
                         android:textColor="?attr/colorOnSurface"
@@ -94,7 +94,7 @@
                         android:id="@+id/text_view_home_descricao_empresa"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/size_medium"
+                        android:layout_marginStart="@dimen/spacing_md"
                         android:text="@string/home_desc_selecionar_empresa"
                         android:textAppearance="?attr/textAppearanceBodySmall"
                         android:textColor="?attr/colorOnSurfaceVariant"
@@ -108,7 +108,7 @@
                 android:id="@+id/text_view_home_secao_historico"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/size_large"
+                android:layout_marginTop="@dimen/spacing_lg"
                 android:text="@string/home_label_historico_recente"
                 android:textAllCaps="true"
                 android:textAppearance="?attr/textAppearanceLabelLarge"
@@ -120,7 +120,7 @@
                 android:id="@+id/recycler_view_home_historico"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/size_smaller"
+                android:layout_marginTop="@dimen/spacing_xs"
                 android:clipToPadding="false"
                 android:nestedScrollingEnabled="false"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
@@ -134,7 +134,7 @@
                 android:id="@+id/constraint_layout_home_aviso"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/size_medium"
+                android:layout_marginTop="@dimen/spacing_md"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/recycler_view_home_historico">
@@ -154,7 +154,7 @@
                     android:id="@+id/text_view_home_aviso"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/size_smaller"
+                    android:layout_marginStart="@dimen/spacing_xs"
                     android:text="@string/home_msg_aviso"
                     android:textAppearance="?attr/textAppearanceBodySmall"
                     android:textColor="?attr/colorOnSurfaceVariant"
@@ -171,11 +171,11 @@
         android:id="@+id/button_home_proximo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/size_medium"
-        android:layout_marginBottom="@dimen/size_medium"
-        android:paddingVertical="@dimen/size_medium"
+        android:layout_marginHorizontal="@dimen/spacing_md"
+        android:layout_marginBottom="@dimen/spacing_md"
+        android:paddingVertical="@dimen/spacing_md"
         android:text="@string/acao_proximo"
-        android:textSize="@dimen/text_size_medium"
+        android:textSize="@dimen/text_md"
         app:icon="@drawable/arrow_forward_24px"
         app:iconGravity="end"
         app:layout_constraintBottom_toBottomOf="parent"

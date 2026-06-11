@@ -5,19 +5,17 @@
     style="?attr/materialCardViewFilledStyle"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="@dimen/size_small"
+    android:layout_marginBottom="@dimen/spacing_sm"
     android:clickable="true"
     android:contentDescription="@null"
     android:focusable="true"
     app:cardBackgroundColor="?attr/colorSurfaceContainerLow"
     app:shapeAppearance="?attr/shapeAppearanceCornerExtraExtraLarge">
 
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="@dimen/size_medium">
-
+        android:padding="@dimen/spacing_md">
 
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/card_view_item_empresa_icone"
@@ -25,7 +23,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:cardBackgroundColor="?attr/colorSurfaceContainer"
-            app:contentPadding="@dimen/size_smaller"
+            app:contentPadding="@dimen/spacing_md"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -43,7 +41,7 @@
             android:id="@+id/text_view_item_empresa_nome"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/size_small"
+            android:layout_marginStart="@dimen/spacing_sm"
             android:textAppearance="?attr/textAppearanceBodyLarge"
             android:textColor="?attr/colorOnSurface"
             tools:text="@string/tools_item_empresa_nome"
@@ -56,7 +54,7 @@
             android:id="@+id/text_view_item_empresa_localizacao"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/size_small"
+            android:layout_marginStart="@dimen/spacing_sm"
             android:textAppearance="?attr/textAppearanceBodySmall"
             android:textColor="?attr/colorOnSurfaceVariant"
             tools:text="@string/tools_item_registro_localizacao"

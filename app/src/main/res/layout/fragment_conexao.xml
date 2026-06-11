@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:elevation="4dp"
+        android:elevation="@dimen/spacing_xs"
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.appbar.MaterialToolbar
@@ -38,7 +38,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="@dimen/size_medium">
+            android:padding="@dimen/spacing_md">
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/card_view_conexao_cabecalho"
@@ -54,7 +54,7 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="@dimen/size_medium">
+                    android:padding="@dimen/spacing_md">
 
                     <com.google.android.material.card.MaterialCardView
                         android:id="@+id/card_view_conexao_icone"
@@ -62,7 +62,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         app:cardBackgroundColor="?attr/colorSurfaceContainer"
-                        app:contentPadding="@dimen/size_small"
+                        app:contentPadding="@dimen/spacing_md"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
@@ -80,7 +80,7 @@
                         android:id="@+id/text_view_conexao_titulo"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/size_medium"
+                        android:layout_marginStart="@dimen/spacing_md"
                         android:text="@string/conexao_titulo_estabelecer"
                         android:textAppearance="?attr/textAppearanceTitleMedium"
                         app:layout_constraintStart_toEndOf="@+id/card_view_conexao_icone"
@@ -103,7 +103,7 @@
                 android:id="@+id/text_view_conexao_label_servidor"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/size_large"
+                android:layout_marginTop="@dimen/spacing_lg"
                 android:text="@string/conexao_label_servidor"
                 android:textAllCaps="true"
                 android:textAppearance="?attr/textAppearanceLabelLarge"
@@ -114,7 +114,7 @@
                 android:id="@+id/text_input_layout_conexao_site"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/size_small"
+                android:layout_marginTop="@dimen/spacing_sm"
                 android:hint="@string/conexao_hint_site"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -133,8 +133,8 @@
                 android:id="@+id/text_input_layout_conexao_ip"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/size_small"
-                android:layout_marginEnd="@dimen/size_smaller"
+                android:layout_marginTop="@dimen/spacing_sm"
+                android:layout_marginEnd="@dimen/spacing_xs"
                 android:hint="@string/conexao_hint_ip"
                 app:layout_constraintEnd_toStartOf="@id/text_input_layout_conexao_porta"
                 app:layout_constraintHorizontal_weight="7"
@@ -154,7 +154,7 @@
                 android:id="@+id/text_input_layout_conexao_porta"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/size_small"
+                android:layout_marginTop="@dimen/spacing_sm"
                 android:hint="@string/conexao_hint_porta"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_weight="4"
@@ -174,7 +174,7 @@
                 android:id="@+id/text_view_conexao_label_credenciais"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/size_large"
+                android:layout_marginTop="@dimen/spacing_lg"
                 android:text="@string/conexao_label_credenciais"
                 android:textAllCaps="true"
                 android:textAppearance="?attr/textAppearanceLabelLarge"
@@ -186,7 +186,7 @@
                 android:id="@+id/text_input_layout_conexao_usuario"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/size_small"
+                android:layout_marginTop="@dimen/spacing_sm"
                 android:hint="@string/conexao_hint_usuario"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -205,7 +205,7 @@
                 android:id="@+id/constraint_layout_conexao_rodape"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/size_large"
+                android:layout_marginTop="@dimen/spacing_lg"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/text_input_layout_conexao_usuario">
@@ -225,7 +225,7 @@
                     android:id="@+id/text_view_conexao_rodape"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/size_smaller"
+                    android:layout_marginStart="@dimen/spacing_xs"
                     android:text="@string/conexao_desc_rodape"
                     android:textAppearance="?attr/textAppearanceBodyMedium"
                     android:textColor="?attr/colorOnSurfaceVariant"
@@ -242,11 +242,11 @@
         android:id="@+id/button_conexao_proximo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/size_medium"
-        android:layout_marginBottom="@dimen/size_medium"
-        android:paddingVertical="@dimen/size_medium"
+        android:layout_marginHorizontal="@dimen/spacing_md"
+        android:layout_marginBottom="@dimen/spacing_md"
+        android:paddingVertical="@dimen/spacing_md"
         android:text="@string/acao_conectar"
-        android:textSize="@dimen/text_size_medium"
+        android:textSize="@dimen/text_md"
         app:icon="@drawable/cable_24px"
         app:iconGravity="end"
         app:layout_constraintBottom_toBottomOf="parent"
