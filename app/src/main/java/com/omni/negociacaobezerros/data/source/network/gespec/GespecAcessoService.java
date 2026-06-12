@@ -1,11 +1,12 @@
-package com.omni.negociacaobezerros.data.source.remote.gespec;
+package com.omni.negociacaobezerros.data.source.network.gespec;
 
 import retrofit2.Call;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.Url;
 
-public interface GespecUsuarioService {
+public interface GespecAcessoService {
+
     @POST
     Call<String> sync(
             @Url String url,

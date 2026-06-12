@@ -16,7 +16,6 @@ android {
     defaultConfig {
         applicationId = "com.example.myapplication"
         minSdk = 24
-        targetSdk = 36
         versionCode = 1
         versionName = "1.0"
 
@@ -32,10 +31,12 @@ android {
             )
         }
     }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
+
     buildFeatures {
         viewBinding = true
         dataBinding = true
@@ -49,11 +50,13 @@ secrets {
 
 dependencies {
 
+
+
     implementation(libs.hilt.android)
-    annotationProcessor (libs.hilt.android.compiler)
+    annotationProcessor(libs.hilt.android.compiler)
 
     implementation(libs.room.runtime)
-    annotationProcessor (libs.room.compiler)
+    annotationProcessor(libs.room.compiler)
 
     implementation(libs.play.services.location)
     implementation(libs.play.services.maps)
@@ -63,6 +66,9 @@ dependencies {
     implementation(libs.converter.gson)
     implementation(libs.gson)
     implementation(libs.material)
+
+    implementation(libs.mapstruct)
+    annotationProcessor(libs.mapstruct.processor)
 
     implementation(libs.activity.ktx)
     implementation(libs.appcompat)

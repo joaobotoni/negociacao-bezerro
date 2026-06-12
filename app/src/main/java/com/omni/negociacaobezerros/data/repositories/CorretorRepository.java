@@ -8,7 +8,7 @@ import static com.omni.negociacaobezerros.utils.format.Decimals.ESCALA_CALCULO;
 
 import com.omni.negociacaobezerros.data.source.local.dao.CorretorDao;
 import com.omni.negociacaobezerros.data.source.local.entities.Corretor;
-import com.omni.negociacaobezerros.data.source.remote.gespec.GespecCorretorService;
+import com.omni.negociacaobezerros.data.source.network.gespec.GespecCorretorService;
 import com.omni.negociacaobezerros.di.network.RetrofitManager;
 
 import java.math.BigDecimal;

@@ -16,7 +16,7 @@ import com.omni.negociacaobezerros.data.source.local.dao.RacaDao;
 import com.omni.negociacaobezerros.data.source.local.dao.TipoReferenciaDao;
 import com.omni.negociacaobezerros.data.source.local.dao.TipoVeiculoFreteDao;
 import com.omni.negociacaobezerros.data.source.local.dao.ValorReferenciaDao;
-import com.omni.negociacaobezerros.data.source.remote.RoutesRemoteDataSource;
+import com.omni.negociacaobezerros.data.source.network.RoutesRemoteDataSource;
 
 import javax.inject.Singleton;
 

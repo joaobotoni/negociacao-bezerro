@@ -107,6 +107,7 @@
     <!-- Fragment: Home -->
     <string name="home_desc_selecionar_empresa">Toque para escolher a empresa</string>
     <string name="home_empresa_selecionar_label">Selecionar empresa</string>
+    <string name="home_categoria_selecionar_label">Selecionar categoria</string>
     <string name="home_label_historico_recente">Histórico recente</string>
     <string name="home_msg_aviso">A empresa pode ser alterada a qualquer momento antes de finalizar</string>
     <string name="home_title_selecionar_empresa">Nova Negociação</string>
@@ -131,8 +132,8 @@
     <string name="negociacao_title_variacao">Variação sobre a cotação</string>
     <string name="negociacao_title_item">Negociação</string>
     <string name="negociacao_resumo_valor_cotado_label">Valores cotados (referência)</string>
-    <string name="negociacao_hint_por_kg">Valor kg</string>
-    <string name="negociacao_hint_por_cabeca">Valor cab</string>
+    <string name="negociacao_hint_por_kg">Valor quilo</string>
+    <string name="negociacao_hint_por_cabeca">Valor cabeça</string>
     <string name="negociacao_hint_valor_frete">Valor do frete</string>
     <string name="negociacao_label_dados">Dados da Negociação</string>
     <string name="negociacao_label_simular_frete">Simular um frete</string>
@@ -206,6 +207,7 @@
     <string name="corretor_sem_nome_texto">Sem nome</string>
     <string name="corretor_titulo_selecionar">Selecionar corretor</string>
 
+
     <!-- Fragment: Finalizacao -->
     <string name="finalizacao_label_resumo_financeiro">Resumo financeiro</string>
     <string name="finalizacao_sucesso_subtitulo">Empresa · Bom Sucesso</string>
@@ -248,21 +250,21 @@
     <!-- Tools: Amostras para o editor (tools:namespace) -->
     <string name="tools_frete_cidade">Cidade</string>
     <string name="tools_frete_estado">Estado</string>
-
     <string name="tools_item_corretor_nome">Nome do corretor</string>
     <string name="tools_item_corretor_comissao">Comissão do corretor . tipo</string>
-
     <string name="tools_item_empresa_nome">Nome da empresa</string>
     <string name="tools_item_negociacao_descricao">Nome da empresa . 0 cab</string>
-
     <string name="tools_item_negociacao_animal_unidade">0 /kg</string>
     <string name="tools_item_negociacao_animal_descricao">R$ 0,00 . R$ 0,00</string>
-
     <string name="tools_item_categoria_nome">Bovino</string>
-
     <string name="tools_item_registro_localizacao">Cidade e estado</string>
     <string name="tools_item_transporte_tipo">Nome do transporte</string>
-
     <string name="tools_nome_cidade_placeholder">Nome da Cidade</string>
     <string name="tools_nome_estado_placeholder">Nome do Estado</string>
+
+    <string name="home_empty_state_title">Nada por aqui ainda.</string>
+    <string name="home_empty_state_subtitle">As informações aparecerão conforme as atividades forem realizadas.</string>
+    <string name="sync_empty_state_title">Nenhum dado pendente</string>
+    <string name="sync_empty_state_subtitle">Todas as negociações foram enviadas ao servidor.</string>
+    <string name="destino_padrao">Cuiabá, Mato Grosso, Brasil</string>
 </resources>

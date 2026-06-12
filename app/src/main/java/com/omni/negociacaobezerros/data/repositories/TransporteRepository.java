@@ -22,7 +22,7 @@ public class TransporteRepository {
     private final TipoVeiculoFreteDao tipoVeiculoDao;
 
     @Inject
-    public TransporteRepository(CapacidadeFreteDao capacidadeDao, TipoVeiculoFreteDao tipoVeiculoDao, Retrofit retrofit) {
+    public TransporteRepository(CapacidadeFreteDao capacidadeDao, TipoVeiculoFreteDao tipoVeiculoDao) {
         this.capacidadeDao = capacidadeDao;
         this.tipoVeiculoDao = tipoVeiculoDao;
     }

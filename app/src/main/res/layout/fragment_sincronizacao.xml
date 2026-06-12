@@ -162,12 +162,23 @@
                 android:id="@+id/recycler_view_sincronizacao_negociacoes"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/spacing_sm"
+                android:layout_marginTop="@dimen/spacing_md"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/text_view_sincronizacao_label_aguardando_envio"
                 tools:itemCount="3"
                 tools:listitem="@layout/item_negociacao" />
+
+            <include
+                android:id="@+id/layout_sincronizacao_empty_state"
+                layout="@layout/view_sincronizacao_empty"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_md"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/text_view_sincronizacao_label_aguardando_envio" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
 

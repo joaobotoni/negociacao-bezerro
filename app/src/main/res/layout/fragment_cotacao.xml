@@ -45,6 +45,8 @@
                 style="?attr/materialCardViewFilledStyle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:clickable="true"
+                android:focusable="true"
                 app:cardBackgroundColor="?attr/colorSurfaceContainerLow"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -128,18 +130,24 @@
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chip_cotacao_macho"
+                    style="@style/Widget.Material3.Chip.Filter"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/cotacao_chip_macho"
+                    app:checkedIconVisible="false"
                     app:chipIcon="@drawable/male_24px"
+                    app:chipIconVisible="true"
                     app:shapeAppearance="?attr/shapeAppearanceCornerExtraExtraLarge" />
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chip_cotacao_femea"
+                    style="@style/Widget.Material3.Chip.Filter"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/cotacao_chip_femea"
+                    app:checkedIconVisible="false"
                     app:chipIcon="@drawable/female_24px"
+                    app:chipIconVisible="true"
                     app:shapeAppearance="?attr/shapeAppearanceCornerExtraExtraLarge" />
             </com.google.android.material.chip.ChipGroup>
 

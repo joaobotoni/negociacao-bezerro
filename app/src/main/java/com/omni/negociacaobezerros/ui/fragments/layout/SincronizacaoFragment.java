@@ -1,5 +1,9 @@
 package com.omni.negociacaobezerros.ui.fragments.layout;
 
+import static com.omni.negociacaobezerros.ui.helpers.NavigationHelper.navigateBackOnToolbar;
+import static com.omni.negociacaobezerros.ui.helpers.NavigationHelper.navigateOnClick;
+import static com.omni.negociacaobezerros.ui.helpers.ViewHelper.setVisible;
+
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +17,7 @@ import androidx.navigation.NavController;
 import com.omni.negociacaobezerros.R;
 import com.omni.negociacaobezerros.databinding.FragmentSincronizacaoBinding;
 import com.omni.negociacaobezerros.ui.helpers.NavigationHelper;
+import com.omni.negociacaobezerros.ui.helpers.ViewHelper;
 
 public class SincronizacaoFragment extends Fragment {
 
@@ -28,7 +33,8 @@ public class SincronizacaoFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        navigate();
+        navigation();
+        showEmptyState();
     }
 
     @Override
@@ -37,19 +43,22 @@ public class SincronizacaoFragment extends Fragment {
         binding = null;
     }
 
-    private void navigate() {
+    private void navigation() {
         toConexao();
         back();
     }
 
     private void toConexao() {
-        NavigationHelper.navigateOnClick(this, R.id.sincronizacaoFragment,
+        navigateOnClick(this, R.id.sincronizacaoFragment,
                 SincronizacaoFragmentDirections.actionSincronizacaoFragmentToConexaoFragment(), binding.cardViewSincronizacao);
     }
 
-
     private void back() {
-        NavigationHelper.navigateBackOnToolbar(this, binding.constraintLayoutSincronizacaoToolbar);
+       navigateBackOnToolbar(this, binding.constraintLayoutSincronizacaoToolbar);
+    }
+
+    private void showEmptyState(){
+       setVisible(true, binding, R.id.layout_sincronizacao_empty_state);
     }
 
 }

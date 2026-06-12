@@ -45,8 +45,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:clickable="true"
-                android:contentDescription="@null"
                 android:focusable="true"
+                android:contentDescription="@null"
                 app:cardBackgroundColor="?attr/colorSurfaceContainerLow"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -126,15 +126,35 @@
                 android:id="@+id/recycler_view_home_historico"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/spacing_xs"
+                android:layout_marginTop="@dimen/spacing_md"
                 android:clipToPadding="false"
                 android:nestedScrollingEnabled="false"
+                android:visibility="gone"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/text_view_home_secao_historico"
                 tools:itemCount="3"
-                tools:listitem="@layout/item_registro_negociacao" />
+                tools:listitem="@layout/item_registro_negociacao"
+                tools:visibility="visible" />
+
+            <include
+                android:id="@+id/layout_home_empty_state"
+                layout="@layout/view_home_empty"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_md"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/text_view_home_secao_historico" />
+
+            <androidx.constraintlayout.widget.Barrier
+                android:id="@+id/barrier_home_lista"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:barrierDirection="bottom"
+                app:constraint_referenced_ids="recycler_view_home_historico,layout_home_empty_state" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/constraint_layout_home_aviso"
@@ -143,7 +163,7 @@
                 android:layout_marginTop="@dimen/spacing_md"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/recycler_view_home_historico">
+                app:layout_constraintTop_toBottomOf="@id/barrier_home_lista">
 
                 <ImageView
                     android:id="@+id/image_view_home_icone_aviso"

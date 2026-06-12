@@ -4,7 +4,7 @@ package com.omni.negociacaobezerros.data.repositories;
 
 import com.omni.negociacaobezerros.data.source.local.dao.TipoReferenciaDao;
 import com.omni.negociacaobezerros.data.source.local.entities.TipoReferencia;
-import com.omni.negociacaobezerros.data.source.remote.gespec.GespecTipoReferenciaService;
+import com.omni.negociacaobezerros.data.source.network.gespec.GespecTipoReferenciaService;
 import com.omni.negociacaobezerros.di.network.RetrofitManager;
 
 import java.util.List;

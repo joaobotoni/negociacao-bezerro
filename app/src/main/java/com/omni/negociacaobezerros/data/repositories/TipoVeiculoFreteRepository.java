@@ -2,7 +2,7 @@ package com.omni.negociacaobezerros.data.repositories;
 
 import com.omni.negociacaobezerros.data.source.local.dao.TipoVeiculoFreteDao;
 import com.omni.negociacaobezerros.data.source.local.entities.TipoVeiculoFrete;
-import com.omni.negociacaobezerros.data.source.remote.gespec.GespecTipoVeiculoFreteService;
+import com.omni.negociacaobezerros.data.source.network.gespec.GespecTipoVeiculoFreteService;
 import com.omni.negociacaobezerros.di.network.RetrofitManager;
 
 import java.util.List;

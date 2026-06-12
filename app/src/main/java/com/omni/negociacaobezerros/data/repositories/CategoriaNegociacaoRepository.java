@@ -2,7 +2,7 @@ package com.omni.negociacaobezerros.data.repositories;
 
 import com.omni.negociacaobezerros.data.source.local.dao.CategoriaNegociacaoDao;
 import com.omni.negociacaobezerros.data.source.local.entities.CategoriaNegociacao;
-import com.omni.negociacaobezerros.data.source.remote.gespec.GespecCategoriaNegociacaoService;
+import com.omni.negociacaobezerros.data.source.network.gespec.GespecCategoriaNegociacaoService;
 import com.omni.negociacaobezerros.di.network.RetrofitManager;
 
 import java.util.List;

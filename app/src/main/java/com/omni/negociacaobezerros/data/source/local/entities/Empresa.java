@@ -15,28 +15,40 @@ public class Empresa {
     @SerializedName("NOME")
     @ColumnInfo(name = "nome")
     private String nome;
+    @SerializedName("LOCALIZACAO")
+    @ColumnInfo(name = "localizacao")
+    private String localizacao;
 
     public Empresa() {
     }
 
-    public Empresa(int idEmpresa, String nome) {
+    public Empresa(int idEmpresa, String nome, String localizacao) {
         this.idEmpresa = idEmpresa;
         this.nome = nome;
+        this.localizacao = localizacao;
     }
 
     public int getIdEmpresa() {
         return idEmpresa;
     }
 
-    public void setIdEmpresa(int idEmpresa) {
-        this.idEmpresa = idEmpresa;
-    }
-
     public String getNome() {
         return nome;
     }
 
+    public String getLocalizacao() {
+        return localizacao;
+    }
+
+    public void setIdEmpresa(int idEmpresa) {
+        this.idEmpresa = idEmpresa;
+    }
+
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    public void setLocalizacao(String localizacao) {
+        this.localizacao = localizacao;
     }
 }

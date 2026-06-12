@@ -1,4 +1,4 @@
-package com.omni.negociacaobezerros.data.source.remote.gespec;
+package com.omni.negociacaobezerros.data.source.network.gespec;
 
 import com.omni.negociacaobezerros.data.source.local.entities.TipoVeiculoFrete;
 

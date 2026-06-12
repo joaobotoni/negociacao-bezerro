@@ -3,7 +3,7 @@ package com.omni.negociacaobezerros.data.repositories;
 
 import com.omni.negociacaobezerros.data.source.local.dao.NegociacaoAnimalDao;
 import com.omni.negociacaobezerros.data.source.local.entities.NegociacaoAnimal;
-import com.omni.negociacaobezerros.data.source.remote.gespec.GespecNegociacaoAnimalService;
+import com.omni.negociacaobezerros.data.source.network.gespec.GespecNegociacaoAnimalService;
 import com.omni.negociacaobezerros.di.network.RetrofitManager;
 
 import java.util.List;

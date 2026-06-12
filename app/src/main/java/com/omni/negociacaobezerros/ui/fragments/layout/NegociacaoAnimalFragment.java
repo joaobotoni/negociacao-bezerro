@@ -1,5 +1,8 @@
 package com.omni.negociacaobezerros.ui.fragments.layout;
 
+import static com.omni.negociacaobezerros.ui.helpers.NavigationHelper.navigateBackOnToolbar;
+import static com.omni.negociacaobezerros.ui.helpers.NavigationHelper.navigateOnClick;
+
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,7 +30,7 @@ public class NegociacaoAnimalFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        navigate();
+        navigation();
     }
 
 
@@ -37,17 +40,18 @@ public class NegociacaoAnimalFragment extends Fragment {
         binding = null;
     }
 
-    private void navigate(){
+    private void navigation(){
         toFinalizacao();
         back();
     }
 
     private void toFinalizacao() {
-        NavigationHelper.navigateOnClick(this, R.id.negociacaoAnimalFragment,
-                NegociacaoAnimalFragmentDirections.actionNegociacaoAnimalFragmentToFinalizacaoFragment(), binding.buttonNegociacaoAnimalSalvar);
+        navigateOnClick(this, R.id.negociacaoAnimalFragment,
+                NegociacaoAnimalFragmentDirections.actionNegociacaoAnimalFragmentToFinalizacaoFragment(),
+                binding.buttonNegociacaoAnimalSalvar);
     }
 
     private void back() {
-        NavigationHelper.navigateBackOnToolbar(this, binding.constraintLayoutNegociacaoAnimalToolbar);
+        navigateBackOnToolbar(this, binding.constraintLayoutNegociacaoAnimalToolbar);
     }
 }

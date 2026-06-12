@@ -43,7 +43,6 @@ public class Frete {
     @SerializedName(value = "VALOR")
     private double valor;
 
-
     public Frete(int idTipoVeiculoFrete, int tipoCobranca, double kmInicial, double kmFinal, double valor) {
         this.idTipoVeiculoFrete = idTipoVeiculoFrete;
         this.tipoCobranca = tipoCobranca;

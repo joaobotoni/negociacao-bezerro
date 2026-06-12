@@ -2,7 +2,7 @@ package com.omni.negociacaobezerros.data.repositories;
 
 import com.omni.negociacaobezerros.data.source.local.dao.CapacidadeFreteDao;
 import com.omni.negociacaobezerros.data.source.local.entities.CapacidadeFrete;
-import com.omni.negociacaobezerros.data.source.remote.gespec.GespecCapacidadeFreteService;
+import com.omni.negociacaobezerros.data.source.network.gespec.GespecCapacidadeFreteService;
 import com.omni.negociacaobezerros.di.network.RetrofitManager;
 
 import java.util.List;

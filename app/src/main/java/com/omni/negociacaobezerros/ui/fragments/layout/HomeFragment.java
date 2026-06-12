@@ -1,5 +1,11 @@
 package com.omni.negociacaobezerros.ui.fragments.layout;
 
+import static com.omni.negociacaobezerros.ui.helpers.NavigationHelper.navigate;
+import static com.omni.negociacaobezerros.ui.helpers.NavigationHelper.navigateBackOnToolbar;
+import static com.omni.negociacaobezerros.ui.helpers.NavigationHelper.navigateOnClick;
+import static com.omni.negociacaobezerros.ui.helpers.NavigationHelper.setupMenuItems;
+import static com.omni.negociacaobezerros.ui.helpers.ViewHelper.setVisible;
+
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,7 +14,6 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.NavController;
 
 import com.omni.negociacaobezerros.R;
 import com.omni.negociacaobezerros.databinding.FragmentHomeBinding;
@@ -28,7 +33,8 @@ public class HomeFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        navigate();
+        navigation();
+        showEmptyState();
     }
 
 
@@ -38,7 +44,7 @@ public class HomeFragment extends Fragment {
         binding = null;
     }
 
-    private void navigate(){
+    private void navigation() {
         toMenu();
         toCotacao();
         back();
@@ -46,15 +52,13 @@ public class HomeFragment extends Fragment {
 
 
     private void toMenu() {
-        NavigationHelper.setupMenuItems(binding.constraintLayoutHomeToolbar, itemId -> {
+        setupMenuItems(binding.constraintLayoutHomeToolbar, itemId -> {
             if (itemId == R.id.menu_home_sincronizacao) {
-                NavigationHelper.navigate(this, R.id.homeFragment,
-                        HomeFragmentDirections.actionHomeFragmentToSincronizacaoFragment());
+                navigate(this, R.id.homeFragment, HomeFragmentDirections.actionHomeFragmentToSincronizacaoFragment());
                 return true;
             }
             if (itemId == R.id.menu_home_conexao) {
-                NavigationHelper.navigate(this, R.id.homeFragment,
-                        HomeFragmentDirections.actionHomeFragmentToConexaoFragment());
+                navigate(this, R.id.homeFragment, HomeFragmentDirections.actionHomeFragmentToConexaoFragment());
                 return true;
             }
             return false;
@@ -62,11 +66,15 @@ public class HomeFragment extends Fragment {
     }
 
     private void toCotacao() {
-        NavigationHelper.navigateOnClick(this, R.id.homeFragment,
+        navigateOnClick(this, R.id.homeFragment,
                 HomeFragmentDirections.actionHomeFragmentToCotacaoFragment(), binding.buttonHomeProximo);
     }
 
     private void back() {
-        NavigationHelper.navigateBackOnToolbar(this, binding.constraintLayoutHomeToolbar);
+       navigateBackOnToolbar(this, binding.constraintLayoutHomeToolbar);
+    }
+
+    private void showEmptyState() {
+        setVisible(true, binding, R.id.layout_home_empty_state);
     }
 }

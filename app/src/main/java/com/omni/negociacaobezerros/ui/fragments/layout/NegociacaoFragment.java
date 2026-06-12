@@ -1,5 +1,8 @@
 package com.omni.negociacaobezerros.ui.fragments.layout;
 
+import static com.omni.negociacaobezerros.ui.helpers.NavigationHelper.navigateBackOnToolbar;
+import static com.omni.negociacaobezerros.ui.helpers.NavigationHelper.navigateOnClick;
+
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,11 +11,9 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.NavController;
 
 import com.omni.negociacaobezerros.R;
 import com.omni.negociacaobezerros.databinding.FragmentNegociacaoBinding;
-import com.omni.negociacaobezerros.ui.helpers.NavigationHelper;
 
 public class NegociacaoFragment extends Fragment {
     private FragmentNegociacaoBinding binding;
@@ -27,7 +28,7 @@ public class NegociacaoFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        navigate();
+        navigation();
     }
 
 
@@ -37,7 +38,7 @@ public class NegociacaoFragment extends Fragment {
         binding = null;
     }
 
-    private void navigate(){
+    private void navigation(){
         toFrete();
         toNegociacaoAnimal();
         toFinalizacao();
@@ -45,20 +46,20 @@ public class NegociacaoFragment extends Fragment {
     }
 
     private void toFrete() {
-        NavigationHelper.navigateOnClick(this, R.id.negociacaoFragment,
+        navigateOnClick(this, R.id.negociacaoFragment,
                 NegociacaoFragmentDirections.actionNegociacaoFragmentToFreteFragment(), binding.cardViewSimularFrete);
     }
 
     private void toNegociacaoAnimal() {
-        NavigationHelper.navigateOnClick(this, R.id.negociacaoFragment,
+        navigateOnClick(this, R.id.negociacaoFragment,
                 NegociacaoFragmentDirections.actionNegociacaoFragmentToNegociacaoAnimalFragment(), binding.buttonNegociacaoProximo);
     }
 
     private void toFinalizacao() {
-        NavigationHelper.navigateOnClick(this, R.id.negociacaoFragment,
+       navigateOnClick(this, R.id.negociacaoFragment,
                 NegociacaoFragmentDirections.actionNegociacaoFragmentToFinalizacaoFragment(), binding.buttonNegociacaoFinalizar);
     }
     private void back() {
-        NavigationHelper.navigateBackOnToolbar(this, binding.constraintLayoutNegociacaoToolbar);
+        navigateBackOnToolbar(this, binding.constraintLayoutNegociacaoToolbar);
     }
 }

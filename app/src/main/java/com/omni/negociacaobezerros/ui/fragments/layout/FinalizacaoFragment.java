@@ -1,5 +1,7 @@
 package com.omni.negociacaobezerros.ui.fragments.layout;
 
+import static com.omni.negociacaobezerros.ui.helpers.NavigationHelper.navigateBackOnToolbar;
+
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -34,14 +36,14 @@ public class FinalizacaoFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        navigate();
+        navigation();
     }
 
-    private void navigate(){
+    private void navigation(){
         back();
     }
 
     private void back() {
-        NavigationHelper.navigateBackOnToolbar(this, binding.constraintLayoutFinalizacaoToolbar);
+        navigateBackOnToolbar(this, binding.constraintLayoutFinalizacaoToolbar);
     }
 }

@@ -13,10 +13,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.omni.negociacaobezerros.databinding.FragmentBottomSheetEmpresaBinding;
-import com.omni.negociacaobezerros.ui.adapters.EmpresaAdapter;
-import com.omni.negociacaobezerros.ui.states.EmpresaUiState;
-import com.omni.negociacaobezerros.ui.viewmodels.EmpresaViewModel;
+import com.omni.negociacaobezerros.databinding.FragmentBottomSheetCategoriaBinding;
+import com.omni.negociacaobezerros.ui.adapters.CategoriaAdapter;
+import com.omni.negociacaobezerros.ui.states.CategoriaUiState;
+import com.omni.negociacaobezerros.ui.viewmodels.CategoriaViewModel;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
 import java.util.List;
@@ -24,15 +24,15 @@ import java.util.List;
 import dagger.hilt.android.AndroidEntryPoint;
 
 @AndroidEntryPoint
-public class EmpresaBottomSheetDialogFragment extends BottomSheetDialogFragment {
-    private FragmentBottomSheetEmpresaBinding binding;
-    private EmpresaAdapter adapter;
-    private EmpresaViewModel empresaViewModel;
+public class CategoriaBottomSheetDialogFragment extends BottomSheetDialogFragment {
+    private FragmentBottomSheetCategoriaBinding binding;
+    private CategoriaAdapter adapter;
+    private CategoriaViewModel categoriaViewModel;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        binding = FragmentBottomSheetEmpresaBinding.inflate(inflater, container, false);
+        binding = FragmentBottomSheetCategoriaBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
 
@@ -60,33 +60,33 @@ public class EmpresaBottomSheetDialogFragment extends BottomSheetDialogFragment 
 
     private void iniciarSetup() {
         configurarViewModel();
-        configurarRecyclerViewEmpresa();
+        configurarRecyclerViewCategoria();
         configurarObservadores();
     }
 
     private void configurarViewModel() {
-        empresaViewModel = new ViewModelProvider(requireActivity()).get(EmpresaViewModel.class);
+        categoriaViewModel = new ViewModelProvider(requireActivity()).get(CategoriaViewModel.class);
     }
 
     private void configurarObservadores() {
-        observarEmpresa();
+        observarCategoria();
     }
 
-    private void observarEmpresa() {
-        empresaViewModel.getState().observe(getViewLifecycleOwner(), this::atualizarListaEmpresa);
+    private void observarCategoria() {
+        categoriaViewModel.getState().observe(getViewLifecycleOwner(), this::atualizarListaCategoria);
     }
 
-    private void atualizarListaEmpresa(List<EmpresaUiState> categorias) {
+    private void atualizarListaCategoria(List<CategoriaUiState> categorias) {
         adapter.submitList(categorias);
     }
 
-    private void configurarRecyclerViewEmpresa() {
-        adapter = new EmpresaAdapter(this::aoSelecionarEmpresaNaLista);
-        setupVerticalRecyclerView(binding.recyclerViewEmpresas, adapter, requireContext());
+    private void configurarRecyclerViewCategoria() {
+        adapter = new CategoriaAdapter(this::aoSelecionarCategoriaNaLista);
+        setupVerticalRecyclerView(binding.recyclerViewCategorias, adapter, requireContext());
     }
 
-    private void aoSelecionarEmpresaNaLista(EmpresaUiState empresaUiState) {
-        empresaViewModel.selecionar(empresaUiState);
+    private void aoSelecionarCategoriaNaLista(CategoriaUiState categoriaUiState) {
+        categoriaViewModel.selecionar(categoriaUiState);
         dismiss();
     }
 }

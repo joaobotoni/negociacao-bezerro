@@ -1,4 +1,4 @@
-package com.omni.negociacaobezerros.data.source.remote;
+package com.omni.negociacaobezerros.data.source.network;
 
 import android.content.Context;
 import android.content.pm.ApplicationInfo;

@@ -3,15 +3,22 @@ package com.omni.negociacaobezerros.ui.states;
 import java.math.BigDecimal;
 
 public class CorretorUiState {
+    private final int id;
     private final String nome;
     private final BigDecimal comissao;
     private final String tipoComissao;
     private final boolean selecionado;
-    public CorretorUiState(String nome, BigDecimal comissao, String tipoComissao, boolean selecionado) {
+
+    public CorretorUiState(int id, String nome, BigDecimal comissao, String tipoComissao, boolean selecionado) {
+        this.id = id;
         this.nome = nome;
         this.comissao = comissao;
         this.tipoComissao = tipoComissao;
         this.selecionado = selecionado;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public String getNome() {

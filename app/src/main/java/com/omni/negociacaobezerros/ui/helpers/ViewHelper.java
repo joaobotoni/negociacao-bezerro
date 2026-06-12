@@ -6,6 +6,10 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import androidx.annotation.IdRes;
+import androidx.databinding.ViewDataBinding;
+import androidx.viewbinding.ViewBinding;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.PluralsRes;
@@ -21,7 +25,6 @@ import java.util.Collection;
 import java.util.Optional;
 
 public final class ViewHelper {
-
     private ViewHelper() {
         throw new AssertionError("ViewHelper é uma classe utilitária e não deve ser instanciada.");
     }
@@ -193,10 +196,13 @@ public final class ViewHelper {
         return Optional.ofNullable(chip).map(c -> c.getText().toString());
     }
 
-
     public static void setVisible(boolean visible, @NonNull View... views) {
         int state = visible ? View.VISIBLE : View.GONE;
         for (View v : views) if (v != null) v.setVisibility(state);
+    }
+
+    public static void setVisible(boolean visible, @NonNull ViewBinding binding, @IdRes int... ids) {
+        for (int id : ids) binding.getRoot().findViewById(id).setVisibility(visible ? View.VISIBLE : View.GONE);
     }
 
     private static void removeWatchers(@NonNull EditText field, @NonNull TextWatcher[] watchers) {

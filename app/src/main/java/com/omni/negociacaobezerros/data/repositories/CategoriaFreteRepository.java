@@ -4,7 +4,7 @@ package com.omni.negociacaobezerros.data.repositories;
 
 import com.omni.negociacaobezerros.data.source.local.dao.CategoriaFreteDao;
 import com.omni.negociacaobezerros.data.source.local.entities.CategoriaFrete;
-import com.omni.negociacaobezerros.data.source.remote.gespec.GespecCategoriaFreteService;
+import com.omni.negociacaobezerros.data.source.network.gespec.GespecCategoriaFreteService;
 import com.omni.negociacaobezerros.di.network.RetrofitManager;
 
 import java.util.List;

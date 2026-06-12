@@ -1,5 +1,8 @@
 package com.omni.negociacaobezerros.ui.fragments.layout;
 
+import static com.omni.negociacaobezerros.ui.helpers.NavigationHelper.navigateBackOnToolbar;
+import static com.omni.negociacaobezerros.ui.helpers.NavigationHelper.navigateOnMenuItem;
+
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,7 +14,7 @@ import androidx.fragment.app.Fragment;
 
 import com.omni.negociacaobezerros.R;
 import com.omni.negociacaobezerros.databinding.FragmentConexaoBinding;
-import com.omni.negociacaobezerros.ui.helpers.NavigationHelper;
+import com.omni.negociacaobezerros.ui.helpers.TextWatcherHelper;
 
 public class ConexaoFragment extends Fragment {
     private FragmentConexaoBinding binding;
@@ -26,7 +29,7 @@ public class ConexaoFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        navigate();
+        navigation();
     }
 
     @Override
@@ -35,17 +38,18 @@ public class ConexaoFragment extends Fragment {
         binding = null;
     }
 
-    private void navigate() {
+    private void navigation() {
         toSincronizacao();
         back();
     }
 
     private void toSincronizacao() {
-        NavigationHelper.navigateOnMenuItem(this, R.id.conexaoFragment,
-                ConexaoFragmentDirections.actionConexaoFragmentToSincronizacaoFragment(), binding.constraintLayoutConexaoToolbar, R.id.menu_conexao_sincronizacao);
+        navigateOnMenuItem(this, R.id.conexaoFragment,
+                ConexaoFragmentDirections.actionConexaoFragmentToSincronizacaoFragment(),
+                binding.constraintLayoutConexaoToolbar, R.id.menu_conexao_sincronizacao);
     }
 
     private void back() {
-        NavigationHelper.navigateBackOnToolbar(this, binding.constraintLayoutConexaoToolbar);
+       navigateBackOnToolbar(this, binding.constraintLayoutConexaoToolbar);
     }
 }

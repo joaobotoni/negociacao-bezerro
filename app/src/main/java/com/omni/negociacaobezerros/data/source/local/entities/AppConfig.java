@@ -1,6 +1,6 @@
-package com.omni.negociacaobezerros.data.models;
+package com.omni.negociacaobezerros.data.source.local.entities;
 
-public final class Configuration {
+public class AppConfig {
     public final String host;
     public final String port;
     public final String username;
@@ -8,7 +8,7 @@ public final class Configuration {
     public final String applicationId;
     public final String applicationName;
 
-    private Configuration(Builder builder) {
+    private AppConfig(Builder builder) {
         this.host = builder.host;
         this.port = builder.port;
         this.username = builder.username;
@@ -54,8 +54,8 @@ public final class Configuration {
             return this;
         }
 
-        public Configuration build() {
-            return new Configuration(this);
+        public AppConfig build() {
+            return new AppConfig(this);
         }
     }
 }

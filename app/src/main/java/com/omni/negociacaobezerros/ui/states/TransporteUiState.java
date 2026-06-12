@@ -4,9 +4,9 @@ public class TransporteUiState {
     private final String nomeVeiculo;
     private final int quantidadeVeiculos;
     private final int capacidadeCabecas;
-    private final double porcentagemOcupada;
+    private final int porcentagemOcupada;
 
-    public TransporteUiState(String nomeVeiculo, int quantidadeVeiculos, int capacidadeCabecas, double porcentagemOcupada) {
+    public TransporteUiState(String nomeVeiculo, int quantidadeVeiculos, int capacidadeCabecas, int porcentagemOcupada) {
         this.nomeVeiculo = nomeVeiculo;
         this.quantidadeVeiculos = quantidadeVeiculos;
         this.capacidadeCabecas = capacidadeCabecas;
@@ -25,7 +25,7 @@ public class TransporteUiState {
         return capacidadeCabecas;
     }
 
-    public double getPorcentagemOcupada() {
+    public int getPorcentagemOcupada() {
         return porcentagemOcupada;
     }
 }

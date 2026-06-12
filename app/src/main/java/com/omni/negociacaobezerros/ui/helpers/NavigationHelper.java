@@ -26,8 +26,7 @@ public final class NavigationHelper {
         toolbar.setOnMenuItemClickListener(item -> listener.onMenuItemSelected(item.getItemId()));
     }
 
-    public static void navigateOnMenuItem(@NonNull Fragment fragment,
-                                          @IdRes int destinoAtual,
+    public static void navigateOnMenuItem(@NonNull Fragment fragment, @IdRes int destinoAtual,
                                           @NonNull NavDirections direcoes,
                                           @NonNull MaterialToolbar toolbar,
                                           @IdRes int menuItemId) {

@@ -1,6 +1,9 @@
 package com.omni.negociacaobezerros.ui.fragments.layout;
 
 
+import static com.omni.negociacaobezerros.ui.helpers.NavigationHelper.navigateBackOnToolbar;
+import static com.omni.negociacaobezerros.ui.helpers.NavigationHelper.navigateOnClick;
+
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,7 +15,6 @@ import androidx.fragment.app.Fragment;
 
 import com.omni.negociacaobezerros.R;
 import com.omni.negociacaobezerros.databinding.FragmentCotacaoBinding;
-import com.omni.negociacaobezerros.ui.helpers.NavigationHelper;
 
 public class CotacaoFragment extends Fragment {
     private FragmentCotacaoBinding binding;
@@ -28,7 +30,7 @@ public class CotacaoFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        navigate();
+        navigation();
     }
 
     @Override
@@ -37,18 +39,19 @@ public class CotacaoFragment extends Fragment {
         binding = null;
     }
 
-    private void navigate(){
+    private void navigation(){
         toNegociacao();
         back();
     }
 
     private void toNegociacao() {
-        NavigationHelper.navigateOnClick(this, R.id.cotacaoFragment,
-                CotacaoFragmentDirections.actionCotacaoFragmentToNegociacaoFragment(), binding.buttonCotacaoProximo);
+        navigateOnClick(this, R.id.cotacaoFragment,
+                CotacaoFragmentDirections.actionCotacaoFragmentToNegociacaoFragment(),
+                binding.buttonCotacaoProximo);
     }
 
     private void back() {
-        NavigationHelper.navigateBackOnToolbar(this, binding.constraintLayoutCotacaoToolbar);
+        navigateBackOnToolbar(this, binding.constraintLayoutCotacaoToolbar);
     }
 
 }

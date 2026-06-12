@@ -90,7 +90,7 @@ public final class AlertHelper {
     }
 
     private static int calcTopMargin(View view) {
-        return getStatusBarHeight(view) + dpToPx(view.getContext(), SNACKBAR_TOP_MARGIN_DP);
+        return getStatusBarHeight(view) + dpToPx(view.getContext());
     }
 
     private static int getStatusBarHeight(View view) {
@@ -99,8 +99,8 @@ public final class AlertHelper {
         return insets.getInsets(WindowInsetsCompat.Type.statusBars()).top;
     }
 
-    private static int dpToPx(Context context, int dp) {
-        return Math.round(dp * context.getResources().getDisplayMetrics().density);
+    private static int dpToPx(Context context) {
+        return Math.round(AlertHelper.SNACKBAR_TOP_MARGIN_DP * context.getResources().getDisplayMetrics().density);
     }
 
     private static boolean isSnackBarValid(View view, String message) {

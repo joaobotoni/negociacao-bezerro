@@ -10,7 +10,7 @@ import com.omni.negociacaobezerros.data.models.PrecificacaoFrete;
 import com.omni.negociacaobezerros.data.models.Transporte;
 import com.omni.negociacaobezerros.data.source.local.dao.FreteDao;
 import com.omni.negociacaobezerros.data.source.local.entities.Frete;
-import com.omni.negociacaobezerros.data.source.remote.gespec.GespecFreteService;
+import com.omni.negociacaobezerros.data.source.network.gespec.GespecFreteService;
 import com.omni.negociacaobezerros.di.network.RetrofitManager;
 
 import java.math.BigDecimal;

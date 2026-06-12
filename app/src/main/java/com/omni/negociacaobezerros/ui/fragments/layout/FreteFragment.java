@@ -1,5 +1,8 @@
 package com.omni.negociacaobezerros.ui.fragments.layout;
 
+import static com.omni.negociacaobezerros.ui.helpers.NavigationHelper.navigateBackOnToolbar;
+import static com.omni.negociacaobezerros.ui.helpers.NavigationHelper.navigateOnClick;
+
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,7 +30,7 @@ public class FreteFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        navigate();
+        navigation();
     }
 
 
@@ -37,17 +40,18 @@ public class FreteFragment extends Fragment {
         binding = null;
     }
 
-    private void navigate(){
+    private void navigation() {
         toNegociacao();
         back();
     }
 
     private void toNegociacao() {
-        NavigationHelper.navigateOnClick(this, R.id.freteFragment,
-                FreteFragmentDirections.actionFreteFragmentToNegociacaoFragment(), binding.buttonFreteFinalizar);
+        navigateOnClick(this, R.id.freteFragment,
+                FreteFragmentDirections.actionFreteFragmentToNegociacaoFragment(),
+                binding.buttonFreteFinalizar);
     }
 
     private void back() {
-        NavigationHelper.navigateBackOnToolbar(this, binding.constraintLayoutFreteToolbar);
+        navigateBackOnToolbar(this, binding.constraintLayoutFreteToolbar);
     }
 }
