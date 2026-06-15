@@ -11,6 +11,6 @@ import retrofit2.http.Path;
 
 public interface GespecCategoriaNegociacaoService {
 
-    @GET("categoriasNeg/{usuario}")
-    Call<List<CategoriaNegociacao>> getAll(@Path("usuario") String usuario);
+    @GET("categoriasNeg")
+    Call<List<CategoriaNegociacao>> getAll(String usuario);
 }

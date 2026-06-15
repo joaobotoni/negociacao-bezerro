@@ -10,6 +10,6 @@ import retrofit2.http.Path;
 
 public interface GespecCategoriaFreteService {
 
-    @GET("categoriasFrete/{usuario}")
-    Call<List<CategoriaFrete>> getAll(@Path("usuario") String usuario);
+    @GET("categoriasFrete")
+    Call<List<CategoriaFrete>> getAll();
 }

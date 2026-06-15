@@ -14,6 +14,7 @@ import javax.inject.Singleton;
 
 @Singleton
 public final class TaskHelper {
+
     private final ExecutorService executor;
     private final Handler mainHandler;
 
@@ -26,14 +27,14 @@ public final class TaskHelper {
     public <T> void execute(
             @NonNull Callable<T> task,
             @NonNull Consumer<T> onSuccess,
-            @NonNull Consumer<Exception> onError
+            @NonNull Consumer<Throwable> onError
     ) {
         executor.submit(() -> {
             try {
                 T result = task.call();
                 mainHandler.post(() -> onSuccess.accept(result));
-            } catch (Exception e) {
-                mainHandler.post(() -> onError.accept(e));
+            } catch (Throwable t) {
+                mainHandler.post(() -> onError.accept(t));
             }
         });
     }

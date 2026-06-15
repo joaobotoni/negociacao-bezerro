@@ -11,6 +11,6 @@ import retrofit2.http.Path;
 
 public interface GespecValorReferenciaService {
 
-    @GET("valoresReferencia/{usuario}")
-    Call<List<ValorReferencia>> getAll(@Path("usuario") String usuario);
+    @GET("valoresReferencia")
+    Call<List<ValorReferencia>> getAll();
 }

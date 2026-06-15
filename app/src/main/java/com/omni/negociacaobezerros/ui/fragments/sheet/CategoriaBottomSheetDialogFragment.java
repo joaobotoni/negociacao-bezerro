@@ -66,6 +66,7 @@ public class CategoriaBottomSheetDialogFragment extends BottomSheetDialogFragmen
 
     private void configurarViewModel() {
         categoriaViewModel = new ViewModelProvider(requireActivity()).get(CategoriaViewModel.class);
+        categoriaViewModel.carregar();
     }
 
     private void configurarObservadores() {

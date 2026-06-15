@@ -9,6 +9,6 @@ import retrofit2.http.GET;
 import retrofit2.http.Path;
 
 public interface GespecCapacidadeFreteService {
-    @GET("capacidadesFrete/{usuario}")
-    Call<List<CapacidadeFrete>> getAll(@Path("usuario") String usuario);
+    @GET("capacidadesFrete")
+    Call<List<CapacidadeFrete>> getAll();
 }

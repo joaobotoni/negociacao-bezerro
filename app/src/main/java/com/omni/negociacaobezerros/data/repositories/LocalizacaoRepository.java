@@ -4,8 +4,8 @@ import android.location.Address;
 import android.location.Geocoder;
 
 import com.omni.negociacaobezerros.data.models.Rota;
-import com.omni.negociacaobezerros.data.source.network.RoutesRemoteDataSource;
-import com.google.android.gms.maps.model.LatLng;
+import com.omni.negociacaobezerros.data.source.network.google.RoutesService;
+import com.omni.negociacaobezerros.data.source.network.models.NetworkRoutes;
 
 import java.io.IOException;
 import java.util.Collections;
@@ -14,20 +14,20 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import javax.inject.Inject;
+import javax.inject.Singleton;
 
+@Singleton
 public class LocalizacaoRepository {
-
     private static final int MAX_RESULTADOS = 10;
     private static final int RESULTADO_UNICO = 1;
     private static final double METROS_POR_QUILOMETRO = 1000.0;
-
     private final Geocoder geocoder;
-    private final RoutesRemoteDataSource rotasDataSource;
+    private final RoutesService service;
 
     @Inject
-    public LocalizacaoRepository(Geocoder geocoder, RoutesRemoteDataSource rotasDataSource) {
+    public LocalizacaoRepository(Geocoder geocoder, RoutesService service) {
         this.geocoder = geocoder;
-        this.rotasDataSource = rotasDataSource;
+        this.service = service;
     }
 
     public Optional<String> getCodigoPais(double latitude, double longitude) throws IOException {
@@ -51,8 +51,8 @@ public class LocalizacaoRepository {
     }
 
     public Rota calcularRota(Address origem, Address destino) {
-        String respostaBruta = fetchRota(origem, destino);
-        double distanciaKm = parseDistanciaKm(respostaBruta);
+        NetworkRoutes.Response response = fetchRota(origem, destino);
+        double distanciaKm = parseDistanciaKm(response);
         return new Rota(
                 getCidade(origem), getEstado(origem),
                 getCidade(destino), getEstado(destino),
@@ -71,29 +71,40 @@ public class LocalizacaoRepository {
     }
 
     private boolean isDoMesmoPais(Address endereco, String codigoPais) {
-        return codigoPais == null
-                || (endereco.getCountryCode() != null
+        return codigoPais == null || (endereco.getCountryCode() != null
                 && endereco.getCountryCode().equalsIgnoreCase(codigoPais));
     }
 
-    private String fetchRota(Address origem, Address destino) {
+    private NetworkRoutes.Response fetchRota(Address origem, Address destino) {
         try {
-            return rotasDataSource.compute(toLatLng(origem), toLatLng(destino));
-        } catch (Exception e) {
+            return service.computeRoutes(request(origem, destino)).execute().body();
+        } catch (IOException e) {
             throw new IllegalStateException(String.format("Falha ao buscar rota de '%s' para '%s'.", getCidade(origem), getCidade(destino)), e);
         }
     }
 
-    private double parseDistanciaKm(String respostaBruta) {
-        try {
-            return rotasDataSource.parse(respostaBruta) / METROS_POR_QUILOMETRO;
-        } catch (Exception e) {
-            throw new IllegalArgumentException("Falha ao converter distância: " + respostaBruta, e);
-        }
+    private double parseDistanciaKm(NetworkRoutes.Response response) {
+        return response.routes.get(0).distanceMeters / METROS_POR_QUILOMETRO;
     }
 
-    private LatLng toLatLng(Address endereco) {
-        return new LatLng(endereco.getLatitude(), endereco.getLongitude());
+    private NetworkRoutes.Request request(Address origem, Address destino) {
+        return new NetworkRoutes.Request(origin(origem), destination(destino));
+    }
+
+    private NetworkRoutes.Request.Origin origin(Address origem) {
+        return new NetworkRoutes.Request.Origin(location(origem));
+    }
+
+    private NetworkRoutes.Request.Destination destination(Address destino) {
+        return new NetworkRoutes.Request.Destination(location(destino));
+    }
+
+    private NetworkRoutes.Request.Location location(Address endereco) {
+        return new NetworkRoutes.Request.Location(latLng(endereco));
+    }
+
+    private NetworkRoutes.Request.LatLng latLng(Address endereco) {
+        return new NetworkRoutes.Request.LatLng(endereco.getLatitude(), endereco.getLongitude());
     }
 
     private String getCidade(Address endereco) {

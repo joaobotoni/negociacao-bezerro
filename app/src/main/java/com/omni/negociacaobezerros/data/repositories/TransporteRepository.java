@@ -1,7 +1,5 @@
 package com.omni.negociacaobezerros.data.repositories;
 
-
-
 import com.omni.negociacaobezerros.data.models.Transporte;
 import com.omni.negociacaobezerros.data.source.local.dao.CapacidadeFreteDao;
 import com.omni.negociacaobezerros.data.source.local.dao.TipoVeiculoFreteDao;
@@ -14,9 +12,9 @@ import java.util.List;
 import java.util.Optional;
 
 import javax.inject.Inject;
+import javax.inject.Singleton;
 
-import retrofit2.Retrofit;
-
+@Singleton
 public class TransporteRepository {
     private final CapacidadeFreteDao capacidadeDao;
     private final TipoVeiculoFreteDao tipoVeiculoDao;
@@ -48,6 +46,7 @@ public class TransporteRepository {
 
         for (CapacidadeFrete capacidade : capacidades) {
             if (restante <= 0) break;
+            if (capacidade.getQtdeFinal() <= 0) continue;
 
             int antes = restante;
             int veiculos = 0;
@@ -61,7 +60,7 @@ public class TransporteRepository {
                 int animaisCarregados = antes - Math.max(restante, 0);
                 int ocupacao = Math.min(100, animaisCarregados * 100 / (veiculos * capacidade.getQtdeFinal()));
                 String descricao = buscarDescricaoVeiculo(capacidade.getIdTipoVeiculoFrete())
-                        .orElseThrow(() -> new RuntimeException("Tipo de veículo não encontrado"));
+                        .orElseThrow(() -> new IllegalStateException("Tipo de veículo não encontrado"));
 
                 transportes.add(new Transporte(
                         capacidade.getIdTipoVeiculoFrete(),

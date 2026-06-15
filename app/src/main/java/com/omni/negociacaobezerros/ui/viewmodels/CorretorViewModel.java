@@ -31,7 +31,6 @@ public class CorretorViewModel extends ViewModel {
         this.repositorio = repositorio;
         this.mapper = mapper;
         this.taskHelper = taskHelper;
-        carregar();
     }
 
     public LiveData<List<CorretorUiState>> getState() { return state; }

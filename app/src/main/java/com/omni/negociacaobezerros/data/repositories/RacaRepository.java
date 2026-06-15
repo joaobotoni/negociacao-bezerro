@@ -5,26 +5,37 @@ package com.omni.negociacaobezerros.data.repositories;
 import com.omni.negociacaobezerros.data.source.local.dao.RacaDao;
 import com.omni.negociacaobezerros.data.source.local.entities.Raca;
 import com.omni.negociacaobezerros.data.source.network.gespec.GespecRacasService;
-import com.omni.negociacaobezerros.di.network.RetrofitManager;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
 import javax.inject.Inject;
+import javax.inject.Provider;
+import javax.inject.Singleton;
 
+import retrofit2.Response;
+
+@Singleton
 public class RacaRepository {
     private final RacaDao dao;
-    private final RetrofitManager retrofitManager;
-
+    private final Provider<GespecRacasService> serviceProvider;
     @Inject
-    public RacaRepository(RacaDao dao, RetrofitManager retrofitManager) {
+    public RacaRepository(RacaDao dao, Provider<GespecRacasService> serviceProvider) {
         this.dao = dao;
-        this.retrofitManager = retrofitManager;
+        this.serviceProvider = serviceProvider;
     }
 
-    private GespecRacasService service() {
-        return retrofitManager.getRetrofit().create(GespecRacasService.class);
+    public List<Raca> sincronizar(String usuario) throws IOException {
+        Response<List<Raca>> response = serviceProvider.get().getAll(usuario).execute();
+        if (!response.isSuccessful() || response.body() == null) {
+            throw new IOException("Falha ao sincronizar raças: HTTP " + response.code());
+        }
+        List<Raca> remotos = response.body();
+        dao.insertAll(remotos);
+        return remotos;
     }
+
 
     public List<Raca> getAll() {
         return dao.getAll();

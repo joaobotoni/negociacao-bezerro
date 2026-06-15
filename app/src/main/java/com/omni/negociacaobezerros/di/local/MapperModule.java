@@ -1,4 +1,4 @@
-package com.omni.negociacaobezerros.di;
+package com.omni.negociacaobezerros.di.local;
 
 import com.omni.negociacaobezerros.utils.mapper.CategoriaMapper;
 import com.omni.negociacaobezerros.utils.mapper.CorretorMapper;
@@ -11,8 +11,6 @@ import com.omni.negociacaobezerros.utils.mapper.EmpresaMapperImpl;
 import com.omni.negociacaobezerros.utils.mapper.RotaMapperImpl;
 import com.omni.negociacaobezerros.utils.mapper.TransporteMapperImpl;
 
-import javax.inject.Singleton;
-
 import dagger.Module;
 import dagger.Provides;
 import dagger.hilt.InstallIn;
@@ -23,31 +21,26 @@ import dagger.hilt.components.SingletonComponent;
 public class MapperModule {
 
     @Provides
-    @Singleton
     public CategoriaMapper provideCategoriaMapper() {
         return new CategoriaMapperImpl();
     }
 
     @Provides
-    @Singleton
     public CorretorMapper provideCorretorMapper() {
         return new CorretorMapperImpl();
     }
 
     @Provides
-    @Singleton
     public EmpresaMapper provideEmpresaMapper() {
         return new EmpresaMapperImpl();
     }
 
     @Provides
-    @Singleton
     public RotaMapper provideRotaMapper() {
         return new RotaMapperImpl();
     }
 
     @Provides
-    @Singleton
     public TransporteMapper provideTransporteMapper() {
         return new TransporteMapperImpl();
     }

@@ -7,9 +7,10 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 
 public interface GespecNegociacaoGadoService {
 
-    @POST("negociacaoGado/{usuario}")
-    Call<List<NegociacaoGado>> insertAll(@Body List<NegociacaoGado> negociacoes);
+    @POST("negociacaoGado")
+    Call<List<NegociacaoGado>> insertAll(List<NegociacaoGado> negociacoes);
 }

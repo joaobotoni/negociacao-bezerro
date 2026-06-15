@@ -11,6 +11,6 @@ import retrofit2.http.Path;
 
 public interface GespecCorretorService {
 
-    @GET("corretores/{usuario}")
-    Call<List<Corretor>> getAll(@Path("usuario") String usuario);
+    @GET("corretores")
+    Call<List<Corretor>> getAll();
 }

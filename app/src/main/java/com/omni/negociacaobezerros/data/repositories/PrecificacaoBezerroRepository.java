@@ -9,7 +9,9 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 
 import javax.inject.Inject;
+import javax.inject.Singleton;
 
+@Singleton
 public class PrecificacaoBezerroRepository {
     private static final BigDecimal PESO_ARROBA_KG = new BigDecimal("30.0");
     private static final BigDecimal ARROBAS_ABATE_ESPERADAS = new BigDecimal("21.00");

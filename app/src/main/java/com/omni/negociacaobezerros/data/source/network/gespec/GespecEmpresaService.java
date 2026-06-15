@@ -11,6 +11,6 @@ import retrofit2.http.Path;
 
 public interface GespecEmpresaService {
 
-    @GET("empresas/{usuario}")
-    Call<List<Empresa>> getAll(@Path("usuario") String usuario);
+    @GET("empresas")
+    Call<List<Empresa>> getAll();
 }

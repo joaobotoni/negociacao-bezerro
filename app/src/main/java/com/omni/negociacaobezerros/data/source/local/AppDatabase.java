@@ -149,7 +149,7 @@ public abstract class AppDatabase extends RoomDatabase {
                                     db.execSQL("INSERT INTO xgp_corretor (name, comissao, tipo_comissao) VALUES ('Jucilei Ferreira da Silva', 25.0, 'c')");
 
                                     // VALOR DE REFERÊNCIA INICIAL
-                                    db.execSQL("INSERT INTO xgp_valor_referencia (id_valor_referencia, id_tipo_referencia, id_empresa, data_referencia, valor_arroba_boi, valor_bezerro, peso_bezerro, valor_arroba_vaca, valor_bezerra, peso_bezerra, agio_bezerro, agio_bezerra) VALUES (1, 1, 1, strftime('%s','now') * 1000, 350.00, 2800.00, 180, 319.00, 2800.00, 180, 29.0, 30.0)");
+                                    db.execSQL("INSERT INTO xgp_valor_referencia (id_valor_referencia, id_tipo_referencia, id_empresa, data_referencia, valor_arroba_boi, valor_bezerro, peso_bezerro, perc_agio, perc_agio_ajustado) VALUES (1, 1, 1, strftime('%s','now') * 1000, 350.00, 2800.00, 180, 29.0, 0.0)");
 
                                     // RAÇAS BOVINAS
                                     db.execSQL("INSERT INTO xgp_raca (id_raca, descricao, sigla) VALUES (1, 'Hereford', 'HER')");

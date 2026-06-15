@@ -42,7 +42,7 @@ public class ValorReferencia {
 
     @ColumnInfo(name = "data_referencia")
     @SerializedName("DATA_REFERENCIA")
-    private Date DataReferencia;
+    private Date dataReferencia;
 
     @ColumnInfo(name = "valor_arroba_boi")
     @SerializedName("VALOR_ARROBA_BOI")
@@ -56,42 +56,36 @@ public class ValorReferencia {
     @SerializedName("PESO_BEZERRO")
     private Integer pesoBezerro;
 
-    @ColumnInfo(name = "valor_arroba_vaca")
-    @SerializedName("VALOR_ARROBA_VACA")
-    private Double valorArrobaVaca;
-
-    @ColumnInfo(name = "valor_bezerra")
-    @SerializedName("VALOR_BEZERRA")
-    private Double valorBezerra;
-
-    @ColumnInfo(name = "peso_bezerra")
-    @SerializedName("PESO_BEZERRA")
-    private Integer pesoBezerra;
-
-    @ColumnInfo(name = "agio_bezerro")
-    @SerializedName("AGIO_BEZERRO")
+    @ColumnInfo(name = "perc_agio")
+    @SerializedName("PERC_AGIO")
     private Double agioBezerro;
 
-    @ColumnInfo(name = "agio_bezerra")
-    @SerializedName("AGIO_BEZERRA")
-    private Double agioBezerra;
+    @ColumnInfo(name = "perc_agio_ajustado")
+    @SerializedName("PERC_AGIO_AJUSTADO")
+    private Double agioAjustado;
+
+    @ColumnInfo(name = "data_vencimento")
+    @SerializedName("DATA_VENCIMENTO")
+    private Date dataVencimento;
+
+    @ColumnInfo(name = "sexo")
+    @SerializedName("SEXO")
+    private String sexo;
 
     public ValorReferencia() {
     }
 
-    public ValorReferencia(int idValorReferencia, int idTipoReferencia, int idEmpresa, Date dataReferencia, Double valorArrobaBoi, Double valorBezerro, Integer pesoBezerro, Double valorArrobaVaca, Double valorBezerra, Integer pesoBezerra, Double agioBezerro, Double agioBezerra) {
+    public ValorReferencia(int idValorReferencia, int idTipoReferencia, int idEmpresa, Date dataReferencia,
+                           Double valorArrobaBoi, Double valorBezerro, Integer pesoBezerro, Double agioBezerro, Double agioAjustado) {
         this.idValorReferencia = idValorReferencia;
         this.idTipoReferencia = idTipoReferencia;
         this.idEmpresa = idEmpresa;
-        DataReferencia = dataReferencia;
+        this.dataReferencia = dataReferencia;
         this.valorArrobaBoi = valorArrobaBoi;
         this.valorBezerro = valorBezerro;
         this.pesoBezerro = pesoBezerro;
-        this.valorArrobaVaca = valorArrobaVaca;
-        this.valorBezerra = valorBezerra;
-        this.pesoBezerra = pesoBezerra;
         this.agioBezerro = agioBezerro;
-        this.agioBezerra = agioBezerra;
+        this.agioAjustado = agioAjustado;
     }
 
     public int getIdValorReferencia() {
@@ -119,11 +113,11 @@ public class ValorReferencia {
     }
 
     public Date getDataReferencia() {
-        return DataReferencia;
+        return dataReferencia;
     }
 
     public void setDataReferencia(Date dataReferencia) {
-        DataReferencia = dataReferencia;
+        this.dataReferencia = dataReferencia;
     }
 
     public Double getValorArrobaBoi() {
@@ -150,30 +144,6 @@ public class ValorReferencia {
         this.pesoBezerro = pesoBezerro;
     }
 
-    public Double getValorArrobaVaca() {
-        return valorArrobaVaca;
-    }
-
-    public void setValorArrobaVaca(Double valorArrobaVaca) {
-        this.valorArrobaVaca = valorArrobaVaca;
-    }
-
-    public Double getValorBezerra() {
-        return valorBezerra;
-    }
-
-    public void setValorBezerra(Double valorBezerra) {
-        this.valorBezerra = valorBezerra;
-    }
-
-    public Integer getPesoBezerra() {
-        return pesoBezerra;
-    }
-
-    public void setPesoBezerra(Integer pesoBezerra) {
-        this.pesoBezerra = pesoBezerra;
-    }
-
     public Double getAgioBezerro() {
         return agioBezerro;
     }
@@ -182,11 +152,27 @@ public class ValorReferencia {
         this.agioBezerro = agioBezerro;
     }
 
-    public Double getAgioBezerra() {
-        return agioBezerra;
+    public Double getAgioAjustado() {
+        return agioAjustado;
     }
 
-    public void setAgioBezerra(Double agioBezerra) {
-        this.agioBezerra = agioBezerra;
+    public void setAgioAjustado(Double agioAjustado) {
+        this.agioAjustado = agioAjustado;
+    }
+
+    public Date getDataVencimento() {
+        return dataVencimento;
+    }
+
+    public void setDataVencimento(Date dataVencimento) {
+        this.dataVencimento = dataVencimento;
+    }
+
+    public String getSexo() {
+        return sexo;
+    }
+
+    public void setSexo(String sexo) {
+        this.sexo = sexo;
     }
 }

@@ -12,7 +12,7 @@ import com.omni.negociacaobezerros.utils.mapper.TransporteMapper;
 import java.util.List;
 
 import dagger.hilt.android.lifecycle.HiltViewModel;
-import jakarta.inject.Inject;
+import javax.inject.Inject;
 
 @HiltViewModel
 public class TransporteViewModel extends ViewModel {
@@ -21,7 +21,6 @@ public class TransporteViewModel extends ViewModel {
     private final TaskHelper taskHelper;
     private final MutableLiveData<List<TransporteUiState>> state = new MutableLiveData<>(null);
     private final MutableLiveData<Throwable> erro = new MutableLiveData<>(null);
-
     @Inject
     public TransporteViewModel(TransporteRepository repositorio, TransporteMapper mapper, TaskHelper taskHelper) {
         this.repositorio = repositorio;

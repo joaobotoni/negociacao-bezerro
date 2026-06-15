@@ -1,10 +1,8 @@
-package com.omni.negociacaobezerros.di;
+package com.omni.negociacaobezerros.di.local;
 import android.content.Context;
 import android.location.Geocoder;
 
 import java.util.Locale;
-
-import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
@@ -16,7 +14,6 @@ import dagger.hilt.components.SingletonComponent;
 @InstallIn(SingletonComponent.class)
 public class LocationModule {
     @Provides
-    @Singleton
     public Geocoder provideGeocoder(@ApplicationContext Context context) {
         return new Geocoder(context, Locale.getDefault());
     }

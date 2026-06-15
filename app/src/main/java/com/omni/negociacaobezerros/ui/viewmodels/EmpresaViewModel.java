@@ -31,7 +31,6 @@ public class EmpresaViewModel extends ViewModel {
         this.repositorio = repositorio;
         this.mapper = mapper;
         this.taskHelper = taskHelper;
-        carregar();
     }
 
     public LiveData<List<EmpresaUiState>> getState() { return state; }

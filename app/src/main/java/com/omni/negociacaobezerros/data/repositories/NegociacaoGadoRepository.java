@@ -4,23 +4,34 @@ package com.omni.negociacaobezerros.data.repositories;
 import com.omni.negociacaobezerros.data.source.local.dao.NegociacaoGadoDao;
 import com.omni.negociacaobezerros.data.source.local.entities.NegociacaoGado;
 import com.omni.negociacaobezerros.data.source.network.gespec.GespecNegociacaoGadoService;
-import com.omni.negociacaobezerros.di.network.RetrofitManager;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
 import javax.inject.Inject;
+import javax.inject.Provider;
+import javax.inject.Singleton;
 
+import retrofit2.Response;
+
+@Singleton
 public class NegociacaoGadoRepository {
     private final NegociacaoGadoDao dao;
-    private final RetrofitManager retrofitManager;
+    private final Provider<GespecNegociacaoGadoService> serviceProvider;
     @Inject
-    public NegociacaoGadoRepository(NegociacaoGadoDao dao, RetrofitManager retrofitManager) {
+    public NegociacaoGadoRepository(NegociacaoGadoDao dao, Provider<GespecNegociacaoGadoService> serviceProvider) {
         this.dao = dao;
-        this.retrofitManager = retrofitManager;
+        this.serviceProvider = serviceProvider;
     }
-    private GespecNegociacaoGadoService service(){
-        return retrofitManager.getRetrofit().create(GespecNegociacaoGadoService.class);
+
+    public List<NegociacaoGado> sincronizar(String usuario) throws IOException {
+        List<NegociacaoGado> pendentes = dao.getAll();
+        Response<List<NegociacaoGado>> response = serviceProvider.get().insertAll(usuario, pendentes).execute();
+        if (!response.isSuccessful() || response.body() == null) {
+            throw new IOException("Falha ao enviar negociações de gado: HTTP " + response.code());
+        }
+        return response.body();
     }
 
     public List<NegociacaoGado> getAll() {

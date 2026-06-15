@@ -1,5 +1,6 @@
-package com.omni.negociacaobezerros.di;
+package com.omni.negociacaobezerros.di.local;
 
+import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
 
@@ -16,15 +17,21 @@ import dagger.hilt.components.SingletonComponent;
 @Module
 @InstallIn(SingletonComponent.class)
 public class ExecutorModule {
+
+    private static final int THREAD_POOL_SIZE = 4;
+
     @Provides
     @Singleton
     public ExecutorService provideExecutorService() {
-        return Executors.newFixedThreadPool(4);
+        return Executors.newFixedThreadPool(THREAD_POOL_SIZE);
     }
 
     @Provides
     @Singleton
     public Handler provideMainHandler() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+            return Handler.createAsync(Looper.getMainLooper());
+        }
         return new Handler(Looper.getMainLooper());
     }
 }

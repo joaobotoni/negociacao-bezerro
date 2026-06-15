@@ -66,6 +66,7 @@ public class EmpresaBottomSheetDialogFragment extends BottomSheetDialogFragment 
 
     private void configurarViewModel() {
         empresaViewModel = new ViewModelProvider(requireActivity()).get(EmpresaViewModel.class);
+        empresaViewModel.carregar();
     }
 
     private void configurarObservadores() {

@@ -65,16 +65,16 @@ public class NegociacaoGado {
     @SerializedName("DATA_NEGOCIACAO")
     private Date dataNegociacao;
 
-    @ColumnInfo(name = "valor_kg_ref")
-    @SerializedName("VALOR_KG_REF")
+    @ColumnInfo(name = "valor_kg")
+    @SerializedName("VALOR_KG")
     private Double valorKgRef;
 
-    @ColumnInfo(name = "valor_cab_ref")
-    @SerializedName("VALOR_CAB_REF")
+    @ColumnInfo(name = "valor_por_cabeca")
+    @SerializedName("VALOR_POR_CABECA")
     private Double valorCabRef;
 
-    @ColumnInfo(name = "perc_agio_ref")
-    @SerializedName("PERC_AGIO_REF")
+    @ColumnInfo(name = "perc_agio")
+    @SerializedName("PERC_AGIO")
     private Double percAgioRef;
 
     @ColumnInfo(name = "peso_medio")

@@ -67,6 +67,7 @@ public class CorretorBottomSheetDialogFragment extends BottomSheetDialogFragment
 
     private void configurarViewModel() {
         corretorViewModel = new ViewModelProvider(requireActivity()).get(CorretorViewModel.class);
+        corretorViewModel.carregar();
     }
 
     private void configurarObservadores() {

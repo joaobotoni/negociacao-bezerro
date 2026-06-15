@@ -1,29 +1,37 @@
 package com.omni.negociacaobezerros.data.repositories;
 
-
-
 import com.omni.negociacaobezerros.data.source.local.dao.CategoriaFreteDao;
 import com.omni.negociacaobezerros.data.source.local.entities.CategoriaFrete;
 import com.omni.negociacaobezerros.data.source.network.gespec.GespecCategoriaFreteService;
-import com.omni.negociacaobezerros.di.network.RetrofitManager;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
 import javax.inject.Inject;
+import javax.inject.Provider;
+import javax.inject.Singleton;
 
+import retrofit2.Response;
+
+@Singleton
 public class CategoriaFreteRepository {
     private final CategoriaFreteDao dao;
-
-    private final RetrofitManager retrofitManager;
+    private final Provider<GespecCategoriaFreteService> serviceProvider;
     @Inject
-    public CategoriaFreteRepository(CategoriaFreteDao dao, RetrofitManager retrofitManager) {
+    public CategoriaFreteRepository(CategoriaFreteDao dao, Provider<GespecCategoriaFreteService> serviceProvider) {
         this.dao = dao;
-        this.retrofitManager = retrofitManager;
+        this.serviceProvider = serviceProvider;
     }
 
-    private GespecCategoriaFreteService service(){
-        return retrofitManager.getRetrofit().create(GespecCategoriaFreteService.class);
+    public List<CategoriaFrete> sincronizar(String usuario) throws IOException {
+        Response<List<CategoriaFrete>> response = serviceProvider.get().getAll(usuario).execute();
+        if (!response.isSuccessful() || response.body() == null) {
+            throw new IOException("Falha ao sincronizar categorias de frete: HTTP " + response.code());
+        }
+        List<CategoriaFrete> remotos = response.body();
+        dao.insertAll(remotos);
+        return remotos;
     }
 
     public List<CategoriaFrete> getAll() {

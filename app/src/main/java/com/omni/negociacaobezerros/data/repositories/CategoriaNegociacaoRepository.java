@@ -3,26 +3,35 @@ package com.omni.negociacaobezerros.data.repositories;
 import com.omni.negociacaobezerros.data.source.local.dao.CategoriaNegociacaoDao;
 import com.omni.negociacaobezerros.data.source.local.entities.CategoriaNegociacao;
 import com.omni.negociacaobezerros.data.source.network.gespec.GespecCategoriaNegociacaoService;
-import com.omni.negociacaobezerros.di.network.RetrofitManager;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
 import javax.inject.Inject;
+import javax.inject.Provider;
+import javax.inject.Singleton;
 
+import retrofit2.Response;
+
+@Singleton
 public class CategoriaNegociacaoRepository {
-
     private final CategoriaNegociacaoDao dao;
-    private final RetrofitManager retrofitManager;
-
+    private final Provider<GespecCategoriaNegociacaoService> serviceProvider;
     @Inject
-    public CategoriaNegociacaoRepository(CategoriaNegociacaoDao dao, RetrofitManager retrofitManager) {
+    public CategoriaNegociacaoRepository(CategoriaNegociacaoDao dao, Provider<GespecCategoriaNegociacaoService> serviceProvider) {
         this.dao = dao;
-        this.retrofitManager = retrofitManager;
+        this.serviceProvider = serviceProvider;
     }
 
-    private GespecCategoriaNegociacaoService service() {
-        return retrofitManager.getRetrofit().create(GespecCategoriaNegociacaoService.class);
+    public List<CategoriaNegociacao> sincronizar(String usuario) throws IOException {
+        Response<List<CategoriaNegociacao>> response = serviceProvider.get().getAll(usuario).execute();
+        if (!response.isSuccessful() || response.body() == null) {
+            throw new IOException("Falha ao sincronizar categorias de negociação: HTTP " + response.code());
+        }
+        List<CategoriaNegociacao> remotos = response.body();
+        dao.insertAll(remotos);
+        return remotos;
     }
 
     public List<CategoriaNegociacao> getAll() {
@@ -48,8 +57,7 @@ public class CategoriaNegociacaoRepository {
     public int delete(CategoriaNegociacao categoriaNegociacao) {
         return dao.delete(categoriaNegociacao);
     }
-
-    public void delete() {
+    public void deleteAll() {
         dao.deleteAll();
     }
 }

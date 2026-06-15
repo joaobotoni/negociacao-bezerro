@@ -3,24 +3,37 @@ package com.omni.negociacaobezerros.data.repositories;
 import com.omni.negociacaobezerros.data.source.local.dao.TipoVeiculoFreteDao;
 import com.omni.negociacaobezerros.data.source.local.entities.TipoVeiculoFrete;
 import com.omni.negociacaobezerros.data.source.network.gespec.GespecTipoVeiculoFreteService;
-import com.omni.negociacaobezerros.di.network.RetrofitManager;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
 import javax.inject.Inject;
+import javax.inject.Provider;
+import javax.inject.Singleton;
 
+import retrofit2.Response;
+
+@Singleton
 public class TipoVeiculoFreteRepository {
     private final TipoVeiculoFreteDao dao;
-    private final RetrofitManager retrofitManager;
+    private final Provider<GespecTipoVeiculoFreteService> serviceProvider;
     @Inject
-    public TipoVeiculoFreteRepository(TipoVeiculoFreteDao dao, RetrofitManager retrofitManager) {
+    public TipoVeiculoFreteRepository(TipoVeiculoFreteDao dao, Provider<GespecTipoVeiculoFreteService> serviceProvider) {
         this.dao = dao;
-        this.retrofitManager = retrofitManager;
+        this.serviceProvider = serviceProvider;
     }
-    private GespecTipoVeiculoFreteService service(){
-        return retrofitManager.getRetrofit().create(GespecTipoVeiculoFreteService.class);
+
+    public List<TipoVeiculoFrete> sincronizar(String usuario) throws IOException {
+        Response<List<TipoVeiculoFrete>> response = serviceProvider.get().getAll(usuario).execute();
+        if (!response.isSuccessful() || response.body() == null) {
+            throw new IOException("Falha ao sincronizar tipos de veículo de frete: HTTP " + response.code());
+        }
+        List<TipoVeiculoFrete> remotos = response.body();
+        dao.insertAll(remotos);
+        return remotos;
     }
+
 
     public List<TipoVeiculoFrete> getAll() {
         return dao.getAll();

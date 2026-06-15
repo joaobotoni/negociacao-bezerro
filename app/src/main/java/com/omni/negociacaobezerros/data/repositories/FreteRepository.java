@@ -1,7 +1,5 @@
 package com.omni.negociacaobezerros.data.repositories;
 
-
-
 import static com.omni.negociacaobezerros.utils.format.Decimals.ARREDONDAMENTO_FINANCEIRO;
 import static com.omni.negociacaobezerros.utils.format.Decimals.ESCALA_CALCULO;
 import static com.omni.negociacaobezerros.utils.format.Decimals.ESCALA_MONETARIA;
@@ -11,25 +9,38 @@ import com.omni.negociacaobezerros.data.models.Transporte;
 import com.omni.negociacaobezerros.data.source.local.dao.FreteDao;
 import com.omni.negociacaobezerros.data.source.local.entities.Frete;
 import com.omni.negociacaobezerros.data.source.network.gespec.GespecFreteService;
-import com.omni.negociacaobezerros.di.network.RetrofitManager;
 
 import java.math.BigDecimal;
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
 import javax.inject.Inject;
+import javax.inject.Provider;
+import javax.inject.Singleton;
 
+import retrofit2.Response;
+
+@Singleton
 public class FreteRepository {
     private final FreteDao dao;
-    private final RetrofitManager retrofitManager;
+    private final Provider<GespecFreteService> serviceProvider;
     @Inject
-    public FreteRepository(FreteDao dao, RetrofitManager retrofitManager) {
+    public FreteRepository(FreteDao dao, Provider<GespecFreteService> serviceProvider) {
         this.dao = dao;
-        this.retrofitManager = retrofitManager;
+        this.serviceProvider = serviceProvider;
     }
-    private GespecFreteService service(){
-        return retrofitManager.getRetrofit().create(GespecFreteService.class);
+
+    public List<Frete> sincronizar(String usuario) throws IOException {
+        Response<List<Frete>> response = serviceProvider.get().getAll(usuario).execute();
+        if (!response.isSuccessful() || response.body() == null) {
+            throw new IOException("Falha ao sincronizar fretes: HTTP " + response.code());
+        }
+        List<Frete> remotos = response.body();
+        dao.insertAll(remotos);
+        return remotos;
     }
+
 
     public List<Frete> getAll() {
         return dao.getAll();
@@ -58,7 +69,7 @@ public class FreteRepository {
         return dao.delete(frete);
     }
 
-    public void delete() {
+    public void deleteAll() {
         dao.deleteAll();
     }
 
@@ -71,7 +82,7 @@ public class FreteRepository {
         BigDecimal total = BigDecimal.ZERO;
         for (Transporte transporte : transportes) {
             Frete frete = buscarPorVeiculoEDistancia(transporte.getId(), distancia)
-                    .orElseThrow(() -> new RuntimeException("Nenhum frete configurado para o veículo: " + transporte.getNomeVeiculo()));
+                    .orElseThrow(() -> new IllegalStateException("Nenhum frete configurado para o veículo: " + transporte.getNomeVeiculo()));
             BigDecimal custoUnitario = calcularCustoUnitario(frete, distancia);
             BigDecimal quantidade = BigDecimal.valueOf(transporte.getQuantidade());
             BigDecimal subtotal = custoUnitario.multiply(quantidade);

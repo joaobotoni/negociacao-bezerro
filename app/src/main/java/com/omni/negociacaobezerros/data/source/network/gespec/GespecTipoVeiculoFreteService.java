@@ -9,6 +9,6 @@ import retrofit2.http.GET;
 import retrofit2.http.Path;
 
 public interface GespecTipoVeiculoFreteService {
-    @GET("tiposVeiculoFrete/{usuario}")
-    Call<List<TipoVeiculoFrete>> getAll(@Path("usuario") String usuario);
+    @GET("tiposVeiculoFrete")
+    Call<List<TipoVeiculoFrete>> getAll();
 }
