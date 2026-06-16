@@ -1,4 +1,4 @@
-package com.omni.negociacaobezerros.ui.helpers;
+package com.omni.negociacaobezerros.helpers;
 
 import android.os.Handler;
 
@@ -7,14 +7,17 @@ import androidx.annotation.NonNull;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutorService;
 import java.util.function.Consumer;
+import java.util.function.Function;
 
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+
 @Singleton
 public final class TaskHelper {
-
     private final ExecutorService executor;
     private final Handler mainHandler;
 

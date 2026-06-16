@@ -1,7 +1,7 @@
 package com.omni.negociacaobezerros.ui.adapters;
 
-import static com.omni.negociacaobezerros.ui.helpers.ViewHelper.setText;
-import static com.omni.negociacaobezerros.ui.helpers.ViewHelper.setVisible;
+import static com.omni.negociacaobezerros.helpers.ViewHelper.setText;
+import static com.omni.negociacaobezerros.helpers.ViewHelper.setVisible;
 
 import android.view.LayoutInflater;
 import android.view.ViewGroup;

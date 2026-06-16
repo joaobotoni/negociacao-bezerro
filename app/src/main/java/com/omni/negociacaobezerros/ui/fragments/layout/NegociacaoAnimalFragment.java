@@ -1,7 +1,7 @@
 package com.omni.negociacaobezerros.ui.fragments.layout;
 
-import static com.omni.negociacaobezerros.ui.helpers.NavigationHelper.navigateBackOnToolbar;
-import static com.omni.negociacaobezerros.ui.helpers.NavigationHelper.navigateOnClick;
+import static com.omni.negociacaobezerros.helpers.NavigationHelper.navigateBackOnToolbar;
+import static com.omni.negociacaobezerros.helpers.NavigationHelper.navigateOnClick;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,11 +11,9 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.NavController;
 
 import com.omni.negociacaobezerros.R;
 import com.omni.negociacaobezerros.databinding.FragmentNegociacaoAnimalBinding;
-import com.omni.negociacaobezerros.ui.helpers.NavigationHelper;
 
 public class NegociacaoAnimalFragment extends Fragment {
     private FragmentNegociacaoAnimalBinding binding;

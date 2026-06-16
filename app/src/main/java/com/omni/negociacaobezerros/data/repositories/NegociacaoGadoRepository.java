@@ -10,7 +10,6 @@ import java.util.List;
 import java.util.Optional;
 
 import javax.inject.Inject;
-import javax.inject.Provider;
 import javax.inject.Singleton;
 
 import retrofit2.Response;
@@ -18,20 +17,11 @@ import retrofit2.Response;
 @Singleton
 public class NegociacaoGadoRepository {
     private final NegociacaoGadoDao dao;
-    private final Provider<GespecNegociacaoGadoService> serviceProvider;
+    private final GespecNegociacaoGadoService service;
     @Inject
-    public NegociacaoGadoRepository(NegociacaoGadoDao dao, Provider<GespecNegociacaoGadoService> serviceProvider) {
+    public NegociacaoGadoRepository(NegociacaoGadoDao dao, GespecNegociacaoGadoService service) {
         this.dao = dao;
-        this.serviceProvider = serviceProvider;
-    }
-
-    public List<NegociacaoGado> sincronizar(String usuario) throws IOException {
-        List<NegociacaoGado> pendentes = dao.getAll();
-        Response<List<NegociacaoGado>> response = serviceProvider.get().insertAll(usuario, pendentes).execute();
-        if (!response.isSuccessful() || response.body() == null) {
-            throw new IOException("Falha ao enviar negociações de gado: HTTP " + response.code());
-        }
-        return response.body();
+        this.service = service;
     }
 
     public List<NegociacaoGado> getAll() {

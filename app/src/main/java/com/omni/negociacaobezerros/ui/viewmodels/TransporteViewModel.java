@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.omni.negociacaobezerros.data.repositories.TransporteRepository;
-import com.omni.negociacaobezerros.ui.helpers.TaskHelper;
+import com.omni.negociacaobezerros.helpers.TaskHelper;
 import com.omni.negociacaobezerros.ui.states.TransporteUiState;
 import com.omni.negociacaobezerros.utils.mapper.TransporteMapper;
 

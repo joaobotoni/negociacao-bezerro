@@ -1,10 +1,10 @@
 package com.omni.negociacaobezerros.ui.fragments.layout;
 
-import static com.omni.negociacaobezerros.ui.helpers.NavigationHelper.navigate;
-import static com.omni.negociacaobezerros.ui.helpers.NavigationHelper.navigateBackOnToolbar;
-import static com.omni.negociacaobezerros.ui.helpers.NavigationHelper.navigateOnClick;
-import static com.omni.negociacaobezerros.ui.helpers.NavigationHelper.setupMenuItems;
-import static com.omni.negociacaobezerros.ui.helpers.ViewHelper.setVisible;
+import static com.omni.negociacaobezerros.helpers.NavigationHelper.navigate;
+import static com.omni.negociacaobezerros.helpers.NavigationHelper.navigateBackOnToolbar;
+import static com.omni.negociacaobezerros.helpers.NavigationHelper.navigateOnClick;
+import static com.omni.negociacaobezerros.helpers.NavigationHelper.setupMenuItems;
+import static com.omni.negociacaobezerros.helpers.ViewHelper.setVisible;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -17,7 +17,6 @@ import androidx.fragment.app.Fragment;
 
 import com.omni.negociacaobezerros.R;
 import com.omni.negociacaobezerros.databinding.FragmentHomeBinding;
-import com.omni.negociacaobezerros.ui.helpers.NavigationHelper;
 
 public class HomeFragment extends Fragment {
 

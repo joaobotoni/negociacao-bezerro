@@ -11,7 +11,6 @@ import java.util.List;
 import java.util.Optional;
 
 import javax.inject.Inject;
-import javax.inject.Provider;
 import javax.inject.Singleton;
 
 import retrofit2.Response;
@@ -19,21 +18,11 @@ import retrofit2.Response;
 @Singleton
 public class RacaRepository {
     private final RacaDao dao;
-    private final Provider<GespecRacasService> serviceProvider;
+    private final GespecRacasService service;
     @Inject
-    public RacaRepository(RacaDao dao, Provider<GespecRacasService> serviceProvider) {
+    public RacaRepository(RacaDao dao, GespecRacasService service) {
         this.dao = dao;
-        this.serviceProvider = serviceProvider;
-    }
-
-    public List<Raca> sincronizar(String usuario) throws IOException {
-        Response<List<Raca>> response = serviceProvider.get().getAll(usuario).execute();
-        if (!response.isSuccessful() || response.body() == null) {
-            throw new IOException("Falha ao sincronizar raças: HTTP " + response.code());
-        }
-        List<Raca> remotos = response.body();
-        dao.insertAll(remotos);
-        return remotos;
+        this.service = service;
     }
 
 

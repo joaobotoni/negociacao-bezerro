@@ -16,7 +16,6 @@ import java.util.List;
 import java.util.Optional;
 
 import javax.inject.Inject;
-import javax.inject.Provider;
 import javax.inject.Singleton;
 
 import retrofit2.Response;
@@ -24,23 +23,12 @@ import retrofit2.Response;
 @Singleton
 public class FreteRepository {
     private final FreteDao dao;
-    private final Provider<GespecFreteService> serviceProvider;
+    private final GespecFreteService service;
     @Inject
-    public FreteRepository(FreteDao dao, Provider<GespecFreteService> serviceProvider) {
+    public FreteRepository(FreteDao dao, GespecFreteService service) {
         this.dao = dao;
-        this.serviceProvider = serviceProvider;
+        this.service = service;
     }
-
-    public List<Frete> sincronizar(String usuario) throws IOException {
-        Response<List<Frete>> response = serviceProvider.get().getAll(usuario).execute();
-        if (!response.isSuccessful() || response.body() == null) {
-            throw new IOException("Falha ao sincronizar fretes: HTTP " + response.code());
-        }
-        List<Frete> remotos = response.body();
-        dao.insertAll(remotos);
-        return remotos;
-    }
-
 
     public List<Frete> getAll() {
         return dao.getAll();

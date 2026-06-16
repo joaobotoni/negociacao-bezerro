@@ -1,7 +1,7 @@
 package com.omni.negociacaobezerros.ui.adapters;
 
-import static com.omni.negociacaobezerros.ui.helpers.ViewHelper.setPluralText;
-import static com.omni.negociacaobezerros.ui.helpers.ViewHelper.setText;
+import static com.omni.negociacaobezerros.helpers.ViewHelper.setPluralText;
+import static com.omni.negociacaobezerros.helpers.ViewHelper.setText;
 
 import android.content.Context;
 import android.view.LayoutInflater;

@@ -4,34 +4,23 @@ import com.omni.negociacaobezerros.data.source.local.dao.CapacidadeFreteDao;
 import com.omni.negociacaobezerros.data.source.local.entities.CapacidadeFrete;
 import com.omni.negociacaobezerros.data.source.network.gespec.GespecCapacidadeFreteService;
 
-import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
 import javax.inject.Inject;
-import javax.inject.Provider;
 import javax.inject.Singleton;
 
-import retrofit2.Response;
-
 @Singleton
-public class CapacidadeFreteRepository {
+public class CapacidadeFreteRepository  {
     private final CapacidadeFreteDao dao;
-    private final Provider<GespecCapacidadeFreteService> serviceProvider;
-    @Inject
-    public CapacidadeFreteRepository(CapacidadeFreteDao dao, Provider<GespecCapacidadeFreteService> serviceProvider) {
-        this.dao = dao;
-        this.serviceProvider = serviceProvider;
-    }
+    private final GespecCapacidadeFreteService service;
 
-    public List<CapacidadeFrete> sincronizar(String usuario) throws IOException {
-        Response<List<CapacidadeFrete>> response = serviceProvider.get().getAll(usuario).execute();
-        if (!response.isSuccessful() || response.body() == null) {
-            throw new IOException("Falha ao sincronizar capacidades de frete: HTTP " + response.code());
-        }
-        List<CapacidadeFrete> remotos = response.body();
-        dao.insertAll(remotos);
-        return remotos;
+    @Inject
+    public CapacidadeFreteRepository(CapacidadeFreteDao dao, GespecCapacidadeFreteService service) {
+
+        this.dao = dao;
+        this.service = service;
+
     }
 
     public List<CapacidadeFrete> getAll() {
@@ -41,7 +30,6 @@ public class CapacidadeFreteRepository {
     public Optional<CapacidadeFrete> findById(long id) {
         return Optional.ofNullable(dao.findById(id));
     }
-
     public List<CapacidadeFrete> findByCategoria(long id) {
         return dao.findByCategoria(id);
     }
@@ -65,4 +53,6 @@ public class CapacidadeFreteRepository {
     public void deleteAll() {
         dao.deleteAll();
     }
+
+
 }

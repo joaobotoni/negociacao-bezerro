@@ -1,6 +1,6 @@
 package com.omni.negociacaobezerros.ui.fragments.sheet;
 
-import static com.omni.negociacaobezerros.ui.helpers.RecyclerViewHelper.setupVerticalRecyclerView;
+import static com.omni.negociacaobezerros.helpers.RecyclerViewHelper.setupVerticalRecyclerView;
 
 import android.app.Dialog;
 import android.os.Bundle;

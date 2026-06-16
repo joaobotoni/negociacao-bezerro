@@ -9,7 +9,6 @@ import java.util.List;
 import java.util.Optional;
 
 import javax.inject.Inject;
-import javax.inject.Provider;
 import javax.inject.Singleton;
 
 import retrofit2.Response;
@@ -17,23 +16,12 @@ import retrofit2.Response;
 @Singleton
 public class TipoVeiculoFreteRepository {
     private final TipoVeiculoFreteDao dao;
-    private final Provider<GespecTipoVeiculoFreteService> serviceProvider;
+    private final GespecTipoVeiculoFreteService service;
     @Inject
-    public TipoVeiculoFreteRepository(TipoVeiculoFreteDao dao, Provider<GespecTipoVeiculoFreteService> serviceProvider) {
+    public TipoVeiculoFreteRepository(TipoVeiculoFreteDao dao, GespecTipoVeiculoFreteService service) {
         this.dao = dao;
-        this.serviceProvider = serviceProvider;
+        this.service = service;
     }
-
-    public List<TipoVeiculoFrete> sincronizar(String usuario) throws IOException {
-        Response<List<TipoVeiculoFrete>> response = serviceProvider.get().getAll(usuario).execute();
-        if (!response.isSuccessful() || response.body() == null) {
-            throw new IOException("Falha ao sincronizar tipos de veículo de frete: HTTP " + response.code());
-        }
-        List<TipoVeiculoFrete> remotos = response.body();
-        dao.insertAll(remotos);
-        return remotos;
-    }
-
 
     public List<TipoVeiculoFrete> getAll() {
         return dao.getAll();

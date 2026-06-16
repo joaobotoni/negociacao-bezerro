@@ -9,7 +9,6 @@ import java.util.List;
 import java.util.Optional;
 
 import javax.inject.Inject;
-import javax.inject.Provider;
 import javax.inject.Singleton;
 
 import retrofit2.Response;
@@ -17,23 +16,12 @@ import retrofit2.Response;
 @Singleton
 public class TipoReferenciaRepository {
     private final TipoReferenciaDao dao;
-    private final Provider<GespecTipoReferenciaService> serviceProvider;
+    private final GespecTipoReferenciaService service;
     @Inject
-    public TipoReferenciaRepository(TipoReferenciaDao dao, Provider<GespecTipoReferenciaService> serviceProvider) {
+    public TipoReferenciaRepository(TipoReferenciaDao dao, GespecTipoReferenciaService service) {
         this.dao = dao;
-        this.serviceProvider = serviceProvider;
+        this.service = service;
     }
-
-    public List<TipoReferencia> sincronizar(String usuario) throws IOException {
-        Response<List<TipoReferencia>> response = serviceProvider.get().getAll(usuario).execute();
-        if (!response.isSuccessful() || response.body() == null) {
-            throw new IOException("Falha ao sincronizar tipos de referência: HTTP " + response.code());
-        }
-        List<TipoReferencia> remotos = response.body();
-        dao.insertAll(remotos);
-        return remotos;
-    }
-
 
     public List<TipoReferencia> getAll() {
         return dao.getAll();

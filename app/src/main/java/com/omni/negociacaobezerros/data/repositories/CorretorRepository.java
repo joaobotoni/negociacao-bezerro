@@ -14,7 +14,6 @@ import java.util.List;
 import java.util.Optional;
 
 import javax.inject.Inject;
-import javax.inject.Provider;
 import javax.inject.Singleton;
 
 import retrofit2.Response;
@@ -22,22 +21,12 @@ import retrofit2.Response;
 @Singleton
 public class CorretorRepository {
     private final CorretorDao dao;
-    private final Provider<GespecCorretorService> serviceProvider;
+    private final GespecCorretorService service;
 
     @Inject
-    public CorretorRepository(CorretorDao dao, Provider<GespecCorretorService> serviceProvider) {
+    public CorretorRepository(CorretorDao dao, GespecCorretorService service) {
         this.dao = dao;
-        this.serviceProvider = serviceProvider;
-    }
-
-    public List<Corretor> sincronizar(String usuario) throws IOException {
-        Response<List<Corretor>> response = serviceProvider.get().getAll(usuario).execute();
-        if (!response.isSuccessful() || response.body() == null) {
-            throw new IOException("Falha ao sincronizar corretores: HTTP " + response.code());
-        }
-        List<Corretor> remotos = response.body();
-        dao.insertAll(remotos);
-        return remotos;
+        this.service = service;
     }
 
     public List<Corretor> getAll() {

@@ -9,7 +9,6 @@ import java.util.List;
 import java.util.Optional;
 
 import javax.inject.Inject;
-import javax.inject.Provider;
 import javax.inject.Singleton;
 
 import retrofit2.Response;
@@ -17,21 +16,11 @@ import retrofit2.Response;
 @Singleton
 public class CategoriaNegociacaoRepository {
     private final CategoriaNegociacaoDao dao;
-    private final Provider<GespecCategoriaNegociacaoService> serviceProvider;
+    private final GespecCategoriaNegociacaoService service;
     @Inject
-    public CategoriaNegociacaoRepository(CategoriaNegociacaoDao dao, Provider<GespecCategoriaNegociacaoService> serviceProvider) {
+    public CategoriaNegociacaoRepository(CategoriaNegociacaoDao dao, GespecCategoriaNegociacaoService service) {
         this.dao = dao;
-        this.serviceProvider = serviceProvider;
-    }
-
-    public List<CategoriaNegociacao> sincronizar(String usuario) throws IOException {
-        Response<List<CategoriaNegociacao>> response = serviceProvider.get().getAll(usuario).execute();
-        if (!response.isSuccessful() || response.body() == null) {
-            throw new IOException("Falha ao sincronizar categorias de negociação: HTTP " + response.code());
-        }
-        List<CategoriaNegociacao> remotos = response.body();
-        dao.insertAll(remotos);
-        return remotos;
+        this.service = service;
     }
 
     public List<CategoriaNegociacao> getAll() {

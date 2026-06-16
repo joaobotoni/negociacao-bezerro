@@ -1,4 +1,4 @@
-package com.omni.negociacaobezerros.ui.helpers;
+package com.omni.negociacaobezerros.helpers;
 
 import android.content.Context;
 import android.content.DialogInterface;

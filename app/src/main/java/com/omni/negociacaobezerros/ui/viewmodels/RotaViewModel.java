@@ -8,7 +8,7 @@ import androidx.lifecycle.ViewModel;
 
 import com.omni.negociacaobezerros.data.models.Rota;
 import com.omni.negociacaobezerros.data.repositories.LocalizacaoRepository;
-import com.omni.negociacaobezerros.ui.helpers.TaskHelper;
+import com.omni.negociacaobezerros.helpers.TaskHelper;
 import com.omni.negociacaobezerros.ui.states.RotaUiState;
 import com.omni.negociacaobezerros.utils.mapper.RotaMapper;
 

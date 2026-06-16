@@ -1,4 +1,4 @@
-package com.omni.negociacaobezerros.ui.helpers;
+package com.omni.negociacaobezerros.helpers;
 
 import android.text.Editable;
 import android.text.TextWatcher;

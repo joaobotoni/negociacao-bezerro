@@ -9,7 +9,6 @@ import java.util.List;
 import java.util.Optional;
 
 import javax.inject.Inject;
-import javax.inject.Provider;
 import javax.inject.Singleton;
 
 import retrofit2.Response;
@@ -17,21 +16,11 @@ import retrofit2.Response;
 @Singleton
 public class ValorReferenciaRepository {
     private final ValorReferenciaDao dao;
-    private final Provider<GespecValorReferenciaService> serviceProvider;
+    private final GespecValorReferenciaService service;
     @Inject
-    public ValorReferenciaRepository(ValorReferenciaDao dao, Provider<GespecValorReferenciaService> serviceProvider) {
+    public ValorReferenciaRepository(ValorReferenciaDao dao, GespecValorReferenciaService service) {
         this.dao = dao;
-        this.serviceProvider = serviceProvider;
-    }
-
-    public List<ValorReferencia> sincronizar(String usuario) throws IOException {
-        Response<List<ValorReferencia>> response = serviceProvider.get().getAll(usuario).execute();
-        if (!response.isSuccessful() || response.body() == null) {
-            throw new IOException("Falha ao sincronizar valores de referência: HTTP " + response.code());
-        }
-        List<ValorReferencia> remotos = response.body();
-        dao.insertAll(remotos);
-        return remotos;
+        this.service = service;
     }
 
     public List<ValorReferencia> getAll() {

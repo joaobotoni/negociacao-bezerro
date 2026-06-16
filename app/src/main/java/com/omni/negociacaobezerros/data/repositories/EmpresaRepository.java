@@ -9,7 +9,6 @@ import java.util.List;
 import java.util.Optional;
 
 import javax.inject.Inject;
-import javax.inject.Provider;
 import javax.inject.Singleton;
 
 import retrofit2.Response;
@@ -17,22 +16,13 @@ import retrofit2.Response;
 @Singleton
 public class EmpresaRepository {
     private final EmpresaDao dao;
-    private final Provider<GespecEmpresaService> serviceProvider;
+    private final GespecEmpresaService service;
     @Inject
-    public EmpresaRepository(EmpresaDao dao, Provider<GespecEmpresaService> serviceProvider) {
+    public EmpresaRepository(EmpresaDao dao, GespecEmpresaService service) {
         this.dao = dao;
-        this.serviceProvider = serviceProvider;
+        this.service = service;
     }
 
-    public List<Empresa> sincronizar(String usuario) throws IOException {
-        Response<List<Empresa>> response = serviceProvider.get().getAll(usuario).execute();
-        if (!response.isSuccessful() || response.body() == null) {
-            throw new IOException("Falha ao sincronizar empresas: HTTP " + response.code());
-        }
-        List<Empresa> remotos = response.body();
-        dao.insertAll(remotos);
-        return remotos;
-    }
 
     public List<Empresa> getAll() {
         return dao.getAll();
