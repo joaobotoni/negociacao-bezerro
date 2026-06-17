@@ -90,5 +90,4 @@ public class DataModule {
     public RacaDao provideRacaDao(AppDatabase db) {
         return db.racaDao();
     }
-
 }
