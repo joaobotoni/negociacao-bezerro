@@ -1,7 +1,4 @@
-package com.omni.negociacaobezerros.di.network.gespec;
-
-
-import android.content.SharedPreferences;
+package com.omni.negociacaobezerros.di.network.google;
 
 import com.omni.negociacaobezerros.di.network.HttpClientFactory;
 
@@ -17,25 +14,24 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 @Module
 @InstallIn(SingletonComponent.class)
-public class GespecNetworkModule {
-    private static final String BASE_URL = "http://placeholder.com/gespec/gespecservices/NegGadoService/";
-
+public class GoogleMapsNetworkModule {
+    private static final String BASE_URL = "https://routes.googleapis.com/";
     @Provides
     @Singleton
-    public GespecInterceptor providerGespecInterceptor(SharedPreferences sharedPreferences) {
-        return new GespecInterceptor(sharedPreferences);
+    public GoogleMapsInterceptor provideGoogleMapsInterceptor(GoogleMapsApiKeyProvider apiKeyProvider) {
+        return new GoogleMapsInterceptor(apiKeyProvider);
     }
 
     @Provides
     @Singleton
-    @Gespec
-    public OkHttpClient provideGespecHttpClient(HttpClientFactory factory, GespecInterceptor interceptor) {
+    @GoogleMaps
+    public OkHttpClient provideGoogleMapsHttpClient(HttpClientFactory factory, GoogleMapsInterceptor interceptor) {
         return factory.newInstance().addInterceptor(interceptor).build();
     }
 
     @Provides
     @Singleton
-    public Retrofit provideGespecRetrofit(@Gespec OkHttpClient okHttpClient) {
+    public Retrofit provideGoogleMapsRetrofit(@GoogleMaps OkHttpClient okHttpClient) {
         return new Retrofit.Builder().baseUrl(BASE_URL).client(okHttpClient)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();

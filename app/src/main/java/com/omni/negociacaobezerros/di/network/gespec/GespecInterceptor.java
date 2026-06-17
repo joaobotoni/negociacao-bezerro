@@ -1,109 +1,87 @@
 package com.omni.negociacaobezerros.di.network.gespec;
 
+import android.content.SharedPreferences;
+
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 
 import java.io.IOException;
 
-import javax.inject.Inject;
-import javax.inject.Singleton;
-
+import okhttp3.Headers;
 import okhttp3.HttpUrl;
 import okhttp3.Interceptor;
 import okhttp3.Request;
 import okhttp3.Response;
 
-@Singleton
 public class GespecInterceptor implements Interceptor {
-    private static final String HEADER_USER_NAME = "X-User-Name";
-    private final GespecServerProvider server;
-    @Inject
-    public GespecInterceptor(@NonNull GespecServerProvider server) {
-        this.server = server;
+    private static final String KEY_IP = "ip";
+    private static final String KEY_PORT = "port";
+    private static final String KEY_USER = "user";
+    private final String ip;
+    private final int port;
+    private final String user;
+
+    public GespecInterceptor(SharedPreferences preferences) {
+        this.ip = readHost(preferences);
+        this.port = readPort(preferences);
+        this.user = readUser(preferences);
     }
 
     @NonNull
     @Override
     public Response intercept(@NonNull Chain chain) throws IOException {
-        requireInitialized();
-        return chain.proceed(apply(chain.request()));
+        Request request = request(chain.request());
+        return chain.proceed(request);
     }
 
-    private void requireInitialized() throws IOException {
-        if (!server.isInitialized()) throw notInitialized();
-    }
-
-    @NonNull
-    private Request apply(@NonNull Request request) throws IOException {
+    private Request request(Request request) {
         return request.newBuilder()
-                .url(rewriteUrl(request.url()))
-                .header(HEADER_USER_NAME, username())
+                .url(newUrl(request))
+                .headers(headers())
+                .build();
+    }
+
+    private Headers headers() {
+        return new Headers.Builder()
+                .add("X-User-Name", user)
+                .build();
+    }
+
+    private HttpUrl newUrl(@NonNull Request original) {
+        return original.url().newBuilder()
+                .host(ip)
+                .port(port)
                 .build();
     }
 
     @NonNull
-    private HttpUrl rewriteUrl(@NonNull HttpUrl url) throws IOException {
-        return build(url.newBuilder(), host(), port());
+    private static String readUser(@NonNull SharedPreferences prefs) {
+        return requireString(prefs, KEY_USER);
     }
 
     @NonNull
-    private static HttpUrl build(@NonNull HttpUrl.Builder builder, @NonNull String host, int port) throws IOException {
-        try {
-            return builder.host(host).port(port).build();
-        } catch (IllegalArgumentException e) {
-            throw invalidEndpoint(host, port, e);
+    private static String readHost(@NonNull SharedPreferences prefs) {
+        return requireString(prefs, KEY_IP);
+    }
+
+    private static int readPort(@NonNull SharedPreferences prefs) {
+        return requireInt(prefs, KEY_PORT);
+    }
+
+    @NonNull
+    private static String requireString(@NonNull SharedPreferences prefs, @NonNull String key) {
+        String value = prefs.getString(key, null);
+        if (value == null || value.trim().isEmpty()) {
+            throw new IllegalStateException("Configuração ausente: " + key);
         }
+        return value;
     }
 
-    @NonNull
-    private String host() throws IOException {
-        return require(server.address(), "endereço");
-    }
-
-    private int port() throws IOException {
-        return parsePort(require(server.port(), "porta"));
-    }
-
-    @NonNull
-    private String username() throws IOException {
-        return require(server.username(), "utilizador");
-    }
-
-    private static int parsePort(@NonNull String port) throws IOException {
+    private static int requireInt(@NonNull SharedPreferences prefs, @NonNull String key) {
+        String value = requireString(prefs, key);
         try {
-            return Integer.parseInt(port);
+            return Integer.parseInt(value);
         } catch (NumberFormatException e) {
-            throw invalidPort(port, e);
+            throw new IllegalStateException("Valor inválido para " + key + ": " + value, e);
         }
-    }
-
-    @NonNull
-    private static String require(@Nullable String value, @NonNull String field) throws IOException {
-        if (!isFilled(value)) throw incomplete(field);
-        return value.trim();
-    }
-
-    private static boolean isFilled(@Nullable String value) {
-        return value != null && !value.trim().isEmpty();
-    }
-
-    @NonNull
-    private static IOException notInitialized() {
-        return new IOException("Rede Gespec não configurada. Defina endereço, porta e utilizador antes de efetuar requisições.");
-    }
-
-    @NonNull
-    private static IOException incomplete(@NonNull String field) {
-        return new IOException("Configuração Gespec incompleta: " + field + " ausente.");
-    }
-
-    @NonNull
-    private static IOException invalidPort(@NonNull String port, @NonNull Exception cause) {
-        return new IOException("Porta Gespec inválida: " + port, cause);
-    }
-
-    @NonNull
-    private static IOException invalidEndpoint(@NonNull String host, int port, @NonNull Exception cause) {
-        return new IOException("Endereço ou porta Gespec inválidos (host=" + host + ", port=" + port + ").", cause);
     }
 }
