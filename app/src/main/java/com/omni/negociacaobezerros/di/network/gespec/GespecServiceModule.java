@@ -41,6 +41,7 @@ public class GespecServiceModule {
     }
 
     @Provides
+    @Singleton
     public GespecCategoriaNegociacaoService provideCategoriaNegociacaoService(@NonNull @Gespec Retrofit retrofit) {
         return retrofit.create(GespecCategoriaNegociacaoService.class);
     }

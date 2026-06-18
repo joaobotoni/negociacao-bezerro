@@ -19,7 +19,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 @InstallIn(SingletonComponent.class)
 public class GespecNetworkModule {
     private static final String BASE_URL = "http://placeholder.com/gespec/gespecservices/NegGadoService/";
-
     @Provides
     @Singleton
     public GespecInterceptor providerGespecInterceptor(SharedPreferences sharedPreferences) {
@@ -35,6 +34,7 @@ public class GespecNetworkModule {
 
     @Provides
     @Singleton
+    @Gespec
     public Retrofit provideGespecRetrofit(@Gespec OkHttpClient okHttpClient) {
         return new Retrofit.Builder().baseUrl(BASE_URL).client(okHttpClient)
                 .addConverterFactory(GsonConverterFactory.create())

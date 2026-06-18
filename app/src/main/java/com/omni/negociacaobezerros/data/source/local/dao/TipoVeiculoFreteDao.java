@@ -7,25 +7,20 @@ import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 import androidx.room.Update;
 
+import com.omni.negociacaobezerros.data.source.local.contract.AbstractDao;
 import com.omni.negociacaobezerros.data.source.local.entities.TipoVeiculoFrete;
 
 import java.util.List;
 
 @Dao
-public interface TipoVeiculoFreteDao {
-
+public interface TipoVeiculoFreteDao extends AbstractDao<TipoVeiculoFrete> {
+    @Override
     @Query("SELECT * FROM xgp_tipo_veiculo_frete")
     List<TipoVeiculoFrete> getAll();
     @Query("SELECT * FROM xgp_tipo_veiculo_frete WHERE id_tipo_veiculo_frete = :id LIMIT 1")
     TipoVeiculoFrete findById(long id);
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    long insert(TipoVeiculoFrete tipoVeiculo);
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insertAll(List<TipoVeiculoFrete> tiposVeiculo);
-    @Update
-    int update(TipoVeiculoFrete tipoVeiculo);
-    @Delete
-    int delete(TipoVeiculoFrete tipoVeiculo);
+
+    @Override
     @Query("DELETE FROM xgp_tipo_veiculo_frete")
     void deleteAll();
 }

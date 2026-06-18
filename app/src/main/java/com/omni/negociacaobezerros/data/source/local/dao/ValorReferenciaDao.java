@@ -8,13 +8,15 @@ import androidx.room.Query;
 import androidx.room.Update;
 
 
+import com.omni.negociacaobezerros.data.source.local.contract.AbstractDao;
+import com.omni.negociacaobezerros.data.source.local.entities.TipoVeiculoFrete;
 import com.omni.negociacaobezerros.data.source.local.entities.ValorReferencia;
 
 import java.util.List;
 
 @Dao
-public interface ValorReferenciaDao {
-
+public interface ValorReferenciaDao extends AbstractDao<ValorReferencia> {
+    @Override
     @Query("SELECT * FROM xgp_valor_referencia")
     List<ValorReferencia> getAll();
 
@@ -24,18 +26,7 @@ public interface ValorReferenciaDao {
     @Query("SELECT * FROM xgp_valor_referencia ORDER BY data_referencia DESC LIMIT 1")
     ValorReferencia findMaisRecente();
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    long insert(ValorReferencia valorReferencia);
-
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insertAll(List<ValorReferencia> valorReferencias);
-
-    @Update
-    int update(ValorReferencia valorReferencia);
-
-    @Delete
-    int delete(ValorReferencia valorReferencia);
-
+    @Override
     @Query("DELETE FROM xgp_valor_referencia")
     void deleteAll();
 }

@@ -1,64 +1,44 @@
 package com.omni.negociacaobezerros.data.repositories;
 
+import com.omni.negociacaobezerros.data.repositories.core.ReadableRepository;
 import com.omni.negociacaobezerros.data.source.local.dao.EmpresaDao;
 import com.omni.negociacaobezerros.data.source.local.entities.Empresa;
 import com.omni.negociacaobezerros.data.source.network.gespec.GespecEmpresaService;
+import com.omni.negociacaobezerros.ui.helpers.TaskHelper;
 
 import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
 import javax.inject.Inject;
-import javax.inject.Provider;
 import javax.inject.Singleton;
 
+import retrofit2.Call;
 import retrofit2.Response;
 
 @Singleton
-public class EmpresaRepository {
+public class EmpresaRepository extends ReadableRepository<Empresa, List<Empresa>> {
     private final EmpresaDao dao;
-    private final Provider<GespecEmpresaService> serviceProvider;
+    private final GespecEmpresaService service;
+
     @Inject
-    public EmpresaRepository(EmpresaDao dao, Provider<GespecEmpresaService> serviceProvider) {
+    public EmpresaRepository(EmpresaDao dao, GespecEmpresaService service, TaskHelper taskHelper) {
+        super(dao, taskHelper);
         this.dao = dao;
-        this.serviceProvider = serviceProvider;
-    }
-
-    public List<Empresa> sincronizar(String usuario) throws IOException {
-        Response<List<Empresa>> response = serviceProvider.get().getAll(usuario).execute();
-        if (!response.isSuccessful() || response.body() == null) {
-            throw new IOException("Falha ao sincronizar empresas: HTTP " + response.code());
-        }
-        List<Empresa> remotos = response.body();
-        dao.insertAll(remotos);
-        return remotos;
-    }
-
-    public List<Empresa> getAll() {
-        return dao.getAll();
+        this.service = service;
     }
 
     public Optional<Empresa> findById(long id) {
         return Optional.ofNullable(dao.findById(id));
     }
 
-    public long insert(Empresa empresa) {
-        return dao.insert(empresa);
+    @Override
+    protected Call<List<Empresa>> call() {
+        return service.getAll();
     }
 
-    public void insertAll(List<Empresa> empresas) {
-        dao.insertAll(empresas);
-    }
-
-    public int update(Empresa empresa) {
-        return dao.update(empresa);
-    }
-
-    public int delete(Empresa empresa) {
-        return dao.delete(empresa);
-    }
-
-    public void deleteAll() {
-        dao.deleteAll();
+    @Override
+    protected void save(List<Empresa> data) {
+        insertAll(data);
     }
 }

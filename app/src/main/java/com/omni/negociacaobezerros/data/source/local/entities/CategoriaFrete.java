@@ -15,6 +15,7 @@ public class CategoriaFrete {
     @ColumnInfo(name = "descricao")
     @SerializedName(value = "DESCRICAO")
     private String descricao;
+
     public CategoriaFrete() {}
 
     public CategoriaFrete(int id, String descricao) {

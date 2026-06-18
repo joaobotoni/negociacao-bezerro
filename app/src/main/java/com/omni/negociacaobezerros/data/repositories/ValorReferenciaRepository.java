@@ -1,42 +1,32 @@
 package com.omni.negociacaobezerros.data.repositories;
 
+import com.omni.negociacaobezerros.data.repositories.core.ReadableRepository;
 import com.omni.negociacaobezerros.data.source.local.dao.ValorReferenciaDao;
 import com.omni.negociacaobezerros.data.source.local.entities.ValorReferencia;
 import com.omni.negociacaobezerros.data.source.network.gespec.GespecValorReferenciaService;
+import com.omni.negociacaobezerros.ui.helpers.TaskHelper;
 
 import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
 import javax.inject.Inject;
-import javax.inject.Provider;
 import javax.inject.Singleton;
 
+import retrofit2.Call;
 import retrofit2.Response;
 
 @Singleton
-public class ValorReferenciaRepository {
+public class ValorReferenciaRepository extends ReadableRepository<ValorReferencia, List<ValorReferencia>> {
     private final ValorReferenciaDao dao;
-    private final Provider<GespecValorReferenciaService> serviceProvider;
+    private final GespecValorReferenciaService service;
     @Inject
-    public ValorReferenciaRepository(ValorReferenciaDao dao, Provider<GespecValorReferenciaService> serviceProvider) {
+    public ValorReferenciaRepository(ValorReferenciaDao dao, GespecValorReferenciaService service, TaskHelper taskHelper) {
+        super(dao, taskHelper);
         this.dao = dao;
-        this.serviceProvider = serviceProvider;
+        this.service = service;
     }
 
-    public List<ValorReferencia> sincronizar(String usuario) throws IOException {
-        Response<List<ValorReferencia>> response = serviceProvider.get().getAll(usuario).execute();
-        if (!response.isSuccessful() || response.body() == null) {
-            throw new IOException("Falha ao sincronizar valores de referência: HTTP " + response.code());
-        }
-        List<ValorReferencia> remotos = response.body();
-        dao.insertAll(remotos);
-        return remotos;
-    }
-
-    public List<ValorReferencia> getAll() {
-        return dao.getAll();
-    }
 
     public Optional<ValorReferencia> findById(long id) {
         return Optional.ofNullable(dao.findById(id));
@@ -46,23 +36,13 @@ public class ValorReferenciaRepository {
         return Optional.ofNullable(dao.findMaisRecente());
     }
 
-    public long insert(ValorReferencia valorReferencia) {
-        return dao.insert(valorReferencia);
+    @Override
+    protected Call<List<ValorReferencia>> call() {
+        return service.getAll();
     }
 
-    public void insertAll(List<ValorReferencia> valorReferencias) {
-        dao.insertAll(valorReferencias);
-    }
-
-    public int update(ValorReferencia valorReferencia) {
-        return dao.update(valorReferencia);
-    }
-
-    public int delete(ValorReferencia valorReferencia) {
-        return dao.delete(valorReferencia);
-    }
-
-    public void deleteAll() {
-        dao.deleteAll();
+    @Override
+    protected void save(List<ValorReferencia> data) {
+         insertAll(data);
     }
 }

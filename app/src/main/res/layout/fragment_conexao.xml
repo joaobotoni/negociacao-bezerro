@@ -256,6 +256,7 @@
         android:text="@string/acao_conectar"
         app:icon="@drawable/cable_24px"
         app:iconGravity="end"
+        android:enabled="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

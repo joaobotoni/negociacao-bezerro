@@ -8,31 +8,21 @@ import androidx.room.Query;
 import androidx.room.Update;
 
 
+import com.omni.negociacaobezerros.data.source.local.contract.AbstractDao;
+import com.omni.negociacaobezerros.data.source.local.entities.Corretor;
 import com.omni.negociacaobezerros.data.source.local.entities.Empresa;
 
 import java.util.List;
 
 @Dao
-public interface EmpresaDao {
-
+public interface EmpresaDao extends AbstractDao<Empresa> {
+    @Override
     @Query("SELECT * FROM empresa")
     List<Empresa> getAll();
 
     @Query("SELECT * FROM empresa WHERE id_empresa = :id")
     Empresa findById(long id);
-
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    long insert(Empresa empresa);
-
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insertAll(List<Empresa> empresas);
-
-    @Update
-    int update(Empresa empresa);
-
-    @Delete
-    int delete(Empresa empresa);
-
+    @Override
     @Query("DELETE FROM empresa")
     void deleteAll();
 }

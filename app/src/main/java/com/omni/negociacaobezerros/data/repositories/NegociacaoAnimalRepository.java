@@ -1,64 +1,47 @@
 package com.omni.negociacaobezerros.data.repositories;
 
 
+import com.omni.negociacaobezerros.data.repositories.core.WritableRepository;
 import com.omni.negociacaobezerros.data.source.local.dao.NegociacaoAnimalDao;
 import com.omni.negociacaobezerros.data.source.local.entities.NegociacaoAnimal;
 import com.omni.negociacaobezerros.data.source.network.gespec.GespecNegociacaoAnimalService;
+import com.omni.negociacaobezerros.ui.helpers.TaskHelper;
 
 import java.io.IOException;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
 import javax.inject.Inject;
-import javax.inject.Provider;
 import javax.inject.Singleton;
 
+import retrofit2.Call;
 import retrofit2.Response;
 
 @Singleton
-public class NegociacaoAnimalRepository {
+public class NegociacaoAnimalRepository extends WritableRepository<NegociacaoAnimal, List<NegociacaoAnimal>> {
     private final NegociacaoAnimalDao dao;
-    private final Provider<GespecNegociacaoAnimalService> serviceProvider;
+    private final GespecNegociacaoAnimalService service;
+
     @Inject
-    public NegociacaoAnimalRepository(NegociacaoAnimalDao dao, Provider<GespecNegociacaoAnimalService> serviceProvider) {
+    public NegociacaoAnimalRepository(NegociacaoAnimalDao dao, GespecNegociacaoAnimalService service) {
+        super(dao);
         this.dao = dao;
-        this.serviceProvider = serviceProvider;
-    }
-
-    public List<NegociacaoAnimal> sincronizar(String usuario) throws IOException {
-        List<NegociacaoAnimal> pendentes = dao.getAll();
-        Response<List<NegociacaoAnimal>> response = serviceProvider.get().insertAll(usuario, pendentes).execute();
-        if (!response.isSuccessful() || response.body() == null) {
-            throw new IOException("Falha ao enviar negociações de animais: HTTP " + response.code());
-        }
-        return response.body();
-    }
-
-    public List<NegociacaoAnimal> getAll() {
-        return dao.getAll();
+        this.service = service;
     }
 
     public Optional<NegociacaoAnimal> findById(long id1, long id2) {
         return Optional.ofNullable(dao.findById(id1, id2));
     }
 
-    public long insert(NegociacaoAnimal negociacaoAnimal) {
-        return dao.insert(negociacaoAnimal);
+
+    @Override
+    protected Call<List<NegociacaoAnimal>> call(List<NegociacaoAnimal> data) {
+        return service.insertAll(data);
     }
 
-    public void insertAll(List<NegociacaoAnimal> negociacaoAnimals) {
-        dao.insertAll(negociacaoAnimals);
-    }
-
-    public int update(NegociacaoAnimal negociacaoAnimal) {
-        return dao.update(negociacaoAnimal);
-    }
-
-    public int delete(NegociacaoAnimal negociacaoAnimal) {
-        return dao.delete(negociacaoAnimal);
-    }
-
-    public void deleteAll() {
-        dao.deleteAll();
+    @Override
+    protected List<NegociacaoAnimal> load() {
+        return getAll();
     }
 }

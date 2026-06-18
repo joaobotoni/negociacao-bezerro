@@ -6,9 +6,11 @@ import static com.omni.negociacaobezerros.utils.format.Decimals.ESCALA_MONETARIA
 
 import com.omni.negociacaobezerros.data.models.PrecificacaoFrete;
 import com.omni.negociacaobezerros.data.models.Transporte;
+import com.omni.negociacaobezerros.data.repositories.core.ReadableRepository;
 import com.omni.negociacaobezerros.data.source.local.dao.FreteDao;
 import com.omni.negociacaobezerros.data.source.local.entities.Frete;
 import com.omni.negociacaobezerros.data.source.network.gespec.GespecFreteService;
+import com.omni.negociacaobezerros.ui.helpers.TaskHelper;
 
 import java.math.BigDecimal;
 import java.io.IOException;
@@ -16,61 +18,30 @@ import java.util.List;
 import java.util.Optional;
 
 import javax.inject.Inject;
-import javax.inject.Provider;
 import javax.inject.Singleton;
 
+import retrofit2.Call;
 import retrofit2.Response;
 
 @Singleton
-public class FreteRepository {
+public class FreteRepository extends ReadableRepository<Frete, List<Frete>> {
     private final FreteDao dao;
-    private final Provider<GespecFreteService> serviceProvider;
+    private final GespecFreteService service;
+
     @Inject
-    public FreteRepository(FreteDao dao, Provider<GespecFreteService> serviceProvider) {
+    public FreteRepository(FreteDao dao, GespecFreteService service, TaskHelper taskHelper) {
+        super(dao, taskHelper);
         this.dao = dao;
-        this.serviceProvider = serviceProvider;
+        this.service = service;
     }
 
-    public List<Frete> sincronizar(String usuario) throws IOException {
-        Response<List<Frete>> response = serviceProvider.get().getAll(usuario).execute();
-        if (!response.isSuccessful() || response.body() == null) {
-            throw new IOException("Falha ao sincronizar fretes: HTTP " + response.code());
-        }
-        List<Frete> remotos = response.body();
-        dao.insertAll(remotos);
-        return remotos;
-    }
-
-
-    public List<Frete> getAll() {
-        return dao.getAll();
-    }
 
     public Optional<Frete> findById(long id) {
         return Optional.ofNullable(dao.findById(id));
     }
+
     public Optional<Frete> buscarPorVeiculoEDistancia(long idVeiculo, double distancia) {
         return Optional.ofNullable(dao.findByVehicleAndDistance(idVeiculo, distancia));
-    }
-
-    public long insert(Frete frete) {
-        return dao.insert(frete);
-    }
-
-    public void insertAll(List<Frete> fretes) {
-        dao.insertAll(fretes);
-    }
-
-    public int update(Frete frete) {
-        return dao.update(frete);
-    }
-
-    public int delete(Frete frete) {
-        return dao.delete(frete);
-    }
-
-    public void deleteAll() {
-        dao.deleteAll();
     }
 
     public PrecificacaoFrete calcularFrete(List<Transporte> transportes, double distancia, int cargaTotal, BigDecimal pesoMedio) {
@@ -78,6 +49,7 @@ public class FreteRepository {
         BigDecimal valorPorKg = calcularFretePorKg(totalFrete, pesoMedio, cargaTotal);
         return new PrecificacaoFrete(totalFrete, valorPorKg);
     }
+
     public BigDecimal calcularFreteTotal(List<Transporte> transportes, double distancia) {
         BigDecimal total = BigDecimal.ZERO;
         for (Transporte transporte : transportes) {
@@ -105,5 +77,15 @@ public class FreteRepository {
             return valorBase.multiply(multiplicadorDistancia);
         }
         return valorBase;
+    }
+
+    @Override
+    protected Call<List<Frete>> call() {
+        return service.getAll();
+    }
+
+    @Override
+    protected void save(List<Frete> data) {
+        insertAll(data);
     }
 }

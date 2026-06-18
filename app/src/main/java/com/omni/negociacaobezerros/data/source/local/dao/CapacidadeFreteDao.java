@@ -8,13 +8,15 @@ import androidx.room.Query;
 import androidx.room.Update;
 
 
+import com.omni.negociacaobezerros.data.source.local.contract.AbstractDao;
 import com.omni.negociacaobezerros.data.source.local.entities.CapacidadeFrete;
 
 import java.util.List;
 
 @Dao
-public interface CapacidadeFreteDao {
+public interface CapacidadeFreteDao extends AbstractDao<CapacidadeFrete> {
 
+    @Override
     @Query("SELECT * FROM xgp_capacidade_frete")
     List<CapacidadeFrete> getAll();
 
@@ -23,19 +25,7 @@ public interface CapacidadeFreteDao {
 
     @Query("SELECT * FROM xgp_capacidade_frete WHERE id_categoria_frete = :id_categoria_frete ORDER BY qtde_final DESC")
     List<CapacidadeFrete> findByCategoria(long id_categoria_frete);
-
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    long insert(CapacidadeFrete capacidadeFrete);
-
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insertAll(List<CapacidadeFrete> capacidades);
-
-    @Update
-    int update(CapacidadeFrete capacidadeFrete);
-
-    @Delete
-    int delete(CapacidadeFrete capacidadeFrete);
-
+    @Override
     @Query("DELETE FROM xgp_capacidade_frete")
     void deleteAll();
 }

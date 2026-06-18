@@ -23,7 +23,6 @@ public class LocalizacaoRepository {
     private static final double METROS_POR_QUILOMETRO = 1000.0;
     private final Geocoder geocoder;
     private final RoutesService service;
-
     @Inject
     public LocalizacaoRepository(Geocoder geocoder, RoutesService service) {
         this.geocoder = geocoder;

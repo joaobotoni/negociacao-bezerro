@@ -3,7 +3,6 @@ package com.omni.negociacaobezerros.data.source.network.models;
 import java.util.List;
 
 public final class NetworkRoutes {
-
     public static final class Request {
         public final Origin origin;
         public final Destination destination;

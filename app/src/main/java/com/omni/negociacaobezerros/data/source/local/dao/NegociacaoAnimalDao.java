@@ -8,31 +8,21 @@ import androidx.room.Query;
 import androidx.room.Update;
 
 
+import com.omni.negociacaobezerros.data.source.local.contract.AbstractDao;
 import com.omni.negociacaobezerros.data.source.local.entities.NegociacaoAnimal;
 
 import java.util.List;
 
 @Dao
-public interface NegociacaoAnimalDao {
-
+public interface NegociacaoAnimalDao extends AbstractDao<NegociacaoAnimal> {
+    @Override
     @Query("SELECT * FROM xgp_negociacao_animal")
     List<NegociacaoAnimal> getAll();
 
     @Query("SELECT * FROM xgp_negociacao_animal WHERE id_negociacao_animal = :id1 AND id_negociacao_gado = :id2")
     NegociacaoAnimal findById(long id1, long id2);
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    long insert(NegociacaoAnimal negociacaoAnimal);
-
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insertAll(List<NegociacaoAnimal> negociacaoAnimals);
-
-    @Update
-    int update(NegociacaoAnimal negociacaoAnimal);
-
-    @Delete
-    int delete(NegociacaoAnimal negociacaoAnimal);
-
+    @Override
     @Query("DELETE FROM xgp_negociacao_animal")
     void deleteAll();
 }

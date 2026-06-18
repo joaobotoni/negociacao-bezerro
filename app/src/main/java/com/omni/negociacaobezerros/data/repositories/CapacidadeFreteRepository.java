@@ -1,41 +1,31 @@
 package com.omni.negociacaobezerros.data.repositories;
 
+import com.omni.negociacaobezerros.data.repositories.core.ReadableRepository;
 import com.omni.negociacaobezerros.data.source.local.dao.CapacidadeFreteDao;
 import com.omni.negociacaobezerros.data.source.local.entities.CapacidadeFrete;
+import com.omni.negociacaobezerros.data.source.local.entities.CategoriaFrete;
 import com.omni.negociacaobezerros.data.source.network.gespec.GespecCapacidadeFreteService;
+import com.omni.negociacaobezerros.ui.helpers.TaskHelper;
 
-import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
 import javax.inject.Inject;
-import javax.inject.Provider;
 import javax.inject.Singleton;
 
-import retrofit2.Response;
+import retrofit2.Call;
 
 @Singleton
-public class CapacidadeFreteRepository {
+public class CapacidadeFreteRepository extends ReadableRepository<CapacidadeFrete, List<CapacidadeFrete>> {
     private final CapacidadeFreteDao dao;
-    private final Provider<GespecCapacidadeFreteService> serviceProvider;
+    private final GespecCapacidadeFreteService service;
+
     @Inject
-    public CapacidadeFreteRepository(CapacidadeFreteDao dao, Provider<GespecCapacidadeFreteService> serviceProvider) {
+    public CapacidadeFreteRepository(CapacidadeFreteDao dao, GespecCapacidadeFreteService service, TaskHelper taskHelper) {
+        super(dao, taskHelper);
         this.dao = dao;
-        this.serviceProvider = serviceProvider;
-    }
+        this.service = service;
 
-    public List<CapacidadeFrete> sincronizar(String usuario) throws IOException {
-        Response<List<CapacidadeFrete>> response = serviceProvider.get().getAll(usuario).execute();
-        if (!response.isSuccessful() || response.body() == null) {
-            throw new IOException("Falha ao sincronizar capacidades de frete: HTTP " + response.code());
-        }
-        List<CapacidadeFrete> remotos = response.body();
-        dao.insertAll(remotos);
-        return remotos;
-    }
-
-    public List<CapacidadeFrete> getAll() {
-        return dao.getAll();
     }
 
     public Optional<CapacidadeFrete> findById(long id) {
@@ -46,23 +36,13 @@ public class CapacidadeFreteRepository {
         return dao.findByCategoria(id);
     }
 
-    public long insert(CapacidadeFrete capacidadeFrete) {
-        return dao.insert(capacidadeFrete);
+    @Override
+    protected Call<List<CapacidadeFrete>> call() {
+        return service.getAll();
     }
 
-    public void insertAll(List<CapacidadeFrete> capacidades) {
-        dao.insertAll(capacidades);
-    }
-
-    public int update(CapacidadeFrete capacidadeFrete) {
-        return dao.update(capacidadeFrete);
-    }
-
-    public int delete(CapacidadeFrete capacidadeFrete) {
-        return dao.delete(capacidadeFrete);
-    }
-
-    public void deleteAll() {
-        dao.deleteAll();
+    @Override
+    protected void save(List<CapacidadeFrete> data) {
+        insertAll(data);
     }
 }

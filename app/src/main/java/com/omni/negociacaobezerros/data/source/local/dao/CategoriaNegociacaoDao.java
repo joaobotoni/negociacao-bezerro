@@ -8,31 +8,21 @@ import androidx.room.Query;
 import androidx.room.Update;
 
 
+import com.omni.negociacaobezerros.data.source.local.contract.AbstractDao;
 import com.omni.negociacaobezerros.data.source.local.entities.CategoriaNegociacao;
 
 import java.util.List;
 
 @Dao
-public interface CategoriaNegociacaoDao {
-
+public interface CategoriaNegociacaoDao extends AbstractDao<CategoriaNegociacao> {
+    @Override
     @Query("SELECT * FROM xgp_categoria_neg")
     List<CategoriaNegociacao> getAll();
 
     @Query("SELECT * FROM xgp_categoria_neg WHERE id_categoria_neg = :id")
     CategoriaNegociacao findById(long id);
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    long insert(CategoriaNegociacao categoriaNegociacao);
-
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insertAll(List<CategoriaNegociacao> categoriaNegociacaos);
-
-    @Update
-    int update(CategoriaNegociacao categoriaNegociacao);
-
-    @Delete
-    int delete(CategoriaNegociacao categoriaNegociacao);
-
+    @Override
     @Query("DELETE FROM xgp_categoria_neg")
     void deleteAll();
 }

@@ -1,6 +1,5 @@
 package com.omni.negociacaobezerros.di.network.gespec;
 
-
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 

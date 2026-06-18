@@ -31,6 +31,7 @@ public class GoogleMapsNetworkModule {
 
     @Provides
     @Singleton
+    @GoogleMaps
     public Retrofit provideGoogleMapsRetrofit(@GoogleMaps OkHttpClient okHttpClient) {
         return new Retrofit.Builder().baseUrl(BASE_URL).client(okHttpClient)
                 .addConverterFactory(GsonConverterFactory.create())
