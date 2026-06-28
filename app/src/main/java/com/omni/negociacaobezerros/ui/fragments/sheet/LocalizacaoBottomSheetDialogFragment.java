@@ -1,9 +1,9 @@
 package com.omni.negociacaobezerros.ui.fragments.sheet;
 
-import static com.omni.negociacaobezerros.ui.helpers.AlertHelper.showSnackBarErro;
-import static com.omni.negociacaobezerros.ui.helpers.RecyclerViewHelper.setupVerticalRecyclerView;
-import static com.omni.negociacaobezerros.ui.helpers.TextWatcherHelper.search;
-import static com.omni.negociacaobezerros.ui.helpers.ViewHelper.text;
+import static com.omni.negociacaobezerros.helpers.AlertHelper.showSnackBarErro;
+import static com.omni.negociacaobezerros.helpers.RecyclerViewHelper.setupVerticalRecyclerView;
+import static com.omni.negociacaobezerros.helpers.TextWatcherHelper.search;
+import static com.omni.negociacaobezerros.helpers.ViewHelper.text;
 
 import android.Manifest;
 import android.app.Dialog;

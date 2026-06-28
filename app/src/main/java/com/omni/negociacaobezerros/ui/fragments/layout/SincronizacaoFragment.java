@@ -1,8 +1,8 @@
 package com.omni.negociacaobezerros.ui.fragments.layout;
 
-import static com.omni.negociacaobezerros.ui.helpers.NavigationHelper.navigateBackOnToolbar;
-import static com.omni.negociacaobezerros.ui.helpers.NavigationHelper.navigateOnClick;
-import static com.omni.negociacaobezerros.ui.helpers.ViewHelper.setVisible;
+import static com.omni.negociacaobezerros.helpers.NavigationHelper.navigateBackOnToolbar;
+import static com.omni.negociacaobezerros.helpers.NavigationHelper.navigateOnClick;
+import static com.omni.negociacaobezerros.helpers.ViewHelper.setVisible;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,12 +12,9 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.NavController;
 
 import com.omni.negociacaobezerros.R;
 import com.omni.negociacaobezerros.databinding.FragmentSincronizacaoBinding;
-import com.omni.negociacaobezerros.ui.helpers.NavigationHelper;
-import com.omni.negociacaobezerros.ui.helpers.ViewHelper;
 
 public class SincronizacaoFragment extends Fragment {
 
@@ -60,5 +57,4 @@ public class SincronizacaoFragment extends Fragment {
     private void showEmptyState(){
        setVisible(true, binding, R.id.layout_sincronizacao_empty_state);
     }
-
 }

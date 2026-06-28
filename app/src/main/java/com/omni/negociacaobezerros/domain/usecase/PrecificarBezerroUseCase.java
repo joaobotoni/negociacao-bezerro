@@ -4,7 +4,7 @@ import static com.omni.negociacaobezerros.utils.format.Numbers.parseDecimal;
 
 import com.omni.negociacaobezerros.data.models.ParametrosBezerro;
 import com.omni.negociacaobezerros.data.models.PrecificacaoBezerro;
-import com.omni.negociacaobezerros.data.repositories.ValorReferenciaRepository;
+import com.omni.negociacaobezerros.data.repositories.synchronizable.ValorReferenciaRepository;
 import com.omni.negociacaobezerros.data.source.local.entities.ValorReferencia;
 import com.omni.negociacaobezerros.domain.contract.PrecificacaoBezerroStrategy;
 

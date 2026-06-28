@@ -4,8 +4,8 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.omni.negociacaobezerros.data.repositories.CategoriaFreteRepository;
-import com.omni.negociacaobezerros.ui.helpers.TaskHelper;
+import com.omni.negociacaobezerros.data.repositories.synchronizable.CategoriaFreteRepository;
+import com.omni.negociacaobezerros.helpers.TaskHelper;
 import com.omni.negociacaobezerros.ui.states.CategoriaUiState;
 import com.omni.negociacaobezerros.utils.mapper.CategoriaMapper;
 

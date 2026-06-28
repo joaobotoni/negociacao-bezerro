@@ -1,7 +1,7 @@
 package com.omni.negociacaobezerros.ui.fragments.layout;
 
-import static com.omni.negociacaobezerros.ui.helpers.NavigationHelper.navigateBackOnToolbar;
-import static com.omni.negociacaobezerros.ui.helpers.NavigationHelper.navigateOnClick;
+import static com.omni.negociacaobezerros.helpers.NavigationHelper.navigateBackOnToolbar;
+import static com.omni.negociacaobezerros.helpers.NavigationHelper.navigateOnClick;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

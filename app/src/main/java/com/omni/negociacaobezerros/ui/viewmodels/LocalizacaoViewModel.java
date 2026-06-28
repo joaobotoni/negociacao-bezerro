@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.omni.negociacaobezerros.data.repositories.LocalizacaoRepository;
-import com.omni.negociacaobezerros.ui.helpers.TaskHelper;
+import com.omni.negociacaobezerros.helpers.TaskHelper;
 import com.omni.negociacaobezerros.ui.states.LocalizacaoUiState;
 
 import java.io.IOException;

@@ -1,7 +1,7 @@
 package com.omni.negociacaobezerros.ui.fragments.layout;
 
-import static com.omni.negociacaobezerros.ui.helpers.NavigationHelper.navigateBackOnToolbar;
-import static com.omni.negociacaobezerros.ui.helpers.NavigationHelper.navigateOnMenuItem;
+import static com.omni.negociacaobezerros.helpers.NavigationHelper.navigateBackOnToolbar;
+import static com.omni.negociacaobezerros.helpers.NavigationHelper.navigateOnMenuItem;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,7 +14,6 @@ import androidx.fragment.app.Fragment;
 
 import com.omni.negociacaobezerros.R;
 import com.omni.negociacaobezerros.databinding.FragmentConexaoBinding;
-import com.omni.negociacaobezerros.ui.helpers.TextWatcherHelper;
 
 public class ConexaoFragment extends Fragment {
     private FragmentConexaoBinding binding;

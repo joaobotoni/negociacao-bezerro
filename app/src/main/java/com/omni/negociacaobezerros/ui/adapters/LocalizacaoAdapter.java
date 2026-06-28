@@ -1,7 +1,7 @@
 package com.omni.negociacaobezerros.ui.adapters;
 
-import static com.omni.negociacaobezerros.ui.helpers.ViewHelper.noneNull;
-import static com.omni.negociacaobezerros.ui.helpers.ViewHelper.setText;
+import static com.omni.negociacaobezerros.helpers.ViewHelper.noneNull;
+import static com.omni.negociacaobezerros.helpers.ViewHelper.setText;
 
 import android.location.Address;
 import android.view.LayoutInflater;

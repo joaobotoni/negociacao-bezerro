@@ -7,7 +7,7 @@ import com.omni.negociacaobezerros.data.repositories.core.contract.Operation;
 import com.omni.negociacaobezerros.data.repositories.core.contract.Readable;
 import com.omni.negociacaobezerros.data.repositories.core.contract.Syncable;
 import com.omni.negociacaobezerros.data.source.local.contract.AbstractDao;
-import com.omni.negociacaobezerros.ui.helpers.TaskHelper;
+import com.omni.negociacaobezerros.helpers.TaskHelper;
 
 import java.util.function.Consumer;
 

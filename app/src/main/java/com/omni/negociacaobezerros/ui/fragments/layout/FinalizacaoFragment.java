@@ -1,6 +1,6 @@
 package com.omni.negociacaobezerros.ui.fragments.layout;
 
-import static com.omni.negociacaobezerros.ui.helpers.NavigationHelper.navigateBackOnToolbar;
+import static com.omni.negociacaobezerros.helpers.NavigationHelper.navigateBackOnToolbar;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,12 +10,8 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.navigation.NavController;
-import androidx.navigation.fragment.NavHostFragment;
 
-import com.omni.negociacaobezerros.R;
 import com.omni.negociacaobezerros.databinding.FragmentFinalizacaoBinding;
-import com.omni.negociacaobezerros.ui.helpers.NavigationHelper;
 
 public class FinalizacaoFragment extends Fragment {
     private FragmentFinalizacaoBinding binding;
