@@ -11,6 +11,6 @@ import retrofit2.http.Path;
 
 public interface GespecTipoReferenciaService {
 
-    @GET("tiposReferencia}")
+    @GET("tiposReferencia")
     Call<List<TipoReferencia>> getAll();
 }

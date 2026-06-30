@@ -25,7 +25,7 @@ public class NegociacaoAnimalAdapter extends ListAdapter<NegociacaoAnimalUiState
 
     private final OnActionsListener actionsListener;
 
-    protected NegociacaoAnimalAdapter(@NonNull OnActionsListener onActionsListener) {
+    public NegociacaoAnimalAdapter(@NonNull OnActionsListener onActionsListener) {
         super(new DiffCallback());
         this.actionsListener = onActionsListener;
     }

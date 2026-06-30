@@ -1,4 +1,5 @@
 package com.omni.negociacaobezerros.di.data.network.gespec;
+import com.omni.negociacaobezerros.data.source.network.gespec.GespecAcessoService;
 import com.omni.negociacaobezerros.data.source.network.gespec.GespecCapacidadeFreteService;
 
 
@@ -99,4 +100,10 @@ public class GespecServiceModule {
     public GespecNegociacaoGadoService provideNegociacaoGadoService(@NonNull @Gespec Retrofit retrofit) {
         return retrofit.create(GespecNegociacaoGadoService.class);
     }
+
+    @Provides
+    @Singleton
+     public GespecAcessoService provideGespecAcessoService(@NonNull @Gespec Retrofit retrofit){
+       return retrofit.create(GespecAcessoService.class);
+     }
 }

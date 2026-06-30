@@ -60,6 +60,14 @@ public final class NavigationHelper {
         }
     }
 
+    public static void popTo(@NonNull Fragment fragment, @IdRes int destino) {
+        findNavController(fragment).popBackStack(destino, false);
+    }
+
+    public static void popToOnClick(@NonNull Fragment fragment, @IdRes int destino, @NonNull View view) {
+        view.setOnClickListener(v -> popTo(fragment, destino));
+    }
+
     private static NavController findNavController(@NonNull Fragment fragment) {
         return NavHostFragment.findNavController(fragment);
     }

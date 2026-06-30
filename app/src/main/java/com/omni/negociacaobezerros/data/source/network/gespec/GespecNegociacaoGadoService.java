@@ -12,5 +12,5 @@ import retrofit2.http.Path;
 public interface GespecNegociacaoGadoService {
 
     @POST("negociacaoGado")
-    Call<List<NegociacaoGado>> insertAll(List<NegociacaoGado> negociacoes);
+    Call<List<NegociacaoGado>> insertAll(@Body List<NegociacaoGado> negociacoes);
 }

@@ -16,7 +16,7 @@ import com.omni.negociacaobezerros.ui.states.RegistroNegociacaoUiState;
 import java.util.Objects;
 
 public class RegistroNegociacaoAdapter extends ListAdapter<RegistroNegociacaoUiState, RegistroNegociacaoAdapter.ViewHolder> {
-    protected RegistroNegociacaoAdapter() {
+    public RegistroNegociacaoAdapter() {
         super(new DiffCallback());
     }
 

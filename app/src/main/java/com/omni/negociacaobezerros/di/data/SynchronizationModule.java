@@ -7,6 +7,7 @@ import com.omni.negociacaobezerros.data.repositories.synchronizable.CorretorRepo
 import com.omni.negociacaobezerros.data.repositories.synchronizable.EmpresaRepository;
 import com.omni.negociacaobezerros.data.repositories.synchronizable.FreteRepository;
 import com.omni.negociacaobezerros.data.repositories.synchronizable.NegociacaoAnimalRepository;
+import com.omni.negociacaobezerros.data.repositories.synchronizable.NegociacaoGadoRepository;
 import com.omni.negociacaobezerros.data.repositories.synchronizable.RacaRepository;
 import com.omni.negociacaobezerros.data.repositories.synchronizable.TipoReferenciaRepository;
 import com.omni.negociacaobezerros.data.repositories.synchronizable.TipoVeiculoFreteRepository;
@@ -79,4 +80,8 @@ public abstract class SynchronizationModule {
     @Binds
     @IntoSet
     abstract Syncable raca(RacaRepository repository);
+
+    @Binds
+    @IntoSet
+    abstract Syncable negociacaoGado(NegociacaoGadoRepository repository);
 }

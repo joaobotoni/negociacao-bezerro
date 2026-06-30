@@ -1,4 +1,8 @@
-# CLAUDE.md — Negociação Bezerros (Android · Java)
+# CLAUDE.md
+
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+
+# Negociação Bezerros (Android · Java)
 
 Native Android app for **cattle (bezerro) trading**: simulate/negotiate lot purchases using market quotes, freight, and broker commission. Stack: **MVVM + LiveData · Hilt · Room · Retrofit · Navigation Component · ViewBinding**. Architecture: **Clean Architecture** (Presentation → Domain → Data).
 
@@ -167,7 +171,9 @@ public class UserFragment extends Fragment {
 ```
 data/
   models/                 Pure POJOs (PrecificacaoBezerro, Rota, Transporte…)
-  repositories/           Logic over local DAOs
+  repositories/
+    core/                 AbstractRepository<T>, ReadableRepository<E,P>, WritableRepository<E,P>, contracts
+    synchronizable/       Concrete repos that implement Syncable (pull from API, persist via DAO)
   source/
     local/                Room: AppDatabase, xgp_* entities, DAOs, Converters
     network/gespec/       Retrofit @Gespec (internal API)
@@ -181,12 +187,15 @@ ui/
                           NegociacaoAnimal, Finalizacao, Conexao, Sincronizacao)
   fragments/sheet/        Bottom sheets (Categoria, Corretor, Empresa, Localizacao)
   fragments/dialog/       Standard dialogs
-  viewmodels/  states/  adapters/  helpers/   (NavigationHelper, AlertHelper, PermissionHelper)
+  viewmodels/  states/  adapters/
+helpers/                  NavigationHelper (static), AlertHelper, PermissionHelper, TaskHelper, RecyclerViewHelper
 di/
   AppModule               SharedPreferences
-  local/                  DataModule (DAOs), MapperModule, LocationModule, ExecutorModule
-  network/gespec/         GespecNetworkModule + GespecServiceModule
-  network/google/         GoogleMapsNetworkModule + GoogleMapsServiceModule
+  data/local/             DataModule (DAOs), MapperModule, LocationModule
+  data/                   SynchronizationModule (Hilt multibindings for Syncable list)
+  data/network/           NetworkModule (HttpClientFactory)
+  data/network/gespec/    GespecNetworkModule + GespecServiceModule
+  data/network/google/    GoogleMapsNetworkModule + GoogleMapsServiceModule
 utils/
   document/pdf/           PdfGenerator + PdfBand hierarchy
   format/                 Decimals constants, parsing helpers
@@ -206,7 +215,11 @@ Negociacao ↔ Frete                       (optional freight detour)
 Negociacao → NegociacaoAnimal → Finalizacao
 Negociacao → Finalizacao                 (direct, skips animal detail)
 ```
-Use Safe Args (`NegociacaoFragmentDirections`) + `NavigationHelper` (wraps `findNavController()`, prevents double-navigation crashes).
+Use Safe Args (`NegociacaoFragmentDirections`) + `NavigationHelper` (static utility — not injected; wraps `NavHostFragment.findNavController()` and guards against double-navigation by checking `getCurrentDestination()`).
+
+**Repository hierarchy.** `AbstractRepository<T>` wraps the DAO and provides basic CRUD. `ReadableRepository<E, P>` extends it, implements `Readable<P>` + `Syncable`: `pull()` fetches via Retrofit then delegates the DB write to `TaskHelper` (background thread → main thread callback). `WritableRepository<E, P>` extends it, implements `Writable<P>` + `Syncable`: `push()` serialises local data to the API. Concrete repos live in `data/repositories/synchronizable/` and extend one of these two. `SynchronizationRepository` receives a `List<Syncable>` built by `SynchronizationModule` via Hilt multibindings (`@IntoSet`), and calls `sync()` on each. To add a new syncable repo, bind it `@IntoSet` in `SynchronizationModule`.
+
+**`TaskHelper`** (`@Singleton`) — submits a `Callable` on an `ExecutorService` and posts results back via a main-thread `Handler`. Used by `ReadableRepository` for all DAO writes that follow a network pull.
 
 **Strategy — pricing.** `PrecificacaoBezerroStrategy` → `…SemFrete` (base), `…ComFrete` (+ freight/km), `…ComFreteEComissao` (+ broker commission/kg). `PrecificarBezerroUseCase` injects the active strategy, reads latest `ValorReferencia`, builds `ParametrosBezerro`. Agio (premium) in `PrecificacaoBezerroRepository` iterates by arroba steps for animals below base weight.
 
@@ -216,7 +229,7 @@ Use Safe Args (`NegociacaoFragmentDirections`) + `NavigationHelper` (wraps `find
 
 **Mappers.** Live in `utils/mapper/`, annotated `@Mapper(componentModel = "inject")`; register new bindings in `di/local/MapperModule` if needed.
 
-**DI modules:** `AppModule` (SharedPreferences), `DataModule` (DAOs), `MapperModule`, `LocationModule`, `ExecutorModule`, `Gespec{Network,Service}Module`, `GoogleMaps{Network,Service}Module`.
+**DI modules:** `AppModule` (SharedPreferences), `DataModule` (DAOs), `MapperModule`, `LocationModule`, `NetworkModule` (HttpClientFactory), `SynchronizationModule` (Syncable multibindings), `Gespec{Network,Service}Module`, `GoogleMaps{Network,Service}Module`.
 
 ---
 

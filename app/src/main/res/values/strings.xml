@@ -5,6 +5,7 @@
     <!-- Common: Acoes -->
     <string name="acao_compartilhar">Compartilhar</string>
     <string name="acao_concluir">Concluir</string>
+    <string name="acao_confirmar">Confirmar</string>
     <string name="acao_conectar">Conectar ao servidor</string>
     <string name="acao_exportar_pdf">Exportar PDF</string>
     <string name="acao_finalizar_negociacao">Finalizar negociação</string>
@@ -66,6 +67,7 @@
     <!-- Common: Formatos -->
     <string name="formato_capacidade_cabecas">Capacidade: %1$d cabeças</string>
     <string name="formato_numero_percentual"> %1$d%%</string>
+    <string name="formato_percentual">%1$s%%</string>
 
     <!-- Common: Placeholders -->
     <string name="common_label_empresa_compradora">Empresa compradora</string>
@@ -169,6 +171,7 @@
     <string name="negociacao_animal_progresso_pesados">%1$d de %2$d pesados</string>
     <string name="negociacao_animal_progresso_percentual">%1$d%%</string>
     <string name="negociacao_animal_progresso_faltam">Faltam %1$d animais</string>
+    <string name="edicao_item_negociacao_animal_titulo">Editar peso</string>
 
     <!-- Fragment: Frete -->
     <string name="frete_descricao_preenchido">Frete R$ %1$s · R$ %2$s</string>
@@ -214,6 +217,10 @@
     <string name="finalizacao_sucesso_titulo">Negociação enviada</string>
     <string name="finalizacao_title">Negociação finalizada</string>
     <string name="finalizacao_total_delta_padrao">+ R$ 0,00 vs. cotado (0,0 %)</string>
+    <string name="finalizacao_total_delta">%1$s vs. cotado (%2$s%%)</string>
+    <string name="finalizacao_subtitulo_empresa">Empresa · %s</string>
+    <string name="finalizacao_pdf_nome_arquivo">negociacao_%d.pdf</string>
+    <string name="finalizacao_pdf_titulo">Negociação de Gado</string>
     <string name="finalizacao_total_label">Valor final de fechamento</string>
     <string name="resumo_corretor_helper">Intermediação</string>
     <string name="resumo_corretor_label">Corretor</string>
@@ -235,6 +242,7 @@
     <string name="conexao_label_servidor">Servidor</string>
     <string name="conexao_title">Conexão remota</string>
     <string name="conexao_titulo_estabelecer">Estabelecer conexão</string>
+    <string name="conexao_sucesso">Conexão estabelecida com sucesso</string>
 
     <string name="sincronizacao_card_desc">Configurar servidor remoto</string>
     <string name="sincronizacao_card_title">Conexão remota</string>
@@ -243,6 +251,7 @@
     <string name="sincronizacao_item_title">Negociação</string>
     <string name="sincronizacao_item_unidade">.cab</string>
     <string name="sincronizacao_label_aguardando_envio">Aguardando envio</string>
+    <string name="sincronizacao_label_items_para_envio">%s items</string>
     <string name="sincronizacao_label_qtde_items">%s itens</string>
     <string name="sincronizacao_msg_aviso">Última sincronização: 06/06/2026 · 08:42</string>
     <string name="sincronizacao_title">Sincronização</string>

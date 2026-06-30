@@ -17,7 +17,7 @@ import java.util.Locale;
 import java.util.Objects;
 public class NegociacaoAdapter extends ListAdapter<NegociacaoUiState, NegociacaoAdapter.ViewHolder> {
 
-    private NegociacaoAdapter() {
+    public NegociacaoAdapter() {
         super(new DiffCallback());
     }
 
