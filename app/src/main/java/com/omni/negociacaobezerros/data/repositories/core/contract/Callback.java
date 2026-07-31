@@ -9,8 +9,14 @@ public interface Callback<T> {
 
     static <T> Callback<T> of(Consumer<T> onResult, Consumer<Throwable> onFailure) {
         return new Callback<>() {
-            @Override public void onResult(T data) { onResult.accept(data); }
-            @Override public void onFailure(Throwable error) { onFailure.accept(error); }
+            @Override
+            public void onResult(T data) {
+                onResult.accept(data);
+            }
+            @Override
+            public void onFailure(Throwable error) {
+                onFailure.accept(error);
+            }
         };
     }
 }

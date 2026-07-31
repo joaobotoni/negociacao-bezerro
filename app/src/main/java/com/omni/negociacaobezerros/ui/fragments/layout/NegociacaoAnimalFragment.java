@@ -38,7 +38,6 @@ import dagger.hilt.android.AndroidEntryPoint;
 @AndroidEntryPoint
 public class NegociacaoAnimalFragment extends Fragment {
     private static final String TAG_EDICAO_ITEM = "EdicaoItemNegociacaoAnimal";
-
     private FragmentNegociacaoAnimalBinding binding;
     private CotacaoViewModel cotacaoViewModel;
     private NegociacaoViewModel negociacaoViewModel;

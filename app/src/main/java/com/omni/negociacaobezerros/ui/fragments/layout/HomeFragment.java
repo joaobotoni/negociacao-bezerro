@@ -38,9 +38,7 @@ public class HomeFragment extends Fragment {
     private EmpresaViewModel empresaViewModel;
     private NegociacaoGadoViewModel negociacaoGadoViewModel;
     private RegistroNegociacaoAdapter historicoAdapter;
-
     private static final String TAG_BOTTOM_SHEET_EMPRESA = "EmpresaBottomSheet";
-
 
     @Nullable
     @Override

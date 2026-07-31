@@ -117,13 +117,22 @@ public class NegociacaoViewModel extends ViewModel {
 
     private void recalcular(BigDecimal pesoAtual, Integer quantidadeAtual, BigDecimal fretePorKgAtual, BigDecimal comissaoPorKgAtual) {
         taskHelper.execute(
-                () -> calcularPropostaEFechamento(pesoAtual, quantidadeAtual, fretePorKgAtual, comissaoPorKgAtual),
-                this::postResultado, erro::setValue);
+                this::carregarParametros,
+                parametros -> postResultado(parametros, pesoAtual, quantidadeAtual, fretePorKgAtual, comissaoPorKgAtual),
+                erro::setValue);
     }
 
-    private ResultadoNegociacao calcularPropostaEFechamento(BigDecimal pesoAtual, Integer quantidadeAtual,
-                                                             BigDecimal fretePorKgAtual, BigDecimal comissaoPorKgAtual) {
-        ParametrosBezerro parametros = carregarParametros();
+    private ParametrosBezerro carregarParametros() {
+        ValorReferencia referencia = valorReferenciaRepository.findMaisRecente()
+                .orElseThrow(() -> new IllegalStateException("Nenhum valor de referência cadastrado"));
+        return new ParametrosBezerro(
+                Numbers.parseDecimal(referencia.getPesoBezerro()),
+                Numbers.parseDecimal(referencia.getValorArrobaBoi()),
+                Numbers.parseDecimal(referencia.getAgioBezerro()));
+    }
+
+    private void postResultado(ParametrosBezerro parametros, BigDecimal pesoAtual, Integer quantidadeAtual,
+                                BigDecimal fretePorKgAtual, BigDecimal comissaoPorKgAtual) {
         BigDecimal cotacaoPorKg = precificacaoBezerroRepository.calcularValorPorKg(
                 pesoAtual, parametros.precoPorArroba, parametros.percentualAgio, parametros.pesoBaseKg);
 
@@ -136,23 +145,11 @@ public class NegociacaoViewModel extends ViewModel {
                 .calcular(pesoAtual, quantidadeAtual, parametros);
 
         BigDecimal variacao = calcularVariacaoPercentual(cotacaoPorKg, fechamento.getValorPorKg());
-        return new ResultadoNegociacao(cotacaoPorKg, proposta, fechamento, variacao);
-    }
 
-    private ParametrosBezerro carregarParametros() {
-        ValorReferencia referencia = valorReferenciaRepository.findMaisRecente()
-                .orElseThrow(() -> new IllegalStateException("Nenhum valor de referência cadastrado"));
-        return new ParametrosBezerro(
-                Numbers.parseDecimal(referencia.getPesoBezerro()),
-                Numbers.parseDecimal(referencia.getValorArrobaBoi()),
-                Numbers.parseDecimal(referencia.getAgioBezerro()));
-    }
-
-    private void postResultado(ResultadoNegociacao resultado) {
-        cotacaoReferenciaPorKg.setValue(resultado.cotacaoPorKg);
-        propostaState.setValue(new PrecificacaoBezerroUiState(resultado.proposta.getValorPorKg(), resultado.proposta.getValorPorCabeca()));
-        fechamentoState.setValue(new PrecificacaoBezerroUiState(resultado.fechamento.getValorPorKg(), resultado.fechamento.getValorPorCabeca()));
-        variacaoPercentual.setValue(resultado.variacaoPercentual);
+        cotacaoReferenciaPorKg.setValue(cotacaoPorKg);
+        propostaState.setValue(new PrecificacaoBezerroUiState(proposta.getValorPorKg(), proposta.getValorPorCabeca()));
+        fechamentoState.setValue(new PrecificacaoBezerroUiState(fechamento.getValorPorKg(), fechamento.getValorPorCabeca()));
+        variacaoPercentual.setValue(variacao);
         botaoAtivo.setValue(true);
     }
 
@@ -190,19 +187,5 @@ public class NegociacaoViewModel extends ViewModel {
 
     private BigDecimal orZero(BigDecimal valor) {
         return valor != null ? valor : BigDecimal.ZERO;
-    }
-
-    private static final class ResultadoNegociacao {
-        final BigDecimal cotacaoPorKg;
-        final PrecificacaoBezerro proposta;
-        final PrecificacaoBezerro fechamento;
-        final BigDecimal variacaoPercentual;
-
-        ResultadoNegociacao(BigDecimal cotacaoPorKg, PrecificacaoBezerro proposta, PrecificacaoBezerro fechamento, BigDecimal variacaoPercentual) {
-            this.cotacaoPorKg = cotacaoPorKg;
-            this.proposta = proposta;
-            this.fechamento = fechamento;
-            this.variacaoPercentual = variacaoPercentual;
-        }
     }
 }

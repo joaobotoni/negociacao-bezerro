@@ -29,7 +29,6 @@ public class NegociacaoGadoRepository extends WritableRepository<NegociacaoGado,
         return Optional.ofNullable(dao.findById(id));
     }
 
-
     @Override
     protected Call<List<NegociacaoGado>> call(List<NegociacaoGado> data) {
         return service.insertAll(data);

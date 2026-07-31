@@ -98,29 +98,20 @@ public class FreteViewModel extends ViewModel {
 
     private void calcular(long idCategoriaAtual, int quantidadeAtual, double distanciaAtual, BigDecimal pesoMedioAtual) {
         taskHelper.execute(
-                () -> calcularFreteETransportes(idCategoriaAtual, quantidadeAtual, distanciaAtual, pesoMedioAtual),
+                () -> transporteRepository.recomendarTransportes(idCategoriaAtual, quantidadeAtual),
+                transportes -> calcularFrete(transportes, quantidadeAtual, distanciaAtual, pesoMedioAtual),
+                erro::setValue);
+    }
+
+    private void calcularFrete(List<Transporte> transportes, int quantidadeAtual, double distanciaAtual, BigDecimal pesoMedioAtual) {
+        transportesState.setValue(transporteMapper.mapFrom(transportes));
+        taskHelper.execute(
+                () -> freteRepository.calcularFrete(transportes, distanciaAtual, quantidadeAtual, pesoMedioAtual),
                 this::postResultado, erro::setValue);
     }
 
-    private ResultadoCalculoFrete calcularFreteETransportes(long idCategoriaAtual, int quantidadeAtual, double distanciaAtual, BigDecimal pesoMedioAtual) {
-        List<Transporte> transportes = transporteRepository.recomendarTransportes(idCategoriaAtual, quantidadeAtual);
-        PrecificacaoFrete precificacao = freteRepository.calcularFrete(transportes, distanciaAtual, quantidadeAtual, pesoMedioAtual);
-        return new ResultadoCalculoFrete(transportes, precificacao);
-    }
-
-    private void postResultado(ResultadoCalculoFrete resultado) {
-        transportesState.setValue(transporteMapper.mapFrom(resultado.transportes));
-        freteState.setValue(new FreteUiState(resultado.precificacao.getValorTotal(), resultado.precificacao.getValorPorKg()));
+    private void postResultado(PrecificacaoFrete precificacao) {
+        freteState.setValue(new FreteUiState(precificacao.getValorTotal(), precificacao.getValorPorKg()));
         freteCalculado.setValue(true);
-    }
-
-    private static final class ResultadoCalculoFrete {
-        final List<Transporte> transportes;
-        final PrecificacaoFrete precificacao;
-
-        ResultadoCalculoFrete(List<Transporte> transportes, PrecificacaoFrete precificacao) {
-            this.transportes = transportes;
-            this.precificacao = precificacao;
-        }
     }
 }

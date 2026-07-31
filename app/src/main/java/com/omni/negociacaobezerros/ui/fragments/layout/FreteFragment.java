@@ -5,6 +5,7 @@ import static com.omni.negociacaobezerros.helpers.NavigationHelper.navigateOnCli
 import static com.omni.negociacaobezerros.helpers.RecyclerViewHelper.setupHorizontalRecyclerView;
 import static com.omni.negociacaobezerros.helpers.ViewHelper.isEmpty;
 import static com.omni.negociacaobezerros.helpers.ViewHelper.parseDecimal;
+import static com.omni.negociacaobezerros.helpers.ViewHelper.parseDouble;
 import static com.omni.negociacaobezerros.helpers.ViewHelper.setVisible;
 
 import android.Manifest;
@@ -48,7 +49,8 @@ public class FreteFragment extends Fragment {
     private static final String TAG_BOTTOM_SHEET_CATEGORIA = "CategoriaBottomSheet";
     private static final String TAG_BOTTOM_SHEET_LOCALIZACAO = LocalizacaoBottomSheetDialogFragment.TAG;
     private static final String[] PERMISSOES_LOCALIZACAO = {
-            Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION};
+            Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION
+    };
 
     private FragmentFreteBinding binding;
     private CategoriaViewModel categoriaViewModel;
@@ -138,7 +140,7 @@ public class FreteFragment extends Fragment {
         return PermissionHelper.hasPermissions(requireContext(), PERMISSOES_LOCALIZACAO);
     }
 
-    private void onPermissaoResultado(boolean concedida, Object resultado) {
+    private void onPermissaoResultado(boolean concedida) {
         if (!concedida) return;
         abrirLocalizacaoBottomSheet();
     }
@@ -155,7 +157,7 @@ public class FreteFragment extends Fragment {
     }
 
     private double lerDistanciaManual() {
-        return parseDecimal(binding.textInputEditTextFreteDistancia).doubleValue();
+        return parseDouble(binding.textInputEditTextFreteDistancia);
     }
 
     private void observeUiState() {
@@ -173,9 +175,8 @@ public class FreteFragment extends Fragment {
     }
 
     private void onCategoriaSelecionadaChanged(CategoriaUiState categoria) {
-        binding.textViewFreteDescricaoCategoria.setText(isCategoriaSelecionada(categoria)
-                ? categoria.getOpcao() : getString(R.string.frete_card__descricao_selecao_categoria_animal));
-        freteViewModel.setCategoria(isCategoriaSelecionada(categoria) ? (long) categoria.getId() : null);
+        binding.textViewFreteDescricaoCategoria.setText(isCategoriaSelecionada(categoria) ? categoria.getOpcao() : getString(R.string.frete_card__descricao_selecao_categoria_animal));
+        freteViewModel.setCategoria(isCategoriaSelecionada(categoria) ? categoria.getId() : null);
     }
 
     private boolean isCategoriaSelecionada(CategoriaUiState categoria) {

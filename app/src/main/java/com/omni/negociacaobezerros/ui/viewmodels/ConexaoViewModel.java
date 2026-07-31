@@ -7,6 +7,7 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.omni.negociacaobezerros.data.source.network.gespec.GespecAcessoService;
+import com.omni.negociacaobezerros.data.source.network.gespec.GespecUsuarioService;
 import com.omni.negociacaobezerros.helpers.TaskHelper;
 import com.omni.negociacaobezerros.ui.states.ConexaoUiState;
 
@@ -25,14 +26,14 @@ public class ConexaoViewModel extends ViewModel {
     private static final String KEY_USER = "user";
     private static final String CONTENT_TYPE = "application/json";
     private final SharedPreferences preferences;
-    private final GespecAcessoService service;
+    private final GespecUsuarioService service;
     private final TaskHelper taskHelper;
 
     private final MutableLiveData<ConexaoUiState> uiState = new MutableLiveData<>(null);
     private final MutableLiveData<Throwable> erro = new MutableLiveData<>(null);
 
     @Inject
-    public ConexaoViewModel(SharedPreferences preferences, GespecAcessoService service, TaskHelper taskHelper) {
+    public ConexaoViewModel(SharedPreferences preferences, GespecUsuarioService service, TaskHelper taskHelper) {
         this.preferences = preferences;
         this.service = service;
         this.taskHelper = taskHelper;
@@ -66,7 +67,9 @@ public class ConexaoViewModel extends ViewModel {
 
     private String testarConexao(String site, String usuario) throws IOException {
         Response<String> resposta = service.sync("", CONTENT_TYPE, site, usuario).execute();
-        if (!resposta.isSuccessful()) throw new IOException("HTTP " + resposta.code());
+        if (!resposta.isSuccessful()){
+            throw new IOException("HTTP kkkkkkkkk" + resposta.code() + "kkkkkkkk");
+        }
         return resposta.body();
     }
 

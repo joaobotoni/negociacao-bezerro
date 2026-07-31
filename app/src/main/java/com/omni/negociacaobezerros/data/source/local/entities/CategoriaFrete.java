@@ -11,7 +11,7 @@ public class CategoriaFrete {
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id_categoria_frete")
     @SerializedName(value = "ID_CATEGORIA_FRETE")
-    private int id;
+    private long id;
     @ColumnInfo(name = "descricao")
     @SerializedName(value = "DESCRICAO")
     private String descricao;
@@ -26,7 +26,7 @@ public class CategoriaFrete {
         this.descricao = descricao;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 

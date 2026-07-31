@@ -81,12 +81,12 @@ public class CotacaoFragment extends Fragment {
     }
 
     private void setupListeners() {
-        binding.textInputEditTextCotacaoPeso.addTextChangedListener(TextWatcherHelper.simple(this::tentarCalcular));
-        binding.textInputEditTextCotacaoQuantidade.addTextChangedListener(TextWatcherHelper.simple(this::tentarCalcular));
+        binding.textInputEditTextCotacaoPeso.addTextChangedListener(TextWatcherHelper.simple(this::calcular));
+        binding.textInputEditTextCotacaoQuantidade.addTextChangedListener(TextWatcherHelper.simple(this::calcular));
         binding.chipCotacaoGroupSexo.setOnCheckedStateChangeListener((group, checkedIds) -> onSexoAlterado());
     }
 
-    private void tentarCalcular() {
+    private void calcular() {
         if (!isFormularioPreenchido()) return;
         cotacaoViewModel.calcular(lerPeso(), lerQuantidade());
     }

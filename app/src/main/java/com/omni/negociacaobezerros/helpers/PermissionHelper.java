@@ -34,7 +34,9 @@ public final class PermissionHelper {
         return fragment.registerForActivityResult(
                 new ActivityResultContracts.RequestMultiplePermissions(),
                 result -> {
-                    if (result != null) listener.onResult(!result.containsValue(false), result);
+                    if (result != null){
+                        listener.onResult(!result.containsValue(false));
+                    }
                 }
         );
     }
@@ -45,6 +47,6 @@ public final class PermissionHelper {
     }
 
     public interface OnPermissionResultListener {
-        void onResult(boolean granted, @NonNull Map<String, Boolean> result);
+        void onResult(boolean allGranted);
     }
 }

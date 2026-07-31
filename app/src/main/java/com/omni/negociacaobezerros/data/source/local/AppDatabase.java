@@ -142,8 +142,8 @@ public abstract class AppDatabase extends RoomDatabase {
                                     db.execSQL("INSERT INTO xgp_tipo_referencia (id_tipo_referencia, descricao) VALUES (3, 'Negociação Particular')");
 
                                     // EMPRESA PADRÃO
-                                    db.execSQL("INSERT INTO empresa (nome) VALUES ('Agropecuaria Poças')");
-                                    db.execSQL("INSERT INTO empresa (nome) VALUES ('Fazenda Bom Sucesso')");
+                                    db.execSQL("INSERT INTO empresa (nome, localizacao) VALUES ('Agropecuaria Poças', 'Cuiabá - MT')");
+                                    db.execSQL("INSERT INTO empresa (nome, localizacao) VALUES ('Fazenda Bom Sucesso', 'Cuiabá - MT')");
 
                                     // CORRETOR PADRÃO
                                     db.execSQL("INSERT INTO xgp_corretor (name, comissao, tipo_comissao) VALUES ('Jucilei Ferreira da Silva', 25.0, 'c')");

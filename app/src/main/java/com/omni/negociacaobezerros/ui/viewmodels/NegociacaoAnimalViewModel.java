@@ -30,7 +30,6 @@ public class NegociacaoAnimalViewModel extends ViewModel {
     }
 
     public LiveData<List<NegociacaoAnimalUiState>> getAnimaisState() { return animaisState; }
-    public LiveData<BigDecimal> getValorKgNegociado() { return valorKgNegociado; }
     public LiveData<NegociacaoAnimalResumoUiState> getResumoState() { return resumoState; }
 
     public void setQuantidadeTotal(Integer quantidadeInformada) {

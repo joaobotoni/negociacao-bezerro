@@ -78,7 +78,6 @@
                 android:text="@string/formato_capacidade_cabecas"
                 android:textAllCaps="true"
                 android:textAppearance="?attr/textAppearanceBodySmall"
-                android:textColor="?attr/colorOnPrimaryContainer"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textoTipoVeiculo" />

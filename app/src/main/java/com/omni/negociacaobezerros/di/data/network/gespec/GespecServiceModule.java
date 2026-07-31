@@ -19,6 +19,7 @@ import com.omni.negociacaobezerros.data.source.network.gespec.GespecNegociacaoGa
 import com.omni.negociacaobezerros.data.source.network.gespec.GespecRacasService;
 import com.omni.negociacaobezerros.data.source.network.gespec.GespecTipoReferenciaService;
 import com.omni.negociacaobezerros.data.source.network.gespec.GespecTipoVeiculoFreteService;
+import com.omni.negociacaobezerros.data.source.network.gespec.GespecUsuarioService;
 import com.omni.negociacaobezerros.data.source.network.gespec.GespecValorReferenciaService;
 
 import androidx.annotation.NonNull;
@@ -106,4 +107,10 @@ public class GespecServiceModule {
      public GespecAcessoService provideGespecAcessoService(@NonNull @Gespec Retrofit retrofit){
        return retrofit.create(GespecAcessoService.class);
      }
+
+    @Provides
+    @Singleton
+    public GespecUsuarioService provideGespecUsuarioService(@NonNull @Gespec Retrofit retrofit){
+        return retrofit.create(GespecUsuarioService.class);
+    }
 }
